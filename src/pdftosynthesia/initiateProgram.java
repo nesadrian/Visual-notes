@@ -20,11 +20,13 @@ public class initiateProgram {
     
     File fileScuffed = new File("C:\\Users\\adria_000\\Desktop\\projects\\Pokémon Essentials original\\Audio\\BGM\\Battle Gym Leader.mid");
     File file = new File("C:\\Users\\adria_000\\Desktop\\Super Mario 64 - Medley.midi");
+    File dir = new File("C:\\Users");
 
     public void start() throws InvalidMidiDataException, IOException, MidiUnavailableException {
         createSequenceAndSequencer newSequenceAndSequencer = new createSequenceAndSequencer();
         Sequence newSequence = newSequenceAndSequencer.createSequence(file);
         Sequencer newSequencer = newSequenceAndSequencer.createSequencer(newSequence);
+        
         newSequenceAndSequencer.playSequence(newSequencer);
     }
 }
