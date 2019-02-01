@@ -23,10 +23,11 @@ public class initiateProgram {
     File dir = new File("C:\\Users");
 
     public void start() throws InvalidMidiDataException, IOException, MidiUnavailableException {
+        
         createSequenceAndSequencer newSequenceAndSequencer = new createSequenceAndSequencer();
         Sequence newSequence = newSequenceAndSequencer.createSequence(file);
         Sequencer newSequencer = newSequenceAndSequencer.createSequencer(newSequence);
-        
-        newSequenceAndSequencer.playSequence(newSequencer);
+        MIDImessages midiMs = new MIDImessages();
+        midiMs.newReceiver(newSequencer);
     }
 }
