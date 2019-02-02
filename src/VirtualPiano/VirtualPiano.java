@@ -3,14 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pdftosynthesia;
+package VirtualPiano;
+
+import javax.swing.JPanel;
 
 /**
  *
  * @author adria_000
  */
 public class VirtualPiano extends javax.swing.JFrame {
-
+    
+    int i = 0;
+    
     /**
      * Creates new form VirtualPiano
      */
@@ -18,6 +22,13 @@ public class VirtualPiano extends javax.swing.JFrame {
         initComponents();
     }
 
+    private JPanel createNotePanel() {
+        JPanel panel = new JPanel();
+        
+        //i++;
+        return panel;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,6 +37,7 @@ public class VirtualPiano extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -114,25 +126,28 @@ public class VirtualPiano extends javax.swing.JFrame {
         jLabel42 = new javax.swing.JLabel();
         jPanel44 = new javax.swing.JPanel();
         jLabel43 = new javax.swing.JLabel();
-        jPanel45 = new javax.swing.JPanel();
-        jLabel44 = new javax.swing.JLabel();
-        jPanel46 = new javax.swing.JPanel();
-        jLabel45 = new javax.swing.JLabel();
+        jPanel49 = new javax.swing.JPanel();
+        jPanel51 = new javax.swing.JPanel();
+        jPanel52 = new javax.swing.JPanel();
+        jPanel54 = new javax.swing.JPanel();
+        jPanel55 = new javax.swing.JPanel();
+        jPanel53 = new javax.swing.JPanel();
         jPanel47 = new javax.swing.JPanel();
-        jLabel46 = new javax.swing.JLabel();
+        jPanel48 = new javax.swing.JPanel();
+        jPanel50 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 8));
-        jPanel1.setLayout(null);
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setFocusCycleRoot(true);
         jPanel2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel2.setName("C"); // NOI18N
+        jPanel2.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(100, 100, 100));
@@ -144,25 +159,26 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(790, 630, 30, 110);
+        jPanel1.add(jPanel2, new java.awt.GridBagConstraints());
         jPanel2.getAccessibleContext().setAccessibleName("");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.setToolTipText("");
         jPanel4.setFocusCycleRoot(true);
         jPanel4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel4.setName("C"); // NOI18N
+        jPanel4.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(100, 100, 100));
@@ -179,19 +195,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel4);
-        jPanel4.setBounds(40, 630, 30, 110);
+        jPanel1.add(jPanel4, new java.awt.GridBagConstraints());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setFocusCycleRoot(true);
         jPanel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel3.setName("C"); // NOI18N
+        jPanel3.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(100, 100, 100));
@@ -203,24 +219,24 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel3);
-        jPanel3.setBounds(10, 630, 30, 110);
+        jPanel1.add(jPanel3, new java.awt.GridBagConstraints());
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel5.setFocusCycleRoot(true);
         jPanel5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel5.setName("C"); // NOI18N
+        jPanel5.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(100, 100, 100));
@@ -237,19 +253,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel5);
-        jPanel5.setBounds(100, 630, 30, 110);
+        jPanel1.add(jPanel5, new java.awt.GridBagConstraints());
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel6.setFocusCycleRoot(true);
         jPanel6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel6.setName("C"); // NOI18N
+        jPanel6.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(100, 100, 100));
@@ -266,19 +282,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel6);
-        jPanel6.setBounds(70, 630, 30, 110);
+        jPanel1.add(jPanel6, new java.awt.GridBagConstraints());
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel7.setFocusCycleRoot(true);
         jPanel7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel7.setName("C"); // NOI18N
+        jPanel7.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel6.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(100, 100, 100));
@@ -295,19 +311,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel7);
-        jPanel7.setBounds(160, 630, 30, 110);
+        jPanel1.add(jPanel7, new java.awt.GridBagConstraints());
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel8.setFocusCycleRoot(true);
         jPanel8.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel8.setName("C"); // NOI18N
+        jPanel8.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel7.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(100, 100, 100));
@@ -324,19 +340,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel8);
-        jPanel8.setBounds(190, 630, 30, 110);
+        jPanel1.add(jPanel8, new java.awt.GridBagConstraints());
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel9.setFocusCycleRoot(true);
         jPanel9.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel9.setName("C"); // NOI18N
+        jPanel9.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel8.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(100, 100, 100));
@@ -353,19 +369,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel9);
-        jPanel9.setBounds(220, 630, 30, 110);
+        jPanel1.add(jPanel9, new java.awt.GridBagConstraints());
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel10.setFocusCycleRoot(true);
         jPanel10.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel10.setName("C"); // NOI18N
+        jPanel10.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel9.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(100, 100, 100));
@@ -382,19 +398,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel10);
-        jPanel10.setBounds(250, 630, 30, 110);
+        jPanel1.add(jPanel10, new java.awt.GridBagConstraints());
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel11.setFocusCycleRoot(true);
         jPanel11.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel11.setName("C"); // NOI18N
+        jPanel11.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel10.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(100, 100, 100));
@@ -411,19 +427,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel11);
-        jPanel11.setBounds(280, 630, 30, 110);
+        jPanel1.add(jPanel11, new java.awt.GridBagConstraints());
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel12.setFocusCycleRoot(true);
         jPanel12.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel12.setName("C"); // NOI18N
+        jPanel12.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel11.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(100, 100, 100));
@@ -440,19 +456,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel12);
-        jPanel12.setBounds(310, 630, 30, 110);
+        jPanel1.add(jPanel12, new java.awt.GridBagConstraints());
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel13.setFocusCycleRoot(true);
         jPanel13.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel13.setName("C"); // NOI18N
+        jPanel13.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel12.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(100, 100, 100));
@@ -469,19 +485,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel12)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel13);
-        jPanel13.setBounds(340, 630, 30, 110);
+        jPanel1.add(jPanel13, new java.awt.GridBagConstraints());
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
         jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel14.setFocusCycleRoot(true);
         jPanel14.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel14.setName("C"); // NOI18N
+        jPanel14.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel13.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(100, 100, 100));
@@ -498,19 +514,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel14);
-        jPanel14.setBounds(370, 630, 30, 110);
+        jPanel1.add(jPanel14, new java.awt.GridBagConstraints());
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel15.setFocusCycleRoot(true);
         jPanel15.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel15.setName("C"); // NOI18N
+        jPanel15.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel14.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(100, 100, 100));
@@ -527,19 +543,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel14)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel15);
-        jPanel15.setBounds(400, 630, 30, 110);
+        jPanel1.add(jPanel15, new java.awt.GridBagConstraints());
 
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
         jPanel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel16.setFocusCycleRoot(true);
         jPanel16.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel16.setName("C"); // NOI18N
+        jPanel16.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel15.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(100, 100, 100));
@@ -556,19 +572,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel15)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel16);
-        jPanel16.setBounds(430, 630, 30, 110);
+        jPanel1.add(jPanel16, new java.awt.GridBagConstraints());
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel17.setFocusCycleRoot(true);
         jPanel17.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel17.setName("C"); // NOI18N
+        jPanel17.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel16.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(100, 100, 100));
@@ -585,19 +601,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel16)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel17);
-        jPanel17.setBounds(460, 630, 30, 110);
+        jPanel1.add(jPanel17, new java.awt.GridBagConstraints());
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
         jPanel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel18.setFocusCycleRoot(true);
         jPanel18.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel18.setName("C"); // NOI18N
+        jPanel18.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel17.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(100, 100, 100));
@@ -614,19 +630,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel17)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel18);
-        jPanel18.setBounds(490, 630, 30, 110);
+        jPanel1.add(jPanel18, new java.awt.GridBagConstraints());
 
         jPanel19.setBackground(new java.awt.Color(255, 255, 255));
         jPanel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel19.setFocusCycleRoot(true);
         jPanel19.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel19.setName("C"); // NOI18N
+        jPanel19.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel18.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(100, 100, 100));
@@ -643,19 +659,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel18)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel19);
-        jPanel19.setBounds(520, 630, 30, 110);
+        jPanel1.add(jPanel19, new java.awt.GridBagConstraints());
 
         jPanel20.setBackground(new java.awt.Color(255, 255, 255));
         jPanel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel20.setFocusCycleRoot(true);
         jPanel20.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel20.setName("C"); // NOI18N
+        jPanel20.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel19.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(100, 100, 100));
@@ -672,19 +688,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel19)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel20);
-        jPanel20.setBounds(550, 630, 30, 110);
+        jPanel1.add(jPanel20, new java.awt.GridBagConstraints());
 
         jPanel21.setBackground(new java.awt.Color(255, 255, 255));
         jPanel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel21.setFocusCycleRoot(true);
         jPanel21.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel21.setName("C"); // NOI18N
+        jPanel21.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel20.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(100, 100, 100));
@@ -701,19 +717,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel20)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel21);
-        jPanel21.setBounds(580, 630, 30, 110);
+        jPanel1.add(jPanel21, new java.awt.GridBagConstraints());
 
         jPanel22.setBackground(new java.awt.Color(255, 255, 255));
         jPanel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel22.setFocusCycleRoot(true);
         jPanel22.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel22.setName("C"); // NOI18N
+        jPanel22.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel21.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(100, 100, 100));
@@ -730,19 +746,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel21)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel22);
-        jPanel22.setBounds(610, 630, 30, 110);
+        jPanel1.add(jPanel22, new java.awt.GridBagConstraints());
 
         jPanel23.setBackground(new java.awt.Color(255, 255, 255));
         jPanel23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel23.setFocusCycleRoot(true);
         jPanel23.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel23.setName("C"); // NOI18N
+        jPanel23.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel22.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(100, 100, 100));
@@ -759,19 +775,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel22)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel23);
-        jPanel23.setBounds(640, 630, 30, 110);
+        jPanel1.add(jPanel23, new java.awt.GridBagConstraints());
 
         jPanel24.setBackground(new java.awt.Color(255, 255, 255));
         jPanel24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel24.setFocusCycleRoot(true);
         jPanel24.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel24.setName("C"); // NOI18N
+        jPanel24.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel23.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(100, 100, 100));
@@ -788,19 +804,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel23)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel24);
-        jPanel24.setBounds(670, 630, 30, 110);
+        jPanel1.add(jPanel24, new java.awt.GridBagConstraints());
 
         jPanel25.setBackground(new java.awt.Color(255, 255, 255));
         jPanel25.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel25.setFocusCycleRoot(true);
         jPanel25.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel25.setName("C"); // NOI18N
+        jPanel25.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel24.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(100, 100, 100));
@@ -817,19 +833,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel24)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel25);
-        jPanel25.setBounds(700, 630, 30, 110);
+        jPanel1.add(jPanel25, new java.awt.GridBagConstraints());
 
         jPanel26.setBackground(new java.awt.Color(255, 255, 255));
         jPanel26.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel26.setFocusCycleRoot(true);
         jPanel26.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel26.setName("C"); // NOI18N
+        jPanel26.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel25.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(100, 100, 100));
@@ -846,19 +862,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel26Layout.setVerticalGroup(
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel25)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel26);
-        jPanel26.setBounds(130, 630, 30, 110);
+        jPanel1.add(jPanel26, new java.awt.GridBagConstraints());
 
         jPanel27.setBackground(new java.awt.Color(255, 255, 255));
         jPanel27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel27.setFocusCycleRoot(true);
         jPanel27.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel27.setName("C"); // NOI18N
+        jPanel27.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel26.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(100, 100, 100));
@@ -875,19 +891,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel27Layout.setVerticalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel26)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel27);
-        jPanel27.setBounds(760, 630, 30, 110);
+        jPanel1.add(jPanel27, new java.awt.GridBagConstraints());
 
         jPanel28.setBackground(new java.awt.Color(255, 255, 255));
         jPanel28.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel28.setFocusCycleRoot(true);
         jPanel28.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel28.setName("C"); // NOI18N
+        jPanel28.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel27.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(100, 100, 100));
@@ -904,19 +920,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel28Layout.setVerticalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel27)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel28);
-        jPanel28.setBounds(730, 630, 30, 110);
+        jPanel1.add(jPanel28, new java.awt.GridBagConstraints());
 
         jPanel29.setBackground(new java.awt.Color(255, 255, 255));
         jPanel29.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel29.setFocusCycleRoot(true);
         jPanel29.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel29.setName("C"); // NOI18N
+        jPanel29.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel28.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(100, 100, 100));
@@ -933,19 +949,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel29Layout.setVerticalGroup(
             jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel29Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel28)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel29);
-        jPanel29.setBounds(820, 630, 30, 110);
+        jPanel1.add(jPanel29, new java.awt.GridBagConstraints());
 
         jPanel30.setBackground(new java.awt.Color(255, 255, 255));
         jPanel30.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel30.setFocusCycleRoot(true);
         jPanel30.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel30.setName("C"); // NOI18N
+        jPanel30.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel29.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(100, 100, 100));
@@ -962,19 +978,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel30Layout.setVerticalGroup(
             jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel30Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel29)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel30);
-        jPanel30.setBounds(850, 630, 30, 110);
+        jPanel1.add(jPanel30, new java.awt.GridBagConstraints());
 
         jPanel31.setBackground(new java.awt.Color(255, 255, 255));
         jPanel31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel31.setFocusCycleRoot(true);
         jPanel31.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel31.setName("C"); // NOI18N
+        jPanel31.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel30.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(100, 100, 100));
@@ -991,19 +1007,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel31Layout.setVerticalGroup(
             jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel31Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel30)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel31);
-        jPanel31.setBounds(880, 630, 30, 110);
+        jPanel1.add(jPanel31, new java.awt.GridBagConstraints());
 
         jPanel32.setBackground(new java.awt.Color(255, 255, 255));
         jPanel32.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel32.setFocusCycleRoot(true);
         jPanel32.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel32.setName("C"); // NOI18N
+        jPanel32.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel31.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(100, 100, 100));
@@ -1015,24 +1031,24 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel32.setLayout(jPanel32Layout);
         jPanel32Layout.setHorizontalGroup(
             jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+            .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
         );
         jPanel32Layout.setVerticalGroup(
             jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel32Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel31)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel32);
-        jPanel32.setBounds(910, 630, 30, 110);
+        jPanel1.add(jPanel32, new java.awt.GridBagConstraints());
 
         jPanel33.setBackground(new java.awt.Color(255, 255, 255));
         jPanel33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel33.setFocusCycleRoot(true);
         jPanel33.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel33.setName("C"); // NOI18N
+        jPanel33.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel32.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(100, 100, 100));
@@ -1049,19 +1065,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel33Layout.setVerticalGroup(
             jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel33Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel32)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel33);
-        jPanel33.setBounds(940, 630, 30, 110);
+        jPanel1.add(jPanel33, new java.awt.GridBagConstraints());
 
         jPanel34.setBackground(new java.awt.Color(255, 255, 255));
         jPanel34.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel34.setFocusCycleRoot(true);
         jPanel34.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel34.setName("C"); // NOI18N
+        jPanel34.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel33.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(100, 100, 100));
@@ -1078,19 +1094,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel34Layout.setVerticalGroup(
             jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel34Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel33)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel34);
-        jPanel34.setBounds(970, 630, 30, 110);
+        jPanel1.add(jPanel34, new java.awt.GridBagConstraints());
 
         jPanel35.setBackground(new java.awt.Color(255, 255, 255));
         jPanel35.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel35.setFocusCycleRoot(true);
         jPanel35.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel35.setName("C"); // NOI18N
+        jPanel35.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel34.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(100, 100, 100));
@@ -1102,24 +1118,24 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel35.setLayout(jPanel35Layout);
         jPanel35Layout.setHorizontalGroup(
             jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+            .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel35Layout.setVerticalGroup(
             jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel35Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel34)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel35);
-        jPanel35.setBounds(1000, 630, 30, 110);
+        jPanel1.add(jPanel35, new java.awt.GridBagConstraints());
 
         jPanel36.setBackground(new java.awt.Color(255, 255, 255));
         jPanel36.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel36.setFocusCycleRoot(true);
         jPanel36.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel36.setName("C"); // NOI18N
+        jPanel36.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel35.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(100, 100, 100));
@@ -1136,19 +1152,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel36Layout.setVerticalGroup(
             jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel36Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel35)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel36);
-        jPanel36.setBounds(1030, 630, 30, 110);
+        jPanel1.add(jPanel36, new java.awt.GridBagConstraints());
 
         jPanel37.setBackground(new java.awt.Color(255, 255, 255));
         jPanel37.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel37.setFocusCycleRoot(true);
         jPanel37.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel37.setName("C"); // NOI18N
+        jPanel37.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel36.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel36.setForeground(new java.awt.Color(100, 100, 100));
@@ -1165,19 +1181,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel37Layout.setVerticalGroup(
             jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel37Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel36)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel37);
-        jPanel37.setBounds(1060, 630, 30, 110);
+        jPanel1.add(jPanel37, new java.awt.GridBagConstraints());
 
         jPanel38.setBackground(new java.awt.Color(255, 255, 255));
         jPanel38.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel38.setFocusCycleRoot(true);
         jPanel38.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel38.setName("C"); // NOI18N
+        jPanel38.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel37.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(100, 100, 100));
@@ -1194,19 +1210,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel38Layout.setVerticalGroup(
             jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel38Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel37)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel38);
-        jPanel38.setBounds(1090, 630, 30, 110);
+        jPanel1.add(jPanel38, new java.awt.GridBagConstraints());
 
         jPanel39.setBackground(new java.awt.Color(255, 255, 255));
         jPanel39.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel39.setFocusCycleRoot(true);
         jPanel39.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel39.setName("C"); // NOI18N
+        jPanel39.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel38.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel38.setForeground(new java.awt.Color(100, 100, 100));
@@ -1223,19 +1239,22 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel39Layout.setVerticalGroup(
             jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel39Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel38)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel39);
-        jPanel39.setBounds(1120, 630, 30, 110);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 39;
+        gridBagConstraints.gridy = 0;
+        jPanel1.add(jPanel39, gridBagConstraints);
 
         jPanel40.setBackground(new java.awt.Color(255, 255, 255));
         jPanel40.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel40.setFocusCycleRoot(true);
         jPanel40.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel40.setName("C"); // NOI18N
+        jPanel40.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel39.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel39.setForeground(new java.awt.Color(100, 100, 100));
@@ -1252,19 +1271,22 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel40Layout.setVerticalGroup(
             jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel40Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel39)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel40);
-        jPanel40.setBounds(1150, 630, 30, 110);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 40;
+        gridBagConstraints.gridy = 0;
+        jPanel1.add(jPanel40, gridBagConstraints);
 
         jPanel41.setBackground(new java.awt.Color(255, 255, 255));
         jPanel41.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel41.setFocusCycleRoot(true);
         jPanel41.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel41.setName("C"); // NOI18N
+        jPanel41.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel40.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel40.setForeground(new java.awt.Color(100, 100, 100));
@@ -1281,19 +1303,19 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel41Layout.setVerticalGroup(
             jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel41Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel40)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel41);
-        jPanel41.setBounds(1180, 630, 30, 110);
+        jPanel1.add(jPanel41, new java.awt.GridBagConstraints());
 
         jPanel42.setBackground(new java.awt.Color(255, 255, 255));
         jPanel42.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel42.setFocusCycleRoot(true);
         jPanel42.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel42.setName("C"); // NOI18N
+        jPanel42.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel41.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(100, 100, 100));
@@ -1310,19 +1332,22 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel42Layout.setVerticalGroup(
             jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel42Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel41)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel42);
-        jPanel42.setBounds(1210, 630, 30, 110);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 42;
+        gridBagConstraints.gridy = 0;
+        jPanel1.add(jPanel42, gridBagConstraints);
 
         jPanel43.setBackground(new java.awt.Color(255, 255, 255));
         jPanel43.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel43.setFocusCycleRoot(true);
         jPanel43.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel43.setName("C"); // NOI18N
+        jPanel43.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel42.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel42.setForeground(new java.awt.Color(100, 100, 100));
@@ -1339,19 +1364,22 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel43Layout.setVerticalGroup(
             jPanel43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel43Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel42)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel43);
-        jPanel43.setBounds(1240, 630, 30, 110);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 43;
+        gridBagConstraints.gridy = 0;
+        jPanel1.add(jPanel43, gridBagConstraints);
 
         jPanel44.setBackground(new java.awt.Color(255, 255, 255));
         jPanel44.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel44.setFocusCycleRoot(true);
         jPanel44.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jPanel44.setName("C"); // NOI18N
+        jPanel44.setPreferredSize(new java.awt.Dimension(30, 150));
 
         jLabel43.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel43.setForeground(new java.awt.Color(100, 100, 100));
@@ -1368,104 +1396,164 @@ public class VirtualPiano extends javax.swing.JFrame {
         jPanel44Layout.setVerticalGroup(
             jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel44Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jLabel43)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel44);
-        jPanel44.setBounds(1270, 630, 30, 110);
+        jPanel1.add(jPanel44, new java.awt.GridBagConstraints());
 
-        jPanel45.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel45.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel45.setFocusCycleRoot(true);
-        jPanel45.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel45.setName("C"); // NOI18N
+        jPanel49.setBackground(new java.awt.Color(14, 14, 14));
+        jPanel49.setPreferredSize(new java.awt.Dimension(20, 100));
 
-        jLabel44.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel44.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel44.setLabelFor(jPanel2);
-        jLabel44.setText("A");
-
-        javax.swing.GroupLayout jPanel45Layout = new javax.swing.GroupLayout(jPanel45);
-        jPanel45.setLayout(jPanel45Layout);
-        jPanel45Layout.setHorizontalGroup(
-            jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel44, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel49Layout = new javax.swing.GroupLayout(jPanel49);
+        jPanel49.setLayout(jPanel49Layout);
+        jPanel49Layout.setHorizontalGroup(
+            jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
         );
-        jPanel45Layout.setVerticalGroup(
-            jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel45Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
-                .addComponent(jLabel44)
-                .addContainerGap())
+        jPanel49Layout.setVerticalGroup(
+            jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel45);
-        jPanel45.setBounds(1300, 630, 30, 110);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 41;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        jPanel1.add(jPanel49, gridBagConstraints);
 
-        jPanel46.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel46.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel46.setFocusCycleRoot(true);
-        jPanel46.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel46.setName("C"); // NOI18N
+        jPanel51.setBackground(new java.awt.Color(14, 14, 14));
+        jPanel51.setPreferredSize(new java.awt.Dimension(20, 100));
 
-        jLabel45.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel45.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel45.setLabelFor(jPanel2);
-        jLabel45.setText("B");
-
-        javax.swing.GroupLayout jPanel46Layout = new javax.swing.GroupLayout(jPanel46);
-        jPanel46.setLayout(jPanel46Layout);
-        jPanel46Layout.setHorizontalGroup(
-            jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel45, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel51Layout = new javax.swing.GroupLayout(jPanel51);
+        jPanel51.setLayout(jPanel51Layout);
+        jPanel51Layout.setHorizontalGroup(
+            jPanel51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
         );
-        jPanel46Layout.setVerticalGroup(
-            jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel46Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
-                .addComponent(jLabel45)
-                .addContainerGap())
+        jPanel51Layout.setVerticalGroup(
+            jPanel51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel46);
-        jPanel46.setBounds(1330, 630, 30, 110);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 41;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weighty = 0.4;
+        jPanel1.add(jPanel51, gridBagConstraints);
 
-        jPanel47.setBackground(new java.awt.Color(23, 23, 23));
-        jPanel47.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel47.setFocusCycleRoot(true);
-        jPanel47.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel47.setName("C"); // NOI18N
-        jPanel47.setOpaque(false);
+        jPanel52.setBackground(new java.awt.Color(14, 14, 14));
+        jPanel52.setPreferredSize(new java.awt.Dimension(20, 100));
 
-        jLabel46.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel46.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel46.setLabelFor(jPanel2);
-        jLabel46.setText("C");
+        javax.swing.GroupLayout jPanel52Layout = new javax.swing.GroupLayout(jPanel52);
+        jPanel52.setLayout(jPanel52Layout);
+        jPanel52Layout.setHorizontalGroup(
+            jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        jPanel52Layout.setVerticalGroup(
+            jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        jPanel1.add(jPanel52, gridBagConstraints);
+
+        jPanel54.setBackground(new java.awt.Color(14, 14, 14));
+        jPanel54.setPreferredSize(new java.awt.Dimension(20, 100));
+
+        javax.swing.GroupLayout jPanel54Layout = new javax.swing.GroupLayout(jPanel54);
+        jPanel54.setLayout(jPanel54Layout);
+        jPanel54Layout.setHorizontalGroup(
+            jPanel54Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        jPanel54Layout.setVerticalGroup(
+            jPanel54Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel54, new java.awt.GridBagConstraints());
+
+        jPanel55.setBackground(new java.awt.Color(14, 14, 14));
+        jPanel55.setPreferredSize(new java.awt.Dimension(20, 100));
+
+        javax.swing.GroupLayout jPanel55Layout = new javax.swing.GroupLayout(jPanel55);
+        jPanel55.setLayout(jPanel55Layout);
+        jPanel55Layout.setHorizontalGroup(
+            jPanel55Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        jPanel55Layout.setVerticalGroup(
+            jPanel55Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel55, new java.awt.GridBagConstraints());
+
+        jPanel53.setBackground(new java.awt.Color(14, 14, 14));
+        jPanel53.setPreferredSize(new java.awt.Dimension(20, 100));
+
+        javax.swing.GroupLayout jPanel53Layout = new javax.swing.GroupLayout(jPanel53);
+        jPanel53.setLayout(jPanel53Layout);
+        jPanel53Layout.setHorizontalGroup(
+            jPanel53Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        jPanel53Layout.setVerticalGroup(
+            jPanel53Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel53, new java.awt.GridBagConstraints());
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 640, 1410, 150);
 
         javax.swing.GroupLayout jPanel47Layout = new javax.swing.GroupLayout(jPanel47);
         jPanel47.setLayout(jPanel47Layout);
         jPanel47Layout.setHorizontalGroup(
             jPanel47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel46, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel47Layout.setVerticalGroup(
             jPanel47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel47Layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
-                .addComponent(jLabel46)
-                .addContainerGap())
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel47);
-        jPanel47.setBounds(150, 590, 20, 90);
+        getContentPane().add(jPanel47);
+        jPanel47.setBounds(30, 500, 0, 0);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(-40, 40, 1370, 750);
+        jPanel48.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel48.setLayout(new java.awt.GridBagLayout());
+
+        jPanel50.setBackground(new java.awt.Color(0, 255, 255));
+        jPanel50.setPreferredSize(new java.awt.Dimension(31, 150));
+
+        javax.swing.GroupLayout jPanel50Layout = new javax.swing.GroupLayout(jPanel50);
+        jPanel50.setLayout(jPanel50Layout);
+        jPanel50Layout.setHorizontalGroup(
+            jPanel50Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 31, Short.MAX_VALUE)
+        );
+        jPanel50Layout.setVerticalGroup(
+            jPanel50Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        jPanel48.add(jPanel50, gridBagConstraints);
+
+        getContentPane().add(jPanel48);
+        jPanel48.setBounds(0, 0, 1410, 640);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1500,7 +1588,9 @@ public class VirtualPiano extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VirtualPiano().setVisible(true);
+                VirtualPiano piano = new VirtualPiano();
+                piano.setVisible(true);
+                
             }
         });
     }
@@ -1544,9 +1634,6 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1591,10 +1678,16 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel42;
     private javax.swing.JPanel jPanel43;
     private javax.swing.JPanel jPanel44;
-    private javax.swing.JPanel jPanel45;
-    private javax.swing.JPanel jPanel46;
     private javax.swing.JPanel jPanel47;
+    private javax.swing.JPanel jPanel48;
+    private javax.swing.JPanel jPanel49;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel50;
+    private javax.swing.JPanel jPanel51;
+    private javax.swing.JPanel jPanel52;
+    private javax.swing.JPanel jPanel53;
+    private javax.swing.JPanel jPanel54;
+    private javax.swing.JPanel jPanel55;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pdftosynthesia;
+package VirtualPiano;
 
 import java.io.IOException;
 import javax.sound.midi.InvalidMidiDataException;

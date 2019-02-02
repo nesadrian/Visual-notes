@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pdftosynthesia;
+package VirtualPiano;
 
 /**
  *
@@ -17,9 +17,12 @@ import static javax.sound.midi.ShortMessage.NOTE_ON;
 
 public class CustomReceiver implements Receiver {
     
+    
+    
     @Override
     public void send(MidiMessage message, long timeStamp) {
         if(message instanceof ShortMessage) {
+            
             
             ShortMessage sm = (ShortMessage) message;
             
@@ -49,4 +52,3 @@ public class CustomReceiver implements Receiver {
 
     }
 }
-
