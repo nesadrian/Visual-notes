@@ -5,7 +5,13 @@
  */
 package VirtualPiano;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MidiUnavailableException;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -13,13 +19,16 @@ import javax.swing.JPanel;
  */
 public class VirtualPiano extends javax.swing.JFrame {
     
+    
+    initiateProgram initProgram = new initiateProgram();
     int i = 0;
     
     /**
      * Creates new form VirtualPiano
      */
-    public VirtualPiano() {
+    public VirtualPiano() throws InvalidMidiDataException, IOException, MidiUnavailableException {
         initComponents();
+        receiverHandler();
     }
 
     private JPanel createNotePanel() {
@@ -27,6 +36,12 @@ public class VirtualPiano extends javax.swing.JFrame {
         
         //i++;
         return panel;
+    }
+    
+    private void receiverHandler () throws InvalidMidiDataException, IOException, MidiUnavailableException {
+        CustomReceiver receiver = new CustomReceiver();
+        initProgram.start(receiver);
+        
     }
     
     /**
@@ -39,1480 +54,3382 @@ public class VirtualPiano extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jPanel12 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jPanel13 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jPanel14 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jPanel15 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        jPanel16 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jPanel17 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jPanel18 = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
-        jPanel19 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
-        jPanel20 = new javax.swing.JPanel();
-        jLabel19 = new javax.swing.JLabel();
-        jPanel21 = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
-        jPanel22 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
-        jPanel23 = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
-        jPanel24 = new javax.swing.JPanel();
-        jLabel23 = new javax.swing.JLabel();
-        jPanel25 = new javax.swing.JPanel();
-        jLabel24 = new javax.swing.JLabel();
-        jPanel26 = new javax.swing.JPanel();
-        jLabel25 = new javax.swing.JLabel();
-        jPanel27 = new javax.swing.JPanel();
-        jLabel26 = new javax.swing.JLabel();
-        jPanel28 = new javax.swing.JPanel();
-        jLabel27 = new javax.swing.JLabel();
-        jPanel29 = new javax.swing.JPanel();
-        jLabel28 = new javax.swing.JLabel();
-        jPanel30 = new javax.swing.JPanel();
-        jLabel29 = new javax.swing.JLabel();
-        jPanel31 = new javax.swing.JPanel();
-        jLabel30 = new javax.swing.JLabel();
-        jPanel32 = new javax.swing.JPanel();
-        jLabel31 = new javax.swing.JLabel();
-        jPanel33 = new javax.swing.JPanel();
-        jLabel32 = new javax.swing.JLabel();
-        jPanel34 = new javax.swing.JPanel();
-        jLabel33 = new javax.swing.JLabel();
-        jPanel35 = new javax.swing.JPanel();
-        jLabel34 = new javax.swing.JLabel();
-        jPanel36 = new javax.swing.JPanel();
-        jLabel35 = new javax.swing.JLabel();
-        jPanel37 = new javax.swing.JPanel();
-        jLabel36 = new javax.swing.JLabel();
-        jPanel38 = new javax.swing.JPanel();
-        jLabel37 = new javax.swing.JLabel();
-        jPanel39 = new javax.swing.JPanel();
-        jLabel38 = new javax.swing.JLabel();
-        jPanel40 = new javax.swing.JPanel();
-        jLabel39 = new javax.swing.JLabel();
-        jPanel41 = new javax.swing.JPanel();
-        jLabel40 = new javax.swing.JLabel();
-        jPanel42 = new javax.swing.JPanel();
-        jLabel41 = new javax.swing.JLabel();
-        jPanel43 = new javax.swing.JPanel();
-        jLabel42 = new javax.swing.JLabel();
-        jPanel44 = new javax.swing.JPanel();
-        jLabel43 = new javax.swing.JLabel();
-        jPanel49 = new javax.swing.JPanel();
-        jPanel51 = new javax.swing.JPanel();
-        jPanel52 = new javax.swing.JPanel();
-        jPanel54 = new javax.swing.JPanel();
-        jPanel55 = new javax.swing.JPanel();
-        jPanel53 = new javax.swing.JPanel();
+        keyboardPanel = new javax.swing.JPanel();
+        a1sharp = new javax.swing.JLayeredPane();
+        a1sharpText = new javax.swing.JLabel();
+        c1 = new javax.swing.JLayeredPane();
+        c1Text = new javax.swing.JLabel();
+        a1 = new javax.swing.JLayeredPane();
+        a1text = new javax.swing.JLabel();
+        b1 = new javax.swing.JLayeredPane();
+        b1Text = new javax.swing.JLabel();
+        d1sharp1 = new javax.swing.JLayeredPane();
+        d1sharpText1 = new javax.swing.JLabel();
+        c1sharp1 = new javax.swing.JLayeredPane();
+        c1sharpText1 = new javax.swing.JLabel();
+        f1sharp1 = new javax.swing.JLayeredPane();
+        f1sharpText1 = new javax.swing.JLabel();
+        a1sharp1 = new javax.swing.JLayeredPane();
+        a1sharpText1 = new javax.swing.JLabel();
+        jLayeredPane9 = new javax.swing.JLayeredPane();
+        g1sharpText1 = new javax.swing.JLabel();
+        c2 = new javax.swing.JLayeredPane();
+        c1Text1 = new javax.swing.JLabel();
+        d2 = new javax.swing.JLayeredPane();
+        d1Text1 = new javax.swing.JLabel();
+        e2 = new javax.swing.JLayeredPane();
+        e1Text1 = new javax.swing.JLabel();
+        a2 = new javax.swing.JLayeredPane();
+        a1text1 = new javax.swing.JLabel();
+        b4 = new javax.swing.JLayeredPane();
+        b1Text3 = new javax.swing.JLabel();
+        f2 = new javax.swing.JLayeredPane();
+        f1Text1 = new javax.swing.JLabel();
+        g2 = new javax.swing.JLayeredPane();
+        g1Text1 = new javax.swing.JLabel();
+        d1sharp4 = new javax.swing.JLayeredPane();
+        d1sharpText4 = new javax.swing.JLabel();
+        c1sharp4 = new javax.swing.JLayeredPane();
+        c1sharpText4 = new javax.swing.JLabel();
+        f1sharp4 = new javax.swing.JLayeredPane();
+        f1sharpText4 = new javax.swing.JLabel();
+        a1sharp4 = new javax.swing.JLayeredPane();
+        a1sharpText4 = new javax.swing.JLabel();
+        jLayeredPane12 = new javax.swing.JLayeredPane();
+        g1sharpText4 = new javax.swing.JLabel();
+        c5 = new javax.swing.JLayeredPane();
+        c1Text4 = new javax.swing.JLabel();
+        d5 = new javax.swing.JLayeredPane();
+        d1Text4 = new javax.swing.JLabel();
+        e5 = new javax.swing.JLayeredPane();
+        e1Text4 = new javax.swing.JLabel();
+        a5 = new javax.swing.JLayeredPane();
+        a1text4 = new javax.swing.JLabel();
+        b7 = new javax.swing.JLayeredPane();
+        b1Text6 = new javax.swing.JLabel();
+        f5 = new javax.swing.JLayeredPane();
+        f1Text4 = new javax.swing.JLabel();
+        g5 = new javax.swing.JLayeredPane();
+        g1Text4 = new javax.swing.JLabel();
+        d1sharp5 = new javax.swing.JLayeredPane();
+        d1sharpText5 = new javax.swing.JLabel();
+        c1sharp5 = new javax.swing.JLayeredPane();
+        c1sharpText5 = new javax.swing.JLabel();
+        f1sharp5 = new javax.swing.JLayeredPane();
+        f1sharpText5 = new javax.swing.JLabel();
+        a1sharp5 = new javax.swing.JLayeredPane();
+        a1sharpText5 = new javax.swing.JLabel();
+        jLayeredPane13 = new javax.swing.JLayeredPane();
+        g1sharpText5 = new javax.swing.JLabel();
+        c6 = new javax.swing.JLayeredPane();
+        c1Text5 = new javax.swing.JLabel();
+        d6 = new javax.swing.JLayeredPane();
+        d1Text5 = new javax.swing.JLabel();
+        e6 = new javax.swing.JLayeredPane();
+        e1Text5 = new javax.swing.JLabel();
+        a6 = new javax.swing.JLayeredPane();
+        a1text5 = new javax.swing.JLabel();
+        b8 = new javax.swing.JLayeredPane();
+        b1Text7 = new javax.swing.JLabel();
+        f6 = new javax.swing.JLayeredPane();
+        f1Text5 = new javax.swing.JLabel();
+        g6 = new javax.swing.JLayeredPane();
+        g1Text5 = new javax.swing.JLabel();
+        d1sharp2 = new javax.swing.JLayeredPane();
+        d1sharpText2 = new javax.swing.JLabel();
+        c1sharp2 = new javax.swing.JLayeredPane();
+        c1sharpText2 = new javax.swing.JLabel();
+        f1sharp2 = new javax.swing.JLayeredPane();
+        f1sharpText2 = new javax.swing.JLabel();
+        a1sharp2 = new javax.swing.JLayeredPane();
+        a1sharpText2 = new javax.swing.JLabel();
+        jLayeredPane10 = new javax.swing.JLayeredPane();
+        g1sharpText2 = new javax.swing.JLabel();
+        c3 = new javax.swing.JLayeredPane();
+        c1Text2 = new javax.swing.JLabel();
+        d3 = new javax.swing.JLayeredPane();
+        d1Text2 = new javax.swing.JLabel();
+        e3 = new javax.swing.JLayeredPane();
+        e1Text2 = new javax.swing.JLabel();
+        a3 = new javax.swing.JLayeredPane();
+        a1text2 = new javax.swing.JLabel();
+        b5 = new javax.swing.JLayeredPane();
+        b1Text4 = new javax.swing.JLabel();
+        f3 = new javax.swing.JLayeredPane();
+        f1Text2 = new javax.swing.JLabel();
+        g3 = new javax.swing.JLayeredPane();
+        g1Text2 = new javax.swing.JLabel();
+        d1sharp3 = new javax.swing.JLayeredPane();
+        d1sharpText3 = new javax.swing.JLabel();
+        c1sharp3 = new javax.swing.JLayeredPane();
+        c1sharpText3 = new javax.swing.JLabel();
+        f1sharp3 = new javax.swing.JLayeredPane();
+        f1sharpText3 = new javax.swing.JLabel();
+        a1sharp3 = new javax.swing.JLayeredPane();
+        a1sharpText3 = new javax.swing.JLabel();
+        jLayeredPane11 = new javax.swing.JLayeredPane();
+        g1sharpText3 = new javax.swing.JLabel();
+        c4 = new javax.swing.JLayeredPane();
+        c1Text3 = new javax.swing.JLabel();
+        d4 = new javax.swing.JLayeredPane();
+        d1Text3 = new javax.swing.JLabel();
+        e4 = new javax.swing.JLayeredPane();
+        e1Text3 = new javax.swing.JLabel();
+        a4 = new javax.swing.JLayeredPane();
+        a1text3 = new javax.swing.JLabel();
+        b6 = new javax.swing.JLayeredPane();
+        b1Text5 = new javax.swing.JLabel();
+        f4 = new javax.swing.JLayeredPane();
+        f1Text3 = new javax.swing.JLabel();
+        g4 = new javax.swing.JLayeredPane();
+        g1Text3 = new javax.swing.JLabel();
+        d1sharp7 = new javax.swing.JLayeredPane();
+        d1sharpText7 = new javax.swing.JLabel();
+        c1sharp7 = new javax.swing.JLayeredPane();
+        c1sharpText7 = new javax.swing.JLabel();
+        f1sharp6 = new javax.swing.JLayeredPane();
+        f1sharpText6 = new javax.swing.JLabel();
+        a1sharp6 = new javax.swing.JLayeredPane();
+        a1sharpText6 = new javax.swing.JLabel();
+        jLayeredPane14 = new javax.swing.JLayeredPane();
+        g1sharpText6 = new javax.swing.JLabel();
+        c7 = new javax.swing.JLayeredPane();
+        c1Text6 = new javax.swing.JLabel();
+        d7 = new javax.swing.JLayeredPane();
+        d1Text6 = new javax.swing.JLabel();
+        e7 = new javax.swing.JLayeredPane();
+        e1Text6 = new javax.swing.JLabel();
+        a7 = new javax.swing.JLayeredPane();
+        a1text6 = new javax.swing.JLabel();
+        b9 = new javax.swing.JLayeredPane();
+        b1Text8 = new javax.swing.JLabel();
+        f7 = new javax.swing.JLayeredPane();
+        f1Text6 = new javax.swing.JLabel();
+        g7 = new javax.swing.JLayeredPane();
+        g1Text6 = new javax.swing.JLabel();
+        d1sharp8 = new javax.swing.JLayeredPane();
+        d1sharpText8 = new javax.swing.JLabel();
+        c1sharp8 = new javax.swing.JLayeredPane();
+        c1sharpText8 = new javax.swing.JLabel();
+        f1sharp7 = new javax.swing.JLayeredPane();
+        f1sharpText7 = new javax.swing.JLabel();
+        a1sharp7 = new javax.swing.JLayeredPane();
+        a1sharpText7 = new javax.swing.JLabel();
+        jLayeredPane15 = new javax.swing.JLayeredPane();
+        g1sharpText7 = new javax.swing.JLabel();
+        c8 = new javax.swing.JLayeredPane();
+        c1Text7 = new javax.swing.JLabel();
+        d8 = new javax.swing.JLayeredPane();
+        d1Text7 = new javax.swing.JLabel();
+        e8 = new javax.swing.JLayeredPane();
+        e1Text7 = new javax.swing.JLabel();
+        a8 = new javax.swing.JLayeredPane();
+        a1text7 = new javax.swing.JLabel();
+        b10 = new javax.swing.JLayeredPane();
+        b1Text9 = new javax.swing.JLabel();
+        f8 = new javax.swing.JLayeredPane();
+        f1Text7 = new javax.swing.JLabel();
+        g8 = new javax.swing.JLayeredPane();
+        g1Text7 = new javax.swing.JLabel();
+        d1sharp9 = new javax.swing.JLayeredPane();
+        d1sharpText9 = new javax.swing.JLabel();
+        c1sharp9 = new javax.swing.JLayeredPane();
+        c1sharpText9 = new javax.swing.JLabel();
         jPanel47 = new javax.swing.JPanel();
-        jPanel48 = new javax.swing.JPanel();
-        jPanel50 = new javax.swing.JPanel();
+        backgroundPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        keyboardPanel.setBackground(new java.awt.Color(255, 51, 102));
+        keyboardPanel.setLayout(new java.awt.GridBagLayout());
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.setFocusCycleRoot(true);
-        jPanel2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel2.setName("C"); // NOI18N
-        jPanel2.setPreferredSize(new java.awt.Dimension(30, 150));
+        a1sharp.setBackground(new java.awt.Color(22, 22, 22));
+        a1sharp.setForeground(new java.awt.Color(255, 255, 255));
+        a1sharp.setOpaque(true);
+        a1sharp.setPreferredSize(new java.awt.Dimension(15, 90));
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setLabelFor(jPanel2);
-        jLabel1.setText("A");
+        a1sharpText.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        a1sharpText.setForeground(new java.awt.Color(150, 150, 150));
+        a1sharpText.setText("A#");
+        a1sharpText.setAlignmentX(1.0F);
+        a1sharpText.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        a1sharp.setLayer(a1sharpText, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a1sharpLayout = new javax.swing.GroupLayout(a1sharp);
+        a1sharp.setLayout(a1sharpLayout);
+        a1sharpLayout.setHorizontalGroup(
+            a1sharpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1sharpText, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+        a1sharpLayout.setVerticalGroup(
+            a1sharpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1sharpLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(a1sharpText)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel2, new java.awt.GridBagConstraints());
-        jPanel2.getAccessibleContext().setAccessibleName("");
-
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel4.setToolTipText("");
-        jPanel4.setFocusCycleRoot(true);
-        jPanel4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel4.setName("C"); // NOI18N
-        jPanel4.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel3.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setLabelFor(jPanel2);
-        jLabel3.setText("D");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel4, new java.awt.GridBagConstraints());
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.setFocusCycleRoot(true);
-        jPanel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel3.setName("C"); // NOI18N
-        jPanel3.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel2.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setLabelFor(jPanel2);
-        jLabel2.setText("C");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel3, new java.awt.GridBagConstraints());
-
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel5.setFocusCycleRoot(true);
-        jPanel5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel5.setName("C"); // NOI18N
-        jPanel5.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel4.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setLabelFor(jPanel2);
-        jLabel4.setText("F");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel5, new java.awt.GridBagConstraints());
-
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel6.setFocusCycleRoot(true);
-        jPanel6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel6.setName("C"); // NOI18N
-        jPanel6.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel5.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setLabelFor(jPanel2);
-        jLabel5.setText("E");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel6, new java.awt.GridBagConstraints());
-
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel7.setFocusCycleRoot(true);
-        jPanel7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel7.setName("C"); // NOI18N
-        jPanel7.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel6.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setLabelFor(jPanel2);
-        jLabel6.setText("A");
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel7, new java.awt.GridBagConstraints());
-
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel8.setFocusCycleRoot(true);
-        jPanel8.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel8.setName("C"); // NOI18N
-        jPanel8.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel7.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setLabelFor(jPanel2);
-        jLabel7.setText("B");
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel8, new java.awt.GridBagConstraints());
-
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel9.setFocusCycleRoot(true);
-        jPanel9.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel9.setName("C"); // NOI18N
-        jPanel9.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel8.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setLabelFor(jPanel2);
-        jLabel8.setText("C");
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel9, new java.awt.GridBagConstraints());
-
-        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel10.setFocusCycleRoot(true);
-        jPanel10.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel10.setName("C"); // NOI18N
-        jPanel10.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel9.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setLabelFor(jPanel2);
-        jLabel9.setText("D");
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel10, new java.awt.GridBagConstraints());
-
-        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel11.setFocusCycleRoot(true);
-        jPanel11.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel11.setName("C"); // NOI18N
-        jPanel11.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel10.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setLabelFor(jPanel2);
-        jLabel10.setText("E");
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel10)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel11, new java.awt.GridBagConstraints());
-
-        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel12.setFocusCycleRoot(true);
-        jPanel12.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel12.setName("C"); // NOI18N
-        jPanel12.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel11.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setLabelFor(jPanel2);
-        jLabel11.setText("F");
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel11)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel12, new java.awt.GridBagConstraints());
-
-        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel13.setFocusCycleRoot(true);
-        jPanel13.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel13.setName("C"); // NOI18N
-        jPanel13.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel12.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setLabelFor(jPanel2);
-        jLabel12.setText("G");
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel12)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel13, new java.awt.GridBagConstraints());
-
-        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel14.setFocusCycleRoot(true);
-        jPanel14.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel14.setName("C"); // NOI18N
-        jPanel14.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel13.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setLabelFor(jPanel2);
-        jLabel13.setText("A");
-
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel13)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel14, new java.awt.GridBagConstraints());
-
-        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel15.setFocusCycleRoot(true);
-        jPanel15.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel15.setName("C"); // NOI18N
-        jPanel15.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel14.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setLabelFor(jPanel2);
-        jLabel14.setText("B");
-
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel14)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel15, new java.awt.GridBagConstraints());
-
-        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel16.setFocusCycleRoot(true);
-        jPanel16.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel16.setName("C"); // NOI18N
-        jPanel16.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel15.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setLabelFor(jPanel2);
-        jLabel15.setText("C");
-
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel15)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel16, new java.awt.GridBagConstraints());
-
-        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel17.setFocusCycleRoot(true);
-        jPanel17.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel17.setName("C"); // NOI18N
-        jPanel17.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel16.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setLabelFor(jPanel2);
-        jLabel16.setText("D");
-
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel16)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel17, new java.awt.GridBagConstraints());
-
-        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel18.setFocusCycleRoot(true);
-        jPanel18.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel18.setName("C"); // NOI18N
-        jPanel18.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel17.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setLabelFor(jPanel2);
-        jLabel17.setText("E");
-
-        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
-        jPanel18.setLayout(jPanel18Layout);
-        jPanel18Layout.setHorizontalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel18Layout.setVerticalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel17)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel18, new java.awt.GridBagConstraints());
-
-        jPanel19.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel19.setFocusCycleRoot(true);
-        jPanel19.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel19.setName("C"); // NOI18N
-        jPanel19.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel18.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setLabelFor(jPanel2);
-        jLabel18.setText("F");
-
-        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel18)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel19, new java.awt.GridBagConstraints());
-
-        jPanel20.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel20.setFocusCycleRoot(true);
-        jPanel20.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel20.setName("C"); // NOI18N
-        jPanel20.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel19.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel19.setLabelFor(jPanel2);
-        jLabel19.setText("G");
-
-        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
-        jPanel20.setLayout(jPanel20Layout);
-        jPanel20Layout.setHorizontalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel20Layout.setVerticalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel19)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel20, new java.awt.GridBagConstraints());
-
-        jPanel21.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel21.setFocusCycleRoot(true);
-        jPanel21.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel21.setName("C"); // NOI18N
-        jPanel21.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel20.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setLabelFor(jPanel2);
-        jLabel20.setText("A");
-
-        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
-        jPanel21.setLayout(jPanel21Layout);
-        jPanel21Layout.setHorizontalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel21Layout.setVerticalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel20)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel21, new java.awt.GridBagConstraints());
-
-        jPanel22.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel22.setFocusCycleRoot(true);
-        jPanel22.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel22.setName("C"); // NOI18N
-        jPanel22.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel21.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel21.setLabelFor(jPanel2);
-        jLabel21.setText("B");
-
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
-        jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel21)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel22, new java.awt.GridBagConstraints());
-
-        jPanel23.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel23.setFocusCycleRoot(true);
-        jPanel23.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel23.setName("C"); // NOI18N
-        jPanel23.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel22.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setLabelFor(jPanel2);
-        jLabel22.setText("C");
-
-        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
-        jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel22)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel23, new java.awt.GridBagConstraints());
-
-        jPanel24.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel24.setFocusCycleRoot(true);
-        jPanel24.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel24.setName("C"); // NOI18N
-        jPanel24.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel23.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setLabelFor(jPanel2);
-        jLabel23.setText("D");
-
-        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
-        jPanel24.setLayout(jPanel24Layout);
-        jPanel24Layout.setHorizontalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel24Layout.setVerticalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel23)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel24, new java.awt.GridBagConstraints());
-
-        jPanel25.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel25.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel25.setFocusCycleRoot(true);
-        jPanel25.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel25.setName("C"); // NOI18N
-        jPanel25.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel24.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel24.setLabelFor(jPanel2);
-        jLabel24.setText("E");
-
-        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
-        jPanel25.setLayout(jPanel25Layout);
-        jPanel25Layout.setHorizontalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel25Layout.setVerticalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel24)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel25, new java.awt.GridBagConstraints());
-
-        jPanel26.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel26.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel26.setFocusCycleRoot(true);
-        jPanel26.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel26.setName("C"); // NOI18N
-        jPanel26.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel25.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setLabelFor(jPanel2);
-        jLabel25.setText("G");
-
-        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
-        jPanel26.setLayout(jPanel26Layout);
-        jPanel26Layout.setHorizontalGroup(
-            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel26Layout.setVerticalGroup(
-            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel25)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel26, new java.awt.GridBagConstraints());
-
-        jPanel27.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel27.setFocusCycleRoot(true);
-        jPanel27.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel27.setName("C"); // NOI18N
-        jPanel27.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel26.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel26.setLabelFor(jPanel2);
-        jLabel26.setText("G");
-
-        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
-        jPanel27.setLayout(jPanel27Layout);
-        jPanel27Layout.setHorizontalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel26, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel27Layout.setVerticalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel26)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel27, new java.awt.GridBagConstraints());
-
-        jPanel28.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel28.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel28.setFocusCycleRoot(true);
-        jPanel28.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel28.setName("C"); // NOI18N
-        jPanel28.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel27.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel27.setLabelFor(jPanel2);
-        jLabel27.setText("F");
-
-        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
-        jPanel28.setLayout(jPanel28Layout);
-        jPanel28Layout.setHorizontalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel28Layout.setVerticalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel27)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel28, new java.awt.GridBagConstraints());
-
-        jPanel29.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel29.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel29.setFocusCycleRoot(true);
-        jPanel29.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel29.setName("C"); // NOI18N
-        jPanel29.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel28.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel28.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel28.setLabelFor(jPanel2);
-        jLabel28.setText("B");
-
-        javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
-        jPanel29.setLayout(jPanel29Layout);
-        jPanel29Layout.setHorizontalGroup(
-            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel29Layout.setVerticalGroup(
-            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel29Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel28)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel29, new java.awt.GridBagConstraints());
-
-        jPanel30.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel30.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel30.setFocusCycleRoot(true);
-        jPanel30.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel30.setName("C"); // NOI18N
-        jPanel30.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel29.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel29.setLabelFor(jPanel2);
-        jLabel29.setText("C");
-
-        javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
-        jPanel30.setLayout(jPanel30Layout);
-        jPanel30Layout.setHorizontalGroup(
-            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel29, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel30Layout.setVerticalGroup(
-            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel30Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel29)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel30, new java.awt.GridBagConstraints());
-
-        jPanel31.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel31.setFocusCycleRoot(true);
-        jPanel31.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel31.setName("C"); // NOI18N
-        jPanel31.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel30.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel30.setLabelFor(jPanel2);
-        jLabel30.setText("D");
-
-        javax.swing.GroupLayout jPanel31Layout = new javax.swing.GroupLayout(jPanel31);
-        jPanel31.setLayout(jPanel31Layout);
-        jPanel31Layout.setHorizontalGroup(
-            jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel30, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel31Layout.setVerticalGroup(
-            jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel31Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel30)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel31, new java.awt.GridBagConstraints());
-
-        jPanel32.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel32.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel32.setFocusCycleRoot(true);
-        jPanel32.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel32.setName("C"); // NOI18N
-        jPanel32.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel31.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel31.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel31.setLabelFor(jPanel2);
-        jLabel31.setText("E");
-
-        javax.swing.GroupLayout jPanel32Layout = new javax.swing.GroupLayout(jPanel32);
-        jPanel32.setLayout(jPanel32Layout);
-        jPanel32Layout.setHorizontalGroup(
-            jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel32Layout.setVerticalGroup(
-            jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel32Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel31)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel32, new java.awt.GridBagConstraints());
-
-        jPanel33.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel33.setFocusCycleRoot(true);
-        jPanel33.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel33.setName("C"); // NOI18N
-        jPanel33.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel32.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel32.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel32.setLabelFor(jPanel2);
-        jLabel32.setText("F");
-
-        javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
-        jPanel33.setLayout(jPanel33Layout);
-        jPanel33Layout.setHorizontalGroup(
-            jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel33Layout.setVerticalGroup(
-            jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel33Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel32)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel33, new java.awt.GridBagConstraints());
-
-        jPanel34.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel34.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel34.setFocusCycleRoot(true);
-        jPanel34.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel34.setName("C"); // NOI18N
-        jPanel34.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel33.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel33.setLabelFor(jPanel2);
-        jLabel33.setText("G");
-
-        javax.swing.GroupLayout jPanel34Layout = new javax.swing.GroupLayout(jPanel34);
-        jPanel34.setLayout(jPanel34Layout);
-        jPanel34Layout.setHorizontalGroup(
-            jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel34Layout.setVerticalGroup(
-            jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel34Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel33)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel34, new java.awt.GridBagConstraints());
-
-        jPanel35.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel35.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel35.setFocusCycleRoot(true);
-        jPanel35.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel35.setName("C"); // NOI18N
-        jPanel35.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel34.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel34.setLabelFor(jPanel2);
-        jLabel34.setText("A");
-
-        javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
-        jPanel35.setLayout(jPanel35Layout);
-        jPanel35Layout.setHorizontalGroup(
-            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel35Layout.setVerticalGroup(
-            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel35Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel34)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel35, new java.awt.GridBagConstraints());
-
-        jPanel36.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel36.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel36.setFocusCycleRoot(true);
-        jPanel36.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel36.setName("C"); // NOI18N
-        jPanel36.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel35.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel35.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel35.setLabelFor(jPanel2);
-        jLabel35.setText("B");
-
-        javax.swing.GroupLayout jPanel36Layout = new javax.swing.GroupLayout(jPanel36);
-        jPanel36.setLayout(jPanel36Layout);
-        jPanel36Layout.setHorizontalGroup(
-            jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel36Layout.setVerticalGroup(
-            jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel36Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel35)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel36, new java.awt.GridBagConstraints());
-
-        jPanel37.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel37.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel37.setFocusCycleRoot(true);
-        jPanel37.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel37.setName("C"); // NOI18N
-        jPanel37.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel36.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel36.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel36.setLabelFor(jPanel2);
-        jLabel36.setText("C");
-
-        javax.swing.GroupLayout jPanel37Layout = new javax.swing.GroupLayout(jPanel37);
-        jPanel37.setLayout(jPanel37Layout);
-        jPanel37Layout.setHorizontalGroup(
-            jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel36, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel37Layout.setVerticalGroup(
-            jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel37Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel36)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel37, new java.awt.GridBagConstraints());
-
-        jPanel38.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel38.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel38.setFocusCycleRoot(true);
-        jPanel38.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel38.setName("C"); // NOI18N
-        jPanel38.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel37.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel37.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel37.setLabelFor(jPanel2);
-        jLabel37.setText("D");
-
-        javax.swing.GroupLayout jPanel38Layout = new javax.swing.GroupLayout(jPanel38);
-        jPanel38.setLayout(jPanel38Layout);
-        jPanel38Layout.setHorizontalGroup(
-            jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel38Layout.setVerticalGroup(
-            jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel38Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel37)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel38, new java.awt.GridBagConstraints());
-
-        jPanel39.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel39.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel39.setFocusCycleRoot(true);
-        jPanel39.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel39.setName("C"); // NOI18N
-        jPanel39.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel38.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel38.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel38.setLabelFor(jPanel2);
-        jLabel38.setText("E");
-
-        javax.swing.GroupLayout jPanel39Layout = new javax.swing.GroupLayout(jPanel39);
-        jPanel39.setLayout(jPanel39Layout);
-        jPanel39Layout.setHorizontalGroup(
-            jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel39Layout.setVerticalGroup(
-            jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel39Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel38)
-                .addContainerGap())
-        );
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 39;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        jPanel1.add(jPanel39, gridBagConstraints);
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(a1sharp, gridBagConstraints);
 
-        jPanel40.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel40.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel40.setFocusCycleRoot(true);
-        jPanel40.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel40.setName("C"); // NOI18N
-        jPanel40.setPreferredSize(new java.awt.Dimension(30, 150));
+        c1.setBackground(new java.awt.Color(255, 255, 255));
+        c1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        c1.setForeground(new java.awt.Color(255, 255, 255));
+        c1.setOpaque(true);
+        c1.setPreferredSize(new java.awt.Dimension(25, 150));
 
-        jLabel39.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel39.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel39.setLabelFor(jPanel2);
-        jLabel39.setText("F");
+        c1Text.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        c1Text.setForeground(new java.awt.Color(150, 150, 150));
+        c1Text.setText(" C");
+        c1Text.setAlignmentX(1.0F);
+        c1Text.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        javax.swing.GroupLayout jPanel40Layout = new javax.swing.GroupLayout(jPanel40);
-        jPanel40.setLayout(jPanel40Layout);
-        jPanel40Layout.setHorizontalGroup(
-            jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel39, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+        c1.setLayer(c1Text, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c1Layout = new javax.swing.GroupLayout(c1);
+        c1.setLayout(c1Layout);
+        c1Layout.setHorizontalGroup(
+            c1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1Text, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        jPanel40Layout.setVerticalGroup(
-            jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel40Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel39)
+        c1Layout.setVerticalGroup(
+            c1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(c1Text, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 51;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(c1, gridBagConstraints);
+
+        a1.setBackground(new java.awt.Color(255, 255, 255));
+        a1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        a1.setForeground(new java.awt.Color(255, 255, 255));
+        a1.setOpaque(true);
+        a1.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        a1text.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        a1text.setForeground(new java.awt.Color(150, 150, 150));
+        a1text.setText(" A");
+        a1text.setAlignmentX(1.0F);
+        a1text.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a1.setLayer(a1text, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a1Layout = new javax.swing.GroupLayout(a1);
+        a1.setLayout(a1Layout);
+        a1Layout.setHorizontalGroup(
+            a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1text, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        a1Layout.setVerticalGroup(
+            a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(a1text, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(a1, gridBagConstraints);
+
+        b1.setBackground(new java.awt.Color(255, 255, 255));
+        b1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        b1.setForeground(new java.awt.Color(255, 255, 255));
+        b1.setOpaque(true);
+        b1.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        b1Text.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        b1Text.setForeground(new java.awt.Color(150, 150, 150));
+        b1Text.setText(" B");
+        b1Text.setAlignmentX(1.0F);
+        b1Text.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        b1.setLayer(b1Text, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout b1Layout = new javax.swing.GroupLayout(b1);
+        b1.setLayout(b1Layout);
+        b1Layout.setHorizontalGroup(
+            b1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(b1Text, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        b1Layout.setVerticalGroup(
+            b1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(b1Text, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(b1, gridBagConstraints);
+
+        d1sharp1.setBackground(new java.awt.Color(22, 22, 22));
+        d1sharp1.setForeground(new java.awt.Color(255, 255, 255));
+        d1sharp1.setOpaque(true);
+        d1sharp1.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        d1sharpText1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        d1sharpText1.setForeground(new java.awt.Color(150, 150, 150));
+        d1sharpText1.setText("D#");
+        d1sharpText1.setAlignmentX(1.0F);
+        d1sharpText1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d1sharp1.setLayer(d1sharpText1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d1sharp1Layout = new javax.swing.GroupLayout(d1sharp1);
+        d1sharp1.setLayout(d1sharp1Layout);
+        d1sharp1Layout.setHorizontalGroup(
+            d1sharp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1sharpText1, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        d1sharp1Layout.setVerticalGroup(
+            d1sharp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1sharp1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(d1sharpText1)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 38;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(d1sharp1, gridBagConstraints);
+
+        c1sharp1.setBackground(new java.awt.Color(22, 22, 22));
+        c1sharp1.setForeground(new java.awt.Color(255, 255, 255));
+        c1sharp1.setOpaque(true);
+        c1sharp1.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        c1sharpText1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        c1sharpText1.setForeground(new java.awt.Color(150, 150, 150));
+        c1sharpText1.setText("C#");
+        c1sharpText1.setAlignmentX(1.0F);
+        c1sharpText1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c1sharp1.setLayer(c1sharpText1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c1sharp1Layout = new javax.swing.GroupLayout(c1sharp1);
+        c1sharp1.setLayout(c1sharp1Layout);
+        c1sharp1Layout.setHorizontalGroup(
+            c1sharp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1sharpText1, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        c1sharp1Layout.setVerticalGroup(
+            c1sharp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1sharp1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(c1sharpText1)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 37;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(c1sharp1, gridBagConstraints);
+
+        f1sharp1.setBackground(new java.awt.Color(22, 22, 22));
+        f1sharp1.setForeground(new java.awt.Color(255, 255, 255));
+        f1sharp1.setOpaque(true);
+        f1sharp1.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        f1sharpText1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        f1sharpText1.setForeground(new java.awt.Color(150, 150, 150));
+        f1sharpText1.setText("F#");
+        f1sharpText1.setAlignmentX(1.0F);
+        f1sharpText1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f1sharp1.setLayer(f1sharpText1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f1sharp1Layout = new javax.swing.GroupLayout(f1sharp1);
+        f1sharp1.setLayout(f1sharp1Layout);
+        f1sharp1Layout.setHorizontalGroup(
+            f1sharp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1sharpText1, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        f1sharp1Layout.setVerticalGroup(
+            f1sharp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f1sharp1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(f1sharpText1)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 40;
         gridBagConstraints.gridy = 0;
-        jPanel1.add(jPanel40, gridBagConstraints);
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(f1sharp1, gridBagConstraints);
 
-        jPanel41.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel41.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel41.setFocusCycleRoot(true);
-        jPanel41.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel41.setName("C"); // NOI18N
-        jPanel41.setPreferredSize(new java.awt.Dimension(30, 150));
+        a1sharp1.setBackground(new java.awt.Color(22, 22, 22));
+        a1sharp1.setForeground(new java.awt.Color(255, 255, 255));
+        a1sharp1.setOpaque(true);
+        a1sharp1.setPreferredSize(new java.awt.Dimension(15, 90));
 
-        jLabel40.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel40.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel40.setLabelFor(jPanel2);
-        jLabel40.setText("G");
+        a1sharpText1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        a1sharpText1.setForeground(new java.awt.Color(150, 150, 150));
+        a1sharpText1.setText("A#");
+        a1sharpText1.setAlignmentX(1.0F);
+        a1sharpText1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        javax.swing.GroupLayout jPanel41Layout = new javax.swing.GroupLayout(jPanel41);
-        jPanel41.setLayout(jPanel41Layout);
-        jPanel41Layout.setHorizontalGroup(
-            jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel40, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+        a1sharp1.setLayer(a1sharpText1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a1sharp1Layout = new javax.swing.GroupLayout(a1sharp1);
+        a1sharp1.setLayout(a1sharp1Layout);
+        a1sharp1Layout.setHorizontalGroup(
+            a1sharp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1sharpText1, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        jPanel41Layout.setVerticalGroup(
-            jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel41Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel40)
+        a1sharp1Layout.setVerticalGroup(
+            a1sharp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1sharp1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(a1sharpText1)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel41, new java.awt.GridBagConstraints());
-
-        jPanel42.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel42.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel42.setFocusCycleRoot(true);
-        jPanel42.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel42.setName("C"); // NOI18N
-        jPanel42.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel41.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel41.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel41.setLabelFor(jPanel2);
-        jLabel41.setText("A");
-
-        javax.swing.GroupLayout jPanel42Layout = new javax.swing.GroupLayout(jPanel42);
-        jPanel42.setLayout(jPanel42Layout);
-        jPanel42Layout.setHorizontalGroup(
-            jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel41, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel42Layout.setVerticalGroup(
-            jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel42Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel41)
-                .addContainerGap())
-        );
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 42;
         gridBagConstraints.gridy = 0;
-        jPanel1.add(jPanel42, gridBagConstraints);
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(a1sharp1, gridBagConstraints);
 
-        jPanel43.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel43.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel43.setFocusCycleRoot(true);
-        jPanel43.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel43.setName("C"); // NOI18N
-        jPanel43.setPreferredSize(new java.awt.Dimension(30, 150));
+        jLayeredPane9.setBackground(new java.awt.Color(22, 22, 22));
+        jLayeredPane9.setForeground(new java.awt.Color(255, 255, 255));
+        jLayeredPane9.setOpaque(true);
+        jLayeredPane9.setPreferredSize(new java.awt.Dimension(15, 90));
 
-        jLabel42.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel42.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel42.setLabelFor(jPanel2);
-        jLabel42.setText("B");
+        g1sharpText1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        g1sharpText1.setForeground(new java.awt.Color(150, 150, 150));
+        g1sharpText1.setText("G#");
+        g1sharpText1.setAlignmentX(1.0F);
+        g1sharpText1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        javax.swing.GroupLayout jPanel43Layout = new javax.swing.GroupLayout(jPanel43);
-        jPanel43.setLayout(jPanel43Layout);
-        jPanel43Layout.setHorizontalGroup(
-            jPanel43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel42, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+        jLayeredPane9.setLayer(g1sharpText1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane9Layout = new javax.swing.GroupLayout(jLayeredPane9);
+        jLayeredPane9.setLayout(jLayeredPane9Layout);
+        jLayeredPane9Layout.setHorizontalGroup(
+            jLayeredPane9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1sharpText1, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        jPanel43Layout.setVerticalGroup(
-            jPanel43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel43Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel42)
+        jLayeredPane9Layout.setVerticalGroup(
+            jLayeredPane9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(g1sharpText1)
                 .addContainerGap())
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 43;
-        gridBagConstraints.gridy = 0;
-        jPanel1.add(jPanel43, gridBagConstraints);
-
-        jPanel44.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel44.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel44.setFocusCycleRoot(true);
-        jPanel44.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel44.setName("C"); // NOI18N
-        jPanel44.setPreferredSize(new java.awt.Dimension(30, 150));
-
-        jLabel43.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jLabel43.setForeground(new java.awt.Color(100, 100, 100));
-        jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel43.setLabelFor(jPanel2);
-        jLabel43.setText("C");
-
-        javax.swing.GroupLayout jPanel44Layout = new javax.swing.GroupLayout(jPanel44);
-        jPanel44.setLayout(jPanel44Layout);
-        jPanel44Layout.setHorizontalGroup(
-            jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel43, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-        );
-        jPanel44Layout.setVerticalGroup(
-            jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel44Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel43)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel44, new java.awt.GridBagConstraints());
-
-        jPanel49.setBackground(new java.awt.Color(14, 14, 14));
-        jPanel49.setPreferredSize(new java.awt.Dimension(20, 100));
-
-        javax.swing.GroupLayout jPanel49Layout = new javax.swing.GroupLayout(jPanel49);
-        jPanel49.setLayout(jPanel49Layout);
-        jPanel49Layout.setHorizontalGroup(
-            jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        jPanel49Layout.setVerticalGroup(
-            jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 41;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        jPanel1.add(jPanel49, gridBagConstraints);
+        keyboardPanel.add(jLayeredPane9, gridBagConstraints);
 
-        jPanel51.setBackground(new java.awt.Color(14, 14, 14));
-        jPanel51.setPreferredSize(new java.awt.Dimension(20, 100));
+        c2.setBackground(new java.awt.Color(255, 255, 255));
+        c2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        c2.setForeground(new java.awt.Color(255, 255, 255));
+        c2.setOpaque(true);
+        c2.setPreferredSize(new java.awt.Dimension(25, 150));
 
-        javax.swing.GroupLayout jPanel51Layout = new javax.swing.GroupLayout(jPanel51);
-        jPanel51.setLayout(jPanel51Layout);
-        jPanel51Layout.setHorizontalGroup(
-            jPanel51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+        c1Text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        c1Text1.setForeground(new java.awt.Color(150, 150, 150));
+        c1Text1.setText(" C");
+        c1Text1.setAlignmentX(1.0F);
+        c1Text1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c2.setLayer(c1Text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c2Layout = new javax.swing.GroupLayout(c2);
+        c2.setLayout(c2Layout);
+        c2Layout.setHorizontalGroup(
+            c2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1Text1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        jPanel51Layout.setVerticalGroup(
-            jPanel51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        c2Layout.setVerticalGroup(
+            c2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(c1Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 37;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(c2, gridBagConstraints);
+
+        d2.setBackground(new java.awt.Color(255, 255, 255));
+        d2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        d2.setForeground(new java.awt.Color(255, 255, 255));
+        d2.setOpaque(true);
+        d2.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        d1Text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        d1Text1.setForeground(new java.awt.Color(150, 150, 150));
+        d1Text1.setText(" D");
+        d1Text1.setAlignmentX(1.0F);
+        d1Text1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d2.setLayer(d1Text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d2Layout = new javax.swing.GroupLayout(d2);
+        d2.setLayout(d2Layout);
+        d2Layout.setHorizontalGroup(
+            d2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1Text1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        d2Layout.setVerticalGroup(
+            d2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(d1Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 38;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(d2, gridBagConstraints);
+
+        e2.setBackground(new java.awt.Color(255, 255, 255));
+        e2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        e2.setForeground(new java.awt.Color(255, 255, 255));
+        e2.setOpaque(true);
+        e2.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        e1Text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        e1Text1.setForeground(new java.awt.Color(150, 150, 150));
+        e1Text1.setText(" E");
+        e1Text1.setAlignmentX(1.0F);
+        e1Text1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        e2.setLayer(e1Text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout e2Layout = new javax.swing.GroupLayout(e2);
+        e2.setLayout(e2Layout);
+        e2Layout.setHorizontalGroup(
+            e2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(e1Text1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        e2Layout.setVerticalGroup(
+            e2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(e1Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 39;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(e2, gridBagConstraints);
+
+        a2.setBackground(new java.awt.Color(255, 255, 255));
+        a2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        a2.setForeground(new java.awt.Color(255, 255, 255));
+        a2.setOpaque(true);
+        a2.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        a1text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        a1text1.setForeground(new java.awt.Color(150, 150, 150));
+        a1text1.setText(" A");
+        a1text1.setAlignmentX(1.0F);
+        a1text1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a2.setLayer(a1text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a2Layout = new javax.swing.GroupLayout(a2);
+        a2.setLayout(a2Layout);
+        a2Layout.setHorizontalGroup(
+            a2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1text1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        a2Layout.setVerticalGroup(
+            a2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(a1text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 42;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(a2, gridBagConstraints);
+
+        b4.setBackground(new java.awt.Color(255, 255, 255));
+        b4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        b4.setForeground(new java.awt.Color(255, 255, 255));
+        b4.setOpaque(true);
+        b4.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        b1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        b1Text3.setForeground(new java.awt.Color(150, 150, 150));
+        b1Text3.setText(" B");
+        b1Text3.setAlignmentX(1.0F);
+        b1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        b4.setLayer(b1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout b4Layout = new javax.swing.GroupLayout(b4);
+        b4.setLayout(b4Layout);
+        b4Layout.setHorizontalGroup(
+            b4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(b1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        b4Layout.setVerticalGroup(
+            b4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(b1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 43;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(b4, gridBagConstraints);
+
+        f2.setBackground(new java.awt.Color(255, 255, 255));
+        f2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        f2.setForeground(new java.awt.Color(255, 255, 255));
+        f2.setOpaque(true);
+        f2.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        f1Text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        f1Text1.setForeground(new java.awt.Color(150, 150, 150));
+        f1Text1.setText(" F");
+        f1Text1.setAlignmentX(1.0F);
+        f1Text1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f2.setLayer(f1Text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f2Layout = new javax.swing.GroupLayout(f2);
+        f2.setLayout(f2Layout);
+        f2Layout.setHorizontalGroup(
+            f2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1Text1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        f2Layout.setVerticalGroup(
+            f2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(f1Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 40;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(f2, gridBagConstraints);
+
+        g2.setBackground(new java.awt.Color(255, 255, 255));
+        g2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        g2.setForeground(new java.awt.Color(255, 255, 255));
+        g2.setOpaque(true);
+        g2.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        g1Text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        g1Text1.setForeground(new java.awt.Color(150, 150, 150));
+        g1Text1.setText(" G");
+        g1Text1.setAlignmentX(1.0F);
+        g1Text1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        g2.setLayer(g1Text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout g2Layout = new javax.swing.GroupLayout(g2);
+        g2.setLayout(g2Layout);
+        g2Layout.setHorizontalGroup(
+            g2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1Text1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        g2Layout.setVerticalGroup(
+            g2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(g1Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 41;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        gridBagConstraints.weighty = 0.4;
-        jPanel1.add(jPanel51, gridBagConstraints);
+        keyboardPanel.add(g2, gridBagConstraints);
 
-        jPanel52.setBackground(new java.awt.Color(14, 14, 14));
-        jPanel52.setPreferredSize(new java.awt.Dimension(20, 100));
+        d1sharp4.setBackground(new java.awt.Color(22, 22, 22));
+        d1sharp4.setForeground(new java.awt.Color(255, 255, 255));
+        d1sharp4.setOpaque(true);
+        d1sharp4.setPreferredSize(new java.awt.Dimension(15, 90));
 
-        javax.swing.GroupLayout jPanel52Layout = new javax.swing.GroupLayout(jPanel52);
-        jPanel52.setLayout(jPanel52Layout);
-        jPanel52Layout.setHorizontalGroup(
-            jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+        d1sharpText4.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        d1sharpText4.setForeground(new java.awt.Color(150, 150, 150));
+        d1sharpText4.setText("D#");
+        d1sharpText4.setAlignmentX(1.0F);
+        d1sharpText4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d1sharp4.setLayer(d1sharpText4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d1sharp4Layout = new javax.swing.GroupLayout(d1sharp4);
+        d1sharp4.setLayout(d1sharp4Layout);
+        d1sharp4Layout.setHorizontalGroup(
+            d1sharp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1sharpText4, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        jPanel52Layout.setVerticalGroup(
-            jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        d1sharp4Layout.setVerticalGroup(
+            d1sharp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1sharp4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(d1sharpText4)
+                .addContainerGap())
         );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 31;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        jPanel1.add(jPanel52, gridBagConstraints);
+        keyboardPanel.add(d1sharp4, gridBagConstraints);
 
-        jPanel54.setBackground(new java.awt.Color(14, 14, 14));
-        jPanel54.setPreferredSize(new java.awt.Dimension(20, 100));
+        c1sharp4.setBackground(new java.awt.Color(22, 22, 22));
+        c1sharp4.setForeground(new java.awt.Color(255, 255, 255));
+        c1sharp4.setOpaque(true);
+        c1sharp4.setPreferredSize(new java.awt.Dimension(15, 90));
 
-        javax.swing.GroupLayout jPanel54Layout = new javax.swing.GroupLayout(jPanel54);
-        jPanel54.setLayout(jPanel54Layout);
-        jPanel54Layout.setHorizontalGroup(
-            jPanel54Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+        c1sharpText4.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        c1sharpText4.setForeground(new java.awt.Color(150, 150, 150));
+        c1sharpText4.setText("C#");
+        c1sharpText4.setAlignmentX(1.0F);
+        c1sharpText4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c1sharp4.setLayer(c1sharpText4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c1sharp4Layout = new javax.swing.GroupLayout(c1sharp4);
+        c1sharp4.setLayout(c1sharp4Layout);
+        c1sharp4Layout.setHorizontalGroup(
+            c1sharp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1sharpText4, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        jPanel54Layout.setVerticalGroup(
-            jPanel54Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel54, new java.awt.GridBagConstraints());
-
-        jPanel55.setBackground(new java.awt.Color(14, 14, 14));
-        jPanel55.setPreferredSize(new java.awt.Dimension(20, 100));
-
-        javax.swing.GroupLayout jPanel55Layout = new javax.swing.GroupLayout(jPanel55);
-        jPanel55.setLayout(jPanel55Layout);
-        jPanel55Layout.setHorizontalGroup(
-            jPanel55Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        jPanel55Layout.setVerticalGroup(
-            jPanel55Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        c1sharp4Layout.setVerticalGroup(
+            c1sharp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1sharp4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(c1sharpText4)
+                .addContainerGap())
         );
 
-        jPanel1.add(jPanel55, new java.awt.GridBagConstraints());
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
 
-        jPanel53.setBackground(new java.awt.Color(14, 14, 14));
-        jPanel53.setPreferredSize(new java.awt.Dimension(20, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 30;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(c1sharp4, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel53Layout = new javax.swing.GroupLayout(jPanel53);
-        jPanel53.setLayout(jPanel53Layout);
-        jPanel53Layout.setHorizontalGroup(
-            jPanel53Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+        f1sharp4.setBackground(new java.awt.Color(22, 22, 22));
+        f1sharp4.setForeground(new java.awt.Color(255, 255, 255));
+        f1sharp4.setOpaque(true);
+        f1sharp4.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        f1sharpText4.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        f1sharpText4.setForeground(new java.awt.Color(150, 150, 150));
+        f1sharpText4.setText("F#");
+        f1sharpText4.setAlignmentX(1.0F);
+        f1sharpText4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f1sharp4.setLayer(f1sharpText4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f1sharp4Layout = new javax.swing.GroupLayout(f1sharp4);
+        f1sharp4.setLayout(f1sharp4Layout);
+        f1sharp4Layout.setHorizontalGroup(
+            f1sharp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1sharpText4, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        jPanel53Layout.setVerticalGroup(
-            jPanel53Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        f1sharp4Layout.setVerticalGroup(
+            f1sharp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f1sharp4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(f1sharpText4)
+                .addContainerGap())
         );
 
-        jPanel1.add(jPanel53, new java.awt.GridBagConstraints());
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 640, 1410, 150);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 33;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(f1sharp4, gridBagConstraints);
+
+        a1sharp4.setBackground(new java.awt.Color(22, 22, 22));
+        a1sharp4.setForeground(new java.awt.Color(255, 255, 255));
+        a1sharp4.setOpaque(true);
+        a1sharp4.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        a1sharpText4.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        a1sharpText4.setForeground(new java.awt.Color(150, 150, 150));
+        a1sharpText4.setText("A#");
+        a1sharpText4.setAlignmentX(1.0F);
+        a1sharpText4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a1sharp4.setLayer(a1sharpText4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a1sharp4Layout = new javax.swing.GroupLayout(a1sharp4);
+        a1sharp4.setLayout(a1sharp4Layout);
+        a1sharp4Layout.setHorizontalGroup(
+            a1sharp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1sharpText4, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        a1sharp4Layout.setVerticalGroup(
+            a1sharp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1sharp4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(a1sharpText4)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 35;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(a1sharp4, gridBagConstraints);
+
+        jLayeredPane12.setBackground(new java.awt.Color(22, 22, 22));
+        jLayeredPane12.setForeground(new java.awt.Color(255, 255, 255));
+        jLayeredPane12.setOpaque(true);
+        jLayeredPane12.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        g1sharpText4.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        g1sharpText4.setForeground(new java.awt.Color(150, 150, 150));
+        g1sharpText4.setText("G#");
+        g1sharpText4.setAlignmentX(1.0F);
+        g1sharpText4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        jLayeredPane12.setLayer(g1sharpText4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane12Layout = new javax.swing.GroupLayout(jLayeredPane12);
+        jLayeredPane12.setLayout(jLayeredPane12Layout);
+        jLayeredPane12Layout.setHorizontalGroup(
+            jLayeredPane12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1sharpText4, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        jLayeredPane12Layout.setVerticalGroup(
+            jLayeredPane12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane12Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(g1sharpText4)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 34;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(jLayeredPane12, gridBagConstraints);
+
+        c5.setBackground(new java.awt.Color(255, 255, 255));
+        c5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        c5.setForeground(new java.awt.Color(255, 255, 255));
+        c5.setOpaque(true);
+        c5.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        c1Text4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        c1Text4.setForeground(new java.awt.Color(150, 150, 150));
+        c1Text4.setText(" C");
+        c1Text4.setAlignmentX(1.0F);
+        c1Text4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c5.setLayer(c1Text4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c5Layout = new javax.swing.GroupLayout(c5);
+        c5.setLayout(c5Layout);
+        c5Layout.setHorizontalGroup(
+            c5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1Text4, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        c5Layout.setVerticalGroup(
+            c5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(c1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 30;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(c5, gridBagConstraints);
+
+        d5.setBackground(new java.awt.Color(255, 255, 255));
+        d5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        d5.setForeground(new java.awt.Color(255, 255, 255));
+        d5.setOpaque(true);
+        d5.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        d1Text4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        d1Text4.setForeground(new java.awt.Color(150, 150, 150));
+        d1Text4.setText(" D");
+        d1Text4.setAlignmentX(1.0F);
+        d1Text4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d5.setLayer(d1Text4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d5Layout = new javax.swing.GroupLayout(d5);
+        d5.setLayout(d5Layout);
+        d5Layout.setHorizontalGroup(
+            d5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1Text4, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        d5Layout.setVerticalGroup(
+            d5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(d1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 31;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(d5, gridBagConstraints);
+
+        e5.setBackground(new java.awt.Color(255, 255, 255));
+        e5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        e5.setForeground(new java.awt.Color(255, 255, 255));
+        e5.setOpaque(true);
+        e5.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        e1Text4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        e1Text4.setForeground(new java.awt.Color(150, 150, 150));
+        e1Text4.setText(" E");
+        e1Text4.setAlignmentX(1.0F);
+        e1Text4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        e5.setLayer(e1Text4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout e5Layout = new javax.swing.GroupLayout(e5);
+        e5.setLayout(e5Layout);
+        e5Layout.setHorizontalGroup(
+            e5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(e1Text4, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        e5Layout.setVerticalGroup(
+            e5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(e1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 32;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(e5, gridBagConstraints);
+
+        a5.setBackground(new java.awt.Color(255, 255, 255));
+        a5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        a5.setForeground(new java.awt.Color(255, 255, 255));
+        a5.setOpaque(true);
+        a5.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        a1text4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        a1text4.setForeground(new java.awt.Color(150, 150, 150));
+        a1text4.setText(" A");
+        a1text4.setAlignmentX(1.0F);
+        a1text4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a5.setLayer(a1text4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a5Layout = new javax.swing.GroupLayout(a5);
+        a5.setLayout(a5Layout);
+        a5Layout.setHorizontalGroup(
+            a5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1text4, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        a5Layout.setVerticalGroup(
+            a5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(a1text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 35;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(a5, gridBagConstraints);
+
+        b7.setBackground(new java.awt.Color(255, 255, 255));
+        b7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        b7.setForeground(new java.awt.Color(255, 255, 255));
+        b7.setOpaque(true);
+        b7.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        b1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        b1Text6.setForeground(new java.awt.Color(150, 150, 150));
+        b1Text6.setText(" B");
+        b1Text6.setAlignmentX(1.0F);
+        b1Text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        b7.setLayer(b1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout b7Layout = new javax.swing.GroupLayout(b7);
+        b7.setLayout(b7Layout);
+        b7Layout.setHorizontalGroup(
+            b7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(b1Text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        b7Layout.setVerticalGroup(
+            b7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(b1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 36;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(b7, gridBagConstraints);
+
+        f5.setBackground(new java.awt.Color(255, 255, 255));
+        f5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        f5.setForeground(new java.awt.Color(255, 255, 255));
+        f5.setOpaque(true);
+        f5.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        f1Text4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        f1Text4.setForeground(new java.awt.Color(150, 150, 150));
+        f1Text4.setText(" F");
+        f1Text4.setAlignmentX(1.0F);
+        f1Text4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f5.setLayer(f1Text4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f5Layout = new javax.swing.GroupLayout(f5);
+        f5.setLayout(f5Layout);
+        f5Layout.setHorizontalGroup(
+            f5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1Text4, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        f5Layout.setVerticalGroup(
+            f5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(f1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 33;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(f5, gridBagConstraints);
+
+        g5.setBackground(new java.awt.Color(255, 255, 255));
+        g5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        g5.setForeground(new java.awt.Color(255, 255, 255));
+        g5.setOpaque(true);
+        g5.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        g1Text4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        g1Text4.setForeground(new java.awt.Color(150, 150, 150));
+        g1Text4.setText(" G");
+        g1Text4.setAlignmentX(1.0F);
+        g1Text4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        g5.setLayer(g1Text4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout g5Layout = new javax.swing.GroupLayout(g5);
+        g5.setLayout(g5Layout);
+        g5Layout.setHorizontalGroup(
+            g5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1Text4, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        g5Layout.setVerticalGroup(
+            g5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(g1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 34;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(g5, gridBagConstraints);
+
+        d1sharp5.setBackground(new java.awt.Color(22, 22, 22));
+        d1sharp5.setForeground(new java.awt.Color(255, 255, 255));
+        d1sharp5.setOpaque(true);
+        d1sharp5.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        d1sharpText5.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        d1sharpText5.setForeground(new java.awt.Color(150, 150, 150));
+        d1sharpText5.setText("D#");
+        d1sharpText5.setAlignmentX(1.0F);
+        d1sharpText5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d1sharp5.setLayer(d1sharpText5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d1sharp5Layout = new javax.swing.GroupLayout(d1sharp5);
+        d1sharp5.setLayout(d1sharp5Layout);
+        d1sharp5Layout.setHorizontalGroup(
+            d1sharp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1sharpText5, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        d1sharp5Layout.setVerticalGroup(
+            d1sharp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1sharp5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(d1sharpText5)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 45;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(d1sharp5, gridBagConstraints);
+
+        c1sharp5.setBackground(new java.awt.Color(22, 22, 22));
+        c1sharp5.setForeground(new java.awt.Color(255, 255, 255));
+        c1sharp5.setOpaque(true);
+        c1sharp5.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        c1sharpText5.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        c1sharpText5.setForeground(new java.awt.Color(150, 150, 150));
+        c1sharpText5.setText("C#");
+        c1sharpText5.setAlignmentX(1.0F);
+        c1sharpText5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c1sharp5.setLayer(c1sharpText5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c1sharp5Layout = new javax.swing.GroupLayout(c1sharp5);
+        c1sharp5.setLayout(c1sharp5Layout);
+        c1sharp5Layout.setHorizontalGroup(
+            c1sharp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1sharpText5, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        c1sharp5Layout.setVerticalGroup(
+            c1sharp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1sharp5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(c1sharpText5)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 44;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(c1sharp5, gridBagConstraints);
+
+        f1sharp5.setBackground(new java.awt.Color(22, 22, 22));
+        f1sharp5.setForeground(new java.awt.Color(255, 255, 255));
+        f1sharp5.setOpaque(true);
+        f1sharp5.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        f1sharpText5.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        f1sharpText5.setForeground(new java.awt.Color(150, 150, 150));
+        f1sharpText5.setText("F#");
+        f1sharpText5.setAlignmentX(1.0F);
+        f1sharpText5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f1sharp5.setLayer(f1sharpText5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f1sharp5Layout = new javax.swing.GroupLayout(f1sharp5);
+        f1sharp5.setLayout(f1sharp5Layout);
+        f1sharp5Layout.setHorizontalGroup(
+            f1sharp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1sharpText5, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        f1sharp5Layout.setVerticalGroup(
+            f1sharp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f1sharp5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(f1sharpText5)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 47;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(f1sharp5, gridBagConstraints);
+
+        a1sharp5.setBackground(new java.awt.Color(22, 22, 22));
+        a1sharp5.setForeground(new java.awt.Color(255, 255, 255));
+        a1sharp5.setOpaque(true);
+        a1sharp5.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        a1sharpText5.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        a1sharpText5.setForeground(new java.awt.Color(150, 150, 150));
+        a1sharpText5.setText("A#");
+        a1sharpText5.setAlignmentX(1.0F);
+        a1sharpText5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a1sharp5.setLayer(a1sharpText5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a1sharp5Layout = new javax.swing.GroupLayout(a1sharp5);
+        a1sharp5.setLayout(a1sharp5Layout);
+        a1sharp5Layout.setHorizontalGroup(
+            a1sharp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1sharpText5, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        a1sharp5Layout.setVerticalGroup(
+            a1sharp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1sharp5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(a1sharpText5)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 49;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(a1sharp5, gridBagConstraints);
+
+        jLayeredPane13.setBackground(new java.awt.Color(22, 22, 22));
+        jLayeredPane13.setForeground(new java.awt.Color(255, 255, 255));
+        jLayeredPane13.setOpaque(true);
+        jLayeredPane13.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        g1sharpText5.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        g1sharpText5.setForeground(new java.awt.Color(150, 150, 150));
+        g1sharpText5.setText("G#");
+        g1sharpText5.setAlignmentX(1.0F);
+        g1sharpText5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        jLayeredPane13.setLayer(g1sharpText5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane13Layout = new javax.swing.GroupLayout(jLayeredPane13);
+        jLayeredPane13.setLayout(jLayeredPane13Layout);
+        jLayeredPane13Layout.setHorizontalGroup(
+            jLayeredPane13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1sharpText5, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        jLayeredPane13Layout.setVerticalGroup(
+            jLayeredPane13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane13Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(g1sharpText5)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 48;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(jLayeredPane13, gridBagConstraints);
+
+        c6.setBackground(new java.awt.Color(255, 255, 255));
+        c6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        c6.setForeground(new java.awt.Color(255, 255, 255));
+        c6.setOpaque(true);
+        c6.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        c1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        c1Text5.setForeground(new java.awt.Color(150, 150, 150));
+        c1Text5.setText(" C");
+        c1Text5.setAlignmentX(1.0F);
+        c1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c6.setLayer(c1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c6Layout = new javax.swing.GroupLayout(c6);
+        c6.setLayout(c6Layout);
+        c6Layout.setHorizontalGroup(
+            c6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        c6Layout.setVerticalGroup(
+            c6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(c1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 44;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(c6, gridBagConstraints);
+
+        d6.setBackground(new java.awt.Color(255, 255, 255));
+        d6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        d6.setForeground(new java.awt.Color(255, 255, 255));
+        d6.setOpaque(true);
+        d6.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        d1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        d1Text5.setForeground(new java.awt.Color(150, 150, 150));
+        d1Text5.setText(" D");
+        d1Text5.setAlignmentX(1.0F);
+        d1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d6.setLayer(d1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d6Layout = new javax.swing.GroupLayout(d6);
+        d6.setLayout(d6Layout);
+        d6Layout.setHorizontalGroup(
+            d6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        d6Layout.setVerticalGroup(
+            d6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(d1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 45;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(d6, gridBagConstraints);
+
+        e6.setBackground(new java.awt.Color(255, 255, 255));
+        e6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        e6.setForeground(new java.awt.Color(255, 255, 255));
+        e6.setOpaque(true);
+        e6.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        e1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        e1Text5.setForeground(new java.awt.Color(150, 150, 150));
+        e1Text5.setText(" E");
+        e1Text5.setAlignmentX(1.0F);
+        e1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        e6.setLayer(e1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout e6Layout = new javax.swing.GroupLayout(e6);
+        e6.setLayout(e6Layout);
+        e6Layout.setHorizontalGroup(
+            e6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(e1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        e6Layout.setVerticalGroup(
+            e6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(e1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 46;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(e6, gridBagConstraints);
+
+        a6.setBackground(new java.awt.Color(255, 255, 255));
+        a6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        a6.setForeground(new java.awt.Color(255, 255, 255));
+        a6.setOpaque(true);
+        a6.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        a1text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        a1text5.setForeground(new java.awt.Color(150, 150, 150));
+        a1text5.setText(" A");
+        a1text5.setAlignmentX(1.0F);
+        a1text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a6.setLayer(a1text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a6Layout = new javax.swing.GroupLayout(a6);
+        a6.setLayout(a6Layout);
+        a6Layout.setHorizontalGroup(
+            a6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        a6Layout.setVerticalGroup(
+            a6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(a1text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 49;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(a6, gridBagConstraints);
+
+        b8.setBackground(new java.awt.Color(255, 255, 255));
+        b8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        b8.setForeground(new java.awt.Color(255, 255, 255));
+        b8.setOpaque(true);
+        b8.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        b1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        b1Text7.setForeground(new java.awt.Color(150, 150, 150));
+        b1Text7.setText(" B");
+        b1Text7.setAlignmentX(1.0F);
+        b1Text7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        b8.setLayer(b1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout b8Layout = new javax.swing.GroupLayout(b8);
+        b8.setLayout(b8Layout);
+        b8Layout.setHorizontalGroup(
+            b8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(b1Text7, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        b8Layout.setVerticalGroup(
+            b8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(b1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 50;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(b8, gridBagConstraints);
+
+        f6.setBackground(new java.awt.Color(255, 255, 255));
+        f6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        f6.setForeground(new java.awt.Color(255, 255, 255));
+        f6.setOpaque(true);
+        f6.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        f1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        f1Text5.setForeground(new java.awt.Color(150, 150, 150));
+        f1Text5.setText(" F");
+        f1Text5.setAlignmentX(1.0F);
+        f1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f6.setLayer(f1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f6Layout = new javax.swing.GroupLayout(f6);
+        f6.setLayout(f6Layout);
+        f6Layout.setHorizontalGroup(
+            f6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        f6Layout.setVerticalGroup(
+            f6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(f1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 47;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(f6, gridBagConstraints);
+
+        g6.setBackground(new java.awt.Color(255, 255, 255));
+        g6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        g6.setForeground(new java.awt.Color(255, 255, 255));
+        g6.setOpaque(true);
+        g6.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        g1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        g1Text5.setForeground(new java.awt.Color(150, 150, 150));
+        g1Text5.setText(" G");
+        g1Text5.setAlignmentX(1.0F);
+        g1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        g6.setLayer(g1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout g6Layout = new javax.swing.GroupLayout(g6);
+        g6.setLayout(g6Layout);
+        g6Layout.setHorizontalGroup(
+            g6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        g6Layout.setVerticalGroup(
+            g6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(g1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 48;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(g6, gridBagConstraints);
+
+        d1sharp2.setBackground(new java.awt.Color(22, 22, 22));
+        d1sharp2.setForeground(new java.awt.Color(255, 255, 255));
+        d1sharp2.setOpaque(true);
+        d1sharp2.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        d1sharpText2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        d1sharpText2.setForeground(new java.awt.Color(150, 150, 150));
+        d1sharpText2.setText("D#");
+        d1sharpText2.setAlignmentX(1.0F);
+        d1sharpText2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d1sharp2.setLayer(d1sharpText2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d1sharp2Layout = new javax.swing.GroupLayout(d1sharp2);
+        d1sharp2.setLayout(d1sharp2Layout);
+        d1sharp2Layout.setHorizontalGroup(
+            d1sharp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1sharpText2, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        d1sharp2Layout.setVerticalGroup(
+            d1sharp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1sharp2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(d1sharpText2)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 24;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(d1sharp2, gridBagConstraints);
+
+        c1sharp2.setBackground(new java.awt.Color(22, 22, 22));
+        c1sharp2.setForeground(new java.awt.Color(255, 255, 255));
+        c1sharp2.setOpaque(true);
+        c1sharp2.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        c1sharpText2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        c1sharpText2.setForeground(new java.awt.Color(150, 150, 150));
+        c1sharpText2.setText("C#");
+        c1sharpText2.setAlignmentX(1.0F);
+        c1sharpText2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c1sharp2.setLayer(c1sharpText2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c1sharp2Layout = new javax.swing.GroupLayout(c1sharp2);
+        c1sharp2.setLayout(c1sharp2Layout);
+        c1sharp2Layout.setHorizontalGroup(
+            c1sharp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1sharpText2, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        c1sharp2Layout.setVerticalGroup(
+            c1sharp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1sharp2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(c1sharpText2)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 23;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(c1sharp2, gridBagConstraints);
+
+        f1sharp2.setBackground(new java.awt.Color(22, 22, 22));
+        f1sharp2.setForeground(new java.awt.Color(255, 255, 255));
+        f1sharp2.setOpaque(true);
+        f1sharp2.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        f1sharpText2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        f1sharpText2.setForeground(new java.awt.Color(150, 150, 150));
+        f1sharpText2.setText("F#");
+        f1sharpText2.setAlignmentX(1.0F);
+        f1sharpText2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f1sharp2.setLayer(f1sharpText2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f1sharp2Layout = new javax.swing.GroupLayout(f1sharp2);
+        f1sharp2.setLayout(f1sharp2Layout);
+        f1sharp2Layout.setHorizontalGroup(
+            f1sharp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1sharpText2, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        f1sharp2Layout.setVerticalGroup(
+            f1sharp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f1sharp2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(f1sharpText2)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 26;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(f1sharp2, gridBagConstraints);
+
+        a1sharp2.setBackground(new java.awt.Color(22, 22, 22));
+        a1sharp2.setForeground(new java.awt.Color(255, 255, 255));
+        a1sharp2.setOpaque(true);
+        a1sharp2.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        a1sharpText2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        a1sharpText2.setForeground(new java.awt.Color(150, 150, 150));
+        a1sharpText2.setText("A#");
+        a1sharpText2.setAlignmentX(1.0F);
+        a1sharpText2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a1sharp2.setLayer(a1sharpText2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a1sharp2Layout = new javax.swing.GroupLayout(a1sharp2);
+        a1sharp2.setLayout(a1sharp2Layout);
+        a1sharp2Layout.setHorizontalGroup(
+            a1sharp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1sharpText2, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        a1sharp2Layout.setVerticalGroup(
+            a1sharp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1sharp2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(a1sharpText2)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 28;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(a1sharp2, gridBagConstraints);
+
+        jLayeredPane10.setBackground(new java.awt.Color(22, 22, 22));
+        jLayeredPane10.setForeground(new java.awt.Color(255, 255, 255));
+        jLayeredPane10.setOpaque(true);
+        jLayeredPane10.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        g1sharpText2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        g1sharpText2.setForeground(new java.awt.Color(150, 150, 150));
+        g1sharpText2.setText("G#");
+        g1sharpText2.setAlignmentX(1.0F);
+        g1sharpText2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        jLayeredPane10.setLayer(g1sharpText2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane10Layout = new javax.swing.GroupLayout(jLayeredPane10);
+        jLayeredPane10.setLayout(jLayeredPane10Layout);
+        jLayeredPane10Layout.setHorizontalGroup(
+            jLayeredPane10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1sharpText2, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        jLayeredPane10Layout.setVerticalGroup(
+            jLayeredPane10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane10Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(g1sharpText2)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 27;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(jLayeredPane10, gridBagConstraints);
+
+        c3.setBackground(new java.awt.Color(255, 255, 255));
+        c3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        c3.setForeground(new java.awt.Color(255, 255, 255));
+        c3.setOpaque(true);
+        c3.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        c1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        c1Text2.setForeground(new java.awt.Color(150, 150, 150));
+        c1Text2.setText(" C");
+        c1Text2.setAlignmentX(1.0F);
+        c1Text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c3.setLayer(c1Text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c3Layout = new javax.swing.GroupLayout(c3);
+        c3.setLayout(c3Layout);
+        c3Layout.setHorizontalGroup(
+            c3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1Text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        c3Layout.setVerticalGroup(
+            c3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(c1Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 23;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(c3, gridBagConstraints);
+
+        d3.setBackground(new java.awt.Color(255, 255, 255));
+        d3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        d3.setForeground(new java.awt.Color(255, 255, 255));
+        d3.setOpaque(true);
+        d3.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        d1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        d1Text2.setForeground(new java.awt.Color(150, 150, 150));
+        d1Text2.setText(" D");
+        d1Text2.setAlignmentX(1.0F);
+        d1Text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d3.setLayer(d1Text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d3Layout = new javax.swing.GroupLayout(d3);
+        d3.setLayout(d3Layout);
+        d3Layout.setHorizontalGroup(
+            d3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1Text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        d3Layout.setVerticalGroup(
+            d3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(d1Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 24;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(d3, gridBagConstraints);
+
+        e3.setBackground(new java.awt.Color(255, 255, 255));
+        e3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        e3.setForeground(new java.awt.Color(255, 255, 255));
+        e3.setOpaque(true);
+        e3.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        e1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        e1Text2.setForeground(new java.awt.Color(150, 150, 150));
+        e1Text2.setText(" E");
+        e1Text2.setAlignmentX(1.0F);
+        e1Text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        e3.setLayer(e1Text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout e3Layout = new javax.swing.GroupLayout(e3);
+        e3.setLayout(e3Layout);
+        e3Layout.setHorizontalGroup(
+            e3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(e1Text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        e3Layout.setVerticalGroup(
+            e3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(e1Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 25;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(e3, gridBagConstraints);
+
+        a3.setBackground(new java.awt.Color(255, 255, 255));
+        a3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        a3.setForeground(new java.awt.Color(255, 255, 255));
+        a3.setOpaque(true);
+        a3.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        a1text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        a1text2.setForeground(new java.awt.Color(150, 150, 150));
+        a1text2.setText(" A");
+        a1text2.setAlignmentX(1.0F);
+        a1text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a3.setLayer(a1text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a3Layout = new javax.swing.GroupLayout(a3);
+        a3.setLayout(a3Layout);
+        a3Layout.setHorizontalGroup(
+            a3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        a3Layout.setVerticalGroup(
+            a3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(a1text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 28;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(a3, gridBagConstraints);
+
+        b5.setBackground(new java.awt.Color(255, 255, 255));
+        b5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        b5.setForeground(new java.awt.Color(255, 255, 255));
+        b5.setOpaque(true);
+        b5.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        b1Text4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        b1Text4.setForeground(new java.awt.Color(150, 150, 150));
+        b1Text4.setText(" B");
+        b1Text4.setAlignmentX(1.0F);
+        b1Text4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        b5.setLayer(b1Text4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout b5Layout = new javax.swing.GroupLayout(b5);
+        b5.setLayout(b5Layout);
+        b5Layout.setHorizontalGroup(
+            b5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(b1Text4, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        b5Layout.setVerticalGroup(
+            b5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(b1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 29;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(b5, gridBagConstraints);
+
+        f3.setBackground(new java.awt.Color(255, 255, 255));
+        f3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        f3.setForeground(new java.awt.Color(255, 255, 255));
+        f3.setOpaque(true);
+        f3.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        f1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        f1Text2.setForeground(new java.awt.Color(150, 150, 150));
+        f1Text2.setText(" F");
+        f1Text2.setAlignmentX(1.0F);
+        f1Text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f3.setLayer(f1Text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f3Layout = new javax.swing.GroupLayout(f3);
+        f3.setLayout(f3Layout);
+        f3Layout.setHorizontalGroup(
+            f3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1Text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        f3Layout.setVerticalGroup(
+            f3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(f1Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 26;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(f3, gridBagConstraints);
+
+        g3.setBackground(new java.awt.Color(255, 255, 255));
+        g3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        g3.setForeground(new java.awt.Color(255, 255, 255));
+        g3.setOpaque(true);
+        g3.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        g1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        g1Text2.setForeground(new java.awt.Color(150, 150, 150));
+        g1Text2.setText(" G");
+        g1Text2.setAlignmentX(1.0F);
+        g1Text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        g3.setLayer(g1Text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout g3Layout = new javax.swing.GroupLayout(g3);
+        g3.setLayout(g3Layout);
+        g3Layout.setHorizontalGroup(
+            g3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1Text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        g3Layout.setVerticalGroup(
+            g3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(g1Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 27;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(g3, gridBagConstraints);
+
+        d1sharp3.setBackground(new java.awt.Color(22, 22, 22));
+        d1sharp3.setForeground(new java.awt.Color(255, 255, 255));
+        d1sharp3.setOpaque(true);
+        d1sharp3.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        d1sharpText3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        d1sharpText3.setForeground(new java.awt.Color(150, 150, 150));
+        d1sharpText3.setText("D#");
+        d1sharpText3.setAlignmentX(1.0F);
+        d1sharpText3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d1sharp3.setLayer(d1sharpText3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d1sharp3Layout = new javax.swing.GroupLayout(d1sharp3);
+        d1sharp3.setLayout(d1sharp3Layout);
+        d1sharp3Layout.setHorizontalGroup(
+            d1sharp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1sharpText3, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        d1sharp3Layout.setVerticalGroup(
+            d1sharp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1sharp3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(d1sharpText3)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(d1sharp3, gridBagConstraints);
+
+        c1sharp3.setBackground(new java.awt.Color(22, 22, 22));
+        c1sharp3.setForeground(new java.awt.Color(255, 255, 255));
+        c1sharp3.setOpaque(true);
+        c1sharp3.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        c1sharpText3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        c1sharpText3.setForeground(new java.awt.Color(150, 150, 150));
+        c1sharpText3.setText("C#");
+        c1sharpText3.setAlignmentX(1.0F);
+        c1sharpText3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c1sharp3.setLayer(c1sharpText3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c1sharp3Layout = new javax.swing.GroupLayout(c1sharp3);
+        c1sharp3.setLayout(c1sharp3Layout);
+        c1sharp3Layout.setHorizontalGroup(
+            c1sharp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1sharpText3, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        c1sharp3Layout.setVerticalGroup(
+            c1sharp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1sharp3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(c1sharpText3)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(c1sharp3, gridBagConstraints);
+
+        f1sharp3.setBackground(new java.awt.Color(22, 22, 22));
+        f1sharp3.setForeground(new java.awt.Color(255, 255, 255));
+        f1sharp3.setOpaque(true);
+        f1sharp3.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        f1sharpText3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        f1sharpText3.setForeground(new java.awt.Color(150, 150, 150));
+        f1sharpText3.setText("F#");
+        f1sharpText3.setAlignmentX(1.0F);
+        f1sharpText3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f1sharp3.setLayer(f1sharpText3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f1sharp3Layout = new javax.swing.GroupLayout(f1sharp3);
+        f1sharp3.setLayout(f1sharp3Layout);
+        f1sharp3Layout.setHorizontalGroup(
+            f1sharp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1sharpText3, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        f1sharp3Layout.setVerticalGroup(
+            f1sharp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f1sharp3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(f1sharpText3)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(f1sharp3, gridBagConstraints);
+
+        a1sharp3.setBackground(new java.awt.Color(22, 22, 22));
+        a1sharp3.setForeground(new java.awt.Color(255, 255, 255));
+        a1sharp3.setOpaque(true);
+        a1sharp3.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        a1sharpText3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        a1sharpText3.setForeground(new java.awt.Color(150, 150, 150));
+        a1sharpText3.setText("A#");
+        a1sharpText3.setAlignmentX(1.0F);
+        a1sharpText3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a1sharp3.setLayer(a1sharpText3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a1sharp3Layout = new javax.swing.GroupLayout(a1sharp3);
+        a1sharp3.setLayout(a1sharp3Layout);
+        a1sharp3Layout.setHorizontalGroup(
+            a1sharp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1sharpText3, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        a1sharp3Layout.setVerticalGroup(
+            a1sharp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1sharp3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(a1sharpText3)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 14;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(a1sharp3, gridBagConstraints);
+
+        jLayeredPane11.setBackground(new java.awt.Color(22, 22, 22));
+        jLayeredPane11.setForeground(new java.awt.Color(255, 255, 255));
+        jLayeredPane11.setOpaque(true);
+        jLayeredPane11.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        g1sharpText3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        g1sharpText3.setForeground(new java.awt.Color(150, 150, 150));
+        g1sharpText3.setText("G#");
+        g1sharpText3.setAlignmentX(1.0F);
+        g1sharpText3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        jLayeredPane11.setLayer(g1sharpText3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane11Layout = new javax.swing.GroupLayout(jLayeredPane11);
+        jLayeredPane11.setLayout(jLayeredPane11Layout);
+        jLayeredPane11Layout.setHorizontalGroup(
+            jLayeredPane11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1sharpText3, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        jLayeredPane11Layout.setVerticalGroup(
+            jLayeredPane11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane11Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(g1sharpText3)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(jLayeredPane11, gridBagConstraints);
+
+        c4.setBackground(new java.awt.Color(255, 255, 255));
+        c4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        c4.setForeground(new java.awt.Color(255, 255, 255));
+        c4.setOpaque(true);
+        c4.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        c1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        c1Text3.setForeground(new java.awt.Color(150, 150, 150));
+        c1Text3.setText(" C");
+        c1Text3.setAlignmentX(1.0F);
+        c1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c4.setLayer(c1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c4Layout = new javax.swing.GroupLayout(c4);
+        c4.setLayout(c4Layout);
+        c4Layout.setHorizontalGroup(
+            c4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        c4Layout.setVerticalGroup(
+            c4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(c1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(c4, gridBagConstraints);
+
+        d4.setBackground(new java.awt.Color(255, 255, 255));
+        d4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        d4.setForeground(new java.awt.Color(255, 255, 255));
+        d4.setOpaque(true);
+        d4.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        d1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        d1Text3.setForeground(new java.awt.Color(150, 150, 150));
+        d1Text3.setText(" D");
+        d1Text3.setAlignmentX(1.0F);
+        d1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d4.setLayer(d1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d4Layout = new javax.swing.GroupLayout(d4);
+        d4.setLayout(d4Layout);
+        d4Layout.setHorizontalGroup(
+            d4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        d4Layout.setVerticalGroup(
+            d4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(d1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(d4, gridBagConstraints);
+
+        e4.setBackground(new java.awt.Color(255, 255, 255));
+        e4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        e4.setForeground(new java.awt.Color(255, 255, 255));
+        e4.setOpaque(true);
+        e4.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        e1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        e1Text3.setForeground(new java.awt.Color(150, 150, 150));
+        e1Text3.setText(" E");
+        e1Text3.setAlignmentX(1.0F);
+        e1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        e4.setLayer(e1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout e4Layout = new javax.swing.GroupLayout(e4);
+        e4.setLayout(e4Layout);
+        e4Layout.setHorizontalGroup(
+            e4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(e1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        e4Layout.setVerticalGroup(
+            e4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(e1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(e4, gridBagConstraints);
+
+        a4.setBackground(new java.awt.Color(255, 255, 255));
+        a4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        a4.setForeground(new java.awt.Color(255, 255, 255));
+        a4.setOpaque(true);
+        a4.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        a1text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        a1text3.setForeground(new java.awt.Color(150, 150, 150));
+        a1text3.setText(" A");
+        a1text3.setAlignmentX(1.0F);
+        a1text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a4.setLayer(a1text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a4Layout = new javax.swing.GroupLayout(a4);
+        a4.setLayout(a4Layout);
+        a4Layout.setHorizontalGroup(
+            a4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        a4Layout.setVerticalGroup(
+            a4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(a1text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 14;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(a4, gridBagConstraints);
+
+        b6.setBackground(new java.awt.Color(255, 255, 255));
+        b6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        b6.setForeground(new java.awt.Color(255, 255, 255));
+        b6.setOpaque(true);
+        b6.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        b1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        b1Text5.setForeground(new java.awt.Color(150, 150, 150));
+        b1Text5.setText(" B");
+        b1Text5.setAlignmentX(1.0F);
+        b1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        b6.setLayer(b1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout b6Layout = new javax.swing.GroupLayout(b6);
+        b6.setLayout(b6Layout);
+        b6Layout.setHorizontalGroup(
+            b6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(b1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        b6Layout.setVerticalGroup(
+            b6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(b1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 15;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(b6, gridBagConstraints);
+
+        f4.setBackground(new java.awt.Color(255, 255, 255));
+        f4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        f4.setForeground(new java.awt.Color(255, 255, 255));
+        f4.setOpaque(true);
+        f4.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        f1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        f1Text3.setForeground(new java.awt.Color(150, 150, 150));
+        f1Text3.setText(" F");
+        f1Text3.setAlignmentX(1.0F);
+        f1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f4.setLayer(f1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f4Layout = new javax.swing.GroupLayout(f4);
+        f4.setLayout(f4Layout);
+        f4Layout.setHorizontalGroup(
+            f4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        f4Layout.setVerticalGroup(
+            f4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(f1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(f4, gridBagConstraints);
+
+        g4.setBackground(new java.awt.Color(255, 255, 255));
+        g4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        g4.setForeground(new java.awt.Color(255, 255, 255));
+        g4.setOpaque(true);
+        g4.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        g1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        g1Text3.setForeground(new java.awt.Color(150, 150, 150));
+        g1Text3.setText(" G");
+        g1Text3.setAlignmentX(1.0F);
+        g1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        g4.setLayer(g1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout g4Layout = new javax.swing.GroupLayout(g4);
+        g4.setLayout(g4Layout);
+        g4Layout.setHorizontalGroup(
+            g4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        g4Layout.setVerticalGroup(
+            g4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(g1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(g4, gridBagConstraints);
+
+        d1sharp7.setBackground(new java.awt.Color(22, 22, 22));
+        d1sharp7.setForeground(new java.awt.Color(255, 255, 255));
+        d1sharp7.setOpaque(true);
+        d1sharp7.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        d1sharpText7.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        d1sharpText7.setForeground(new java.awt.Color(150, 150, 150));
+        d1sharpText7.setText("D#");
+        d1sharpText7.setAlignmentX(1.0F);
+        d1sharpText7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d1sharp7.setLayer(d1sharpText7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d1sharp7Layout = new javax.swing.GroupLayout(d1sharp7);
+        d1sharp7.setLayout(d1sharp7Layout);
+        d1sharp7Layout.setHorizontalGroup(
+            d1sharp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1sharpText7, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        d1sharp7Layout.setVerticalGroup(
+            d1sharp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1sharp7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(d1sharpText7)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(d1sharp7, gridBagConstraints);
+
+        c1sharp7.setBackground(new java.awt.Color(22, 22, 22));
+        c1sharp7.setForeground(new java.awt.Color(255, 255, 255));
+        c1sharp7.setOpaque(true);
+        c1sharp7.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        c1sharpText7.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        c1sharpText7.setForeground(new java.awt.Color(150, 150, 150));
+        c1sharpText7.setText("C#");
+        c1sharpText7.setAlignmentX(1.0F);
+        c1sharpText7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c1sharp7.setLayer(c1sharpText7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c1sharp7Layout = new javax.swing.GroupLayout(c1sharp7);
+        c1sharp7.setLayout(c1sharp7Layout);
+        c1sharp7Layout.setHorizontalGroup(
+            c1sharp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1sharpText7, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        c1sharp7Layout.setVerticalGroup(
+            c1sharp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1sharp7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(c1sharpText7)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(c1sharp7, gridBagConstraints);
+
+        f1sharp6.setBackground(new java.awt.Color(22, 22, 22));
+        f1sharp6.setForeground(new java.awt.Color(255, 255, 255));
+        f1sharp6.setOpaque(true);
+        f1sharp6.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        f1sharpText6.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        f1sharpText6.setForeground(new java.awt.Color(150, 150, 150));
+        f1sharpText6.setText("F#");
+        f1sharpText6.setAlignmentX(1.0F);
+        f1sharpText6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f1sharp6.setLayer(f1sharpText6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f1sharp6Layout = new javax.swing.GroupLayout(f1sharp6);
+        f1sharp6.setLayout(f1sharp6Layout);
+        f1sharp6Layout.setHorizontalGroup(
+            f1sharp6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1sharpText6, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        f1sharp6Layout.setVerticalGroup(
+            f1sharp6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f1sharp6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(f1sharpText6)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(f1sharp6, gridBagConstraints);
+
+        a1sharp6.setBackground(new java.awt.Color(22, 22, 22));
+        a1sharp6.setForeground(new java.awt.Color(255, 255, 255));
+        a1sharp6.setOpaque(true);
+        a1sharp6.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        a1sharpText6.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        a1sharpText6.setForeground(new java.awt.Color(150, 150, 150));
+        a1sharpText6.setText("A#");
+        a1sharpText6.setAlignmentX(1.0F);
+        a1sharpText6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a1sharp6.setLayer(a1sharpText6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a1sharp6Layout = new javax.swing.GroupLayout(a1sharp6);
+        a1sharp6.setLayout(a1sharp6Layout);
+        a1sharp6Layout.setHorizontalGroup(
+            a1sharp6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1sharpText6, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        a1sharp6Layout.setVerticalGroup(
+            a1sharp6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1sharp6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(a1sharpText6)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(a1sharp6, gridBagConstraints);
+
+        jLayeredPane14.setBackground(new java.awt.Color(22, 22, 22));
+        jLayeredPane14.setForeground(new java.awt.Color(255, 255, 255));
+        jLayeredPane14.setOpaque(true);
+        jLayeredPane14.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        g1sharpText6.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        g1sharpText6.setForeground(new java.awt.Color(150, 150, 150));
+        g1sharpText6.setText("G#");
+        g1sharpText6.setAlignmentX(1.0F);
+        g1sharpText6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        jLayeredPane14.setLayer(g1sharpText6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane14Layout = new javax.swing.GroupLayout(jLayeredPane14);
+        jLayeredPane14.setLayout(jLayeredPane14Layout);
+        jLayeredPane14Layout.setHorizontalGroup(
+            jLayeredPane14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1sharpText6, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        jLayeredPane14Layout.setVerticalGroup(
+            jLayeredPane14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane14Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(g1sharpText6)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(jLayeredPane14, gridBagConstraints);
+
+        c7.setBackground(new java.awt.Color(255, 255, 255));
+        c7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        c7.setForeground(new java.awt.Color(255, 255, 255));
+        c7.setOpaque(true);
+        c7.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        c1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        c1Text6.setForeground(new java.awt.Color(150, 150, 150));
+        c1Text6.setText(" C");
+        c1Text6.setAlignmentX(1.0F);
+        c1Text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c7.setLayer(c1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c7Layout = new javax.swing.GroupLayout(c7);
+        c7.setLayout(c7Layout);
+        c7Layout.setHorizontalGroup(
+            c7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1Text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        c7Layout.setVerticalGroup(
+            c7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(c1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(c7, gridBagConstraints);
+
+        d7.setBackground(new java.awt.Color(255, 255, 255));
+        d7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        d7.setForeground(new java.awt.Color(255, 255, 255));
+        d7.setOpaque(true);
+        d7.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        d1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        d1Text6.setForeground(new java.awt.Color(150, 150, 150));
+        d1Text6.setText(" D");
+        d1Text6.setAlignmentX(1.0F);
+        d1Text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d7.setLayer(d1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d7Layout = new javax.swing.GroupLayout(d7);
+        d7.setLayout(d7Layout);
+        d7Layout.setHorizontalGroup(
+            d7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1Text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        d7Layout.setVerticalGroup(
+            d7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(d1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(d7, gridBagConstraints);
+
+        e7.setBackground(new java.awt.Color(255, 255, 255));
+        e7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        e7.setForeground(new java.awt.Color(255, 255, 255));
+        e7.setOpaque(true);
+        e7.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        e1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        e1Text6.setForeground(new java.awt.Color(150, 150, 150));
+        e1Text6.setText(" E");
+        e1Text6.setAlignmentX(1.0F);
+        e1Text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        e7.setLayer(e1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout e7Layout = new javax.swing.GroupLayout(e7);
+        e7.setLayout(e7Layout);
+        e7Layout.setHorizontalGroup(
+            e7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(e1Text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        e7Layout.setVerticalGroup(
+            e7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(e1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(e7, gridBagConstraints);
+
+        a7.setBackground(new java.awt.Color(255, 255, 255));
+        a7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        a7.setForeground(new java.awt.Color(255, 255, 255));
+        a7.setOpaque(true);
+        a7.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        a1text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        a1text6.setForeground(new java.awt.Color(150, 150, 150));
+        a1text6.setText(" A");
+        a1text6.setAlignmentX(1.0F);
+        a1text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a7.setLayer(a1text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a7Layout = new javax.swing.GroupLayout(a7);
+        a7.setLayout(a7Layout);
+        a7Layout.setHorizontalGroup(
+            a7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        a7Layout.setVerticalGroup(
+            a7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(a1text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(a7, gridBagConstraints);
+
+        b9.setBackground(new java.awt.Color(255, 255, 255));
+        b9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        b9.setForeground(new java.awt.Color(255, 255, 255));
+        b9.setOpaque(true);
+        b9.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        b1Text8.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        b1Text8.setForeground(new java.awt.Color(150, 150, 150));
+        b1Text8.setText(" B");
+        b1Text8.setAlignmentX(1.0F);
+        b1Text8.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        b9.setLayer(b1Text8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout b9Layout = new javax.swing.GroupLayout(b9);
+        b9.setLayout(b9Layout);
+        b9Layout.setHorizontalGroup(
+            b9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(b1Text8, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        b9Layout.setVerticalGroup(
+            b9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(b1Text8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(b9, gridBagConstraints);
+
+        f7.setBackground(new java.awt.Color(255, 255, 255));
+        f7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        f7.setForeground(new java.awt.Color(255, 255, 255));
+        f7.setOpaque(true);
+        f7.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        f1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        f1Text6.setForeground(new java.awt.Color(150, 150, 150));
+        f1Text6.setText(" F");
+        f1Text6.setAlignmentX(1.0F);
+        f1Text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f7.setLayer(f1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f7Layout = new javax.swing.GroupLayout(f7);
+        f7.setLayout(f7Layout);
+        f7Layout.setHorizontalGroup(
+            f7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1Text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        f7Layout.setVerticalGroup(
+            f7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(f1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(f7, gridBagConstraints);
+
+        g7.setBackground(new java.awt.Color(255, 255, 255));
+        g7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        g7.setForeground(new java.awt.Color(255, 255, 255));
+        g7.setOpaque(true);
+        g7.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        g1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        g1Text6.setForeground(new java.awt.Color(150, 150, 150));
+        g1Text6.setText(" G");
+        g1Text6.setAlignmentX(1.0F);
+        g1Text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        g7.setLayer(g1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout g7Layout = new javax.swing.GroupLayout(g7);
+        g7.setLayout(g7Layout);
+        g7Layout.setHorizontalGroup(
+            g7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1Text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        g7Layout.setVerticalGroup(
+            g7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(g1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(g7, gridBagConstraints);
+
+        d1sharp8.setBackground(new java.awt.Color(22, 22, 22));
+        d1sharp8.setForeground(new java.awt.Color(255, 255, 255));
+        d1sharp8.setOpaque(true);
+        d1sharp8.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        d1sharpText8.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        d1sharpText8.setForeground(new java.awt.Color(150, 150, 150));
+        d1sharpText8.setText("D#");
+        d1sharpText8.setAlignmentX(1.0F);
+        d1sharpText8.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d1sharp8.setLayer(d1sharpText8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d1sharp8Layout = new javax.swing.GroupLayout(d1sharp8);
+        d1sharp8.setLayout(d1sharp8Layout);
+        d1sharp8Layout.setHorizontalGroup(
+            d1sharp8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1sharpText8, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        d1sharp8Layout.setVerticalGroup(
+            d1sharp8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1sharp8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(d1sharpText8)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 17;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(d1sharp8, gridBagConstraints);
+
+        c1sharp8.setBackground(new java.awt.Color(22, 22, 22));
+        c1sharp8.setForeground(new java.awt.Color(255, 255, 255));
+        c1sharp8.setOpaque(true);
+        c1sharp8.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        c1sharpText8.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        c1sharpText8.setForeground(new java.awt.Color(150, 150, 150));
+        c1sharpText8.setText("C#");
+        c1sharpText8.setAlignmentX(1.0F);
+        c1sharpText8.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c1sharp8.setLayer(c1sharpText8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c1sharp8Layout = new javax.swing.GroupLayout(c1sharp8);
+        c1sharp8.setLayout(c1sharp8Layout);
+        c1sharp8Layout.setHorizontalGroup(
+            c1sharp8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1sharpText8, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        c1sharp8Layout.setVerticalGroup(
+            c1sharp8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1sharp8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(c1sharpText8)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 16;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(c1sharp8, gridBagConstraints);
+
+        f1sharp7.setBackground(new java.awt.Color(22, 22, 22));
+        f1sharp7.setForeground(new java.awt.Color(255, 255, 255));
+        f1sharp7.setOpaque(true);
+        f1sharp7.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        f1sharpText7.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        f1sharpText7.setForeground(new java.awt.Color(150, 150, 150));
+        f1sharpText7.setText("F#");
+        f1sharpText7.setAlignmentX(1.0F);
+        f1sharpText7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f1sharp7.setLayer(f1sharpText7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f1sharp7Layout = new javax.swing.GroupLayout(f1sharp7);
+        f1sharp7.setLayout(f1sharp7Layout);
+        f1sharp7Layout.setHorizontalGroup(
+            f1sharp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1sharpText7, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        f1sharp7Layout.setVerticalGroup(
+            f1sharp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f1sharp7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(f1sharpText7)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 19;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(f1sharp7, gridBagConstraints);
+
+        a1sharp7.setBackground(new java.awt.Color(22, 22, 22));
+        a1sharp7.setForeground(new java.awt.Color(255, 255, 255));
+        a1sharp7.setOpaque(true);
+        a1sharp7.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        a1sharpText7.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        a1sharpText7.setForeground(new java.awt.Color(150, 150, 150));
+        a1sharpText7.setText("A#");
+        a1sharpText7.setAlignmentX(1.0F);
+        a1sharpText7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a1sharp7.setLayer(a1sharpText7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a1sharp7Layout = new javax.swing.GroupLayout(a1sharp7);
+        a1sharp7.setLayout(a1sharp7Layout);
+        a1sharp7Layout.setHorizontalGroup(
+            a1sharp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1sharpText7, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        a1sharp7Layout.setVerticalGroup(
+            a1sharp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1sharp7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(a1sharpText7)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 21;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(a1sharp7, gridBagConstraints);
+
+        jLayeredPane15.setBackground(new java.awt.Color(22, 22, 22));
+        jLayeredPane15.setForeground(new java.awt.Color(255, 255, 255));
+        jLayeredPane15.setOpaque(true);
+        jLayeredPane15.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        g1sharpText7.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        g1sharpText7.setForeground(new java.awt.Color(150, 150, 150));
+        g1sharpText7.setText("G#");
+        g1sharpText7.setAlignmentX(1.0F);
+        g1sharpText7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        jLayeredPane15.setLayer(g1sharpText7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane15Layout = new javax.swing.GroupLayout(jLayeredPane15);
+        jLayeredPane15.setLayout(jLayeredPane15Layout);
+        jLayeredPane15Layout.setHorizontalGroup(
+            jLayeredPane15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1sharpText7, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        jLayeredPane15Layout.setVerticalGroup(
+            jLayeredPane15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane15Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(g1sharpText7)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 20;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(jLayeredPane15, gridBagConstraints);
+
+        c8.setBackground(new java.awt.Color(255, 255, 255));
+        c8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        c8.setForeground(new java.awt.Color(255, 255, 255));
+        c8.setOpaque(true);
+        c8.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        c1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        c1Text7.setForeground(new java.awt.Color(150, 150, 150));
+        c1Text7.setText(" C");
+        c1Text7.setAlignmentX(1.0F);
+        c1Text7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c8.setLayer(c1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c8Layout = new javax.swing.GroupLayout(c8);
+        c8.setLayout(c8Layout);
+        c8Layout.setHorizontalGroup(
+            c8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1Text7, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        c8Layout.setVerticalGroup(
+            c8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(c1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 16;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(c8, gridBagConstraints);
+
+        d8.setBackground(new java.awt.Color(255, 255, 255));
+        d8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        d8.setForeground(new java.awt.Color(255, 255, 255));
+        d8.setOpaque(true);
+        d8.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        d1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        d1Text7.setForeground(new java.awt.Color(150, 150, 150));
+        d1Text7.setText(" D");
+        d1Text7.setAlignmentX(1.0F);
+        d1Text7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d8.setLayer(d1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d8Layout = new javax.swing.GroupLayout(d8);
+        d8.setLayout(d8Layout);
+        d8Layout.setHorizontalGroup(
+            d8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1Text7, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        d8Layout.setVerticalGroup(
+            d8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(d1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 17;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(d8, gridBagConstraints);
+
+        e8.setBackground(new java.awt.Color(255, 255, 255));
+        e8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        e8.setForeground(new java.awt.Color(255, 255, 255));
+        e8.setOpaque(true);
+        e8.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        e1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        e1Text7.setForeground(new java.awt.Color(150, 150, 150));
+        e1Text7.setText(" E");
+        e1Text7.setAlignmentX(1.0F);
+        e1Text7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        e8.setLayer(e1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout e8Layout = new javax.swing.GroupLayout(e8);
+        e8.setLayout(e8Layout);
+        e8Layout.setHorizontalGroup(
+            e8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(e1Text7, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        e8Layout.setVerticalGroup(
+            e8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(e1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 18;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(e8, gridBagConstraints);
+
+        a8.setBackground(new java.awt.Color(255, 255, 255));
+        a8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        a8.setForeground(new java.awt.Color(255, 255, 255));
+        a8.setOpaque(true);
+        a8.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        a1text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        a1text7.setForeground(new java.awt.Color(150, 150, 150));
+        a1text7.setText(" A");
+        a1text7.setAlignmentX(1.0F);
+        a1text7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a8.setLayer(a1text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a8Layout = new javax.swing.GroupLayout(a8);
+        a8.setLayout(a8Layout);
+        a8Layout.setHorizontalGroup(
+            a8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1text7, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        a8Layout.setVerticalGroup(
+            a8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(a1text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 21;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(a8, gridBagConstraints);
+
+        b10.setBackground(new java.awt.Color(255, 255, 255));
+        b10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        b10.setForeground(new java.awt.Color(255, 255, 255));
+        b10.setOpaque(true);
+        b10.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        b1Text9.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        b1Text9.setForeground(new java.awt.Color(150, 150, 150));
+        b1Text9.setText(" B");
+        b1Text9.setAlignmentX(1.0F);
+        b1Text9.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        b10.setLayer(b1Text9, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout b10Layout = new javax.swing.GroupLayout(b10);
+        b10.setLayout(b10Layout);
+        b10Layout.setHorizontalGroup(
+            b10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(b1Text9, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        b10Layout.setVerticalGroup(
+            b10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b10Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(b1Text9, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 22;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(b10, gridBagConstraints);
+
+        f8.setBackground(new java.awt.Color(255, 255, 255));
+        f8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        f8.setForeground(new java.awt.Color(255, 255, 255));
+        f8.setOpaque(true);
+        f8.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        f1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        f1Text7.setForeground(new java.awt.Color(150, 150, 150));
+        f1Text7.setText(" F");
+        f1Text7.setAlignmentX(1.0F);
+        f1Text7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f8.setLayer(f1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f8Layout = new javax.swing.GroupLayout(f8);
+        f8.setLayout(f8Layout);
+        f8Layout.setHorizontalGroup(
+            f8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1Text7, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        f8Layout.setVerticalGroup(
+            f8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(f1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 19;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(f8, gridBagConstraints);
+
+        g8.setBackground(new java.awt.Color(255, 255, 255));
+        g8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        g8.setForeground(new java.awt.Color(255, 255, 255));
+        g8.setOpaque(true);
+        g8.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        g1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        g1Text7.setForeground(new java.awt.Color(150, 150, 150));
+        g1Text7.setText(" G");
+        g1Text7.setAlignmentX(1.0F);
+        g1Text7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        g8.setLayer(g1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout g8Layout = new javax.swing.GroupLayout(g8);
+        g8.setLayout(g8Layout);
+        g8Layout.setHorizontalGroup(
+            g8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1Text7, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        g8Layout.setVerticalGroup(
+            g8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(g1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 20;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(g8, gridBagConstraints);
+
+        d1sharp9.setBackground(new java.awt.Color(22, 22, 22));
+        d1sharp9.setForeground(new java.awt.Color(255, 255, 255));
+        d1sharp9.setOpaque(true);
+        d1sharp9.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        d1sharpText9.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        d1sharpText9.setForeground(new java.awt.Color(150, 150, 150));
+        d1sharpText9.setText("D#");
+        d1sharpText9.setAlignmentX(1.0F);
+        d1sharpText9.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d1sharp9.setLayer(d1sharpText9, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d1sharp9Layout = new javax.swing.GroupLayout(d1sharp9);
+        d1sharp9.setLayout(d1sharp9Layout);
+        d1sharp9Layout.setHorizontalGroup(
+            d1sharp9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1sharpText9, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        d1sharp9Layout.setVerticalGroup(
+            d1sharp9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1sharp9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(d1sharpText9)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 21;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(d1sharp9, gridBagConstraints);
+
+        c1sharp9.setBackground(new java.awt.Color(22, 22, 22));
+        c1sharp9.setForeground(new java.awt.Color(255, 255, 255));
+        c1sharp9.setOpaque(true);
+        c1sharp9.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        c1sharpText9.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        c1sharpText9.setForeground(new java.awt.Color(150, 150, 150));
+        c1sharpText9.setText("C#");
+        c1sharpText9.setAlignmentX(1.0F);
+        c1sharpText9.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c1sharp9.setLayer(c1sharpText9, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c1sharp9Layout = new javax.swing.GroupLayout(c1sharp9);
+        c1sharp9.setLayout(c1sharp9Layout);
+        c1sharp9Layout.setHorizontalGroup(
+            c1sharp9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1sharpText9, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        c1sharp9Layout.setVerticalGroup(
+            c1sharp9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1sharp9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(c1sharpText9)
+                .addContainerGap())
+        );
+
+        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 22;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(c1sharp9, gridBagConstraints);
+
+        getContentPane().add(keyboardPanel);
+        keyboardPanel.setBounds(0, 640, 1300, 150);
 
         javax.swing.GroupLayout jPanel47Layout = new javax.swing.GroupLayout(jPanel47);
         jPanel47.setLayout(jPanel47Layout);
@@ -1528,32 +3445,10 @@ public class VirtualPiano extends javax.swing.JFrame {
         getContentPane().add(jPanel47);
         jPanel47.setBounds(30, 500, 0, 0);
 
-        jPanel48.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel48.setLayout(new java.awt.GridBagLayout());
-
-        jPanel50.setBackground(new java.awt.Color(0, 255, 255));
-        jPanel50.setPreferredSize(new java.awt.Dimension(31, 150));
-
-        javax.swing.GroupLayout jPanel50Layout = new javax.swing.GroupLayout(jPanel50);
-        jPanel50.setLayout(jPanel50Layout);
-        jPanel50Layout.setHorizontalGroup(
-            jPanel50Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 31, Short.MAX_VALUE)
-        );
-        jPanel50Layout.setVerticalGroup(
-            jPanel50Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        jPanel48.add(jPanel50, gridBagConstraints);
-
-        getContentPane().add(jPanel48);
-        jPanel48.setBounds(0, 0, 1410, 640);
+        backgroundPanel.setBackground(new java.awt.Color(0, 0, 0));
+        backgroundPanel.setLayout(new java.awt.GridBagLayout());
+        getContentPane().add(backgroundPanel);
+        backgroundPanel.setBounds(0, 0, 1300, 640);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1588,109 +3483,210 @@ public class VirtualPiano extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                VirtualPiano piano = new VirtualPiano();
-                piano.setVisible(true);
+                VirtualPiano piano;
+                try {
+                    piano = new VirtualPiano();
+                    piano.setVisible(true);
+                } catch (InvalidMidiDataException ex) {
+                    Logger.getLogger(VirtualPiano.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(VirtualPiano.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (MidiUnavailableException ex) {
+                    Logger.getLogger(VirtualPiano.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
                 
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel25;
-    private javax.swing.JPanel jPanel26;
-    private javax.swing.JPanel jPanel27;
-    private javax.swing.JPanel jPanel28;
-    private javax.swing.JPanel jPanel29;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel30;
-    private javax.swing.JPanel jPanel31;
-    private javax.swing.JPanel jPanel32;
-    private javax.swing.JPanel jPanel33;
-    private javax.swing.JPanel jPanel34;
-    private javax.swing.JPanel jPanel35;
-    private javax.swing.JPanel jPanel36;
-    private javax.swing.JPanel jPanel37;
-    private javax.swing.JPanel jPanel38;
-    private javax.swing.JPanel jPanel39;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel40;
-    private javax.swing.JPanel jPanel41;
-    private javax.swing.JPanel jPanel42;
-    private javax.swing.JPanel jPanel43;
-    private javax.swing.JPanel jPanel44;
+    private javax.swing.JLayeredPane a1;
+    private javax.swing.JLayeredPane a1sharp;
+    private javax.swing.JLayeredPane a1sharp1;
+    private javax.swing.JLayeredPane a1sharp2;
+    private javax.swing.JLayeredPane a1sharp3;
+    private javax.swing.JLayeredPane a1sharp4;
+    private javax.swing.JLayeredPane a1sharp5;
+    private javax.swing.JLayeredPane a1sharp6;
+    private javax.swing.JLayeredPane a1sharp7;
+    private javax.swing.JLabel a1sharpText;
+    private javax.swing.JLabel a1sharpText1;
+    private javax.swing.JLabel a1sharpText2;
+    private javax.swing.JLabel a1sharpText3;
+    private javax.swing.JLabel a1sharpText4;
+    private javax.swing.JLabel a1sharpText5;
+    private javax.swing.JLabel a1sharpText6;
+    private javax.swing.JLabel a1sharpText7;
+    private javax.swing.JLabel a1text;
+    private javax.swing.JLabel a1text1;
+    private javax.swing.JLabel a1text2;
+    private javax.swing.JLabel a1text3;
+    private javax.swing.JLabel a1text4;
+    private javax.swing.JLabel a1text5;
+    private javax.swing.JLabel a1text6;
+    private javax.swing.JLabel a1text7;
+    private javax.swing.JLayeredPane a2;
+    private javax.swing.JLayeredPane a3;
+    private javax.swing.JLayeredPane a4;
+    private javax.swing.JLayeredPane a5;
+    private javax.swing.JLayeredPane a6;
+    private javax.swing.JLayeredPane a7;
+    private javax.swing.JLayeredPane a8;
+    private javax.swing.JLayeredPane b1;
+    private javax.swing.JLayeredPane b10;
+    private javax.swing.JLabel b1Text;
+    private javax.swing.JLabel b1Text1;
+    private javax.swing.JLabel b1Text2;
+    private javax.swing.JLabel b1Text3;
+    private javax.swing.JLabel b1Text4;
+    private javax.swing.JLabel b1Text5;
+    private javax.swing.JLabel b1Text6;
+    private javax.swing.JLabel b1Text7;
+    private javax.swing.JLabel b1Text8;
+    private javax.swing.JLabel b1Text9;
+    private javax.swing.JLayeredPane b2;
+    private javax.swing.JLayeredPane b3;
+    private javax.swing.JLayeredPane b4;
+    private javax.swing.JLayeredPane b5;
+    private javax.swing.JLayeredPane b6;
+    private javax.swing.JLayeredPane b7;
+    private javax.swing.JLayeredPane b8;
+    private javax.swing.JLayeredPane b9;
+    private javax.swing.JPanel backgroundPanel;
+    private javax.swing.JLayeredPane c1;
+    private javax.swing.JLabel c1Text;
+    private javax.swing.JLabel c1Text1;
+    private javax.swing.JLabel c1Text2;
+    private javax.swing.JLabel c1Text3;
+    private javax.swing.JLabel c1Text4;
+    private javax.swing.JLabel c1Text5;
+    private javax.swing.JLabel c1Text6;
+    private javax.swing.JLabel c1Text7;
+    private javax.swing.JLayeredPane c1sharp1;
+    private javax.swing.JLayeredPane c1sharp2;
+    private javax.swing.JLayeredPane c1sharp3;
+    private javax.swing.JLayeredPane c1sharp4;
+    private javax.swing.JLayeredPane c1sharp5;
+    private javax.swing.JLayeredPane c1sharp7;
+    private javax.swing.JLayeredPane c1sharp8;
+    private javax.swing.JLayeredPane c1sharp9;
+    private javax.swing.JLabel c1sharpText1;
+    private javax.swing.JLabel c1sharpText2;
+    private javax.swing.JLabel c1sharpText3;
+    private javax.swing.JLabel c1sharpText4;
+    private javax.swing.JLabel c1sharpText5;
+    private javax.swing.JLabel c1sharpText7;
+    private javax.swing.JLabel c1sharpText8;
+    private javax.swing.JLabel c1sharpText9;
+    private javax.swing.JLayeredPane c2;
+    private javax.swing.JLayeredPane c3;
+    private javax.swing.JLayeredPane c4;
+    private javax.swing.JLayeredPane c5;
+    private javax.swing.JLayeredPane c6;
+    private javax.swing.JLayeredPane c7;
+    private javax.swing.JLayeredPane c8;
+    private javax.swing.JLabel d1Text1;
+    private javax.swing.JLabel d1Text2;
+    private javax.swing.JLabel d1Text3;
+    private javax.swing.JLabel d1Text4;
+    private javax.swing.JLabel d1Text5;
+    private javax.swing.JLabel d1Text6;
+    private javax.swing.JLabel d1Text7;
+    private javax.swing.JLayeredPane d1sharp1;
+    private javax.swing.JLayeredPane d1sharp2;
+    private javax.swing.JLayeredPane d1sharp3;
+    private javax.swing.JLayeredPane d1sharp4;
+    private javax.swing.JLayeredPane d1sharp5;
+    private javax.swing.JLayeredPane d1sharp7;
+    private javax.swing.JLayeredPane d1sharp8;
+    private javax.swing.JLayeredPane d1sharp9;
+    private javax.swing.JLabel d1sharpText1;
+    private javax.swing.JLabel d1sharpText2;
+    private javax.swing.JLabel d1sharpText3;
+    private javax.swing.JLabel d1sharpText4;
+    private javax.swing.JLabel d1sharpText5;
+    private javax.swing.JLabel d1sharpText7;
+    private javax.swing.JLabel d1sharpText8;
+    private javax.swing.JLabel d1sharpText9;
+    private javax.swing.JLayeredPane d2;
+    private javax.swing.JLayeredPane d3;
+    private javax.swing.JLayeredPane d4;
+    private javax.swing.JLayeredPane d5;
+    private javax.swing.JLayeredPane d6;
+    private javax.swing.JLayeredPane d7;
+    private javax.swing.JLayeredPane d8;
+    private javax.swing.JLabel e1Text1;
+    private javax.swing.JLabel e1Text2;
+    private javax.swing.JLabel e1Text3;
+    private javax.swing.JLabel e1Text4;
+    private javax.swing.JLabel e1Text5;
+    private javax.swing.JLabel e1Text6;
+    private javax.swing.JLabel e1Text7;
+    private javax.swing.JLayeredPane e2;
+    private javax.swing.JLayeredPane e3;
+    private javax.swing.JLayeredPane e4;
+    private javax.swing.JLayeredPane e5;
+    private javax.swing.JLayeredPane e6;
+    private javax.swing.JLayeredPane e7;
+    private javax.swing.JLayeredPane e8;
+    private javax.swing.JLabel f1Text1;
+    private javax.swing.JLabel f1Text2;
+    private javax.swing.JLabel f1Text3;
+    private javax.swing.JLabel f1Text4;
+    private javax.swing.JLabel f1Text5;
+    private javax.swing.JLabel f1Text6;
+    private javax.swing.JLabel f1Text7;
+    private javax.swing.JLayeredPane f1sharp1;
+    private javax.swing.JLayeredPane f1sharp2;
+    private javax.swing.JLayeredPane f1sharp3;
+    private javax.swing.JLayeredPane f1sharp4;
+    private javax.swing.JLayeredPane f1sharp5;
+    private javax.swing.JLayeredPane f1sharp6;
+    private javax.swing.JLayeredPane f1sharp7;
+    private javax.swing.JLabel f1sharpText1;
+    private javax.swing.JLabel f1sharpText2;
+    private javax.swing.JLabel f1sharpText3;
+    private javax.swing.JLabel f1sharpText4;
+    private javax.swing.JLabel f1sharpText5;
+    private javax.swing.JLabel f1sharpText6;
+    private javax.swing.JLabel f1sharpText7;
+    private javax.swing.JLayeredPane f2;
+    private javax.swing.JLayeredPane f3;
+    private javax.swing.JLayeredPane f4;
+    private javax.swing.JLayeredPane f5;
+    private javax.swing.JLayeredPane f6;
+    private javax.swing.JLayeredPane f7;
+    private javax.swing.JLayeredPane f8;
+    private javax.swing.JLabel g1Text1;
+    private javax.swing.JLabel g1Text2;
+    private javax.swing.JLabel g1Text3;
+    private javax.swing.JLabel g1Text4;
+    private javax.swing.JLabel g1Text5;
+    private javax.swing.JLabel g1Text6;
+    private javax.swing.JLabel g1Text7;
+    private javax.swing.JLabel g1sharpText1;
+    private javax.swing.JLabel g1sharpText2;
+    private javax.swing.JLabel g1sharpText3;
+    private javax.swing.JLabel g1sharpText4;
+    private javax.swing.JLabel g1sharpText5;
+    private javax.swing.JLabel g1sharpText6;
+    private javax.swing.JLabel g1sharpText7;
+    private javax.swing.JLayeredPane g2;
+    private javax.swing.JLayeredPane g3;
+    private javax.swing.JLayeredPane g4;
+    private javax.swing.JLayeredPane g5;
+    private javax.swing.JLayeredPane g6;
+    private javax.swing.JLayeredPane g7;
+    private javax.swing.JLayeredPane g8;
+    private javax.swing.JLayeredPane jLayeredPane10;
+    private javax.swing.JLayeredPane jLayeredPane11;
+    private javax.swing.JLayeredPane jLayeredPane12;
+    private javax.swing.JLayeredPane jLayeredPane13;
+    private javax.swing.JLayeredPane jLayeredPane14;
+    private javax.swing.JLayeredPane jLayeredPane15;
+    private javax.swing.JLayeredPane jLayeredPane9;
     private javax.swing.JPanel jPanel47;
-    private javax.swing.JPanel jPanel48;
-    private javax.swing.JPanel jPanel49;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel50;
-    private javax.swing.JPanel jPanel51;
-    private javax.swing.JPanel jPanel52;
-    private javax.swing.JPanel jPanel53;
-    private javax.swing.JPanel jPanel54;
-    private javax.swing.JPanel jPanel55;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel keyboardPanel;
     // End of variables declaration//GEN-END:variables
 }

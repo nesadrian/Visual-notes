@@ -17,15 +17,12 @@ import javax.sound.midi.Transmitter;
  *
  * @author adria_000
  */
-public class MIDImessages {
-    
-    Receiver receiver = new CustomReceiver();
-    Transmitter transmitter;
-    
-    public void newReceiver (Sequencer sequencer) 
+public class sendReceiver {
+
+    public void insertAndSendReceiver (Sequencer sequencer, Receiver receiver) 
     throws InvalidMidiDataException, IOException, MidiUnavailableException {
         sequencer.open();
-        transmitter = sequencer.getTransmitter();
+        Transmitter transmitter = sequencer.getTransmitter();
         transmitter.setReceiver(receiver);
         sequencer.start();
     }

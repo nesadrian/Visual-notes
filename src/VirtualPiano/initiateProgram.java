@@ -16,18 +16,18 @@ import javax.sound.midi.Sequencer;
  *
  * @author adria_000
  */
-public class initiateProgram {
+public class initiateProgram  {
     
     File fileScuffed = new File("C:\\Users\\adria_000\\Desktop\\projects\\Pokémon Essentials original\\Audio\\BGM\\Battle Gym Leader.mid");
     File file = new File("C:\\Users\\adria_000\\Desktop\\Super Mario 64 - Medley.midi");
     File dir = new File("C:\\Users");
 
-    public void start() throws InvalidMidiDataException, IOException, MidiUnavailableException {
+    public void start(CustomReceiver receiver) throws InvalidMidiDataException, IOException, MidiUnavailableException {
         
         createSequenceAndSequencer newSequenceAndSequencer = new createSequenceAndSequencer();
-        Sequence newSequence = newSequenceAndSequencer.createSequence(file);
+        Sequence newSequence = newSequenceAndSequencer.createSequence(fileScuffed);
         Sequencer newSequencer = newSequenceAndSequencer.createSequencer(newSequence);
-        MIDImessages midiMs = new MIDImessages();
-        midiMs.newReceiver(newSequencer);
+        sendReceiver midiMs = new sendReceiver();
+        midiMs.insertAndSendReceiver(newSequencer, receiver);
     }
 }

@@ -6,10 +6,10 @@
 package VirtualPiano;
 
 public class PDFtoSynthesia {
-    public static void main(String[] args) throws Exception {
+/*    public static void main(String[] args) throws Exception {
         VirtualPiano piano = new VirtualPiano();
         
         initiateProgram newProgram = new initiateProgram();
         newProgram.start();
-    }
+    }*/
 }
