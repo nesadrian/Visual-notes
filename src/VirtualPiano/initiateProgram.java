@@ -18,16 +18,25 @@ import javax.sound.midi.Sequencer;
  */
 public class initiateProgram  {
     
-    File fileScuffed = new File("C:\\Users\\adria_000\\Desktop\\projects\\Pokémon Essentials original\\Audio\\BGM\\Battle Gym Leader.mid");
     File file = new File("C:\\Users\\adria_000\\Desktop\\Super Mario 64 - Medley.midi");
+    
     File dir = new File("C:\\Users");
 
-    public void start(CustomReceiver receiver) throws InvalidMidiDataException, IOException, MidiUnavailableException {
+    public static void main(String[] args) throws InvalidMidiDataException, IOException, MidiUnavailableException {
+        //VirtualPiano piano = new VirtualPiano();
+        //piano.setVisible(true);
         
+        File fileScuffed = new File("C:\\Users\\adria_000\\Desktop\\projects\\Pokémon Essentials original\\Audio\\BGM\\Battle Gym Leader.mid");
+        
+        CustomReceiver receiver = new CustomReceiver();
         createSequenceAndSequencer newSequenceAndSequencer = new createSequenceAndSequencer();
+        sendReceiver sendRec = new sendReceiver();
+        
         Sequence newSequence = newSequenceAndSequencer.createSequence(fileScuffed);
         Sequencer newSequencer = newSequenceAndSequencer.createSequencer(newSequence);
-        sendReceiver midiMs = new sendReceiver();
-        midiMs.insertAndSendReceiver(newSequencer, receiver);
+        
+        newSequencer.getSequence();
+        
+        sendRec.insertAndSendReceiver(newSequencer, receiver);
     }
 }

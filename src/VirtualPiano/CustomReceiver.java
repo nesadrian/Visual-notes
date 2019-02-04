@@ -9,7 +9,10 @@ package VirtualPiano;
  *
  * @author adria_000
  */
+import java.io.IOException;
+import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiMessage;
+import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Receiver;
 import javax.sound.midi.ShortMessage;
 import static javax.sound.midi.ShortMessage.NOTE_OFF;
@@ -17,33 +20,18 @@ import static javax.sound.midi.ShortMessage.NOTE_ON;
 
 public class CustomReceiver implements Receiver {
     
-    
+    VirtualPiano piano;
+
+    public CustomReceiver() throws InvalidMidiDataException, IOException, MidiUnavailableException {
+        this.piano = new VirtualPiano();
+        piano.setVisible(true);
+    }
     
     @Override
     public void send(MidiMessage message, long timeStamp) {
         if(message instanceof ShortMessage) {
             
-            
-            ShortMessage sm = (ShortMessage) message;
-            
-            int channel = sm.getChannel();
-            System.out.println(channel);
-            
-            if (sm.getCommand() == NOTE_ON) {
-                int key = sm.getData1();
-                int velocity = sm.getData2();
-                Note note = new Note(key);
-                System.out.println(note + " Velocity: " + velocity);
-            } 
-            else if (sm.getCommand() == NOTE_OFF) {
-                int key = sm.getData1();
-                int velocity = sm.getData2();
-                Note note = new Note(key);
-                System.out.println(note + " " + velocity);
-            } 
-            else {
-                System.out.println("Command:" + sm.getCommand());
-            }
+            piano.keyDisplayNote(message);
         }
     }
 

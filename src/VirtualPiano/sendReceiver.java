@@ -25,7 +25,5 @@ public class sendReceiver {
         Transmitter transmitter = sequencer.getTransmitter();
         transmitter.setReceiver(receiver);
         sequencer.start();
-    }
-    
-    
+    }  
 }

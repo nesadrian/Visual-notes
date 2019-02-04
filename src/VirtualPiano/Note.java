@@ -16,24 +16,11 @@ public class Note {
     private int key;
     private int octave;
 
-    public Note(int key) {
+    public int findKey (int key) {
         this.key = key;
         this.octave = (key / 12)-1;
         int note = key % 12;
         this.name = NOTE_NAMES[note];
-    }
-    
-    @Override
-    public boolean equals(Object obj) {
-        return obj instanceof Note && this.key == ((Note) obj).key;
-    }
-
-    @Override
-    public String toString() {
-        return "Note: " + this.name + this.octave + " Key: " + this.key;
-    }
-
-    Note() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.key;
     }
 }

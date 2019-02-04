@@ -19,8 +19,8 @@ import javax.sound.midi.Sequencer;
  */
 public class createSequenceAndSequencer {
         
-    File file = new File("C:\\Users\\adria_000\\Desktop\\Super Mario 64 - Medley.midi");
     checkFileValid checkFile = new checkFileValid();
+    
     public Sequence createSequence(File file) throws InvalidMidiDataException, IOException {
         checkFileValid.checkFile(file);
         Sequence sequence = MidiSystem.getSequence(file);

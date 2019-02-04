@@ -5,11 +5,19 @@
  */
 package VirtualPiano;
 
+import java.awt.Color;
+import java.util.List;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MidiMessage;
 import javax.sound.midi.MidiUnavailableException;
+import javax.sound.midi.ShortMessage;
+import static javax.sound.midi.ShortMessage.NOTE_OFF;
+import static javax.sound.midi.ShortMessage.NOTE_ON;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -21,28 +29,156 @@ public class VirtualPiano extends javax.swing.JFrame {
     
     
     initiateProgram initProgram = new initiateProgram();
-    int i = 0;
+    
+    List<JLayeredPane> keyList = new ArrayList() {{
+        add(a0);
+        add(a0s);
+        add(b0);
+        
+        add(c8);
+        add(c1s);
+        add(d1);
+        add(d1s);
+        add(e1);
+        add(f1);
+        add(f1s);
+        add(g1);
+        add(g1s);
+        add(a1);
+        add(a1s);
+        add(b1);
+        
+        add(c6);
+        add(c2s);
+        add(d6);
+        add(d2s);
+        add(e6);
+        add(f6);
+        add(f2s);
+        add(g6);
+        add(g2s);
+        add(a2);
+        add(a2s);
+        add(b2);
+        
+        add(c4);
+        add(c3s);
+        add(d4);
+        add(d3s);
+        add(e4);
+        add(f4);
+        add(f3s);
+        add(g4);
+        add(g3s);
+        add(a3);
+        add(a3s);
+        add(b3);
+        
+        add(c4d);
+        add(c4s);
+        add(d2);
+        add(d4s);
+        add(e2);
+        add(f2);
+        add(f4s);
+        add(g2);
+        add(g4s);
+        add(a4);
+        add(a4s);
+        add(b6);
+        
+        add(c5);
+        add(c5s);
+        add(d5);
+        add(d5s);
+        add(e5);
+        add(f5);
+        add(f5s);
+        add(g5);
+        add(g5s);
+        add(a5);
+        add(a5s);
+        add(b4);
+        
+        add(c7);
+        add(c6s);
+        add(d7);
+        add(d6s);
+        add(e7);
+        add(f7);
+        add(f6s);
+        add(g7);
+        add(g6s);
+        add(a6);
+        add(a6s);
+        add(b2);
+        
+        add(c1);
+        add(c7s);
+        add(d7);
+        add(d7s);
+        add(e7);
+        add(f7);
+        add(f7s);
+        add(g7);
+        add(g7s);
+        add(a7);
+        add(a7s);
+        add(b5);
+        
+        add(c3);
+    }};
     
     /**
      * Creates new form VirtualPiano
      */
     public VirtualPiano() throws InvalidMidiDataException, IOException, MidiUnavailableException {
         initComponents();
-        receiverHandler();
+        
     }
 
-    private JPanel createNotePanel() {
-        JPanel panel = new JPanel();
-        
-        //i++;
+    public JLayeredPane createNotePanel(int key) {
+        JLayeredPane panel = keyList.get(key);
+        panel.setBackground(Color.green);
         return panel;
     }
     
-    private void receiverHandler () throws InvalidMidiDataException, IOException, MidiUnavailableException {
-        CustomReceiver receiver = new CustomReceiver();
-        initProgram.start(receiver);
+    public JLayeredPane setKeyColor (int key) {
+        JLayeredPane panel = keyList.get(key);
+        panel.setBackground(Color.green);
+        return panel;
+    }
+    
+    public void keyDisplayNote (MidiMessage message) {
+        
+        ShortMessage sm = (ShortMessage) message;
+        int channel = sm.getChannel();
+        
+        if (sm.getCommand() == NOTE_ON) {
+                int key = sm.getData1();
+                int velocity = sm.getData2();
+                
+                //JLayeredPane panel = keyList.get(key);
+                //panel.setBackground(Color.green);
+                //System.out.println(keyList.get(key) + " Velocity: " + velocity);
+                //setKeyColor(key);
+            } 
+            else if (sm.getCommand() == NOTE_OFF) {
+                int key = sm.getData1();
+                int velocity = sm.getData2();
+                
+                //panel.setBackground(Color.green);
+                //System.out.println(key + " " + velocity);
+            } 
+            else {
+                System.out.println("Command:" + sm.getCommand());
+            }
+    }
+    
+    private void playNoteAnimation(JPanel panel) {
         
     }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,47 +191,47 @@ public class VirtualPiano extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         keyboardPanel = new javax.swing.JPanel();
-        a1sharp = new javax.swing.JLayeredPane();
+        a0s = new javax.swing.JLayeredPane();
         a1sharpText = new javax.swing.JLabel();
-        c1 = new javax.swing.JLayeredPane();
+        c8 = new javax.swing.JLayeredPane();
         c1Text = new javax.swing.JLabel();
-        a1 = new javax.swing.JLayeredPane();
+        a0 = new javax.swing.JLayeredPane();
         a1text = new javax.swing.JLabel();
-        b1 = new javax.swing.JLayeredPane();
+        b0 = new javax.swing.JLayeredPane();
         b1Text = new javax.swing.JLabel();
-        d1sharp1 = new javax.swing.JLayeredPane();
-        d1sharpText1 = new javax.swing.JLabel();
-        c1sharp1 = new javax.swing.JLayeredPane();
+        d6s = new javax.swing.JLayeredPane();
+        d1sharpText12 = new javax.swing.JLabel();
+        c6s = new javax.swing.JLayeredPane();
         c1sharpText1 = new javax.swing.JLabel();
-        f1sharp1 = new javax.swing.JLayeredPane();
+        f6s = new javax.swing.JLayeredPane();
         f1sharpText1 = new javax.swing.JLabel();
-        a1sharp1 = new javax.swing.JLayeredPane();
+        a6s = new javax.swing.JLayeredPane();
         a1sharpText1 = new javax.swing.JLabel();
-        jLayeredPane9 = new javax.swing.JLayeredPane();
+        g6s = new javax.swing.JLayeredPane();
         g1sharpText1 = new javax.swing.JLabel();
-        c2 = new javax.swing.JLayeredPane();
+        c6 = new javax.swing.JLayeredPane();
         c1Text1 = new javax.swing.JLabel();
-        d2 = new javax.swing.JLayeredPane();
+        d6 = new javax.swing.JLayeredPane();
         d1Text1 = new javax.swing.JLabel();
-        e2 = new javax.swing.JLayeredPane();
+        e6 = new javax.swing.JLayeredPane();
         e1Text1 = new javax.swing.JLabel();
-        a2 = new javax.swing.JLayeredPane();
+        a6 = new javax.swing.JLayeredPane();
         a1text1 = new javax.swing.JLabel();
-        b4 = new javax.swing.JLayeredPane();
+        b6 = new javax.swing.JLayeredPane();
         b1Text3 = new javax.swing.JLabel();
-        f2 = new javax.swing.JLayeredPane();
+        f6 = new javax.swing.JLayeredPane();
         f1Text1 = new javax.swing.JLabel();
-        g2 = new javax.swing.JLayeredPane();
+        g6 = new javax.swing.JLayeredPane();
         g1Text1 = new javax.swing.JLabel();
-        d1sharp4 = new javax.swing.JLayeredPane();
+        d5s = new javax.swing.JLayeredPane();
         d1sharpText4 = new javax.swing.JLabel();
-        c1sharp4 = new javax.swing.JLayeredPane();
+        c5s = new javax.swing.JLayeredPane();
         c1sharpText4 = new javax.swing.JLabel();
-        f1sharp4 = new javax.swing.JLayeredPane();
+        f5s = new javax.swing.JLayeredPane();
         f1sharpText4 = new javax.swing.JLabel();
-        a1sharp4 = new javax.swing.JLayeredPane();
+        a5s = new javax.swing.JLayeredPane();
         a1sharpText4 = new javax.swing.JLabel();
-        jLayeredPane12 = new javax.swing.JLayeredPane();
+        g5s = new javax.swing.JLayeredPane();
         g1sharpText4 = new javax.swing.JLabel();
         c5 = new javax.swing.JLayeredPane();
         c1Text4 = new javax.swing.JLabel();
@@ -105,131 +241,131 @@ public class VirtualPiano extends javax.swing.JFrame {
         e1Text4 = new javax.swing.JLabel();
         a5 = new javax.swing.JLayeredPane();
         a1text4 = new javax.swing.JLabel();
-        b7 = new javax.swing.JLayeredPane();
+        b5 = new javax.swing.JLayeredPane();
         b1Text6 = new javax.swing.JLabel();
         f5 = new javax.swing.JLayeredPane();
         f1Text4 = new javax.swing.JLabel();
         g5 = new javax.swing.JLayeredPane();
         g1Text4 = new javax.swing.JLabel();
-        d1sharp5 = new javax.swing.JLayeredPane();
+        d7s = new javax.swing.JLayeredPane();
         d1sharpText5 = new javax.swing.JLabel();
-        c1sharp5 = new javax.swing.JLayeredPane();
+        c7s = new javax.swing.JLayeredPane();
         c1sharpText5 = new javax.swing.JLabel();
-        f1sharp5 = new javax.swing.JLayeredPane();
+        f7s = new javax.swing.JLayeredPane();
         f1sharpText5 = new javax.swing.JLabel();
-        a1sharp5 = new javax.swing.JLayeredPane();
+        a7s = new javax.swing.JLayeredPane();
         a1sharpText5 = new javax.swing.JLabel();
-        jLayeredPane13 = new javax.swing.JLayeredPane();
+        g7s = new javax.swing.JLayeredPane();
         g1sharpText5 = new javax.swing.JLabel();
-        c6 = new javax.swing.JLayeredPane();
-        c1Text5 = new javax.swing.JLabel();
-        d6 = new javax.swing.JLayeredPane();
-        d1Text5 = new javax.swing.JLabel();
-        e6 = new javax.swing.JLayeredPane();
-        e1Text5 = new javax.swing.JLabel();
-        a6 = new javax.swing.JLayeredPane();
-        a1text5 = new javax.swing.JLabel();
-        b8 = new javax.swing.JLayeredPane();
-        b1Text7 = new javax.swing.JLabel();
-        f6 = new javax.swing.JLayeredPane();
-        f1Text5 = new javax.swing.JLabel();
-        g6 = new javax.swing.JLayeredPane();
-        g1Text5 = new javax.swing.JLabel();
-        d1sharp2 = new javax.swing.JLayeredPane();
-        d1sharpText2 = new javax.swing.JLabel();
-        c1sharp2 = new javax.swing.JLayeredPane();
-        c1sharpText2 = new javax.swing.JLabel();
-        f1sharp2 = new javax.swing.JLayeredPane();
-        f1sharpText2 = new javax.swing.JLabel();
-        a1sharp2 = new javax.swing.JLayeredPane();
-        a1sharpText2 = new javax.swing.JLabel();
-        jLayeredPane10 = new javax.swing.JLayeredPane();
-        g1sharpText2 = new javax.swing.JLabel();
-        c3 = new javax.swing.JLayeredPane();
-        c1Text2 = new javax.swing.JLabel();
-        d3 = new javax.swing.JLayeredPane();
-        d1Text2 = new javax.swing.JLabel();
-        e3 = new javax.swing.JLayeredPane();
-        e1Text2 = new javax.swing.JLabel();
-        a3 = new javax.swing.JLayeredPane();
-        a1text2 = new javax.swing.JLabel();
-        b5 = new javax.swing.JLayeredPane();
-        b1Text4 = new javax.swing.JLabel();
-        f3 = new javax.swing.JLayeredPane();
-        f1Text2 = new javax.swing.JLabel();
-        g3 = new javax.swing.JLayeredPane();
-        g1Text2 = new javax.swing.JLabel();
-        d1sharp3 = new javax.swing.JLayeredPane();
-        d1sharpText3 = new javax.swing.JLabel();
-        c1sharp3 = new javax.swing.JLayeredPane();
-        c1sharpText3 = new javax.swing.JLabel();
-        f1sharp3 = new javax.swing.JLayeredPane();
-        f1sharpText3 = new javax.swing.JLabel();
-        a1sharp3 = new javax.swing.JLayeredPane();
-        a1sharpText3 = new javax.swing.JLabel();
-        jLayeredPane11 = new javax.swing.JLayeredPane();
-        g1sharpText3 = new javax.swing.JLabel();
-        c4 = new javax.swing.JLayeredPane();
-        c1Text3 = new javax.swing.JLabel();
-        d4 = new javax.swing.JLayeredPane();
-        d1Text3 = new javax.swing.JLabel();
-        e4 = new javax.swing.JLayeredPane();
-        e1Text3 = new javax.swing.JLabel();
-        a4 = new javax.swing.JLayeredPane();
-        a1text3 = new javax.swing.JLabel();
-        b6 = new javax.swing.JLayeredPane();
-        b1Text5 = new javax.swing.JLabel();
-        f4 = new javax.swing.JLayeredPane();
-        f1Text3 = new javax.swing.JLabel();
-        g4 = new javax.swing.JLayeredPane();
-        g1Text3 = new javax.swing.JLabel();
-        d1sharp7 = new javax.swing.JLayeredPane();
-        d1sharpText7 = new javax.swing.JLabel();
-        c1sharp7 = new javax.swing.JLayeredPane();
-        c1sharpText7 = new javax.swing.JLabel();
-        f1sharp6 = new javax.swing.JLayeredPane();
-        f1sharpText6 = new javax.swing.JLabel();
-        a1sharp6 = new javax.swing.JLayeredPane();
-        a1sharpText6 = new javax.swing.JLabel();
-        jLayeredPane14 = new javax.swing.JLayeredPane();
-        g1sharpText6 = new javax.swing.JLabel();
         c7 = new javax.swing.JLayeredPane();
-        c1Text6 = new javax.swing.JLabel();
+        c1Text5 = new javax.swing.JLabel();
         d7 = new javax.swing.JLayeredPane();
-        d1Text6 = new javax.swing.JLabel();
+        d1Text5 = new javax.swing.JLabel();
         e7 = new javax.swing.JLayeredPane();
-        e1Text6 = new javax.swing.JLabel();
+        e1Text5 = new javax.swing.JLabel();
         a7 = new javax.swing.JLayeredPane();
-        a1text6 = new javax.swing.JLabel();
-        b9 = new javax.swing.JLayeredPane();
-        b1Text8 = new javax.swing.JLabel();
+        a1text5 = new javax.swing.JLabel();
+        b7 = new javax.swing.JLayeredPane();
+        b1Text7 = new javax.swing.JLabel();
         f7 = new javax.swing.JLayeredPane();
-        f1Text6 = new javax.swing.JLabel();
+        f1Text5 = new javax.swing.JLabel();
         g7 = new javax.swing.JLayeredPane();
+        g1Text5 = new javax.swing.JLabel();
+        d4s = new javax.swing.JLayeredPane();
+        d1sharpText2 = new javax.swing.JLabel();
+        c4s = new javax.swing.JLayeredPane();
+        c1sharpText2 = new javax.swing.JLabel();
+        f4s = new javax.swing.JLayeredPane();
+        f1sharpText2 = new javax.swing.JLabel();
+        a4s = new javax.swing.JLayeredPane();
+        a1sharpText2 = new javax.swing.JLabel();
+        g4s = new javax.swing.JLayeredPane();
+        g1sharpText2 = new javax.swing.JLabel();
+        c4 = new javax.swing.JLayeredPane();
+        c1Text2 = new javax.swing.JLabel();
+        d4 = new javax.swing.JLayeredPane();
+        d1Text2 = new javax.swing.JLabel();
+        e4 = new javax.swing.JLayeredPane();
+        e1Text2 = new javax.swing.JLabel();
+        a4 = new javax.swing.JLayeredPane();
+        a1text2 = new javax.swing.JLabel();
+        b4 = new javax.swing.JLayeredPane();
+        b1Text4 = new javax.swing.JLabel();
+        f4 = new javax.swing.JLayeredPane();
+        f1Text2 = new javax.swing.JLabel();
+        g4 = new javax.swing.JLayeredPane();
+        g1Text2 = new javax.swing.JLabel();
+        d2s = new javax.swing.JLayeredPane();
+        d1sharpText3 = new javax.swing.JLabel();
+        c2s = new javax.swing.JLayeredPane();
+        c1sharpText3 = new javax.swing.JLabel();
+        f2s = new javax.swing.JLayeredPane();
+        f1sharpText3 = new javax.swing.JLabel();
+        a2s = new javax.swing.JLayeredPane();
+        a1sharpText3 = new javax.swing.JLabel();
+        g2s = new javax.swing.JLayeredPane();
+        g1sharpText3 = new javax.swing.JLabel();
+        c4d = new javax.swing.JLayeredPane();
+        c1Text3 = new javax.swing.JLabel();
+        d2 = new javax.swing.JLayeredPane();
+        d1Text3 = new javax.swing.JLabel();
+        e2 = new javax.swing.JLayeredPane();
+        e1Text3 = new javax.swing.JLabel();
+        a2 = new javax.swing.JLayeredPane();
+        a1text3 = new javax.swing.JLabel();
+        b2 = new javax.swing.JLayeredPane();
+        b1Text5 = new javax.swing.JLabel();
+        f2 = new javax.swing.JLayeredPane();
+        f1Text3 = new javax.swing.JLabel();
+        g2 = new javax.swing.JLayeredPane();
+        g1Text3 = new javax.swing.JLabel();
+        d1s = new javax.swing.JLayeredPane();
+        d1sharpText1 = new javax.swing.JLabel();
+        c1s = new javax.swing.JLayeredPane();
+        c1sharpText7 = new javax.swing.JLabel();
+        f1s = new javax.swing.JLayeredPane();
+        f1sharpText6 = new javax.swing.JLabel();
+        a1s = new javax.swing.JLayeredPane();
+        a1sharpText6 = new javax.swing.JLabel();
+        g1s = new javax.swing.JLayeredPane();
+        g1sharpText6 = new javax.swing.JLabel();
+        c1 = new javax.swing.JLayeredPane();
+        c1Text6 = new javax.swing.JLabel();
+        d1 = new javax.swing.JLayeredPane();
+        d1Text6 = new javax.swing.JLabel();
+        e1 = new javax.swing.JLayeredPane();
+        e1Text6 = new javax.swing.JLabel();
+        a1 = new javax.swing.JLayeredPane();
+        a1text6 = new javax.swing.JLabel();
+        b1 = new javax.swing.JLayeredPane();
+        b1Text8 = new javax.swing.JLabel();
+        f1 = new javax.swing.JLayeredPane();
+        f1Text6 = new javax.swing.JLabel();
+        g1 = new javax.swing.JLayeredPane();
         g1Text6 = new javax.swing.JLabel();
-        d1sharp8 = new javax.swing.JLayeredPane();
+        d3s = new javax.swing.JLayeredPane();
         d1sharpText8 = new javax.swing.JLabel();
-        c1sharp8 = new javax.swing.JLayeredPane();
+        c3s = new javax.swing.JLayeredPane();
         c1sharpText8 = new javax.swing.JLabel();
-        f1sharp7 = new javax.swing.JLayeredPane();
+        f3s = new javax.swing.JLayeredPane();
         f1sharpText7 = new javax.swing.JLabel();
-        a1sharp7 = new javax.swing.JLayeredPane();
+        a3s = new javax.swing.JLayeredPane();
         a1sharpText7 = new javax.swing.JLabel();
-        jLayeredPane15 = new javax.swing.JLayeredPane();
+        g3s = new javax.swing.JLayeredPane();
         g1sharpText7 = new javax.swing.JLabel();
-        c8 = new javax.swing.JLayeredPane();
+        c3 = new javax.swing.JLayeredPane();
         c1Text7 = new javax.swing.JLabel();
-        d8 = new javax.swing.JLayeredPane();
+        d3 = new javax.swing.JLayeredPane();
         d1Text7 = new javax.swing.JLabel();
-        e8 = new javax.swing.JLayeredPane();
+        e3 = new javax.swing.JLayeredPane();
         e1Text7 = new javax.swing.JLabel();
-        a8 = new javax.swing.JLayeredPane();
+        a3 = new javax.swing.JLayeredPane();
         a1text7 = new javax.swing.JLabel();
-        b10 = new javax.swing.JLayeredPane();
+        b3 = new javax.swing.JLayeredPane();
         b1Text9 = new javax.swing.JLabel();
-        f8 = new javax.swing.JLayeredPane();
+        f3 = new javax.swing.JLayeredPane();
         f1Text7 = new javax.swing.JLabel();
-        g8 = new javax.swing.JLayeredPane();
+        g3 = new javax.swing.JLayeredPane();
         g1Text7 = new javax.swing.JLabel();
         d1sharp9 = new javax.swing.JLayeredPane();
         d1sharpText9 = new javax.swing.JLabel();
@@ -244,10 +380,10 @@ public class VirtualPiano extends javax.swing.JFrame {
         keyboardPanel.setBackground(new java.awt.Color(255, 51, 102));
         keyboardPanel.setLayout(new java.awt.GridBagLayout());
 
-        a1sharp.setBackground(new java.awt.Color(22, 22, 22));
-        a1sharp.setForeground(new java.awt.Color(255, 255, 255));
-        a1sharp.setOpaque(true);
-        a1sharp.setPreferredSize(new java.awt.Dimension(15, 90));
+        a0s.setBackground(new java.awt.Color(22, 22, 22));
+        a0s.setForeground(new java.awt.Color(255, 255, 255));
+        a0s.setOpaque(true);
+        a0s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         a1sharpText.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         a1sharpText.setForeground(new java.awt.Color(150, 150, 150));
@@ -255,36 +391,36 @@ public class VirtualPiano extends javax.swing.JFrame {
         a1sharpText.setAlignmentX(1.0F);
         a1sharpText.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        a1sharp.setLayer(a1sharpText, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        a0s.setLayer(a1sharpText, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout a1sharpLayout = new javax.swing.GroupLayout(a1sharp);
-        a1sharp.setLayout(a1sharpLayout);
-        a1sharpLayout.setHorizontalGroup(
-            a1sharpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout a0sLayout = new javax.swing.GroupLayout(a0s);
+        a0s.setLayout(a0sLayout);
+        a0sLayout.setHorizontalGroup(
+            a0sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(a1sharpText, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        a1sharpLayout.setVerticalGroup(
-            a1sharpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1sharpLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        a0sLayout.setVerticalGroup(
+            a0sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a0sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(a1sharpText)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(a1sharp, gridBagConstraints);
+        keyboardPanel.add(a0s, gridBagConstraints);
 
-        c1.setBackground(new java.awt.Color(255, 255, 255));
-        c1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        c1.setForeground(new java.awt.Color(255, 255, 255));
-        c1.setOpaque(true);
-        c1.setPreferredSize(new java.awt.Dimension(25, 150));
+        c8.setBackground(new java.awt.Color(255, 255, 255));
+        c8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        c8.setForeground(new java.awt.Color(255, 255, 255));
+        c8.setOpaque(true);
+        c8.setPreferredSize(new java.awt.Dimension(25, 150));
 
         c1Text.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         c1Text.setForeground(new java.awt.Color(150, 150, 150));
@@ -292,34 +428,33 @@ public class VirtualPiano extends javax.swing.JFrame {
         c1Text.setAlignmentX(1.0F);
         c1Text.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        c1.setLayer(c1Text, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        c8.setLayer(c1Text, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout c1Layout = new javax.swing.GroupLayout(c1);
-        c1.setLayout(c1Layout);
-        c1Layout.setHorizontalGroup(
-            c1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout c8Layout = new javax.swing.GroupLayout(c8);
+        c8.setLayout(c8Layout);
+        c8Layout.setHorizontalGroup(
+            c8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(c1Text, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        c1Layout.setVerticalGroup(
-            c1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(c1Text, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        c8Layout.setVerticalGroup(
+            c8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c8Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(c1Text, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 51;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(c1, gridBagConstraints);
+        keyboardPanel.add(c8, gridBagConstraints);
 
-        a1.setBackground(new java.awt.Color(255, 255, 255));
-        a1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        a1.setForeground(new java.awt.Color(255, 255, 255));
-        a1.setOpaque(true);
-        a1.setPreferredSize(new java.awt.Dimension(25, 150));
+        a0.setBackground(new java.awt.Color(255, 255, 255));
+        a0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        a0.setForeground(new java.awt.Color(255, 255, 255));
+        a0.setOpaque(true);
+        a0.setPreferredSize(new java.awt.Dimension(25, 150));
 
         a1text.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         a1text.setForeground(new java.awt.Color(150, 150, 150));
@@ -327,34 +462,33 @@ public class VirtualPiano extends javax.swing.JFrame {
         a1text.setAlignmentX(1.0F);
         a1text.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        a1.setLayer(a1text, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        a0.setLayer(a1text, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout a1Layout = new javax.swing.GroupLayout(a1);
-        a1.setLayout(a1Layout);
-        a1Layout.setHorizontalGroup(
-            a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout a0Layout = new javax.swing.GroupLayout(a0);
+        a0.setLayout(a0Layout);
+        a0Layout.setHorizontalGroup(
+            a0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(a1text, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        a1Layout.setVerticalGroup(
-            a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(a1text, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        a0Layout.setVerticalGroup(
+            a0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a0Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(a1text, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(a1, gridBagConstraints);
+        keyboardPanel.add(a0, gridBagConstraints);
 
-        b1.setBackground(new java.awt.Color(255, 255, 255));
-        b1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        b1.setForeground(new java.awt.Color(255, 255, 255));
-        b1.setOpaque(true);
-        b1.setPreferredSize(new java.awt.Dimension(25, 150));
+        b0.setBackground(new java.awt.Color(255, 255, 255));
+        b0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        b0.setForeground(new java.awt.Color(255, 255, 255));
+        b0.setOpaque(true);
+        b0.setPreferredSize(new java.awt.Dimension(25, 150));
 
         b1Text.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         b1Text.setForeground(new java.awt.Color(150, 150, 150));
@@ -362,69 +496,68 @@ public class VirtualPiano extends javax.swing.JFrame {
         b1Text.setAlignmentX(1.0F);
         b1Text.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        b1.setLayer(b1Text, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        b0.setLayer(b1Text, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout b1Layout = new javax.swing.GroupLayout(b1);
-        b1.setLayout(b1Layout);
-        b1Layout.setHorizontalGroup(
-            b1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout b0Layout = new javax.swing.GroupLayout(b0);
+        b0.setLayout(b0Layout);
+        b0Layout.setHorizontalGroup(
+            b0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(b1Text, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        b1Layout.setVerticalGroup(
-            b1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(b1Text, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        b0Layout.setVerticalGroup(
+            b0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b0Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(b1Text, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(b1, gridBagConstraints);
+        keyboardPanel.add(b0, gridBagConstraints);
 
-        d1sharp1.setBackground(new java.awt.Color(22, 22, 22));
-        d1sharp1.setForeground(new java.awt.Color(255, 255, 255));
-        d1sharp1.setOpaque(true);
-        d1sharp1.setPreferredSize(new java.awt.Dimension(15, 90));
+        d6s.setBackground(new java.awt.Color(22, 22, 22));
+        d6s.setForeground(new java.awt.Color(255, 255, 255));
+        d6s.setOpaque(true);
+        d6s.setPreferredSize(new java.awt.Dimension(15, 90));
 
-        d1sharpText1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        d1sharpText1.setForeground(new java.awt.Color(150, 150, 150));
-        d1sharpText1.setText("D#");
-        d1sharpText1.setAlignmentX(1.0F);
-        d1sharpText1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        d1sharpText12.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        d1sharpText12.setForeground(new java.awt.Color(150, 150, 150));
+        d1sharpText12.setText("D#");
+        d1sharpText12.setAlignmentX(1.0F);
+        d1sharpText12.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        d1sharp1.setLayer(d1sharpText1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        d6s.setLayer(d1sharpText12, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout d1sharp1Layout = new javax.swing.GroupLayout(d1sharp1);
-        d1sharp1.setLayout(d1sharp1Layout);
-        d1sharp1Layout.setHorizontalGroup(
-            d1sharp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(d1sharpText1, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        javax.swing.GroupLayout d6sLayout = new javax.swing.GroupLayout(d6s);
+        d6s.setLayout(d6sLayout);
+        d6sLayout.setHorizontalGroup(
+            d6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1sharpText12, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        d1sharp1Layout.setVerticalGroup(
-            d1sharp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1sharp1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(d1sharpText1)
+        d6sLayout.setVerticalGroup(
+            d6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d6sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(d1sharpText12)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 38;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(d1sharp1, gridBagConstraints);
+        keyboardPanel.add(d6s, gridBagConstraints);
 
-        c1sharp1.setBackground(new java.awt.Color(22, 22, 22));
-        c1sharp1.setForeground(new java.awt.Color(255, 255, 255));
-        c1sharp1.setOpaque(true);
-        c1sharp1.setPreferredSize(new java.awt.Dimension(15, 90));
+        c6s.setBackground(new java.awt.Color(22, 22, 22));
+        c6s.setForeground(new java.awt.Color(255, 255, 255));
+        c6s.setOpaque(true);
+        c6s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         c1sharpText1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         c1sharpText1.setForeground(new java.awt.Color(150, 150, 150));
@@ -432,35 +565,35 @@ public class VirtualPiano extends javax.swing.JFrame {
         c1sharpText1.setAlignmentX(1.0F);
         c1sharpText1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        c1sharp1.setLayer(c1sharpText1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        c6s.setLayer(c1sharpText1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout c1sharp1Layout = new javax.swing.GroupLayout(c1sharp1);
-        c1sharp1.setLayout(c1sharp1Layout);
-        c1sharp1Layout.setHorizontalGroup(
-            c1sharp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout c6sLayout = new javax.swing.GroupLayout(c6s);
+        c6s.setLayout(c6sLayout);
+        c6sLayout.setHorizontalGroup(
+            c6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(c1sharpText1, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        c1sharp1Layout.setVerticalGroup(
-            c1sharp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1sharp1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        c6sLayout.setVerticalGroup(
+            c6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c6sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(c1sharpText1)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 37;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(c1sharp1, gridBagConstraints);
+        keyboardPanel.add(c6s, gridBagConstraints);
 
-        f1sharp1.setBackground(new java.awt.Color(22, 22, 22));
-        f1sharp1.setForeground(new java.awt.Color(255, 255, 255));
-        f1sharp1.setOpaque(true);
-        f1sharp1.setPreferredSize(new java.awt.Dimension(15, 90));
+        f6s.setBackground(new java.awt.Color(22, 22, 22));
+        f6s.setForeground(new java.awt.Color(255, 255, 255));
+        f6s.setOpaque(true);
+        f6s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         f1sharpText1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         f1sharpText1.setForeground(new java.awt.Color(150, 150, 150));
@@ -468,35 +601,35 @@ public class VirtualPiano extends javax.swing.JFrame {
         f1sharpText1.setAlignmentX(1.0F);
         f1sharpText1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        f1sharp1.setLayer(f1sharpText1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        f6s.setLayer(f1sharpText1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout f1sharp1Layout = new javax.swing.GroupLayout(f1sharp1);
-        f1sharp1.setLayout(f1sharp1Layout);
-        f1sharp1Layout.setHorizontalGroup(
-            f1sharp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout f6sLayout = new javax.swing.GroupLayout(f6s);
+        f6s.setLayout(f6sLayout);
+        f6sLayout.setHorizontalGroup(
+            f6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(f1sharpText1, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        f1sharp1Layout.setVerticalGroup(
-            f1sharp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f1sharp1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        f6sLayout.setVerticalGroup(
+            f6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f6sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(f1sharpText1)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 40;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(f1sharp1, gridBagConstraints);
+        keyboardPanel.add(f6s, gridBagConstraints);
 
-        a1sharp1.setBackground(new java.awt.Color(22, 22, 22));
-        a1sharp1.setForeground(new java.awt.Color(255, 255, 255));
-        a1sharp1.setOpaque(true);
-        a1sharp1.setPreferredSize(new java.awt.Dimension(15, 90));
+        a6s.setBackground(new java.awt.Color(22, 22, 22));
+        a6s.setForeground(new java.awt.Color(255, 255, 255));
+        a6s.setOpaque(true);
+        a6s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         a1sharpText1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         a1sharpText1.setForeground(new java.awt.Color(150, 150, 150));
@@ -504,35 +637,35 @@ public class VirtualPiano extends javax.swing.JFrame {
         a1sharpText1.setAlignmentX(1.0F);
         a1sharpText1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        a1sharp1.setLayer(a1sharpText1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        a6s.setLayer(a1sharpText1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout a1sharp1Layout = new javax.swing.GroupLayout(a1sharp1);
-        a1sharp1.setLayout(a1sharp1Layout);
-        a1sharp1Layout.setHorizontalGroup(
-            a1sharp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout a6sLayout = new javax.swing.GroupLayout(a6s);
+        a6s.setLayout(a6sLayout);
+        a6sLayout.setHorizontalGroup(
+            a6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(a1sharpText1, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        a1sharp1Layout.setVerticalGroup(
-            a1sharp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1sharp1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        a6sLayout.setVerticalGroup(
+            a6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a6sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(a1sharpText1)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 42;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(a1sharp1, gridBagConstraints);
+        keyboardPanel.add(a6s, gridBagConstraints);
 
-        jLayeredPane9.setBackground(new java.awt.Color(22, 22, 22));
-        jLayeredPane9.setForeground(new java.awt.Color(255, 255, 255));
-        jLayeredPane9.setOpaque(true);
-        jLayeredPane9.setPreferredSize(new java.awt.Dimension(15, 90));
+        g6s.setBackground(new java.awt.Color(22, 22, 22));
+        g6s.setForeground(new java.awt.Color(255, 255, 255));
+        g6s.setOpaque(true);
+        g6s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         g1sharpText1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         g1sharpText1.setForeground(new java.awt.Color(150, 150, 150));
@@ -540,36 +673,36 @@ public class VirtualPiano extends javax.swing.JFrame {
         g1sharpText1.setAlignmentX(1.0F);
         g1sharpText1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        jLayeredPane9.setLayer(g1sharpText1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        g6s.setLayer(g1sharpText1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout jLayeredPane9Layout = new javax.swing.GroupLayout(jLayeredPane9);
-        jLayeredPane9.setLayout(jLayeredPane9Layout);
-        jLayeredPane9Layout.setHorizontalGroup(
-            jLayeredPane9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout g6sLayout = new javax.swing.GroupLayout(g6s);
+        g6s.setLayout(g6sLayout);
+        g6sLayout.setHorizontalGroup(
+            g6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(g1sharpText1, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        jLayeredPane9Layout.setVerticalGroup(
-            jLayeredPane9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        g6sLayout.setVerticalGroup(
+            g6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g6sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(g1sharpText1)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 41;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(jLayeredPane9, gridBagConstraints);
+        keyboardPanel.add(g6s, gridBagConstraints);
 
-        c2.setBackground(new java.awt.Color(255, 255, 255));
-        c2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        c2.setForeground(new java.awt.Color(255, 255, 255));
-        c2.setOpaque(true);
-        c2.setPreferredSize(new java.awt.Dimension(25, 150));
+        c6.setBackground(new java.awt.Color(255, 255, 255));
+        c6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        c6.setForeground(new java.awt.Color(255, 255, 255));
+        c6.setOpaque(true);
+        c6.setPreferredSize(new java.awt.Dimension(25, 150));
 
         c1Text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         c1Text1.setForeground(new java.awt.Color(150, 150, 150));
@@ -577,34 +710,33 @@ public class VirtualPiano extends javax.swing.JFrame {
         c1Text1.setAlignmentX(1.0F);
         c1Text1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        c2.setLayer(c1Text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        c6.setLayer(c1Text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout c2Layout = new javax.swing.GroupLayout(c2);
-        c2.setLayout(c2Layout);
-        c2Layout.setHorizontalGroup(
-            c2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout c6Layout = new javax.swing.GroupLayout(c6);
+        c6.setLayout(c6Layout);
+        c6Layout.setHorizontalGroup(
+            c6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(c1Text1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        c2Layout.setVerticalGroup(
-            c2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(c1Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        c6Layout.setVerticalGroup(
+            c6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c6Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(c1Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 37;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(c2, gridBagConstraints);
+        keyboardPanel.add(c6, gridBagConstraints);
 
-        d2.setBackground(new java.awt.Color(255, 255, 255));
-        d2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        d2.setForeground(new java.awt.Color(255, 255, 255));
-        d2.setOpaque(true);
-        d2.setPreferredSize(new java.awt.Dimension(25, 150));
+        d6.setBackground(new java.awt.Color(255, 255, 255));
+        d6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        d6.setForeground(new java.awt.Color(255, 255, 255));
+        d6.setOpaque(true);
+        d6.setPreferredSize(new java.awt.Dimension(25, 150));
 
         d1Text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         d1Text1.setForeground(new java.awt.Color(150, 150, 150));
@@ -612,34 +744,33 @@ public class VirtualPiano extends javax.swing.JFrame {
         d1Text1.setAlignmentX(1.0F);
         d1Text1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        d2.setLayer(d1Text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        d6.setLayer(d1Text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout d2Layout = new javax.swing.GroupLayout(d2);
-        d2.setLayout(d2Layout);
-        d2Layout.setHorizontalGroup(
-            d2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout d6Layout = new javax.swing.GroupLayout(d6);
+        d6.setLayout(d6Layout);
+        d6Layout.setHorizontalGroup(
+            d6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(d1Text1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        d2Layout.setVerticalGroup(
-            d2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(d1Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        d6Layout.setVerticalGroup(
+            d6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d6Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(d1Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 38;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(d2, gridBagConstraints);
+        keyboardPanel.add(d6, gridBagConstraints);
 
-        e2.setBackground(new java.awt.Color(255, 255, 255));
-        e2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        e2.setForeground(new java.awt.Color(255, 255, 255));
-        e2.setOpaque(true);
-        e2.setPreferredSize(new java.awt.Dimension(25, 150));
+        e6.setBackground(new java.awt.Color(255, 255, 255));
+        e6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        e6.setForeground(new java.awt.Color(255, 255, 255));
+        e6.setOpaque(true);
+        e6.setPreferredSize(new java.awt.Dimension(25, 150));
 
         e1Text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         e1Text1.setForeground(new java.awt.Color(150, 150, 150));
@@ -647,34 +778,33 @@ public class VirtualPiano extends javax.swing.JFrame {
         e1Text1.setAlignmentX(1.0F);
         e1Text1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        e2.setLayer(e1Text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        e6.setLayer(e1Text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout e2Layout = new javax.swing.GroupLayout(e2);
-        e2.setLayout(e2Layout);
-        e2Layout.setHorizontalGroup(
-            e2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout e6Layout = new javax.swing.GroupLayout(e6);
+        e6.setLayout(e6Layout);
+        e6Layout.setHorizontalGroup(
+            e6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(e1Text1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        e2Layout.setVerticalGroup(
-            e2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(e1Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        e6Layout.setVerticalGroup(
+            e6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e6Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(e1Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 39;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(e2, gridBagConstraints);
+        keyboardPanel.add(e6, gridBagConstraints);
 
-        a2.setBackground(new java.awt.Color(255, 255, 255));
-        a2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        a2.setForeground(new java.awt.Color(255, 255, 255));
-        a2.setOpaque(true);
-        a2.setPreferredSize(new java.awt.Dimension(25, 150));
+        a6.setBackground(new java.awt.Color(255, 255, 255));
+        a6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        a6.setForeground(new java.awt.Color(255, 255, 255));
+        a6.setOpaque(true);
+        a6.setPreferredSize(new java.awt.Dimension(25, 150));
 
         a1text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         a1text1.setForeground(new java.awt.Color(150, 150, 150));
@@ -682,34 +812,33 @@ public class VirtualPiano extends javax.swing.JFrame {
         a1text1.setAlignmentX(1.0F);
         a1text1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        a2.setLayer(a1text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        a6.setLayer(a1text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout a2Layout = new javax.swing.GroupLayout(a2);
-        a2.setLayout(a2Layout);
-        a2Layout.setHorizontalGroup(
-            a2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout a6Layout = new javax.swing.GroupLayout(a6);
+        a6.setLayout(a6Layout);
+        a6Layout.setHorizontalGroup(
+            a6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(a1text1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        a2Layout.setVerticalGroup(
-            a2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(a1text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        a6Layout.setVerticalGroup(
+            a6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a6Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(a1text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 42;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(a2, gridBagConstraints);
+        keyboardPanel.add(a6, gridBagConstraints);
 
-        b4.setBackground(new java.awt.Color(255, 255, 255));
-        b4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        b4.setForeground(new java.awt.Color(255, 255, 255));
-        b4.setOpaque(true);
-        b4.setPreferredSize(new java.awt.Dimension(25, 150));
+        b6.setBackground(new java.awt.Color(255, 255, 255));
+        b6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        b6.setForeground(new java.awt.Color(255, 255, 255));
+        b6.setOpaque(true);
+        b6.setPreferredSize(new java.awt.Dimension(25, 150));
 
         b1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         b1Text3.setForeground(new java.awt.Color(150, 150, 150));
@@ -717,34 +846,33 @@ public class VirtualPiano extends javax.swing.JFrame {
         b1Text3.setAlignmentX(1.0F);
         b1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        b4.setLayer(b1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        b6.setLayer(b1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout b4Layout = new javax.swing.GroupLayout(b4);
-        b4.setLayout(b4Layout);
-        b4Layout.setHorizontalGroup(
-            b4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout b6Layout = new javax.swing.GroupLayout(b6);
+        b6.setLayout(b6Layout);
+        b6Layout.setHorizontalGroup(
+            b6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(b1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        b4Layout.setVerticalGroup(
-            b4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(b1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        b6Layout.setVerticalGroup(
+            b6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b6Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(b1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 43;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(b4, gridBagConstraints);
+        keyboardPanel.add(b6, gridBagConstraints);
 
-        f2.setBackground(new java.awt.Color(255, 255, 255));
-        f2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        f2.setForeground(new java.awt.Color(255, 255, 255));
-        f2.setOpaque(true);
-        f2.setPreferredSize(new java.awt.Dimension(25, 150));
+        f6.setBackground(new java.awt.Color(255, 255, 255));
+        f6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        f6.setForeground(new java.awt.Color(255, 255, 255));
+        f6.setOpaque(true);
+        f6.setPreferredSize(new java.awt.Dimension(25, 150));
 
         f1Text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         f1Text1.setForeground(new java.awt.Color(150, 150, 150));
@@ -752,34 +880,33 @@ public class VirtualPiano extends javax.swing.JFrame {
         f1Text1.setAlignmentX(1.0F);
         f1Text1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        f2.setLayer(f1Text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        f6.setLayer(f1Text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout f2Layout = new javax.swing.GroupLayout(f2);
-        f2.setLayout(f2Layout);
-        f2Layout.setHorizontalGroup(
-            f2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout f6Layout = new javax.swing.GroupLayout(f6);
+        f6.setLayout(f6Layout);
+        f6Layout.setHorizontalGroup(
+            f6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(f1Text1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        f2Layout.setVerticalGroup(
-            f2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(f1Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        f6Layout.setVerticalGroup(
+            f6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f6Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(f1Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 40;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(f2, gridBagConstraints);
+        keyboardPanel.add(f6, gridBagConstraints);
 
-        g2.setBackground(new java.awt.Color(255, 255, 255));
-        g2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        g2.setForeground(new java.awt.Color(255, 255, 255));
-        g2.setOpaque(true);
-        g2.setPreferredSize(new java.awt.Dimension(25, 150));
+        g6.setBackground(new java.awt.Color(255, 255, 255));
+        g6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        g6.setForeground(new java.awt.Color(255, 255, 255));
+        g6.setOpaque(true);
+        g6.setPreferredSize(new java.awt.Dimension(25, 150));
 
         g1Text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         g1Text1.setForeground(new java.awt.Color(150, 150, 150));
@@ -787,33 +914,32 @@ public class VirtualPiano extends javax.swing.JFrame {
         g1Text1.setAlignmentX(1.0F);
         g1Text1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        g2.setLayer(g1Text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        g6.setLayer(g1Text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout g2Layout = new javax.swing.GroupLayout(g2);
-        g2.setLayout(g2Layout);
-        g2Layout.setHorizontalGroup(
-            g2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout g6Layout = new javax.swing.GroupLayout(g6);
+        g6.setLayout(g6Layout);
+        g6Layout.setHorizontalGroup(
+            g6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(g1Text1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        g2Layout.setVerticalGroup(
-            g2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(g1Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        g6Layout.setVerticalGroup(
+            g6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g6Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(g1Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 41;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(g2, gridBagConstraints);
+        keyboardPanel.add(g6, gridBagConstraints);
 
-        d1sharp4.setBackground(new java.awt.Color(22, 22, 22));
-        d1sharp4.setForeground(new java.awt.Color(255, 255, 255));
-        d1sharp4.setOpaque(true);
-        d1sharp4.setPreferredSize(new java.awt.Dimension(15, 90));
+        d5s.setBackground(new java.awt.Color(22, 22, 22));
+        d5s.setForeground(new java.awt.Color(255, 255, 255));
+        d5s.setOpaque(true);
+        d5s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         d1sharpText4.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         d1sharpText4.setForeground(new java.awt.Color(150, 150, 150));
@@ -821,35 +947,35 @@ public class VirtualPiano extends javax.swing.JFrame {
         d1sharpText4.setAlignmentX(1.0F);
         d1sharpText4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        d1sharp4.setLayer(d1sharpText4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        d5s.setLayer(d1sharpText4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout d1sharp4Layout = new javax.swing.GroupLayout(d1sharp4);
-        d1sharp4.setLayout(d1sharp4Layout);
-        d1sharp4Layout.setHorizontalGroup(
-            d1sharp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout d5sLayout = new javax.swing.GroupLayout(d5s);
+        d5s.setLayout(d5sLayout);
+        d5sLayout.setHorizontalGroup(
+            d5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(d1sharpText4, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        d1sharp4Layout.setVerticalGroup(
-            d1sharp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1sharp4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        d5sLayout.setVerticalGroup(
+            d5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d5sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(d1sharpText4)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 31;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(d1sharp4, gridBagConstraints);
+        keyboardPanel.add(d5s, gridBagConstraints);
 
-        c1sharp4.setBackground(new java.awt.Color(22, 22, 22));
-        c1sharp4.setForeground(new java.awt.Color(255, 255, 255));
-        c1sharp4.setOpaque(true);
-        c1sharp4.setPreferredSize(new java.awt.Dimension(15, 90));
+        c5s.setBackground(new java.awt.Color(22, 22, 22));
+        c5s.setForeground(new java.awt.Color(255, 255, 255));
+        c5s.setOpaque(true);
+        c5s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         c1sharpText4.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         c1sharpText4.setForeground(new java.awt.Color(150, 150, 150));
@@ -857,35 +983,35 @@ public class VirtualPiano extends javax.swing.JFrame {
         c1sharpText4.setAlignmentX(1.0F);
         c1sharpText4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        c1sharp4.setLayer(c1sharpText4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        c5s.setLayer(c1sharpText4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout c1sharp4Layout = new javax.swing.GroupLayout(c1sharp4);
-        c1sharp4.setLayout(c1sharp4Layout);
-        c1sharp4Layout.setHorizontalGroup(
-            c1sharp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout c5sLayout = new javax.swing.GroupLayout(c5s);
+        c5s.setLayout(c5sLayout);
+        c5sLayout.setHorizontalGroup(
+            c5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(c1sharpText4, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        c1sharp4Layout.setVerticalGroup(
-            c1sharp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1sharp4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        c5sLayout.setVerticalGroup(
+            c5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c5sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(c1sharpText4)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 30;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(c1sharp4, gridBagConstraints);
+        keyboardPanel.add(c5s, gridBagConstraints);
 
-        f1sharp4.setBackground(new java.awt.Color(22, 22, 22));
-        f1sharp4.setForeground(new java.awt.Color(255, 255, 255));
-        f1sharp4.setOpaque(true);
-        f1sharp4.setPreferredSize(new java.awt.Dimension(15, 90));
+        f5s.setBackground(new java.awt.Color(22, 22, 22));
+        f5s.setForeground(new java.awt.Color(255, 255, 255));
+        f5s.setOpaque(true);
+        f5s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         f1sharpText4.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         f1sharpText4.setForeground(new java.awt.Color(150, 150, 150));
@@ -893,35 +1019,35 @@ public class VirtualPiano extends javax.swing.JFrame {
         f1sharpText4.setAlignmentX(1.0F);
         f1sharpText4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        f1sharp4.setLayer(f1sharpText4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        f5s.setLayer(f1sharpText4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout f1sharp4Layout = new javax.swing.GroupLayout(f1sharp4);
-        f1sharp4.setLayout(f1sharp4Layout);
-        f1sharp4Layout.setHorizontalGroup(
-            f1sharp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout f5sLayout = new javax.swing.GroupLayout(f5s);
+        f5s.setLayout(f5sLayout);
+        f5sLayout.setHorizontalGroup(
+            f5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(f1sharpText4, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        f1sharp4Layout.setVerticalGroup(
-            f1sharp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f1sharp4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        f5sLayout.setVerticalGroup(
+            f5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f5sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(f1sharpText4)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 33;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(f1sharp4, gridBagConstraints);
+        keyboardPanel.add(f5s, gridBagConstraints);
 
-        a1sharp4.setBackground(new java.awt.Color(22, 22, 22));
-        a1sharp4.setForeground(new java.awt.Color(255, 255, 255));
-        a1sharp4.setOpaque(true);
-        a1sharp4.setPreferredSize(new java.awt.Dimension(15, 90));
+        a5s.setBackground(new java.awt.Color(22, 22, 22));
+        a5s.setForeground(new java.awt.Color(255, 255, 255));
+        a5s.setOpaque(true);
+        a5s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         a1sharpText4.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         a1sharpText4.setForeground(new java.awt.Color(150, 150, 150));
@@ -929,35 +1055,35 @@ public class VirtualPiano extends javax.swing.JFrame {
         a1sharpText4.setAlignmentX(1.0F);
         a1sharpText4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        a1sharp4.setLayer(a1sharpText4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        a5s.setLayer(a1sharpText4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout a1sharp4Layout = new javax.swing.GroupLayout(a1sharp4);
-        a1sharp4.setLayout(a1sharp4Layout);
-        a1sharp4Layout.setHorizontalGroup(
-            a1sharp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout a5sLayout = new javax.swing.GroupLayout(a5s);
+        a5s.setLayout(a5sLayout);
+        a5sLayout.setHorizontalGroup(
+            a5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(a1sharpText4, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        a1sharp4Layout.setVerticalGroup(
-            a1sharp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1sharp4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        a5sLayout.setVerticalGroup(
+            a5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a5sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(a1sharpText4)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 35;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(a1sharp4, gridBagConstraints);
+        keyboardPanel.add(a5s, gridBagConstraints);
 
-        jLayeredPane12.setBackground(new java.awt.Color(22, 22, 22));
-        jLayeredPane12.setForeground(new java.awt.Color(255, 255, 255));
-        jLayeredPane12.setOpaque(true);
-        jLayeredPane12.setPreferredSize(new java.awt.Dimension(15, 90));
+        g5s.setBackground(new java.awt.Color(22, 22, 22));
+        g5s.setForeground(new java.awt.Color(255, 255, 255));
+        g5s.setOpaque(true);
+        g5s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         g1sharpText4.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         g1sharpText4.setForeground(new java.awt.Color(150, 150, 150));
@@ -965,30 +1091,30 @@ public class VirtualPiano extends javax.swing.JFrame {
         g1sharpText4.setAlignmentX(1.0F);
         g1sharpText4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        jLayeredPane12.setLayer(g1sharpText4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        g5s.setLayer(g1sharpText4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout jLayeredPane12Layout = new javax.swing.GroupLayout(jLayeredPane12);
-        jLayeredPane12.setLayout(jLayeredPane12Layout);
-        jLayeredPane12Layout.setHorizontalGroup(
-            jLayeredPane12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout g5sLayout = new javax.swing.GroupLayout(g5s);
+        g5s.setLayout(g5sLayout);
+        g5sLayout.setHorizontalGroup(
+            g5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(g1sharpText4, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        jLayeredPane12Layout.setVerticalGroup(
-            jLayeredPane12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane12Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        g5sLayout.setVerticalGroup(
+            g5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g5sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(g1sharpText4)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 34;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(jLayeredPane12, gridBagConstraints);
+        keyboardPanel.add(g5s, gridBagConstraints);
 
         c5.setBackground(new java.awt.Color(255, 255, 255));
         c5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1013,12 +1139,11 @@ public class VirtualPiano extends javax.swing.JFrame {
         c5Layout.setVerticalGroup(
             c5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(c1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(c1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 30;
@@ -1048,12 +1173,11 @@ public class VirtualPiano extends javax.swing.JFrame {
         d5Layout.setVerticalGroup(
             d5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(d1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(d1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 31;
@@ -1083,12 +1207,11 @@ public class VirtualPiano extends javax.swing.JFrame {
         e5Layout.setVerticalGroup(
             e5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(e1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(e1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 32;
@@ -1118,23 +1241,22 @@ public class VirtualPiano extends javax.swing.JFrame {
         a5Layout.setVerticalGroup(
             a5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(a1text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(a1text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 35;
         gridBagConstraints.gridy = 0;
         keyboardPanel.add(a5, gridBagConstraints);
 
-        b7.setBackground(new java.awt.Color(255, 255, 255));
-        b7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        b7.setForeground(new java.awt.Color(255, 255, 255));
-        b7.setOpaque(true);
-        b7.setPreferredSize(new java.awt.Dimension(25, 150));
+        b5.setBackground(new java.awt.Color(255, 255, 255));
+        b5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        b5.setForeground(new java.awt.Color(255, 255, 255));
+        b5.setOpaque(true);
+        b5.setPreferredSize(new java.awt.Dimension(25, 150));
 
         b1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         b1Text6.setForeground(new java.awt.Color(150, 150, 150));
@@ -1142,28 +1264,27 @@ public class VirtualPiano extends javax.swing.JFrame {
         b1Text6.setAlignmentX(1.0F);
         b1Text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        b7.setLayer(b1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        b5.setLayer(b1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout b7Layout = new javax.swing.GroupLayout(b7);
-        b7.setLayout(b7Layout);
-        b7Layout.setHorizontalGroup(
-            b7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout b5Layout = new javax.swing.GroupLayout(b5);
+        b5.setLayout(b5Layout);
+        b5Layout.setHorizontalGroup(
+            b5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(b1Text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        b7Layout.setVerticalGroup(
-            b7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(b1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        b5Layout.setVerticalGroup(
+            b5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b5Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(b1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 36;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(b7, gridBagConstraints);
+        keyboardPanel.add(b5, gridBagConstraints);
 
         f5.setBackground(new java.awt.Color(255, 255, 255));
         f5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1188,12 +1309,11 @@ public class VirtualPiano extends javax.swing.JFrame {
         f5Layout.setVerticalGroup(
             f5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(f1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(f1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 33;
@@ -1223,22 +1343,21 @@ public class VirtualPiano extends javax.swing.JFrame {
         g5Layout.setVerticalGroup(
             g5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(g1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(g1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 34;
         gridBagConstraints.gridy = 0;
         keyboardPanel.add(g5, gridBagConstraints);
 
-        d1sharp5.setBackground(new java.awt.Color(22, 22, 22));
-        d1sharp5.setForeground(new java.awt.Color(255, 255, 255));
-        d1sharp5.setOpaque(true);
-        d1sharp5.setPreferredSize(new java.awt.Dimension(15, 90));
+        d7s.setBackground(new java.awt.Color(22, 22, 22));
+        d7s.setForeground(new java.awt.Color(255, 255, 255));
+        d7s.setOpaque(true);
+        d7s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         d1sharpText5.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         d1sharpText5.setForeground(new java.awt.Color(150, 150, 150));
@@ -1246,35 +1365,35 @@ public class VirtualPiano extends javax.swing.JFrame {
         d1sharpText5.setAlignmentX(1.0F);
         d1sharpText5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        d1sharp5.setLayer(d1sharpText5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        d7s.setLayer(d1sharpText5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout d1sharp5Layout = new javax.swing.GroupLayout(d1sharp5);
-        d1sharp5.setLayout(d1sharp5Layout);
-        d1sharp5Layout.setHorizontalGroup(
-            d1sharp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout d7sLayout = new javax.swing.GroupLayout(d7s);
+        d7s.setLayout(d7sLayout);
+        d7sLayout.setHorizontalGroup(
+            d7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(d1sharpText5, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        d1sharp5Layout.setVerticalGroup(
-            d1sharp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1sharp5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        d7sLayout.setVerticalGroup(
+            d7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d7sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(d1sharpText5)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 45;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(d1sharp5, gridBagConstraints);
+        keyboardPanel.add(d7s, gridBagConstraints);
 
-        c1sharp5.setBackground(new java.awt.Color(22, 22, 22));
-        c1sharp5.setForeground(new java.awt.Color(255, 255, 255));
-        c1sharp5.setOpaque(true);
-        c1sharp5.setPreferredSize(new java.awt.Dimension(15, 90));
+        c7s.setBackground(new java.awt.Color(22, 22, 22));
+        c7s.setForeground(new java.awt.Color(255, 255, 255));
+        c7s.setOpaque(true);
+        c7s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         c1sharpText5.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         c1sharpText5.setForeground(new java.awt.Color(150, 150, 150));
@@ -1282,35 +1401,35 @@ public class VirtualPiano extends javax.swing.JFrame {
         c1sharpText5.setAlignmentX(1.0F);
         c1sharpText5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        c1sharp5.setLayer(c1sharpText5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        c7s.setLayer(c1sharpText5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout c1sharp5Layout = new javax.swing.GroupLayout(c1sharp5);
-        c1sharp5.setLayout(c1sharp5Layout);
-        c1sharp5Layout.setHorizontalGroup(
-            c1sharp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout c7sLayout = new javax.swing.GroupLayout(c7s);
+        c7s.setLayout(c7sLayout);
+        c7sLayout.setHorizontalGroup(
+            c7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(c1sharpText5, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        c1sharp5Layout.setVerticalGroup(
-            c1sharp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1sharp5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        c7sLayout.setVerticalGroup(
+            c7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c7sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(c1sharpText5)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 44;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(c1sharp5, gridBagConstraints);
+        keyboardPanel.add(c7s, gridBagConstraints);
 
-        f1sharp5.setBackground(new java.awt.Color(22, 22, 22));
-        f1sharp5.setForeground(new java.awt.Color(255, 255, 255));
-        f1sharp5.setOpaque(true);
-        f1sharp5.setPreferredSize(new java.awt.Dimension(15, 90));
+        f7s.setBackground(new java.awt.Color(22, 22, 22));
+        f7s.setForeground(new java.awt.Color(255, 255, 255));
+        f7s.setOpaque(true);
+        f7s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         f1sharpText5.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         f1sharpText5.setForeground(new java.awt.Color(150, 150, 150));
@@ -1318,35 +1437,35 @@ public class VirtualPiano extends javax.swing.JFrame {
         f1sharpText5.setAlignmentX(1.0F);
         f1sharpText5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        f1sharp5.setLayer(f1sharpText5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        f7s.setLayer(f1sharpText5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout f1sharp5Layout = new javax.swing.GroupLayout(f1sharp5);
-        f1sharp5.setLayout(f1sharp5Layout);
-        f1sharp5Layout.setHorizontalGroup(
-            f1sharp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout f7sLayout = new javax.swing.GroupLayout(f7s);
+        f7s.setLayout(f7sLayout);
+        f7sLayout.setHorizontalGroup(
+            f7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(f1sharpText5, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        f1sharp5Layout.setVerticalGroup(
-            f1sharp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f1sharp5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        f7sLayout.setVerticalGroup(
+            f7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f7sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(f1sharpText5)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 47;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(f1sharp5, gridBagConstraints);
+        keyboardPanel.add(f7s, gridBagConstraints);
 
-        a1sharp5.setBackground(new java.awt.Color(22, 22, 22));
-        a1sharp5.setForeground(new java.awt.Color(255, 255, 255));
-        a1sharp5.setOpaque(true);
-        a1sharp5.setPreferredSize(new java.awt.Dimension(15, 90));
+        a7s.setBackground(new java.awt.Color(22, 22, 22));
+        a7s.setForeground(new java.awt.Color(255, 255, 255));
+        a7s.setOpaque(true);
+        a7s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         a1sharpText5.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         a1sharpText5.setForeground(new java.awt.Color(150, 150, 150));
@@ -1354,35 +1473,35 @@ public class VirtualPiano extends javax.swing.JFrame {
         a1sharpText5.setAlignmentX(1.0F);
         a1sharpText5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        a1sharp5.setLayer(a1sharpText5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        a7s.setLayer(a1sharpText5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout a1sharp5Layout = new javax.swing.GroupLayout(a1sharp5);
-        a1sharp5.setLayout(a1sharp5Layout);
-        a1sharp5Layout.setHorizontalGroup(
-            a1sharp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout a7sLayout = new javax.swing.GroupLayout(a7s);
+        a7s.setLayout(a7sLayout);
+        a7sLayout.setHorizontalGroup(
+            a7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(a1sharpText5, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        a1sharp5Layout.setVerticalGroup(
-            a1sharp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1sharp5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        a7sLayout.setVerticalGroup(
+            a7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a7sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(a1sharpText5)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 49;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(a1sharp5, gridBagConstraints);
+        keyboardPanel.add(a7s, gridBagConstraints);
 
-        jLayeredPane13.setBackground(new java.awt.Color(22, 22, 22));
-        jLayeredPane13.setForeground(new java.awt.Color(255, 255, 255));
-        jLayeredPane13.setOpaque(true);
-        jLayeredPane13.setPreferredSize(new java.awt.Dimension(15, 90));
+        g7s.setBackground(new java.awt.Color(22, 22, 22));
+        g7s.setForeground(new java.awt.Color(255, 255, 255));
+        g7s.setOpaque(true);
+        g7s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         g1sharpText5.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         g1sharpText5.setForeground(new java.awt.Color(150, 150, 150));
@@ -1390,1305 +1509,30 @@ public class VirtualPiano extends javax.swing.JFrame {
         g1sharpText5.setAlignmentX(1.0F);
         g1sharpText5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        jLayeredPane13.setLayer(g1sharpText5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        g7s.setLayer(g1sharpText5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout jLayeredPane13Layout = new javax.swing.GroupLayout(jLayeredPane13);
-        jLayeredPane13.setLayout(jLayeredPane13Layout);
-        jLayeredPane13Layout.setHorizontalGroup(
-            jLayeredPane13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout g7sLayout = new javax.swing.GroupLayout(g7s);
+        g7s.setLayout(g7sLayout);
+        g7sLayout.setHorizontalGroup(
+            g7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(g1sharpText5, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        jLayeredPane13Layout.setVerticalGroup(
-            jLayeredPane13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane13Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        g7sLayout.setVerticalGroup(
+            g7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g7sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(g1sharpText5)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 48;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(jLayeredPane13, gridBagConstraints);
-
-        c6.setBackground(new java.awt.Color(255, 255, 255));
-        c6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        c6.setForeground(new java.awt.Color(255, 255, 255));
-        c6.setOpaque(true);
-        c6.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        c1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        c1Text5.setForeground(new java.awt.Color(150, 150, 150));
-        c1Text5.setText(" C");
-        c1Text5.setAlignmentX(1.0F);
-        c1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        c6.setLayer(c1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout c6Layout = new javax.swing.GroupLayout(c6);
-        c6.setLayout(c6Layout);
-        c6Layout.setHorizontalGroup(
-            c6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        c6Layout.setVerticalGroup(
-            c6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(c1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 44;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(c6, gridBagConstraints);
-
-        d6.setBackground(new java.awt.Color(255, 255, 255));
-        d6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        d6.setForeground(new java.awt.Color(255, 255, 255));
-        d6.setOpaque(true);
-        d6.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        d1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        d1Text5.setForeground(new java.awt.Color(150, 150, 150));
-        d1Text5.setText(" D");
-        d1Text5.setAlignmentX(1.0F);
-        d1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        d6.setLayer(d1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout d6Layout = new javax.swing.GroupLayout(d6);
-        d6.setLayout(d6Layout);
-        d6Layout.setHorizontalGroup(
-            d6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(d1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        d6Layout.setVerticalGroup(
-            d6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(d1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 45;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(d6, gridBagConstraints);
-
-        e6.setBackground(new java.awt.Color(255, 255, 255));
-        e6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        e6.setForeground(new java.awt.Color(255, 255, 255));
-        e6.setOpaque(true);
-        e6.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        e1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        e1Text5.setForeground(new java.awt.Color(150, 150, 150));
-        e1Text5.setText(" E");
-        e1Text5.setAlignmentX(1.0F);
-        e1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        e6.setLayer(e1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout e6Layout = new javax.swing.GroupLayout(e6);
-        e6.setLayout(e6Layout);
-        e6Layout.setHorizontalGroup(
-            e6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(e1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        e6Layout.setVerticalGroup(
-            e6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(e1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 46;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(e6, gridBagConstraints);
-
-        a6.setBackground(new java.awt.Color(255, 255, 255));
-        a6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        a6.setForeground(new java.awt.Color(255, 255, 255));
-        a6.setOpaque(true);
-        a6.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        a1text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        a1text5.setForeground(new java.awt.Color(150, 150, 150));
-        a1text5.setText(" A");
-        a1text5.setAlignmentX(1.0F);
-        a1text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        a6.setLayer(a1text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout a6Layout = new javax.swing.GroupLayout(a6);
-        a6.setLayout(a6Layout);
-        a6Layout.setHorizontalGroup(
-            a6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        a6Layout.setVerticalGroup(
-            a6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(a1text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 49;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(a6, gridBagConstraints);
-
-        b8.setBackground(new java.awt.Color(255, 255, 255));
-        b8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        b8.setForeground(new java.awt.Color(255, 255, 255));
-        b8.setOpaque(true);
-        b8.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        b1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        b1Text7.setForeground(new java.awt.Color(150, 150, 150));
-        b1Text7.setText(" B");
-        b1Text7.setAlignmentX(1.0F);
-        b1Text7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        b8.setLayer(b1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout b8Layout = new javax.swing.GroupLayout(b8);
-        b8.setLayout(b8Layout);
-        b8Layout.setHorizontalGroup(
-            b8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(b1Text7, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        b8Layout.setVerticalGroup(
-            b8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(b1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 50;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(b8, gridBagConstraints);
-
-        f6.setBackground(new java.awt.Color(255, 255, 255));
-        f6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        f6.setForeground(new java.awt.Color(255, 255, 255));
-        f6.setOpaque(true);
-        f6.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        f1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        f1Text5.setForeground(new java.awt.Color(150, 150, 150));
-        f1Text5.setText(" F");
-        f1Text5.setAlignmentX(1.0F);
-        f1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        f6.setLayer(f1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout f6Layout = new javax.swing.GroupLayout(f6);
-        f6.setLayout(f6Layout);
-        f6Layout.setHorizontalGroup(
-            f6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(f1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        f6Layout.setVerticalGroup(
-            f6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(f1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 47;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(f6, gridBagConstraints);
-
-        g6.setBackground(new java.awt.Color(255, 255, 255));
-        g6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        g6.setForeground(new java.awt.Color(255, 255, 255));
-        g6.setOpaque(true);
-        g6.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        g1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        g1Text5.setForeground(new java.awt.Color(150, 150, 150));
-        g1Text5.setText(" G");
-        g1Text5.setAlignmentX(1.0F);
-        g1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        g6.setLayer(g1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout g6Layout = new javax.swing.GroupLayout(g6);
-        g6.setLayout(g6Layout);
-        g6Layout.setHorizontalGroup(
-            g6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(g1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        g6Layout.setVerticalGroup(
-            g6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(g1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 48;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(g6, gridBagConstraints);
-
-        d1sharp2.setBackground(new java.awt.Color(22, 22, 22));
-        d1sharp2.setForeground(new java.awt.Color(255, 255, 255));
-        d1sharp2.setOpaque(true);
-        d1sharp2.setPreferredSize(new java.awt.Dimension(15, 90));
-
-        d1sharpText2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        d1sharpText2.setForeground(new java.awt.Color(150, 150, 150));
-        d1sharpText2.setText("D#");
-        d1sharpText2.setAlignmentX(1.0F);
-        d1sharpText2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        d1sharp2.setLayer(d1sharpText2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout d1sharp2Layout = new javax.swing.GroupLayout(d1sharp2);
-        d1sharp2.setLayout(d1sharp2Layout);
-        d1sharp2Layout.setHorizontalGroup(
-            d1sharp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(d1sharpText2, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
-        );
-        d1sharp2Layout.setVerticalGroup(
-            d1sharp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1sharp2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(d1sharpText2)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 24;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(d1sharp2, gridBagConstraints);
-
-        c1sharp2.setBackground(new java.awt.Color(22, 22, 22));
-        c1sharp2.setForeground(new java.awt.Color(255, 255, 255));
-        c1sharp2.setOpaque(true);
-        c1sharp2.setPreferredSize(new java.awt.Dimension(15, 90));
-
-        c1sharpText2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        c1sharpText2.setForeground(new java.awt.Color(150, 150, 150));
-        c1sharpText2.setText("C#");
-        c1sharpText2.setAlignmentX(1.0F);
-        c1sharpText2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        c1sharp2.setLayer(c1sharpText2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout c1sharp2Layout = new javax.swing.GroupLayout(c1sharp2);
-        c1sharp2.setLayout(c1sharp2Layout);
-        c1sharp2Layout.setHorizontalGroup(
-            c1sharp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText2, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
-        );
-        c1sharp2Layout.setVerticalGroup(
-            c1sharp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1sharp2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(c1sharpText2)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 23;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(c1sharp2, gridBagConstraints);
-
-        f1sharp2.setBackground(new java.awt.Color(22, 22, 22));
-        f1sharp2.setForeground(new java.awt.Color(255, 255, 255));
-        f1sharp2.setOpaque(true);
-        f1sharp2.setPreferredSize(new java.awt.Dimension(15, 90));
-
-        f1sharpText2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        f1sharpText2.setForeground(new java.awt.Color(150, 150, 150));
-        f1sharpText2.setText("F#");
-        f1sharpText2.setAlignmentX(1.0F);
-        f1sharpText2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        f1sharp2.setLayer(f1sharpText2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout f1sharp2Layout = new javax.swing.GroupLayout(f1sharp2);
-        f1sharp2.setLayout(f1sharp2Layout);
-        f1sharp2Layout.setHorizontalGroup(
-            f1sharp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(f1sharpText2, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
-        );
-        f1sharp2Layout.setVerticalGroup(
-            f1sharp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f1sharp2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(f1sharpText2)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 26;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(f1sharp2, gridBagConstraints);
-
-        a1sharp2.setBackground(new java.awt.Color(22, 22, 22));
-        a1sharp2.setForeground(new java.awt.Color(255, 255, 255));
-        a1sharp2.setOpaque(true);
-        a1sharp2.setPreferredSize(new java.awt.Dimension(15, 90));
-
-        a1sharpText2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        a1sharpText2.setForeground(new java.awt.Color(150, 150, 150));
-        a1sharpText2.setText("A#");
-        a1sharpText2.setAlignmentX(1.0F);
-        a1sharpText2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        a1sharp2.setLayer(a1sharpText2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout a1sharp2Layout = new javax.swing.GroupLayout(a1sharp2);
-        a1sharp2.setLayout(a1sharp2Layout);
-        a1sharp2Layout.setHorizontalGroup(
-            a1sharp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1sharpText2, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
-        );
-        a1sharp2Layout.setVerticalGroup(
-            a1sharp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1sharp2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(a1sharpText2)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 28;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(a1sharp2, gridBagConstraints);
-
-        jLayeredPane10.setBackground(new java.awt.Color(22, 22, 22));
-        jLayeredPane10.setForeground(new java.awt.Color(255, 255, 255));
-        jLayeredPane10.setOpaque(true);
-        jLayeredPane10.setPreferredSize(new java.awt.Dimension(15, 90));
-
-        g1sharpText2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        g1sharpText2.setForeground(new java.awt.Color(150, 150, 150));
-        g1sharpText2.setText("G#");
-        g1sharpText2.setAlignmentX(1.0F);
-        g1sharpText2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        jLayeredPane10.setLayer(g1sharpText2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jLayeredPane10Layout = new javax.swing.GroupLayout(jLayeredPane10);
-        jLayeredPane10.setLayout(jLayeredPane10Layout);
-        jLayeredPane10Layout.setHorizontalGroup(
-            jLayeredPane10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(g1sharpText2, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
-        );
-        jLayeredPane10Layout.setVerticalGroup(
-            jLayeredPane10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane10Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(g1sharpText2)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 27;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(jLayeredPane10, gridBagConstraints);
-
-        c3.setBackground(new java.awt.Color(255, 255, 255));
-        c3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        c3.setForeground(new java.awt.Color(255, 255, 255));
-        c3.setOpaque(true);
-        c3.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        c1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        c1Text2.setForeground(new java.awt.Color(150, 150, 150));
-        c1Text2.setText(" C");
-        c1Text2.setAlignmentX(1.0F);
-        c1Text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        c3.setLayer(c1Text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout c3Layout = new javax.swing.GroupLayout(c3);
-        c3.setLayout(c3Layout);
-        c3Layout.setHorizontalGroup(
-            c3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1Text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        c3Layout.setVerticalGroup(
-            c3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(c1Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 23;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(c3, gridBagConstraints);
-
-        d3.setBackground(new java.awt.Color(255, 255, 255));
-        d3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        d3.setForeground(new java.awt.Color(255, 255, 255));
-        d3.setOpaque(true);
-        d3.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        d1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        d1Text2.setForeground(new java.awt.Color(150, 150, 150));
-        d1Text2.setText(" D");
-        d1Text2.setAlignmentX(1.0F);
-        d1Text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        d3.setLayer(d1Text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout d3Layout = new javax.swing.GroupLayout(d3);
-        d3.setLayout(d3Layout);
-        d3Layout.setHorizontalGroup(
-            d3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(d1Text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        d3Layout.setVerticalGroup(
-            d3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(d1Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 24;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(d3, gridBagConstraints);
-
-        e3.setBackground(new java.awt.Color(255, 255, 255));
-        e3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        e3.setForeground(new java.awt.Color(255, 255, 255));
-        e3.setOpaque(true);
-        e3.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        e1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        e1Text2.setForeground(new java.awt.Color(150, 150, 150));
-        e1Text2.setText(" E");
-        e1Text2.setAlignmentX(1.0F);
-        e1Text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        e3.setLayer(e1Text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout e3Layout = new javax.swing.GroupLayout(e3);
-        e3.setLayout(e3Layout);
-        e3Layout.setHorizontalGroup(
-            e3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(e1Text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        e3Layout.setVerticalGroup(
-            e3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(e1Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 25;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(e3, gridBagConstraints);
-
-        a3.setBackground(new java.awt.Color(255, 255, 255));
-        a3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        a3.setForeground(new java.awt.Color(255, 255, 255));
-        a3.setOpaque(true);
-        a3.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        a1text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        a1text2.setForeground(new java.awt.Color(150, 150, 150));
-        a1text2.setText(" A");
-        a1text2.setAlignmentX(1.0F);
-        a1text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        a3.setLayer(a1text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout a3Layout = new javax.swing.GroupLayout(a3);
-        a3.setLayout(a3Layout);
-        a3Layout.setHorizontalGroup(
-            a3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        a3Layout.setVerticalGroup(
-            a3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(a1text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 28;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(a3, gridBagConstraints);
-
-        b5.setBackground(new java.awt.Color(255, 255, 255));
-        b5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        b5.setForeground(new java.awt.Color(255, 255, 255));
-        b5.setOpaque(true);
-        b5.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        b1Text4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        b1Text4.setForeground(new java.awt.Color(150, 150, 150));
-        b1Text4.setText(" B");
-        b1Text4.setAlignmentX(1.0F);
-        b1Text4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        b5.setLayer(b1Text4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout b5Layout = new javax.swing.GroupLayout(b5);
-        b5.setLayout(b5Layout);
-        b5Layout.setHorizontalGroup(
-            b5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(b1Text4, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        b5Layout.setVerticalGroup(
-            b5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(b1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 29;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(b5, gridBagConstraints);
-
-        f3.setBackground(new java.awt.Color(255, 255, 255));
-        f3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        f3.setForeground(new java.awt.Color(255, 255, 255));
-        f3.setOpaque(true);
-        f3.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        f1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        f1Text2.setForeground(new java.awt.Color(150, 150, 150));
-        f1Text2.setText(" F");
-        f1Text2.setAlignmentX(1.0F);
-        f1Text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        f3.setLayer(f1Text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout f3Layout = new javax.swing.GroupLayout(f3);
-        f3.setLayout(f3Layout);
-        f3Layout.setHorizontalGroup(
-            f3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(f1Text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        f3Layout.setVerticalGroup(
-            f3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(f1Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 26;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(f3, gridBagConstraints);
-
-        g3.setBackground(new java.awt.Color(255, 255, 255));
-        g3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        g3.setForeground(new java.awt.Color(255, 255, 255));
-        g3.setOpaque(true);
-        g3.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        g1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        g1Text2.setForeground(new java.awt.Color(150, 150, 150));
-        g1Text2.setText(" G");
-        g1Text2.setAlignmentX(1.0F);
-        g1Text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        g3.setLayer(g1Text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout g3Layout = new javax.swing.GroupLayout(g3);
-        g3.setLayout(g3Layout);
-        g3Layout.setHorizontalGroup(
-            g3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(g1Text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        g3Layout.setVerticalGroup(
-            g3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(g1Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 27;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(g3, gridBagConstraints);
-
-        d1sharp3.setBackground(new java.awt.Color(22, 22, 22));
-        d1sharp3.setForeground(new java.awt.Color(255, 255, 255));
-        d1sharp3.setOpaque(true);
-        d1sharp3.setPreferredSize(new java.awt.Dimension(15, 90));
-
-        d1sharpText3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        d1sharpText3.setForeground(new java.awt.Color(150, 150, 150));
-        d1sharpText3.setText("D#");
-        d1sharpText3.setAlignmentX(1.0F);
-        d1sharpText3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        d1sharp3.setLayer(d1sharpText3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout d1sharp3Layout = new javax.swing.GroupLayout(d1sharp3);
-        d1sharp3.setLayout(d1sharp3Layout);
-        d1sharp3Layout.setHorizontalGroup(
-            d1sharp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(d1sharpText3, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
-        );
-        d1sharp3Layout.setVerticalGroup(
-            d1sharp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1sharp3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(d1sharpText3)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(d1sharp3, gridBagConstraints);
-
-        c1sharp3.setBackground(new java.awt.Color(22, 22, 22));
-        c1sharp3.setForeground(new java.awt.Color(255, 255, 255));
-        c1sharp3.setOpaque(true);
-        c1sharp3.setPreferredSize(new java.awt.Dimension(15, 90));
-
-        c1sharpText3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        c1sharpText3.setForeground(new java.awt.Color(150, 150, 150));
-        c1sharpText3.setText("C#");
-        c1sharpText3.setAlignmentX(1.0F);
-        c1sharpText3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        c1sharp3.setLayer(c1sharpText3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout c1sharp3Layout = new javax.swing.GroupLayout(c1sharp3);
-        c1sharp3.setLayout(c1sharp3Layout);
-        c1sharp3Layout.setHorizontalGroup(
-            c1sharp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText3, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
-        );
-        c1sharp3Layout.setVerticalGroup(
-            c1sharp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1sharp3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(c1sharpText3)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(c1sharp3, gridBagConstraints);
-
-        f1sharp3.setBackground(new java.awt.Color(22, 22, 22));
-        f1sharp3.setForeground(new java.awt.Color(255, 255, 255));
-        f1sharp3.setOpaque(true);
-        f1sharp3.setPreferredSize(new java.awt.Dimension(15, 90));
-
-        f1sharpText3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        f1sharpText3.setForeground(new java.awt.Color(150, 150, 150));
-        f1sharpText3.setText("F#");
-        f1sharpText3.setAlignmentX(1.0F);
-        f1sharpText3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        f1sharp3.setLayer(f1sharpText3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout f1sharp3Layout = new javax.swing.GroupLayout(f1sharp3);
-        f1sharp3.setLayout(f1sharp3Layout);
-        f1sharp3Layout.setHorizontalGroup(
-            f1sharp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(f1sharpText3, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
-        );
-        f1sharp3Layout.setVerticalGroup(
-            f1sharp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f1sharp3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(f1sharpText3)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(f1sharp3, gridBagConstraints);
-
-        a1sharp3.setBackground(new java.awt.Color(22, 22, 22));
-        a1sharp3.setForeground(new java.awt.Color(255, 255, 255));
-        a1sharp3.setOpaque(true);
-        a1sharp3.setPreferredSize(new java.awt.Dimension(15, 90));
-
-        a1sharpText3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        a1sharpText3.setForeground(new java.awt.Color(150, 150, 150));
-        a1sharpText3.setText("A#");
-        a1sharpText3.setAlignmentX(1.0F);
-        a1sharpText3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        a1sharp3.setLayer(a1sharpText3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout a1sharp3Layout = new javax.swing.GroupLayout(a1sharp3);
-        a1sharp3.setLayout(a1sharp3Layout);
-        a1sharp3Layout.setHorizontalGroup(
-            a1sharp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1sharpText3, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
-        );
-        a1sharp3Layout.setVerticalGroup(
-            a1sharp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1sharp3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(a1sharpText3)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(a1sharp3, gridBagConstraints);
-
-        jLayeredPane11.setBackground(new java.awt.Color(22, 22, 22));
-        jLayeredPane11.setForeground(new java.awt.Color(255, 255, 255));
-        jLayeredPane11.setOpaque(true);
-        jLayeredPane11.setPreferredSize(new java.awt.Dimension(15, 90));
-
-        g1sharpText3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        g1sharpText3.setForeground(new java.awt.Color(150, 150, 150));
-        g1sharpText3.setText("G#");
-        g1sharpText3.setAlignmentX(1.0F);
-        g1sharpText3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        jLayeredPane11.setLayer(g1sharpText3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jLayeredPane11Layout = new javax.swing.GroupLayout(jLayeredPane11);
-        jLayeredPane11.setLayout(jLayeredPane11Layout);
-        jLayeredPane11Layout.setHorizontalGroup(
-            jLayeredPane11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(g1sharpText3, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
-        );
-        jLayeredPane11Layout.setVerticalGroup(
-            jLayeredPane11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane11Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(g1sharpText3)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(jLayeredPane11, gridBagConstraints);
-
-        c4.setBackground(new java.awt.Color(255, 255, 255));
-        c4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        c4.setForeground(new java.awt.Color(255, 255, 255));
-        c4.setOpaque(true);
-        c4.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        c1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        c1Text3.setForeground(new java.awt.Color(150, 150, 150));
-        c1Text3.setText(" C");
-        c1Text3.setAlignmentX(1.0F);
-        c1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        c4.setLayer(c1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout c4Layout = new javax.swing.GroupLayout(c4);
-        c4.setLayout(c4Layout);
-        c4Layout.setHorizontalGroup(
-            c4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        c4Layout.setVerticalGroup(
-            c4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(c1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(c4, gridBagConstraints);
-
-        d4.setBackground(new java.awt.Color(255, 255, 255));
-        d4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        d4.setForeground(new java.awt.Color(255, 255, 255));
-        d4.setOpaque(true);
-        d4.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        d1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        d1Text3.setForeground(new java.awt.Color(150, 150, 150));
-        d1Text3.setText(" D");
-        d1Text3.setAlignmentX(1.0F);
-        d1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        d4.setLayer(d1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout d4Layout = new javax.swing.GroupLayout(d4);
-        d4.setLayout(d4Layout);
-        d4Layout.setHorizontalGroup(
-            d4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(d1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        d4Layout.setVerticalGroup(
-            d4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(d1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(d4, gridBagConstraints);
-
-        e4.setBackground(new java.awt.Color(255, 255, 255));
-        e4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        e4.setForeground(new java.awt.Color(255, 255, 255));
-        e4.setOpaque(true);
-        e4.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        e1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        e1Text3.setForeground(new java.awt.Color(150, 150, 150));
-        e1Text3.setText(" E");
-        e1Text3.setAlignmentX(1.0F);
-        e1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        e4.setLayer(e1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout e4Layout = new javax.swing.GroupLayout(e4);
-        e4.setLayout(e4Layout);
-        e4Layout.setHorizontalGroup(
-            e4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(e1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        e4Layout.setVerticalGroup(
-            e4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(e1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 11;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(e4, gridBagConstraints);
-
-        a4.setBackground(new java.awt.Color(255, 255, 255));
-        a4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        a4.setForeground(new java.awt.Color(255, 255, 255));
-        a4.setOpaque(true);
-        a4.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        a1text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        a1text3.setForeground(new java.awt.Color(150, 150, 150));
-        a1text3.setText(" A");
-        a1text3.setAlignmentX(1.0F);
-        a1text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        a4.setLayer(a1text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout a4Layout = new javax.swing.GroupLayout(a4);
-        a4.setLayout(a4Layout);
-        a4Layout.setHorizontalGroup(
-            a4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        a4Layout.setVerticalGroup(
-            a4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(a1text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(a4, gridBagConstraints);
-
-        b6.setBackground(new java.awt.Color(255, 255, 255));
-        b6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        b6.setForeground(new java.awt.Color(255, 255, 255));
-        b6.setOpaque(true);
-        b6.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        b1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        b1Text5.setForeground(new java.awt.Color(150, 150, 150));
-        b1Text5.setText(" B");
-        b1Text5.setAlignmentX(1.0F);
-        b1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        b6.setLayer(b1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout b6Layout = new javax.swing.GroupLayout(b6);
-        b6.setLayout(b6Layout);
-        b6Layout.setHorizontalGroup(
-            b6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(b1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        b6Layout.setVerticalGroup(
-            b6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(b1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 15;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(b6, gridBagConstraints);
-
-        f4.setBackground(new java.awt.Color(255, 255, 255));
-        f4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        f4.setForeground(new java.awt.Color(255, 255, 255));
-        f4.setOpaque(true);
-        f4.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        f1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        f1Text3.setForeground(new java.awt.Color(150, 150, 150));
-        f1Text3.setText(" F");
-        f1Text3.setAlignmentX(1.0F);
-        f1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        f4.setLayer(f1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout f4Layout = new javax.swing.GroupLayout(f4);
-        f4.setLayout(f4Layout);
-        f4Layout.setHorizontalGroup(
-            f4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(f1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        f4Layout.setVerticalGroup(
-            f4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(f1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(f4, gridBagConstraints);
-
-        g4.setBackground(new java.awt.Color(255, 255, 255));
-        g4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        g4.setForeground(new java.awt.Color(255, 255, 255));
-        g4.setOpaque(true);
-        g4.setPreferredSize(new java.awt.Dimension(25, 150));
-
-        g1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        g1Text3.setForeground(new java.awt.Color(150, 150, 150));
-        g1Text3.setText(" G");
-        g1Text3.setAlignmentX(1.0F);
-        g1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        g4.setLayer(g1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout g4Layout = new javax.swing.GroupLayout(g4);
-        g4.setLayout(g4Layout);
-        g4Layout.setHorizontalGroup(
-            g4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(g1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-        );
-        g4Layout.setVerticalGroup(
-            g4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(g1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
-        gridBagConstraints.gridy = 0;
-        keyboardPanel.add(g4, gridBagConstraints);
-
-        d1sharp7.setBackground(new java.awt.Color(22, 22, 22));
-        d1sharp7.setForeground(new java.awt.Color(255, 255, 255));
-        d1sharp7.setOpaque(true);
-        d1sharp7.setPreferredSize(new java.awt.Dimension(15, 90));
-
-        d1sharpText7.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        d1sharpText7.setForeground(new java.awt.Color(150, 150, 150));
-        d1sharpText7.setText("D#");
-        d1sharpText7.setAlignmentX(1.0F);
-        d1sharpText7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        d1sharp7.setLayer(d1sharpText7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout d1sharp7Layout = new javax.swing.GroupLayout(d1sharp7);
-        d1sharp7.setLayout(d1sharp7Layout);
-        d1sharp7Layout.setHorizontalGroup(
-            d1sharp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(d1sharpText7, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
-        );
-        d1sharp7Layout.setVerticalGroup(
-            d1sharp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1sharp7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(d1sharpText7)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(d1sharp7, gridBagConstraints);
-
-        c1sharp7.setBackground(new java.awt.Color(22, 22, 22));
-        c1sharp7.setForeground(new java.awt.Color(255, 255, 255));
-        c1sharp7.setOpaque(true);
-        c1sharp7.setPreferredSize(new java.awt.Dimension(15, 90));
-
-        c1sharpText7.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        c1sharpText7.setForeground(new java.awt.Color(150, 150, 150));
-        c1sharpText7.setText("C#");
-        c1sharpText7.setAlignmentX(1.0F);
-        c1sharpText7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        c1sharp7.setLayer(c1sharpText7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout c1sharp7Layout = new javax.swing.GroupLayout(c1sharp7);
-        c1sharp7.setLayout(c1sharp7Layout);
-        c1sharp7Layout.setHorizontalGroup(
-            c1sharp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText7, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
-        );
-        c1sharp7Layout.setVerticalGroup(
-            c1sharp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1sharp7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(c1sharpText7)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(c1sharp7, gridBagConstraints);
-
-        f1sharp6.setBackground(new java.awt.Color(22, 22, 22));
-        f1sharp6.setForeground(new java.awt.Color(255, 255, 255));
-        f1sharp6.setOpaque(true);
-        f1sharp6.setPreferredSize(new java.awt.Dimension(15, 90));
-
-        f1sharpText6.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        f1sharpText6.setForeground(new java.awt.Color(150, 150, 150));
-        f1sharpText6.setText("F#");
-        f1sharpText6.setAlignmentX(1.0F);
-        f1sharpText6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        f1sharp6.setLayer(f1sharpText6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout f1sharp6Layout = new javax.swing.GroupLayout(f1sharp6);
-        f1sharp6.setLayout(f1sharp6Layout);
-        f1sharp6Layout.setHorizontalGroup(
-            f1sharp6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(f1sharpText6, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
-        );
-        f1sharp6Layout.setVerticalGroup(
-            f1sharp6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f1sharp6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(f1sharpText6)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(f1sharp6, gridBagConstraints);
-
-        a1sharp6.setBackground(new java.awt.Color(22, 22, 22));
-        a1sharp6.setForeground(new java.awt.Color(255, 255, 255));
-        a1sharp6.setOpaque(true);
-        a1sharp6.setPreferredSize(new java.awt.Dimension(15, 90));
-
-        a1sharpText6.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        a1sharpText6.setForeground(new java.awt.Color(150, 150, 150));
-        a1sharpText6.setText("A#");
-        a1sharpText6.setAlignmentX(1.0F);
-        a1sharpText6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        a1sharp6.setLayer(a1sharpText6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout a1sharp6Layout = new javax.swing.GroupLayout(a1sharp6);
-        a1sharp6.setLayout(a1sharp6Layout);
-        a1sharp6Layout.setHorizontalGroup(
-            a1sharp6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1sharpText6, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
-        );
-        a1sharp6Layout.setVerticalGroup(
-            a1sharp6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1sharp6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(a1sharpText6)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(a1sharp6, gridBagConstraints);
-
-        jLayeredPane14.setBackground(new java.awt.Color(22, 22, 22));
-        jLayeredPane14.setForeground(new java.awt.Color(255, 255, 255));
-        jLayeredPane14.setOpaque(true);
-        jLayeredPane14.setPreferredSize(new java.awt.Dimension(15, 90));
-
-        g1sharpText6.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        g1sharpText6.setForeground(new java.awt.Color(150, 150, 150));
-        g1sharpText6.setText("G#");
-        g1sharpText6.setAlignmentX(1.0F);
-        g1sharpText6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        jLayeredPane14.setLayer(g1sharpText6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jLayeredPane14Layout = new javax.swing.GroupLayout(jLayeredPane14);
-        jLayeredPane14.setLayout(jLayeredPane14Layout);
-        jLayeredPane14Layout.setHorizontalGroup(
-            jLayeredPane14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(g1sharpText6, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
-        );
-        jLayeredPane14Layout.setVerticalGroup(
-            jLayeredPane14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane14Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(g1sharpText6)
-                .addContainerGap())
-        );
-
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(jLayeredPane14, gridBagConstraints);
+        keyboardPanel.add(g7s, gridBagConstraints);
 
         c7.setBackground(new java.awt.Color(255, 255, 255));
         c7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -2696,32 +1540,31 @@ public class VirtualPiano extends javax.swing.JFrame {
         c7.setOpaque(true);
         c7.setPreferredSize(new java.awt.Dimension(25, 150));
 
-        c1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        c1Text6.setForeground(new java.awt.Color(150, 150, 150));
-        c1Text6.setText(" C");
-        c1Text6.setAlignmentX(1.0F);
-        c1Text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        c1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        c1Text5.setForeground(new java.awt.Color(150, 150, 150));
+        c1Text5.setText(" C");
+        c1Text5.setAlignmentX(1.0F);
+        c1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        c7.setLayer(c1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        c7.setLayer(c1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout c7Layout = new javax.swing.GroupLayout(c7);
         c7.setLayout(c7Layout);
         c7Layout.setHorizontalGroup(
             c7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1Text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+            .addComponent(c1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         c7Layout.setVerticalGroup(
             c7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(c1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(c1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 44;
         gridBagConstraints.gridy = 0;
         keyboardPanel.add(c7, gridBagConstraints);
 
@@ -2731,32 +1574,31 @@ public class VirtualPiano extends javax.swing.JFrame {
         d7.setOpaque(true);
         d7.setPreferredSize(new java.awt.Dimension(25, 150));
 
-        d1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        d1Text6.setForeground(new java.awt.Color(150, 150, 150));
-        d1Text6.setText(" D");
-        d1Text6.setAlignmentX(1.0F);
-        d1Text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        d1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        d1Text5.setForeground(new java.awt.Color(150, 150, 150));
+        d1Text5.setText(" D");
+        d1Text5.setAlignmentX(1.0F);
+        d1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        d7.setLayer(d1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        d7.setLayer(d1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout d7Layout = new javax.swing.GroupLayout(d7);
         d7.setLayout(d7Layout);
         d7Layout.setHorizontalGroup(
             d7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(d1Text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+            .addComponent(d1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         d7Layout.setVerticalGroup(
             d7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(d1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(d1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 45;
         gridBagConstraints.gridy = 0;
         keyboardPanel.add(d7, gridBagConstraints);
 
@@ -2766,32 +1608,31 @@ public class VirtualPiano extends javax.swing.JFrame {
         e7.setOpaque(true);
         e7.setPreferredSize(new java.awt.Dimension(25, 150));
 
-        e1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        e1Text6.setForeground(new java.awt.Color(150, 150, 150));
-        e1Text6.setText(" E");
-        e1Text6.setAlignmentX(1.0F);
-        e1Text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        e1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        e1Text5.setForeground(new java.awt.Color(150, 150, 150));
+        e1Text5.setText(" E");
+        e1Text5.setAlignmentX(1.0F);
+        e1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        e7.setLayer(e1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        e7.setLayer(e1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout e7Layout = new javax.swing.GroupLayout(e7);
         e7.setLayout(e7Layout);
         e7Layout.setHorizontalGroup(
             e7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(e1Text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+            .addComponent(e1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         e7Layout.setVerticalGroup(
             e7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(e1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(e1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 46;
         gridBagConstraints.gridy = 0;
         keyboardPanel.add(e7, gridBagConstraints);
 
@@ -2801,69 +1642,67 @@ public class VirtualPiano extends javax.swing.JFrame {
         a7.setOpaque(true);
         a7.setPreferredSize(new java.awt.Dimension(25, 150));
 
-        a1text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        a1text6.setForeground(new java.awt.Color(150, 150, 150));
-        a1text6.setText(" A");
-        a1text6.setAlignmentX(1.0F);
-        a1text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        a1text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        a1text5.setForeground(new java.awt.Color(150, 150, 150));
+        a1text5.setText(" A");
+        a1text5.setAlignmentX(1.0F);
+        a1text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        a7.setLayer(a1text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        a7.setLayer(a1text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout a7Layout = new javax.swing.GroupLayout(a7);
         a7.setLayout(a7Layout);
         a7Layout.setHorizontalGroup(
             a7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+            .addComponent(a1text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         a7Layout.setVerticalGroup(
             a7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(a1text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(a1text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridx = 49;
         gridBagConstraints.gridy = 0;
         keyboardPanel.add(a7, gridBagConstraints);
 
-        b9.setBackground(new java.awt.Color(255, 255, 255));
-        b9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        b9.setForeground(new java.awt.Color(255, 255, 255));
-        b9.setOpaque(true);
-        b9.setPreferredSize(new java.awt.Dimension(25, 150));
+        b7.setBackground(new java.awt.Color(255, 255, 255));
+        b7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        b7.setForeground(new java.awt.Color(255, 255, 255));
+        b7.setOpaque(true);
+        b7.setPreferredSize(new java.awt.Dimension(25, 150));
 
-        b1Text8.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        b1Text8.setForeground(new java.awt.Color(150, 150, 150));
-        b1Text8.setText(" B");
-        b1Text8.setAlignmentX(1.0F);
-        b1Text8.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        b1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        b1Text7.setForeground(new java.awt.Color(150, 150, 150));
+        b1Text7.setText(" B");
+        b1Text7.setAlignmentX(1.0F);
+        b1Text7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        b9.setLayer(b1Text8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        b7.setLayer(b1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout b9Layout = new javax.swing.GroupLayout(b9);
-        b9.setLayout(b9Layout);
-        b9Layout.setHorizontalGroup(
-            b9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(b1Text8, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        javax.swing.GroupLayout b7Layout = new javax.swing.GroupLayout(b7);
+        b7.setLayout(b7Layout);
+        b7Layout.setHorizontalGroup(
+            b7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(b1Text7, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        b9Layout.setVerticalGroup(
-            b9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(b1Text8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        b7Layout.setVerticalGroup(
+            b7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b7Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(b1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridx = 50;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(b9, gridBagConstraints);
+        keyboardPanel.add(b7, gridBagConstraints);
 
         f7.setBackground(new java.awt.Color(255, 255, 255));
         f7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -2871,32 +1710,31 @@ public class VirtualPiano extends javax.swing.JFrame {
         f7.setOpaque(true);
         f7.setPreferredSize(new java.awt.Dimension(25, 150));
 
-        f1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        f1Text6.setForeground(new java.awt.Color(150, 150, 150));
-        f1Text6.setText(" F");
-        f1Text6.setAlignmentX(1.0F);
-        f1Text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        f1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        f1Text5.setForeground(new java.awt.Color(150, 150, 150));
+        f1Text5.setText(" F");
+        f1Text5.setAlignmentX(1.0F);
+        f1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        f7.setLayer(f1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        f7.setLayer(f1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout f7Layout = new javax.swing.GroupLayout(f7);
         f7.setLayout(f7Layout);
         f7Layout.setHorizontalGroup(
             f7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(f1Text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+            .addComponent(f1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         f7Layout.setVerticalGroup(
             f7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(f1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(f1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 47;
         gridBagConstraints.gridy = 0;
         keyboardPanel.add(f7, gridBagConstraints);
 
@@ -2906,39 +1744,1292 @@ public class VirtualPiano extends javax.swing.JFrame {
         g7.setOpaque(true);
         g7.setPreferredSize(new java.awt.Dimension(25, 150));
 
+        g1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        g1Text5.setForeground(new java.awt.Color(150, 150, 150));
+        g1Text5.setText(" G");
+        g1Text5.setAlignmentX(1.0F);
+        g1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        g7.setLayer(g1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout g7Layout = new javax.swing.GroupLayout(g7);
+        g7.setLayout(g7Layout);
+        g7Layout.setHorizontalGroup(
+            g7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        g7Layout.setVerticalGroup(
+            g7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g7Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(g1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 48;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(g7, gridBagConstraints);
+
+        d4s.setBackground(new java.awt.Color(22, 22, 22));
+        d4s.setForeground(new java.awt.Color(255, 255, 255));
+        d4s.setOpaque(true);
+        d4s.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        d1sharpText2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        d1sharpText2.setForeground(new java.awt.Color(150, 150, 150));
+        d1sharpText2.setText("D#");
+        d1sharpText2.setAlignmentX(1.0F);
+        d1sharpText2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d4s.setLayer(d1sharpText2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d4sLayout = new javax.swing.GroupLayout(d4s);
+        d4s.setLayout(d4sLayout);
+        d4sLayout.setHorizontalGroup(
+            d4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1sharpText2, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        d4sLayout.setVerticalGroup(
+            d4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d4sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(d1sharpText2)
+                .addContainerGap())
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 24;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(d4s, gridBagConstraints);
+
+        c4s.setBackground(new java.awt.Color(22, 22, 22));
+        c4s.setForeground(new java.awt.Color(255, 255, 255));
+        c4s.setOpaque(true);
+        c4s.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        c1sharpText2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        c1sharpText2.setForeground(new java.awt.Color(150, 150, 150));
+        c1sharpText2.setText("C#");
+        c1sharpText2.setAlignmentX(1.0F);
+        c1sharpText2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c4s.setLayer(c1sharpText2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c4sLayout = new javax.swing.GroupLayout(c4s);
+        c4s.setLayout(c4sLayout);
+        c4sLayout.setHorizontalGroup(
+            c4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1sharpText2, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        c4sLayout.setVerticalGroup(
+            c4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c4sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(c1sharpText2)
+                .addContainerGap())
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 23;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(c4s, gridBagConstraints);
+
+        f4s.setBackground(new java.awt.Color(22, 22, 22));
+        f4s.setForeground(new java.awt.Color(255, 255, 255));
+        f4s.setOpaque(true);
+        f4s.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        f1sharpText2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        f1sharpText2.setForeground(new java.awt.Color(150, 150, 150));
+        f1sharpText2.setText("F#");
+        f1sharpText2.setAlignmentX(1.0F);
+        f1sharpText2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f4s.setLayer(f1sharpText2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f4sLayout = new javax.swing.GroupLayout(f4s);
+        f4s.setLayout(f4sLayout);
+        f4sLayout.setHorizontalGroup(
+            f4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1sharpText2, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        f4sLayout.setVerticalGroup(
+            f4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f4sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(f1sharpText2)
+                .addContainerGap())
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 26;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(f4s, gridBagConstraints);
+
+        a4s.setBackground(new java.awt.Color(22, 22, 22));
+        a4s.setForeground(new java.awt.Color(255, 255, 255));
+        a4s.setOpaque(true);
+        a4s.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        a1sharpText2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        a1sharpText2.setForeground(new java.awt.Color(150, 150, 150));
+        a1sharpText2.setText("A#");
+        a1sharpText2.setAlignmentX(1.0F);
+        a1sharpText2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a4s.setLayer(a1sharpText2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a4sLayout = new javax.swing.GroupLayout(a4s);
+        a4s.setLayout(a4sLayout);
+        a4sLayout.setHorizontalGroup(
+            a4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1sharpText2, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        a4sLayout.setVerticalGroup(
+            a4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a4sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(a1sharpText2)
+                .addContainerGap())
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 28;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(a4s, gridBagConstraints);
+
+        g4s.setBackground(new java.awt.Color(22, 22, 22));
+        g4s.setForeground(new java.awt.Color(255, 255, 255));
+        g4s.setOpaque(true);
+        g4s.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        g1sharpText2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        g1sharpText2.setForeground(new java.awt.Color(150, 150, 150));
+        g1sharpText2.setText("G#");
+        g1sharpText2.setAlignmentX(1.0F);
+        g1sharpText2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        g4s.setLayer(g1sharpText2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout g4sLayout = new javax.swing.GroupLayout(g4s);
+        g4s.setLayout(g4sLayout);
+        g4sLayout.setHorizontalGroup(
+            g4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1sharpText2, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        g4sLayout.setVerticalGroup(
+            g4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g4sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(g1sharpText2)
+                .addContainerGap())
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 27;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(g4s, gridBagConstraints);
+
+        c4.setBackground(new java.awt.Color(255, 255, 255));
+        c4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        c4.setForeground(new java.awt.Color(255, 255, 255));
+        c4.setOpaque(true);
+        c4.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        c1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        c1Text2.setForeground(new java.awt.Color(150, 150, 150));
+        c1Text2.setText(" C");
+        c1Text2.setAlignmentX(1.0F);
+        c1Text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c4.setLayer(c1Text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c4Layout = new javax.swing.GroupLayout(c4);
+        c4.setLayout(c4Layout);
+        c4Layout.setHorizontalGroup(
+            c4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1Text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        c4Layout.setVerticalGroup(
+            c4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c4Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(c1Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 23;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(c4, gridBagConstraints);
+
+        d4.setBackground(new java.awt.Color(255, 255, 255));
+        d4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        d4.setForeground(new java.awt.Color(255, 255, 255));
+        d4.setOpaque(true);
+        d4.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        d1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        d1Text2.setForeground(new java.awt.Color(150, 150, 150));
+        d1Text2.setText(" D");
+        d1Text2.setAlignmentX(1.0F);
+        d1Text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d4.setLayer(d1Text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d4Layout = new javax.swing.GroupLayout(d4);
+        d4.setLayout(d4Layout);
+        d4Layout.setHorizontalGroup(
+            d4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1Text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        d4Layout.setVerticalGroup(
+            d4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d4Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(d1Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 24;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(d4, gridBagConstraints);
+
+        e4.setBackground(new java.awt.Color(255, 255, 255));
+        e4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        e4.setForeground(new java.awt.Color(255, 255, 255));
+        e4.setOpaque(true);
+        e4.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        e1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        e1Text2.setForeground(new java.awt.Color(150, 150, 150));
+        e1Text2.setText(" E");
+        e1Text2.setAlignmentX(1.0F);
+        e1Text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        e4.setLayer(e1Text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout e4Layout = new javax.swing.GroupLayout(e4);
+        e4.setLayout(e4Layout);
+        e4Layout.setHorizontalGroup(
+            e4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(e1Text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        e4Layout.setVerticalGroup(
+            e4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e4Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(e1Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 25;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(e4, gridBagConstraints);
+
+        a4.setBackground(new java.awt.Color(255, 255, 255));
+        a4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        a4.setForeground(new java.awt.Color(255, 255, 255));
+        a4.setOpaque(true);
+        a4.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        a1text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        a1text2.setForeground(new java.awt.Color(150, 150, 150));
+        a1text2.setText(" A");
+        a1text2.setAlignmentX(1.0F);
+        a1text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a4.setLayer(a1text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a4Layout = new javax.swing.GroupLayout(a4);
+        a4.setLayout(a4Layout);
+        a4Layout.setHorizontalGroup(
+            a4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        a4Layout.setVerticalGroup(
+            a4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a4Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(a1text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 28;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(a4, gridBagConstraints);
+
+        b4.setBackground(new java.awt.Color(255, 255, 255));
+        b4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        b4.setForeground(new java.awt.Color(255, 255, 255));
+        b4.setOpaque(true);
+        b4.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        b1Text4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        b1Text4.setForeground(new java.awt.Color(150, 150, 150));
+        b1Text4.setText(" B");
+        b1Text4.setAlignmentX(1.0F);
+        b1Text4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        b4.setLayer(b1Text4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout b4Layout = new javax.swing.GroupLayout(b4);
+        b4.setLayout(b4Layout);
+        b4Layout.setHorizontalGroup(
+            b4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(b1Text4, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        b4Layout.setVerticalGroup(
+            b4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b4Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(b1Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 29;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(b4, gridBagConstraints);
+
+        f4.setBackground(new java.awt.Color(255, 255, 255));
+        f4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        f4.setForeground(new java.awt.Color(255, 255, 255));
+        f4.setOpaque(true);
+        f4.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        f1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        f1Text2.setForeground(new java.awt.Color(150, 150, 150));
+        f1Text2.setText(" F");
+        f1Text2.setAlignmentX(1.0F);
+        f1Text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f4.setLayer(f1Text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f4Layout = new javax.swing.GroupLayout(f4);
+        f4.setLayout(f4Layout);
+        f4Layout.setHorizontalGroup(
+            f4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1Text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        f4Layout.setVerticalGroup(
+            f4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f4Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(f1Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 26;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(f4, gridBagConstraints);
+
+        g4.setBackground(new java.awt.Color(255, 255, 255));
+        g4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        g4.setForeground(new java.awt.Color(255, 255, 255));
+        g4.setOpaque(true);
+        g4.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        g1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        g1Text2.setForeground(new java.awt.Color(150, 150, 150));
+        g1Text2.setText(" G");
+        g1Text2.setAlignmentX(1.0F);
+        g1Text2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        g4.setLayer(g1Text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout g4Layout = new javax.swing.GroupLayout(g4);
+        g4.setLayout(g4Layout);
+        g4Layout.setHorizontalGroup(
+            g4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1Text2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        g4Layout.setVerticalGroup(
+            g4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g4Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(g1Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 27;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(g4, gridBagConstraints);
+
+        d2s.setBackground(new java.awt.Color(22, 22, 22));
+        d2s.setForeground(new java.awt.Color(255, 255, 255));
+        d2s.setOpaque(true);
+        d2s.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        d1sharpText3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        d1sharpText3.setForeground(new java.awt.Color(150, 150, 150));
+        d1sharpText3.setText("D#");
+        d1sharpText3.setAlignmentX(1.0F);
+        d1sharpText3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d2s.setLayer(d1sharpText3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d2sLayout = new javax.swing.GroupLayout(d2s);
+        d2s.setLayout(d2sLayout);
+        d2sLayout.setHorizontalGroup(
+            d2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1sharpText3, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        d2sLayout.setVerticalGroup(
+            d2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d2sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(d1sharpText3)
+                .addContainerGap())
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(d2s, gridBagConstraints);
+
+        c2s.setBackground(new java.awt.Color(22, 22, 22));
+        c2s.setForeground(new java.awt.Color(255, 255, 255));
+        c2s.setOpaque(true);
+        c2s.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        c1sharpText3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        c1sharpText3.setForeground(new java.awt.Color(150, 150, 150));
+        c1sharpText3.setText("C#");
+        c1sharpText3.setAlignmentX(1.0F);
+        c1sharpText3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c2s.setLayer(c1sharpText3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c2sLayout = new javax.swing.GroupLayout(c2s);
+        c2s.setLayout(c2sLayout);
+        c2sLayout.setHorizontalGroup(
+            c2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1sharpText3, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        c2sLayout.setVerticalGroup(
+            c2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c2sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(c1sharpText3)
+                .addContainerGap())
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(c2s, gridBagConstraints);
+
+        f2s.setBackground(new java.awt.Color(22, 22, 22));
+        f2s.setForeground(new java.awt.Color(255, 255, 255));
+        f2s.setOpaque(true);
+        f2s.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        f1sharpText3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        f1sharpText3.setForeground(new java.awt.Color(150, 150, 150));
+        f1sharpText3.setText("F#");
+        f1sharpText3.setAlignmentX(1.0F);
+        f1sharpText3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f2s.setLayer(f1sharpText3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f2sLayout = new javax.swing.GroupLayout(f2s);
+        f2s.setLayout(f2sLayout);
+        f2sLayout.setHorizontalGroup(
+            f2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1sharpText3, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        f2sLayout.setVerticalGroup(
+            f2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f2sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(f1sharpText3)
+                .addContainerGap())
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(f2s, gridBagConstraints);
+
+        a2s.setBackground(new java.awt.Color(22, 22, 22));
+        a2s.setForeground(new java.awt.Color(255, 255, 255));
+        a2s.setOpaque(true);
+        a2s.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        a1sharpText3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        a1sharpText3.setForeground(new java.awt.Color(150, 150, 150));
+        a1sharpText3.setText("A#");
+        a1sharpText3.setAlignmentX(1.0F);
+        a1sharpText3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a2s.setLayer(a1sharpText3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a2sLayout = new javax.swing.GroupLayout(a2s);
+        a2s.setLayout(a2sLayout);
+        a2sLayout.setHorizontalGroup(
+            a2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1sharpText3, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        a2sLayout.setVerticalGroup(
+            a2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a2sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(a1sharpText3)
+                .addContainerGap())
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 14;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(a2s, gridBagConstraints);
+
+        g2s.setBackground(new java.awt.Color(22, 22, 22));
+        g2s.setForeground(new java.awt.Color(255, 255, 255));
+        g2s.setOpaque(true);
+        g2s.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        g1sharpText3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        g1sharpText3.setForeground(new java.awt.Color(150, 150, 150));
+        g1sharpText3.setText("G#");
+        g1sharpText3.setAlignmentX(1.0F);
+        g1sharpText3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        g2s.setLayer(g1sharpText3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout g2sLayout = new javax.swing.GroupLayout(g2s);
+        g2s.setLayout(g2sLayout);
+        g2sLayout.setHorizontalGroup(
+            g2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1sharpText3, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        g2sLayout.setVerticalGroup(
+            g2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g2sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(g1sharpText3)
+                .addContainerGap())
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(g2s, gridBagConstraints);
+
+        c4d.setBackground(new java.awt.Color(255, 255, 255));
+        c4d.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        c4d.setForeground(new java.awt.Color(255, 255, 255));
+        c4d.setOpaque(true);
+        c4d.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        c1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        c1Text3.setForeground(new java.awt.Color(150, 150, 150));
+        c1Text3.setText(" C");
+        c1Text3.setAlignmentX(1.0F);
+        c1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c4d.setLayer(c1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c4dLayout = new javax.swing.GroupLayout(c4d);
+        c4d.setLayout(c4dLayout);
+        c4dLayout.setHorizontalGroup(
+            c4dLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        c4dLayout.setVerticalGroup(
+            c4dLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c4dLayout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(c1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(c4d, gridBagConstraints);
+
+        d2.setBackground(new java.awt.Color(255, 255, 255));
+        d2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        d2.setForeground(new java.awt.Color(255, 255, 255));
+        d2.setOpaque(true);
+        d2.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        d1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        d1Text3.setForeground(new java.awt.Color(150, 150, 150));
+        d1Text3.setText(" D");
+        d1Text3.setAlignmentX(1.0F);
+        d1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d2.setLayer(d1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d2Layout = new javax.swing.GroupLayout(d2);
+        d2.setLayout(d2Layout);
+        d2Layout.setHorizontalGroup(
+            d2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        d2Layout.setVerticalGroup(
+            d2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d2Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(d1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(d2, gridBagConstraints);
+
+        e2.setBackground(new java.awt.Color(255, 255, 255));
+        e2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        e2.setForeground(new java.awt.Color(255, 255, 255));
+        e2.setOpaque(true);
+        e2.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        e1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        e1Text3.setForeground(new java.awt.Color(150, 150, 150));
+        e1Text3.setText(" E");
+        e1Text3.setAlignmentX(1.0F);
+        e1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        e2.setLayer(e1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout e2Layout = new javax.swing.GroupLayout(e2);
+        e2.setLayout(e2Layout);
+        e2Layout.setHorizontalGroup(
+            e2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(e1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        e2Layout.setVerticalGroup(
+            e2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e2Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(e1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(e2, gridBagConstraints);
+
+        a2.setBackground(new java.awt.Color(255, 255, 255));
+        a2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        a2.setForeground(new java.awt.Color(255, 255, 255));
+        a2.setOpaque(true);
+        a2.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        a1text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        a1text3.setForeground(new java.awt.Color(150, 150, 150));
+        a1text3.setText(" A");
+        a1text3.setAlignmentX(1.0F);
+        a1text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a2.setLayer(a1text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a2Layout = new javax.swing.GroupLayout(a2);
+        a2.setLayout(a2Layout);
+        a2Layout.setHorizontalGroup(
+            a2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        a2Layout.setVerticalGroup(
+            a2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a2Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(a1text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 14;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(a2, gridBagConstraints);
+
+        b2.setBackground(new java.awt.Color(255, 255, 255));
+        b2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        b2.setForeground(new java.awt.Color(255, 255, 255));
+        b2.setOpaque(true);
+        b2.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        b1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        b1Text5.setForeground(new java.awt.Color(150, 150, 150));
+        b1Text5.setText(" B");
+        b1Text5.setAlignmentX(1.0F);
+        b1Text5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        b2.setLayer(b1Text5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout b2Layout = new javax.swing.GroupLayout(b2);
+        b2.setLayout(b2Layout);
+        b2Layout.setHorizontalGroup(
+            b2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(b1Text5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        b2Layout.setVerticalGroup(
+            b2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b2Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(b1Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 15;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(b2, gridBagConstraints);
+
+        f2.setBackground(new java.awt.Color(255, 255, 255));
+        f2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        f2.setForeground(new java.awt.Color(255, 255, 255));
+        f2.setOpaque(true);
+        f2.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        f1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        f1Text3.setForeground(new java.awt.Color(150, 150, 150));
+        f1Text3.setText(" F");
+        f1Text3.setAlignmentX(1.0F);
+        f1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f2.setLayer(f1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f2Layout = new javax.swing.GroupLayout(f2);
+        f2.setLayout(f2Layout);
+        f2Layout.setHorizontalGroup(
+            f2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        f2Layout.setVerticalGroup(
+            f2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f2Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(f1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(f2, gridBagConstraints);
+
+        g2.setBackground(new java.awt.Color(255, 255, 255));
+        g2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        g2.setForeground(new java.awt.Color(255, 255, 255));
+        g2.setOpaque(true);
+        g2.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        g1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        g1Text3.setForeground(new java.awt.Color(150, 150, 150));
+        g1Text3.setText(" G");
+        g1Text3.setAlignmentX(1.0F);
+        g1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        g2.setLayer(g1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout g2Layout = new javax.swing.GroupLayout(g2);
+        g2.setLayout(g2Layout);
+        g2Layout.setHorizontalGroup(
+            g2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        g2Layout.setVerticalGroup(
+            g2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g2Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(g1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(g2, gridBagConstraints);
+
+        d1s.setBackground(new java.awt.Color(22, 22, 22));
+        d1s.setForeground(new java.awt.Color(255, 255, 255));
+        d1s.setOpaque(true);
+        d1s.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        d1sharpText1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        d1sharpText1.setForeground(new java.awt.Color(150, 150, 150));
+        d1sharpText1.setText("D#");
+        d1sharpText1.setAlignmentX(1.0F);
+        d1sharpText1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d1s.setLayer(d1sharpText1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d1sLayout = new javax.swing.GroupLayout(d1s);
+        d1s.setLayout(d1sLayout);
+        d1sLayout.setHorizontalGroup(
+            d1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1sharpText1, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        d1sLayout.setVerticalGroup(
+            d1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(d1sharpText1)
+                .addContainerGap())
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(d1s, gridBagConstraints);
+
+        c1s.setBackground(new java.awt.Color(22, 22, 22));
+        c1s.setForeground(new java.awt.Color(255, 255, 255));
+        c1s.setOpaque(true);
+        c1s.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        c1sharpText7.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        c1sharpText7.setForeground(new java.awt.Color(150, 150, 150));
+        c1sharpText7.setText("C#");
+        c1sharpText7.setAlignmentX(1.0F);
+        c1sharpText7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c1s.setLayer(c1sharpText7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c1sLayout = new javax.swing.GroupLayout(c1s);
+        c1s.setLayout(c1sLayout);
+        c1sLayout.setHorizontalGroup(
+            c1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1sharpText7, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        c1sLayout.setVerticalGroup(
+            c1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(c1sharpText7)
+                .addContainerGap())
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(c1s, gridBagConstraints);
+
+        f1s.setBackground(new java.awt.Color(22, 22, 22));
+        f1s.setForeground(new java.awt.Color(255, 255, 255));
+        f1s.setOpaque(true);
+        f1s.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        f1sharpText6.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        f1sharpText6.setForeground(new java.awt.Color(150, 150, 150));
+        f1sharpText6.setText("F#");
+        f1sharpText6.setAlignmentX(1.0F);
+        f1sharpText6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f1s.setLayer(f1sharpText6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f1sLayout = new javax.swing.GroupLayout(f1s);
+        f1s.setLayout(f1sLayout);
+        f1sLayout.setHorizontalGroup(
+            f1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1sharpText6, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        f1sLayout.setVerticalGroup(
+            f1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f1sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(f1sharpText6)
+                .addContainerGap())
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(f1s, gridBagConstraints);
+
+        a1s.setBackground(new java.awt.Color(22, 22, 22));
+        a1s.setForeground(new java.awt.Color(255, 255, 255));
+        a1s.setOpaque(true);
+        a1s.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        a1sharpText6.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        a1sharpText6.setForeground(new java.awt.Color(150, 150, 150));
+        a1sharpText6.setText("A#");
+        a1sharpText6.setAlignmentX(1.0F);
+        a1sharpText6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a1s.setLayer(a1sharpText6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a1sLayout = new javax.swing.GroupLayout(a1s);
+        a1s.setLayout(a1sLayout);
+        a1sLayout.setHorizontalGroup(
+            a1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1sharpText6, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        a1sLayout.setVerticalGroup(
+            a1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(a1sharpText6)
+                .addContainerGap())
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(a1s, gridBagConstraints);
+
+        g1s.setBackground(new java.awt.Color(22, 22, 22));
+        g1s.setForeground(new java.awt.Color(255, 255, 255));
+        g1s.setOpaque(true);
+        g1s.setPreferredSize(new java.awt.Dimension(15, 90));
+
+        g1sharpText6.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        g1sharpText6.setForeground(new java.awt.Color(150, 150, 150));
+        g1sharpText6.setText("G#");
+        g1sharpText6.setAlignmentX(1.0F);
+        g1sharpText6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        g1s.setLayer(g1sharpText6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout g1sLayout = new javax.swing.GroupLayout(g1s);
+        g1s.setLayout(g1sLayout);
+        g1sLayout.setHorizontalGroup(
+            g1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(g1sharpText6, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+        );
+        g1sLayout.setVerticalGroup(
+            g1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g1sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(g1sharpText6)
+                .addContainerGap())
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        keyboardPanel.add(g1s, gridBagConstraints);
+
+        c1.setBackground(new java.awt.Color(255, 255, 255));
+        c1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        c1.setForeground(new java.awt.Color(255, 255, 255));
+        c1.setOpaque(true);
+        c1.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        c1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        c1Text6.setForeground(new java.awt.Color(150, 150, 150));
+        c1Text6.setText(" C");
+        c1Text6.setAlignmentX(1.0F);
+        c1Text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        c1.setLayer(c1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout c1Layout = new javax.swing.GroupLayout(c1);
+        c1.setLayout(c1Layout);
+        c1Layout.setHorizontalGroup(
+            c1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(c1Text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        c1Layout.setVerticalGroup(
+            c1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(c1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(c1, gridBagConstraints);
+
+        d1.setBackground(new java.awt.Color(255, 255, 255));
+        d1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        d1.setForeground(new java.awt.Color(255, 255, 255));
+        d1.setOpaque(true);
+        d1.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        d1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        d1Text6.setForeground(new java.awt.Color(150, 150, 150));
+        d1Text6.setText(" D");
+        d1Text6.setAlignmentX(1.0F);
+        d1Text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        d1.setLayer(d1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout d1Layout = new javax.swing.GroupLayout(d1);
+        d1.setLayout(d1Layout);
+        d1Layout.setHorizontalGroup(
+            d1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(d1Text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        d1Layout.setVerticalGroup(
+            d1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(d1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(d1, gridBagConstraints);
+
+        e1.setBackground(new java.awt.Color(255, 255, 255));
+        e1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        e1.setForeground(new java.awt.Color(255, 255, 255));
+        e1.setOpaque(true);
+        e1.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        e1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        e1Text6.setForeground(new java.awt.Color(150, 150, 150));
+        e1Text6.setText(" E");
+        e1Text6.setAlignmentX(1.0F);
+        e1Text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        e1.setLayer(e1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout e1Layout = new javax.swing.GroupLayout(e1);
+        e1.setLayout(e1Layout);
+        e1Layout.setHorizontalGroup(
+            e1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(e1Text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        e1Layout.setVerticalGroup(
+            e1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e1Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(e1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(e1, gridBagConstraints);
+
+        a1.setBackground(new java.awt.Color(255, 255, 255));
+        a1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        a1.setForeground(new java.awt.Color(255, 255, 255));
+        a1.setOpaque(true);
+        a1.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        a1text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        a1text6.setForeground(new java.awt.Color(150, 150, 150));
+        a1text6.setText(" A");
+        a1text6.setAlignmentX(1.0F);
+        a1text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        a1.setLayer(a1text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout a1Layout = new javax.swing.GroupLayout(a1);
+        a1.setLayout(a1Layout);
+        a1Layout.setHorizontalGroup(
+            a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(a1text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        a1Layout.setVerticalGroup(
+            a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(a1text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(a1, gridBagConstraints);
+
+        b1.setBackground(new java.awt.Color(255, 255, 255));
+        b1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        b1.setForeground(new java.awt.Color(255, 255, 255));
+        b1.setOpaque(true);
+        b1.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        b1Text8.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        b1Text8.setForeground(new java.awt.Color(150, 150, 150));
+        b1Text8.setText(" B");
+        b1Text8.setAlignmentX(1.0F);
+        b1Text8.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        b1.setLayer(b1Text8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout b1Layout = new javax.swing.GroupLayout(b1);
+        b1.setLayout(b1Layout);
+        b1Layout.setHorizontalGroup(
+            b1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(b1Text8, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        b1Layout.setVerticalGroup(
+            b1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b1Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(b1Text8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(b1, gridBagConstraints);
+
+        f1.setBackground(new java.awt.Color(255, 255, 255));
+        f1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        f1.setForeground(new java.awt.Color(255, 255, 255));
+        f1.setOpaque(true);
+        f1.setPreferredSize(new java.awt.Dimension(25, 150));
+
+        f1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        f1Text6.setForeground(new java.awt.Color(150, 150, 150));
+        f1Text6.setText(" F");
+        f1Text6.setAlignmentX(1.0F);
+        f1Text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+
+        f1.setLayer(f1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout f1Layout = new javax.swing.GroupLayout(f1);
+        f1.setLayout(f1Layout);
+        f1Layout.setHorizontalGroup(
+            f1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(f1Text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        f1Layout.setVerticalGroup(
+            f1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f1Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(f1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        keyboardPanel.add(f1, gridBagConstraints);
+
+        g1.setBackground(new java.awt.Color(255, 255, 255));
+        g1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        g1.setForeground(new java.awt.Color(255, 255, 255));
+        g1.setOpaque(true);
+        g1.setPreferredSize(new java.awt.Dimension(25, 150));
+
         g1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         g1Text6.setForeground(new java.awt.Color(150, 150, 150));
         g1Text6.setText(" G");
         g1Text6.setAlignmentX(1.0F);
         g1Text6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        g7.setLayer(g1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        g1.setLayer(g1Text6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout g7Layout = new javax.swing.GroupLayout(g7);
-        g7.setLayout(g7Layout);
-        g7Layout.setHorizontalGroup(
-            g7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout g1Layout = new javax.swing.GroupLayout(g1);
+        g1.setLayout(g1Layout);
+        g1Layout.setHorizontalGroup(
+            g1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(g1Text6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        g7Layout.setVerticalGroup(
-            g7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(g1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        g1Layout.setVerticalGroup(
+            g1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g1Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(g1Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(g7, gridBagConstraints);
+        keyboardPanel.add(g1, gridBagConstraints);
 
-        d1sharp8.setBackground(new java.awt.Color(22, 22, 22));
-        d1sharp8.setForeground(new java.awt.Color(255, 255, 255));
-        d1sharp8.setOpaque(true);
-        d1sharp8.setPreferredSize(new java.awt.Dimension(15, 90));
+        d3s.setBackground(new java.awt.Color(22, 22, 22));
+        d3s.setForeground(new java.awt.Color(255, 255, 255));
+        d3s.setOpaque(true);
+        d3s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         d1sharpText8.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         d1sharpText8.setForeground(new java.awt.Color(150, 150, 150));
@@ -2946,35 +3037,35 @@ public class VirtualPiano extends javax.swing.JFrame {
         d1sharpText8.setAlignmentX(1.0F);
         d1sharpText8.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        d1sharp8.setLayer(d1sharpText8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        d3s.setLayer(d1sharpText8, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout d1sharp8Layout = new javax.swing.GroupLayout(d1sharp8);
-        d1sharp8.setLayout(d1sharp8Layout);
-        d1sharp8Layout.setHorizontalGroup(
-            d1sharp8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout d3sLayout = new javax.swing.GroupLayout(d3s);
+        d3s.setLayout(d3sLayout);
+        d3sLayout.setHorizontalGroup(
+            d3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(d1sharpText8, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        d1sharp8Layout.setVerticalGroup(
-            d1sharp8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1sharp8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        d3sLayout.setVerticalGroup(
+            d3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d3sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(d1sharpText8)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 17;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(d1sharp8, gridBagConstraints);
+        keyboardPanel.add(d3s, gridBagConstraints);
 
-        c1sharp8.setBackground(new java.awt.Color(22, 22, 22));
-        c1sharp8.setForeground(new java.awt.Color(255, 255, 255));
-        c1sharp8.setOpaque(true);
-        c1sharp8.setPreferredSize(new java.awt.Dimension(15, 90));
+        c3s.setBackground(new java.awt.Color(22, 22, 22));
+        c3s.setForeground(new java.awt.Color(255, 255, 255));
+        c3s.setOpaque(true);
+        c3s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         c1sharpText8.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         c1sharpText8.setForeground(new java.awt.Color(150, 150, 150));
@@ -2982,35 +3073,35 @@ public class VirtualPiano extends javax.swing.JFrame {
         c1sharpText8.setAlignmentX(1.0F);
         c1sharpText8.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        c1sharp8.setLayer(c1sharpText8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        c3s.setLayer(c1sharpText8, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout c1sharp8Layout = new javax.swing.GroupLayout(c1sharp8);
-        c1sharp8.setLayout(c1sharp8Layout);
-        c1sharp8Layout.setHorizontalGroup(
-            c1sharp8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout c3sLayout = new javax.swing.GroupLayout(c3s);
+        c3s.setLayout(c3sLayout);
+        c3sLayout.setHorizontalGroup(
+            c3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(c1sharpText8, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        c1sharp8Layout.setVerticalGroup(
-            c1sharp8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1sharp8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        c3sLayout.setVerticalGroup(
+            c3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c3sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(c1sharpText8)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 16;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(c1sharp8, gridBagConstraints);
+        keyboardPanel.add(c3s, gridBagConstraints);
 
-        f1sharp7.setBackground(new java.awt.Color(22, 22, 22));
-        f1sharp7.setForeground(new java.awt.Color(255, 255, 255));
-        f1sharp7.setOpaque(true);
-        f1sharp7.setPreferredSize(new java.awt.Dimension(15, 90));
+        f3s.setBackground(new java.awt.Color(22, 22, 22));
+        f3s.setForeground(new java.awt.Color(255, 255, 255));
+        f3s.setOpaque(true);
+        f3s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         f1sharpText7.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         f1sharpText7.setForeground(new java.awt.Color(150, 150, 150));
@@ -3018,35 +3109,35 @@ public class VirtualPiano extends javax.swing.JFrame {
         f1sharpText7.setAlignmentX(1.0F);
         f1sharpText7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        f1sharp7.setLayer(f1sharpText7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        f3s.setLayer(f1sharpText7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout f1sharp7Layout = new javax.swing.GroupLayout(f1sharp7);
-        f1sharp7.setLayout(f1sharp7Layout);
-        f1sharp7Layout.setHorizontalGroup(
-            f1sharp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout f3sLayout = new javax.swing.GroupLayout(f3s);
+        f3s.setLayout(f3sLayout);
+        f3sLayout.setHorizontalGroup(
+            f3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(f1sharpText7, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        f1sharp7Layout.setVerticalGroup(
-            f1sharp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f1sharp7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        f3sLayout.setVerticalGroup(
+            f3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f3sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(f1sharpText7)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 19;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(f1sharp7, gridBagConstraints);
+        keyboardPanel.add(f3s, gridBagConstraints);
 
-        a1sharp7.setBackground(new java.awt.Color(22, 22, 22));
-        a1sharp7.setForeground(new java.awt.Color(255, 255, 255));
-        a1sharp7.setOpaque(true);
-        a1sharp7.setPreferredSize(new java.awt.Dimension(15, 90));
+        a3s.setBackground(new java.awt.Color(22, 22, 22));
+        a3s.setForeground(new java.awt.Color(255, 255, 255));
+        a3s.setOpaque(true);
+        a3s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         a1sharpText7.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         a1sharpText7.setForeground(new java.awt.Color(150, 150, 150));
@@ -3054,35 +3145,35 @@ public class VirtualPiano extends javax.swing.JFrame {
         a1sharpText7.setAlignmentX(1.0F);
         a1sharpText7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        a1sharp7.setLayer(a1sharpText7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        a3s.setLayer(a1sharpText7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout a1sharp7Layout = new javax.swing.GroupLayout(a1sharp7);
-        a1sharp7.setLayout(a1sharp7Layout);
-        a1sharp7Layout.setHorizontalGroup(
-            a1sharp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout a3sLayout = new javax.swing.GroupLayout(a3s);
+        a3s.setLayout(a3sLayout);
+        a3sLayout.setHorizontalGroup(
+            a3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(a1sharpText7, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        a1sharp7Layout.setVerticalGroup(
-            a1sharp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a1sharp7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        a3sLayout.setVerticalGroup(
+            a3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a3sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(a1sharpText7)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 21;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(a1sharp7, gridBagConstraints);
+        keyboardPanel.add(a3s, gridBagConstraints);
 
-        jLayeredPane15.setBackground(new java.awt.Color(22, 22, 22));
-        jLayeredPane15.setForeground(new java.awt.Color(255, 255, 255));
-        jLayeredPane15.setOpaque(true);
-        jLayeredPane15.setPreferredSize(new java.awt.Dimension(15, 90));
+        g3s.setBackground(new java.awt.Color(22, 22, 22));
+        g3s.setForeground(new java.awt.Color(255, 255, 255));
+        g3s.setOpaque(true);
+        g3s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         g1sharpText7.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         g1sharpText7.setForeground(new java.awt.Color(150, 150, 150));
@@ -3090,36 +3181,36 @@ public class VirtualPiano extends javax.swing.JFrame {
         g1sharpText7.setAlignmentX(1.0F);
         g1sharpText7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        jLayeredPane15.setLayer(g1sharpText7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        g3s.setLayer(g1sharpText7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout jLayeredPane15Layout = new javax.swing.GroupLayout(jLayeredPane15);
-        jLayeredPane15.setLayout(jLayeredPane15Layout);
-        jLayeredPane15Layout.setHorizontalGroup(
-            jLayeredPane15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout g3sLayout = new javax.swing.GroupLayout(g3s);
+        g3s.setLayout(g3sLayout);
+        g3sLayout.setHorizontalGroup(
+            g3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(g1sharpText7, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
-        jLayeredPane15Layout.setVerticalGroup(
-            jLayeredPane15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane15Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        g3sLayout.setVerticalGroup(
+            g3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g3sLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(g1sharpText7)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 20;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        keyboardPanel.add(jLayeredPane15, gridBagConstraints);
+        keyboardPanel.add(g3s, gridBagConstraints);
 
-        c8.setBackground(new java.awt.Color(255, 255, 255));
-        c8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        c8.setForeground(new java.awt.Color(255, 255, 255));
-        c8.setOpaque(true);
-        c8.setPreferredSize(new java.awt.Dimension(25, 150));
+        c3.setBackground(new java.awt.Color(255, 255, 255));
+        c3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        c3.setForeground(new java.awt.Color(255, 255, 255));
+        c3.setOpaque(true);
+        c3.setPreferredSize(new java.awt.Dimension(25, 150));
 
         c1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         c1Text7.setForeground(new java.awt.Color(150, 150, 150));
@@ -3127,34 +3218,33 @@ public class VirtualPiano extends javax.swing.JFrame {
         c1Text7.setAlignmentX(1.0F);
         c1Text7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        c8.setLayer(c1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        c3.setLayer(c1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout c8Layout = new javax.swing.GroupLayout(c8);
-        c8.setLayout(c8Layout);
-        c8Layout.setHorizontalGroup(
-            c8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout c3Layout = new javax.swing.GroupLayout(c3);
+        c3.setLayout(c3Layout);
+        c3Layout.setHorizontalGroup(
+            c3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(c1Text7, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        c8Layout.setVerticalGroup(
-            c8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(c1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        c3Layout.setVerticalGroup(
+            c3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c3Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(c1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 16;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(c8, gridBagConstraints);
+        keyboardPanel.add(c3, gridBagConstraints);
 
-        d8.setBackground(new java.awt.Color(255, 255, 255));
-        d8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        d8.setForeground(new java.awt.Color(255, 255, 255));
-        d8.setOpaque(true);
-        d8.setPreferredSize(new java.awt.Dimension(25, 150));
+        d3.setBackground(new java.awt.Color(255, 255, 255));
+        d3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        d3.setForeground(new java.awt.Color(255, 255, 255));
+        d3.setOpaque(true);
+        d3.setPreferredSize(new java.awt.Dimension(25, 150));
 
         d1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         d1Text7.setForeground(new java.awt.Color(150, 150, 150));
@@ -3162,34 +3252,33 @@ public class VirtualPiano extends javax.swing.JFrame {
         d1Text7.setAlignmentX(1.0F);
         d1Text7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        d8.setLayer(d1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        d3.setLayer(d1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout d8Layout = new javax.swing.GroupLayout(d8);
-        d8.setLayout(d8Layout);
-        d8Layout.setHorizontalGroup(
-            d8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout d3Layout = new javax.swing.GroupLayout(d3);
+        d3.setLayout(d3Layout);
+        d3Layout.setHorizontalGroup(
+            d3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(d1Text7, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        d8Layout.setVerticalGroup(
-            d8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(d1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        d3Layout.setVerticalGroup(
+            d3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d3Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(d1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 17;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(d8, gridBagConstraints);
+        keyboardPanel.add(d3, gridBagConstraints);
 
-        e8.setBackground(new java.awt.Color(255, 255, 255));
-        e8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        e8.setForeground(new java.awt.Color(255, 255, 255));
-        e8.setOpaque(true);
-        e8.setPreferredSize(new java.awt.Dimension(25, 150));
+        e3.setBackground(new java.awt.Color(255, 255, 255));
+        e3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        e3.setForeground(new java.awt.Color(255, 255, 255));
+        e3.setOpaque(true);
+        e3.setPreferredSize(new java.awt.Dimension(25, 150));
 
         e1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         e1Text7.setForeground(new java.awt.Color(150, 150, 150));
@@ -3197,34 +3286,33 @@ public class VirtualPiano extends javax.swing.JFrame {
         e1Text7.setAlignmentX(1.0F);
         e1Text7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        e8.setLayer(e1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        e3.setLayer(e1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout e8Layout = new javax.swing.GroupLayout(e8);
-        e8.setLayout(e8Layout);
-        e8Layout.setHorizontalGroup(
-            e8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout e3Layout = new javax.swing.GroupLayout(e3);
+        e3.setLayout(e3Layout);
+        e3Layout.setHorizontalGroup(
+            e3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(e1Text7, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        e8Layout.setVerticalGroup(
-            e8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(e1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        e3Layout.setVerticalGroup(
+            e3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, e3Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(e1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 18;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(e8, gridBagConstraints);
+        keyboardPanel.add(e3, gridBagConstraints);
 
-        a8.setBackground(new java.awt.Color(255, 255, 255));
-        a8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        a8.setForeground(new java.awt.Color(255, 255, 255));
-        a8.setOpaque(true);
-        a8.setPreferredSize(new java.awt.Dimension(25, 150));
+        a3.setBackground(new java.awt.Color(255, 255, 255));
+        a3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        a3.setForeground(new java.awt.Color(255, 255, 255));
+        a3.setOpaque(true);
+        a3.setPreferredSize(new java.awt.Dimension(25, 150));
 
         a1text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         a1text7.setForeground(new java.awt.Color(150, 150, 150));
@@ -3232,34 +3320,33 @@ public class VirtualPiano extends javax.swing.JFrame {
         a1text7.setAlignmentX(1.0F);
         a1text7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        a8.setLayer(a1text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        a3.setLayer(a1text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout a8Layout = new javax.swing.GroupLayout(a8);
-        a8.setLayout(a8Layout);
-        a8Layout.setHorizontalGroup(
-            a8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout a3Layout = new javax.swing.GroupLayout(a3);
+        a3.setLayout(a3Layout);
+        a3Layout.setHorizontalGroup(
+            a3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(a1text7, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        a8Layout.setVerticalGroup(
-            a8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(a1text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        a3Layout.setVerticalGroup(
+            a3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, a3Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(a1text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 21;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(a8, gridBagConstraints);
+        keyboardPanel.add(a3, gridBagConstraints);
 
-        b10.setBackground(new java.awt.Color(255, 255, 255));
-        b10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        b10.setForeground(new java.awt.Color(255, 255, 255));
-        b10.setOpaque(true);
-        b10.setPreferredSize(new java.awt.Dimension(25, 150));
+        b3.setBackground(new java.awt.Color(255, 255, 255));
+        b3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        b3.setForeground(new java.awt.Color(255, 255, 255));
+        b3.setOpaque(true);
+        b3.setPreferredSize(new java.awt.Dimension(25, 150));
 
         b1Text9.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         b1Text9.setForeground(new java.awt.Color(150, 150, 150));
@@ -3267,34 +3354,33 @@ public class VirtualPiano extends javax.swing.JFrame {
         b1Text9.setAlignmentX(1.0F);
         b1Text9.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        b10.setLayer(b1Text9, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        b3.setLayer(b1Text9, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout b10Layout = new javax.swing.GroupLayout(b10);
-        b10.setLayout(b10Layout);
-        b10Layout.setHorizontalGroup(
-            b10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout b3Layout = new javax.swing.GroupLayout(b3);
+        b3.setLayout(b3Layout);
+        b3Layout.setHorizontalGroup(
+            b3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(b1Text9, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        b10Layout.setVerticalGroup(
-            b10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b10Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(b1Text9, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        b3Layout.setVerticalGroup(
+            b3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b3Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(b1Text9, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 22;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(b10, gridBagConstraints);
+        keyboardPanel.add(b3, gridBagConstraints);
 
-        f8.setBackground(new java.awt.Color(255, 255, 255));
-        f8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        f8.setForeground(new java.awt.Color(255, 255, 255));
-        f8.setOpaque(true);
-        f8.setPreferredSize(new java.awt.Dimension(25, 150));
+        f3.setBackground(new java.awt.Color(255, 255, 255));
+        f3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        f3.setForeground(new java.awt.Color(255, 255, 255));
+        f3.setOpaque(true);
+        f3.setPreferredSize(new java.awt.Dimension(25, 150));
 
         f1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         f1Text7.setForeground(new java.awt.Color(150, 150, 150));
@@ -3302,34 +3388,33 @@ public class VirtualPiano extends javax.swing.JFrame {
         f1Text7.setAlignmentX(1.0F);
         f1Text7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        f8.setLayer(f1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        f3.setLayer(f1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout f8Layout = new javax.swing.GroupLayout(f8);
-        f8.setLayout(f8Layout);
-        f8Layout.setHorizontalGroup(
-            f8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout f3Layout = new javax.swing.GroupLayout(f3);
+        f3.setLayout(f3Layout);
+        f3Layout.setHorizontalGroup(
+            f3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(f1Text7, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        f8Layout.setVerticalGroup(
-            f8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(f1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        f3Layout.setVerticalGroup(
+            f3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f3Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(f1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 19;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(f8, gridBagConstraints);
+        keyboardPanel.add(f3, gridBagConstraints);
 
-        g8.setBackground(new java.awt.Color(255, 255, 255));
-        g8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        g8.setForeground(new java.awt.Color(255, 255, 255));
-        g8.setOpaque(true);
-        g8.setPreferredSize(new java.awt.Dimension(25, 150));
+        g3.setBackground(new java.awt.Color(255, 255, 255));
+        g3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        g3.setForeground(new java.awt.Color(255, 255, 255));
+        g3.setOpaque(true);
+        g3.setPreferredSize(new java.awt.Dimension(25, 150));
 
         g1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         g1Text7.setForeground(new java.awt.Color(150, 150, 150));
@@ -3337,28 +3422,27 @@ public class VirtualPiano extends javax.swing.JFrame {
         g1Text7.setAlignmentX(1.0F);
         g1Text7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        g8.setLayer(g1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        g3.setLayer(g1Text7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout g8Layout = new javax.swing.GroupLayout(g8);
-        g8.setLayout(g8Layout);
-        g8Layout.setHorizontalGroup(
-            g8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout g3Layout = new javax.swing.GroupLayout(g3);
+        g3.setLayout(g3Layout);
+        g3Layout.setHorizontalGroup(
+            g3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(g1Text7, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        g8Layout.setVerticalGroup(
-            g8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(g1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        g3Layout.setVerticalGroup(
+            g3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, g3Layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(g1Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 20;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(g8, gridBagConstraints);
+        keyboardPanel.add(g3, gridBagConstraints);
 
         d1sharp9.setBackground(new java.awt.Color(22, 22, 22));
         d1sharp9.setForeground(new java.awt.Color(255, 255, 255));
@@ -3382,12 +3466,12 @@ public class VirtualPiano extends javax.swing.JFrame {
         d1sharp9Layout.setVerticalGroup(
             d1sharp9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, d1sharp9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(d1sharpText9)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 21;
@@ -3416,12 +3500,12 @@ public class VirtualPiano extends javax.swing.JFrame {
         c1sharp9Layout.setVerticalGroup(
             c1sharp9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c1sharp9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(c1sharpText9)
                 .addContainerGap())
         );
 
-        d1sharpText.setHorizontalAlignment(SwingConstants.CENTER);
+        d1sharpText1.setHorizontalAlignment(SwingConstants.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 22;
@@ -3501,15 +3585,10 @@ public class VirtualPiano extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLayeredPane a0;
+    private javax.swing.JLayeredPane a0s;
     private javax.swing.JLayeredPane a1;
-    private javax.swing.JLayeredPane a1sharp;
-    private javax.swing.JLayeredPane a1sharp1;
-    private javax.swing.JLayeredPane a1sharp2;
-    private javax.swing.JLayeredPane a1sharp3;
-    private javax.swing.JLayeredPane a1sharp4;
-    private javax.swing.JLayeredPane a1sharp5;
-    private javax.swing.JLayeredPane a1sharp6;
-    private javax.swing.JLayeredPane a1sharp7;
+    private javax.swing.JLayeredPane a1s;
     private javax.swing.JLabel a1sharpText;
     private javax.swing.JLabel a1sharpText1;
     private javax.swing.JLabel a1sharpText2;
@@ -3527,17 +3606,20 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JLabel a1text6;
     private javax.swing.JLabel a1text7;
     private javax.swing.JLayeredPane a2;
+    private javax.swing.JLayeredPane a2s;
     private javax.swing.JLayeredPane a3;
+    private javax.swing.JLayeredPane a3s;
     private javax.swing.JLayeredPane a4;
+    private javax.swing.JLayeredPane a4s;
     private javax.swing.JLayeredPane a5;
+    private javax.swing.JLayeredPane a5s;
     private javax.swing.JLayeredPane a6;
+    private javax.swing.JLayeredPane a6s;
     private javax.swing.JLayeredPane a7;
-    private javax.swing.JLayeredPane a8;
+    private javax.swing.JLayeredPane a7s;
+    private javax.swing.JLayeredPane b0;
     private javax.swing.JLayeredPane b1;
-    private javax.swing.JLayeredPane b10;
     private javax.swing.JLabel b1Text;
-    private javax.swing.JLabel b1Text1;
-    private javax.swing.JLabel b1Text2;
     private javax.swing.JLabel b1Text3;
     private javax.swing.JLabel b1Text4;
     private javax.swing.JLabel b1Text5;
@@ -3551,8 +3633,6 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JLayeredPane b5;
     private javax.swing.JLayeredPane b6;
     private javax.swing.JLayeredPane b7;
-    private javax.swing.JLayeredPane b8;
-    private javax.swing.JLayeredPane b9;
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JLayeredPane c1;
     private javax.swing.JLabel c1Text;
@@ -3563,13 +3643,7 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JLabel c1Text5;
     private javax.swing.JLabel c1Text6;
     private javax.swing.JLabel c1Text7;
-    private javax.swing.JLayeredPane c1sharp1;
-    private javax.swing.JLayeredPane c1sharp2;
-    private javax.swing.JLayeredPane c1sharp3;
-    private javax.swing.JLayeredPane c1sharp4;
-    private javax.swing.JLayeredPane c1sharp5;
-    private javax.swing.JLayeredPane c1sharp7;
-    private javax.swing.JLayeredPane c1sharp8;
+    private javax.swing.JLayeredPane c1s;
     private javax.swing.JLayeredPane c1sharp9;
     private javax.swing.JLabel c1sharpText1;
     private javax.swing.JLabel c1sharpText2;
@@ -3579,13 +3653,20 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JLabel c1sharpText7;
     private javax.swing.JLabel c1sharpText8;
     private javax.swing.JLabel c1sharpText9;
-    private javax.swing.JLayeredPane c2;
+    private javax.swing.JLayeredPane c2s;
     private javax.swing.JLayeredPane c3;
+    private javax.swing.JLayeredPane c3s;
     private javax.swing.JLayeredPane c4;
+    private javax.swing.JLayeredPane c4d;
+    private javax.swing.JLayeredPane c4s;
     private javax.swing.JLayeredPane c5;
+    private javax.swing.JLayeredPane c5s;
     private javax.swing.JLayeredPane c6;
+    private javax.swing.JLayeredPane c6s;
     private javax.swing.JLayeredPane c7;
+    private javax.swing.JLayeredPane c7s;
     private javax.swing.JLayeredPane c8;
+    private javax.swing.JLayeredPane d1;
     private javax.swing.JLabel d1Text1;
     private javax.swing.JLabel d1Text2;
     private javax.swing.JLabel d1Text3;
@@ -3593,29 +3674,29 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JLabel d1Text5;
     private javax.swing.JLabel d1Text6;
     private javax.swing.JLabel d1Text7;
-    private javax.swing.JLayeredPane d1sharp1;
-    private javax.swing.JLayeredPane d1sharp2;
-    private javax.swing.JLayeredPane d1sharp3;
-    private javax.swing.JLayeredPane d1sharp4;
-    private javax.swing.JLayeredPane d1sharp5;
-    private javax.swing.JLayeredPane d1sharp7;
-    private javax.swing.JLayeredPane d1sharp8;
+    private javax.swing.JLayeredPane d1s;
     private javax.swing.JLayeredPane d1sharp9;
     private javax.swing.JLabel d1sharpText1;
+    private javax.swing.JLabel d1sharpText12;
     private javax.swing.JLabel d1sharpText2;
     private javax.swing.JLabel d1sharpText3;
     private javax.swing.JLabel d1sharpText4;
     private javax.swing.JLabel d1sharpText5;
-    private javax.swing.JLabel d1sharpText7;
     private javax.swing.JLabel d1sharpText8;
     private javax.swing.JLabel d1sharpText9;
     private javax.swing.JLayeredPane d2;
+    private javax.swing.JLayeredPane d2s;
     private javax.swing.JLayeredPane d3;
+    private javax.swing.JLayeredPane d3s;
     private javax.swing.JLayeredPane d4;
+    private javax.swing.JLayeredPane d4s;
     private javax.swing.JLayeredPane d5;
+    private javax.swing.JLayeredPane d5s;
     private javax.swing.JLayeredPane d6;
+    private javax.swing.JLayeredPane d6s;
     private javax.swing.JLayeredPane d7;
-    private javax.swing.JLayeredPane d8;
+    private javax.swing.JLayeredPane d7s;
+    private javax.swing.JLayeredPane e1;
     private javax.swing.JLabel e1Text1;
     private javax.swing.JLabel e1Text2;
     private javax.swing.JLabel e1Text3;
@@ -3629,7 +3710,7 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JLayeredPane e5;
     private javax.swing.JLayeredPane e6;
     private javax.swing.JLayeredPane e7;
-    private javax.swing.JLayeredPane e8;
+    private javax.swing.JLayeredPane f1;
     private javax.swing.JLabel f1Text1;
     private javax.swing.JLabel f1Text2;
     private javax.swing.JLabel f1Text3;
@@ -3637,13 +3718,7 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JLabel f1Text5;
     private javax.swing.JLabel f1Text6;
     private javax.swing.JLabel f1Text7;
-    private javax.swing.JLayeredPane f1sharp1;
-    private javax.swing.JLayeredPane f1sharp2;
-    private javax.swing.JLayeredPane f1sharp3;
-    private javax.swing.JLayeredPane f1sharp4;
-    private javax.swing.JLayeredPane f1sharp5;
-    private javax.swing.JLayeredPane f1sharp6;
-    private javax.swing.JLayeredPane f1sharp7;
+    private javax.swing.JLayeredPane f1s;
     private javax.swing.JLabel f1sharpText1;
     private javax.swing.JLabel f1sharpText2;
     private javax.swing.JLabel f1sharpText3;
@@ -3652,12 +3727,18 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JLabel f1sharpText6;
     private javax.swing.JLabel f1sharpText7;
     private javax.swing.JLayeredPane f2;
+    private javax.swing.JLayeredPane f2s;
     private javax.swing.JLayeredPane f3;
+    private javax.swing.JLayeredPane f3s;
     private javax.swing.JLayeredPane f4;
+    private javax.swing.JLayeredPane f4s;
     private javax.swing.JLayeredPane f5;
+    private javax.swing.JLayeredPane f5s;
     private javax.swing.JLayeredPane f6;
+    private javax.swing.JLayeredPane f6s;
     private javax.swing.JLayeredPane f7;
-    private javax.swing.JLayeredPane f8;
+    private javax.swing.JLayeredPane f7s;
+    private javax.swing.JLayeredPane g1;
     private javax.swing.JLabel g1Text1;
     private javax.swing.JLabel g1Text2;
     private javax.swing.JLabel g1Text3;
@@ -3665,6 +3746,7 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JLabel g1Text5;
     private javax.swing.JLabel g1Text6;
     private javax.swing.JLabel g1Text7;
+    private javax.swing.JLayeredPane g1s;
     private javax.swing.JLabel g1sharpText1;
     private javax.swing.JLabel g1sharpText2;
     private javax.swing.JLabel g1sharpText3;
@@ -3673,19 +3755,17 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JLabel g1sharpText6;
     private javax.swing.JLabel g1sharpText7;
     private javax.swing.JLayeredPane g2;
+    private javax.swing.JLayeredPane g2s;
     private javax.swing.JLayeredPane g3;
+    private javax.swing.JLayeredPane g3s;
     private javax.swing.JLayeredPane g4;
+    private javax.swing.JLayeredPane g4s;
     private javax.swing.JLayeredPane g5;
+    private javax.swing.JLayeredPane g5s;
     private javax.swing.JLayeredPane g6;
+    private javax.swing.JLayeredPane g6s;
     private javax.swing.JLayeredPane g7;
-    private javax.swing.JLayeredPane g8;
-    private javax.swing.JLayeredPane jLayeredPane10;
-    private javax.swing.JLayeredPane jLayeredPane11;
-    private javax.swing.JLayeredPane jLayeredPane12;
-    private javax.swing.JLayeredPane jLayeredPane13;
-    private javax.swing.JLayeredPane jLayeredPane14;
-    private javax.swing.JLayeredPane jLayeredPane15;
-    private javax.swing.JLayeredPane jLayeredPane9;
+    private javax.swing.JLayeredPane g7s;
     private javax.swing.JPanel jPanel47;
     private javax.swing.JPanel keyboardPanel;
     // End of variables declaration//GEN-END:variables

@@ -5,10 +5,10 @@
         <group>
             <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/VirtualPiano/Note.java</file>
             <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/VirtualPiano/createSequenceAndSequencer.java</file>
+            <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/VirtualPiano/sendReceiver.java</file>
             <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/VirtualPiano/PDFtoSynthesia.java</file>
             <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/VirtualPiano/VirtualPiano.java</file>
             <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/VirtualPiano/initiateProgram.java</file>
-            <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/VirtualPiano/MIDImessages.java</file>
             <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/VirtualPiano/CustomReceiver.java</file>
         </group>
     </open-files>
