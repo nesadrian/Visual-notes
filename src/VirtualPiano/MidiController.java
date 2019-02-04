@@ -17,7 +17,7 @@ import javax.sound.midi.Transmitter;
  *
  * @author adria_000
  */
-public class sendReceiver {
+public class MidiController {
 
     public void insertAndSendReceiver (Sequencer sequencer, Receiver receiver) 
     throws InvalidMidiDataException, IOException, MidiUnavailableException {

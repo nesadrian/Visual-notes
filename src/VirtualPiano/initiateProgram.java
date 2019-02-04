@@ -26,13 +26,14 @@ public class initiateProgram  {
         //VirtualPiano piano = new VirtualPiano();
         //piano.setVisible(true);
         
+        File slowMidi = new File("C:\\Users\\adria_000\\Desktop\\Hes A Pirate (Easy Version).mid");
         File fileScuffed = new File("C:\\Users\\adria_000\\Desktop\\projects\\Pokémon Essentials original\\Audio\\BGM\\Battle Gym Leader.mid");
         
         CustomReceiver receiver = new CustomReceiver();
-        createSequenceAndSequencer newSequenceAndSequencer = new createSequenceAndSequencer();
-        sendReceiver sendRec = new sendReceiver();
+        midiSequencer newSequenceAndSequencer = new midiSequencer();
+        MidiController sendRec = new MidiController();
         
-        Sequence newSequence = newSequenceAndSequencer.createSequence(fileScuffed);
+        Sequence newSequence = newSequenceAndSequencer.createSequence(slowMidi);
         Sequencer newSequencer = newSequenceAndSequencer.createSequencer(newSequence);
         
         newSequencer.getSequence();

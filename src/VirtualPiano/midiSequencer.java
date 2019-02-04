@@ -17,7 +17,7 @@ import javax.sound.midi.Sequencer;
  *
  * @author adria_000
  */
-public class createSequenceAndSequencer {
+public class midiSequencer {
         
     checkFileValid checkFile = new checkFileValid();
     

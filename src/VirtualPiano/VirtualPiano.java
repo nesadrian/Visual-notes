@@ -30,111 +30,16 @@ public class VirtualPiano extends javax.swing.JFrame {
     
     initiateProgram initProgram = new initiateProgram();
     
-    List<JLayeredPane> keyList = new ArrayList() {{
-        add(a0);
-        add(a0s);
-        add(b0);
+    List<JLayeredPane> keyList = new ArrayList();
         
-        add(c8);
-        add(c1s);
-        add(d1);
-        add(d1s);
-        add(e1);
-        add(f1);
-        add(f1s);
-        add(g1);
-        add(g1s);
-        add(a1);
-        add(a1s);
-        add(b1);
-        
-        add(c6);
-        add(c2s);
-        add(d6);
-        add(d2s);
-        add(e6);
-        add(f6);
-        add(f2s);
-        add(g6);
-        add(g2s);
-        add(a2);
-        add(a2s);
-        add(b2);
-        
-        add(c4);
-        add(c3s);
-        add(d4);
-        add(d3s);
-        add(e4);
-        add(f4);
-        add(f3s);
-        add(g4);
-        add(g3s);
-        add(a3);
-        add(a3s);
-        add(b3);
-        
-        add(c4d);
-        add(c4s);
-        add(d2);
-        add(d4s);
-        add(e2);
-        add(f2);
-        add(f4s);
-        add(g2);
-        add(g4s);
-        add(a4);
-        add(a4s);
-        add(b6);
-        
-        add(c5);
-        add(c5s);
-        add(d5);
-        add(d5s);
-        add(e5);
-        add(f5);
-        add(f5s);
-        add(g5);
-        add(g5s);
-        add(a5);
-        add(a5s);
-        add(b4);
-        
-        add(c7);
-        add(c6s);
-        add(d7);
-        add(d6s);
-        add(e7);
-        add(f7);
-        add(f6s);
-        add(g7);
-        add(g6s);
-        add(a6);
-        add(a6s);
-        add(b2);
-        
-        add(c1);
-        add(c7s);
-        add(d7);
-        add(d7s);
-        add(e7);
-        add(f7);
-        add(f7s);
-        add(g7);
-        add(g7s);
-        add(a7);
-        add(a7s);
-        add(b5);
-        
-        add(c3);
-    }};
+    
     
     /**
      * Creates new form VirtualPiano
      */
     public VirtualPiano() throws InvalidMidiDataException, IOException, MidiUnavailableException {
         initComponents();
-        
+        initializeArrayList();
     }
 
     public JLayeredPane createNotePanel(int key) {
@@ -149,25 +54,159 @@ public class VirtualPiano extends javax.swing.JFrame {
         return panel;
     }
     
+    public void colorKey (int key, boolean keyOn) {
+        if(keyOn) {
+            //if() {
+                JLayeredPane panel = keyList.get(key);
+                panel.setBackground(Color.green);
+            //}
+        }
+        else if(keyOn == false) {
+            //if() {
+                JLayeredPane panel = keyList.get(key);
+                panel.setBackground(Color.white);
+            //}
+        }
+    }
+    
+    public void initializeArrayList() {
+        
+        keyList.add(a0);
+        keyList.add(a0s);
+        keyList.add(b0);
+        
+        keyList.add(c1);
+        keyList.add(c1s);
+        keyList.add(d1);
+        keyList.add(d1s);
+        keyList.add(e1);
+        keyList.add(f1);
+        keyList.add(f1s);
+        keyList.add(g1);
+        keyList.add(g1s);
+        keyList.add(a1);
+        keyList.add(a1s);
+        keyList.add(b1);
+        
+        keyList.add(c2);
+        keyList.add(c2s);
+        keyList.add(d2);
+        keyList.add(d2s);
+        keyList.add(e2);
+        keyList.add(f2);
+        keyList.add(f2s);
+        keyList.add(g2);
+        keyList.add(g2s);
+        keyList.add(a2);
+        keyList.add(a2s);
+        keyList.add(b2);
+        
+        keyList.add(c3);
+        keyList.add(c3s);
+        keyList.add(d3);
+        keyList.add(d3s);
+        keyList.add(e3);
+        keyList.add(f3);
+        keyList.add(f3s);
+        keyList.add(g3);
+        keyList.add(g3s);
+        keyList. add(a3);
+        keyList.add(a3s);
+        keyList.add(b3);
+        
+        keyList.add(c4);
+        keyList.add(c4s);
+        keyList.add(d4);
+        keyList.add(d4s);
+        keyList.add(e4);
+        keyList.add(f4);
+        keyList.add(f4s);
+        keyList.add(g4);
+        keyList.add(g4s);
+        keyList.add(a4);
+        keyList.add(a4s);
+        keyList.add(b4);
+
+        keyList.add(c5);
+        keyList.add(c5s);
+        keyList.add(d5);
+        keyList.add(d5s);
+        keyList.add(e5);
+        keyList.add(f5);
+        keyList.add(f5s);
+        keyList.add(g5);
+        keyList.add(g5s);
+        keyList.add(a5);
+        keyList.add(a5s);
+        keyList.add(b4);
+
+        keyList.add(c6);
+        keyList.add(c6s);
+        keyList.add(d6);
+        keyList.add(d6s);
+        keyList.add(e6);
+        keyList.add(f6);
+        keyList.add(f6s);
+        keyList.add(g6);
+        keyList.add(g6s);
+        keyList.add(a6);
+        keyList.add(a6s);
+        keyList.add(b6);
+
+        keyList.add(c7);
+        keyList.add(c7s);
+        keyList.add(d7);
+        keyList.add(d7s);
+        keyList.add(e7);
+        keyList.add(f7);
+        keyList.add(f7s);
+        keyList.add(g7);
+        keyList.add(g7s);
+        keyList.add(a7);
+        keyList.add(a7s);
+        keyList.add(b7);
+
+        keyList.add(c8);
+    }
+    
     public void keyDisplayNote (MidiMessage message) {
         
         ShortMessage sm = (ShortMessage) message;
+        int key = (sm.getData1()-21);
         int channel = sm.getChannel();
         
         if (sm.getCommand() == NOTE_ON) {
-                int key = sm.getData1();
-                int velocity = sm.getData2();
+            int velocity = sm.getData2();
                 
-                //JLayeredPane panel = keyList.get(key);
-                //panel.setBackground(Color.green);
+            if (key < 87) {
+                try {
+                colorKey(key, true);
+                System.out.println("Key on: " + key);
+                }
+                catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+            else if (key > 87) {
+                System.out.println("S");
+            }
                 //System.out.println(keyList.get(key) + " Velocity: " + velocity);
-                //setKeyColor(key);
-            } 
+        } 
             else if (sm.getCommand() == NOTE_OFF) {
-                int key = sm.getData1();
                 int velocity = sm.getData2();
                 
-                //panel.setBackground(Color.green);
+                if (key < 87) {
+                    try {
+                        colorKey(key, false);
+                        System.out.println("Key off: " + key);
+                    }
+                    catch (Exception e) {
+                        System.out.println(e);
+                    }
+                }
+                else if (key > 87) {
+                    System.out.println("S");
+                }
                 //System.out.println(key + " " + velocity);
             } 
             else {
@@ -305,7 +344,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a1sharpText3 = new javax.swing.JLabel();
         g2s = new javax.swing.JLayeredPane();
         g1sharpText3 = new javax.swing.JLabel();
-        c4d = new javax.swing.JLayeredPane();
+        c2 = new javax.swing.JLayeredPane();
         c1Text3 = new javax.swing.JLabel();
         d2 = new javax.swing.JLayeredPane();
         d1Text3 = new javax.swing.JLabel();
@@ -420,7 +459,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         c8.setForeground(new java.awt.Color(255, 255, 255));
         c8.setOpaque(true);
-        c8.setPreferredSize(new java.awt.Dimension(25, 150));
+        c8.setPreferredSize(null);
 
         c1Text.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         c1Text.setForeground(new java.awt.Color(150, 150, 150));
@@ -454,7 +493,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         a0.setForeground(new java.awt.Color(255, 255, 255));
         a0.setOpaque(true);
-        a0.setPreferredSize(new java.awt.Dimension(25, 150));
+        a0.setPreferredSize(null);
 
         a1text.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         a1text.setForeground(new java.awt.Color(150, 150, 150));
@@ -488,7 +527,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         b0.setForeground(new java.awt.Color(255, 255, 255));
         b0.setOpaque(true);
-        b0.setPreferredSize(new java.awt.Dimension(25, 150));
+        b0.setPreferredSize(null);
 
         b1Text.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         b1Text.setForeground(new java.awt.Color(150, 150, 150));
@@ -702,7 +741,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         c6.setForeground(new java.awt.Color(255, 255, 255));
         c6.setOpaque(true);
-        c6.setPreferredSize(new java.awt.Dimension(25, 150));
+        c6.setPreferredSize(null);
 
         c1Text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         c1Text1.setForeground(new java.awt.Color(150, 150, 150));
@@ -736,7 +775,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         d6.setForeground(new java.awt.Color(255, 255, 255));
         d6.setOpaque(true);
-        d6.setPreferredSize(new java.awt.Dimension(25, 150));
+        d6.setPreferredSize(null);
 
         d1Text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         d1Text1.setForeground(new java.awt.Color(150, 150, 150));
@@ -770,7 +809,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         e6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         e6.setForeground(new java.awt.Color(255, 255, 255));
         e6.setOpaque(true);
-        e6.setPreferredSize(new java.awt.Dimension(25, 150));
+        e6.setPreferredSize(null);
 
         e1Text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         e1Text1.setForeground(new java.awt.Color(150, 150, 150));
@@ -804,7 +843,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         a6.setForeground(new java.awt.Color(255, 255, 255));
         a6.setOpaque(true);
-        a6.setPreferredSize(new java.awt.Dimension(25, 150));
+        a6.setPreferredSize(null);
 
         a1text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         a1text1.setForeground(new java.awt.Color(150, 150, 150));
@@ -838,7 +877,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         b6.setForeground(new java.awt.Color(255, 255, 255));
         b6.setOpaque(true);
-        b6.setPreferredSize(new java.awt.Dimension(25, 150));
+        b6.setPreferredSize(null);
 
         b1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         b1Text3.setForeground(new java.awt.Color(150, 150, 150));
@@ -872,7 +911,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         f6.setForeground(new java.awt.Color(255, 255, 255));
         f6.setOpaque(true);
-        f6.setPreferredSize(new java.awt.Dimension(25, 150));
+        f6.setPreferredSize(null);
 
         f1Text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         f1Text1.setForeground(new java.awt.Color(150, 150, 150));
@@ -906,7 +945,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         g6.setForeground(new java.awt.Color(255, 255, 255));
         g6.setOpaque(true);
-        g6.setPreferredSize(new java.awt.Dimension(25, 150));
+        g6.setPreferredSize(null);
 
         g1Text1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         g1Text1.setForeground(new java.awt.Color(150, 150, 150));
@@ -1120,7 +1159,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         c5.setForeground(new java.awt.Color(255, 255, 255));
         c5.setOpaque(true);
-        c5.setPreferredSize(new java.awt.Dimension(25, 150));
+        c5.setPreferredSize(null);
 
         c1Text4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         c1Text4.setForeground(new java.awt.Color(150, 150, 150));
@@ -1154,7 +1193,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         d5.setForeground(new java.awt.Color(255, 255, 255));
         d5.setOpaque(true);
-        d5.setPreferredSize(new java.awt.Dimension(25, 150));
+        d5.setPreferredSize(null);
 
         d1Text4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         d1Text4.setForeground(new java.awt.Color(150, 150, 150));
@@ -1188,7 +1227,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         e5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         e5.setForeground(new java.awt.Color(255, 255, 255));
         e5.setOpaque(true);
-        e5.setPreferredSize(new java.awt.Dimension(25, 150));
+        e5.setPreferredSize(null);
 
         e1Text4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         e1Text4.setForeground(new java.awt.Color(150, 150, 150));
@@ -1222,7 +1261,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         a5.setForeground(new java.awt.Color(255, 255, 255));
         a5.setOpaque(true);
-        a5.setPreferredSize(new java.awt.Dimension(25, 150));
+        a5.setPreferredSize(null);
 
         a1text4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         a1text4.setForeground(new java.awt.Color(150, 150, 150));
@@ -1256,7 +1295,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         b5.setForeground(new java.awt.Color(255, 255, 255));
         b5.setOpaque(true);
-        b5.setPreferredSize(new java.awt.Dimension(25, 150));
+        b5.setPreferredSize(null);
 
         b1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         b1Text6.setForeground(new java.awt.Color(150, 150, 150));
@@ -1290,7 +1329,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         f5.setForeground(new java.awt.Color(255, 255, 255));
         f5.setOpaque(true);
-        f5.setPreferredSize(new java.awt.Dimension(25, 150));
+        f5.setPreferredSize(null);
 
         f1Text4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         f1Text4.setForeground(new java.awt.Color(150, 150, 150));
@@ -1324,7 +1363,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         g5.setForeground(new java.awt.Color(255, 255, 255));
         g5.setOpaque(true);
-        g5.setPreferredSize(new java.awt.Dimension(25, 150));
+        g5.setPreferredSize(null);
 
         g1Text4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         g1Text4.setForeground(new java.awt.Color(150, 150, 150));
@@ -1538,7 +1577,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         c7.setForeground(new java.awt.Color(255, 255, 255));
         c7.setOpaque(true);
-        c7.setPreferredSize(new java.awt.Dimension(25, 150));
+        c7.setPreferredSize(null);
 
         c1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         c1Text5.setForeground(new java.awt.Color(150, 150, 150));
@@ -1572,7 +1611,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         d7.setForeground(new java.awt.Color(255, 255, 255));
         d7.setOpaque(true);
-        d7.setPreferredSize(new java.awt.Dimension(25, 150));
+        d7.setPreferredSize(null);
 
         d1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         d1Text5.setForeground(new java.awt.Color(150, 150, 150));
@@ -1606,7 +1645,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         e7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         e7.setForeground(new java.awt.Color(255, 255, 255));
         e7.setOpaque(true);
-        e7.setPreferredSize(new java.awt.Dimension(25, 150));
+        e7.setPreferredSize(null);
 
         e1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         e1Text5.setForeground(new java.awt.Color(150, 150, 150));
@@ -1640,7 +1679,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         a7.setForeground(new java.awt.Color(255, 255, 255));
         a7.setOpaque(true);
-        a7.setPreferredSize(new java.awt.Dimension(25, 150));
+        a7.setPreferredSize(null);
 
         a1text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         a1text5.setForeground(new java.awt.Color(150, 150, 150));
@@ -1674,7 +1713,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         b7.setForeground(new java.awt.Color(255, 255, 255));
         b7.setOpaque(true);
-        b7.setPreferredSize(new java.awt.Dimension(25, 150));
+        b7.setPreferredSize(null);
 
         b1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         b1Text7.setForeground(new java.awt.Color(150, 150, 150));
@@ -1708,7 +1747,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         f7.setForeground(new java.awt.Color(255, 255, 255));
         f7.setOpaque(true);
-        f7.setPreferredSize(new java.awt.Dimension(25, 150));
+        f7.setPreferredSize(null);
 
         f1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         f1Text5.setForeground(new java.awt.Color(150, 150, 150));
@@ -1742,7 +1781,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         g7.setForeground(new java.awt.Color(255, 255, 255));
         g7.setOpaque(true);
-        g7.setPreferredSize(new java.awt.Dimension(25, 150));
+        g7.setPreferredSize(null);
 
         g1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         g1Text5.setForeground(new java.awt.Color(150, 150, 150));
@@ -1956,7 +1995,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         c4.setForeground(new java.awt.Color(255, 255, 255));
         c4.setOpaque(true);
-        c4.setPreferredSize(new java.awt.Dimension(25, 150));
+        c4.setPreferredSize(null);
 
         c1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         c1Text2.setForeground(new java.awt.Color(150, 150, 150));
@@ -1990,7 +2029,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         d4.setForeground(new java.awt.Color(255, 255, 255));
         d4.setOpaque(true);
-        d4.setPreferredSize(new java.awt.Dimension(25, 150));
+        d4.setPreferredSize(null);
 
         d1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         d1Text2.setForeground(new java.awt.Color(150, 150, 150));
@@ -2024,7 +2063,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         e4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         e4.setForeground(new java.awt.Color(255, 255, 255));
         e4.setOpaque(true);
-        e4.setPreferredSize(new java.awt.Dimension(25, 150));
+        e4.setPreferredSize(null);
 
         e1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         e1Text2.setForeground(new java.awt.Color(150, 150, 150));
@@ -2058,7 +2097,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         a4.setForeground(new java.awt.Color(255, 255, 255));
         a4.setOpaque(true);
-        a4.setPreferredSize(new java.awt.Dimension(25, 150));
+        a4.setPreferredSize(null);
 
         a1text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         a1text2.setForeground(new java.awt.Color(150, 150, 150));
@@ -2092,7 +2131,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         b4.setForeground(new java.awt.Color(255, 255, 255));
         b4.setOpaque(true);
-        b4.setPreferredSize(new java.awt.Dimension(25, 150));
+        b4.setPreferredSize(null);
 
         b1Text4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         b1Text4.setForeground(new java.awt.Color(150, 150, 150));
@@ -2126,7 +2165,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         f4.setForeground(new java.awt.Color(255, 255, 255));
         f4.setOpaque(true);
-        f4.setPreferredSize(new java.awt.Dimension(25, 150));
+        f4.setPreferredSize(null);
 
         f1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         f1Text2.setForeground(new java.awt.Color(150, 150, 150));
@@ -2160,7 +2199,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         g4.setForeground(new java.awt.Color(255, 255, 255));
         g4.setOpaque(true);
-        g4.setPreferredSize(new java.awt.Dimension(25, 150));
+        g4.setPreferredSize(null);
 
         g1Text2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         g1Text2.setForeground(new java.awt.Color(150, 150, 150));
@@ -2370,11 +2409,11 @@ public class VirtualPiano extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         keyboardPanel.add(g2s, gridBagConstraints);
 
-        c4d.setBackground(new java.awt.Color(255, 255, 255));
-        c4d.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        c4d.setForeground(new java.awt.Color(255, 255, 255));
-        c4d.setOpaque(true);
-        c4d.setPreferredSize(new java.awt.Dimension(25, 150));
+        c2.setBackground(new java.awt.Color(255, 255, 255));
+        c2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        c2.setForeground(new java.awt.Color(255, 255, 255));
+        c2.setOpaque(true);
+        c2.setPreferredSize(null);
 
         c1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         c1Text3.setForeground(new java.awt.Color(150, 150, 150));
@@ -2382,17 +2421,17 @@ public class VirtualPiano extends javax.swing.JFrame {
         c1Text3.setAlignmentX(1.0F);
         c1Text3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        c4d.setLayer(c1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        c2.setLayer(c1Text3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout c4dLayout = new javax.swing.GroupLayout(c4d);
-        c4d.setLayout(c4dLayout);
-        c4dLayout.setHorizontalGroup(
-            c4dLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout c2Layout = new javax.swing.GroupLayout(c2);
+        c2.setLayout(c2Layout);
+        c2Layout.setHorizontalGroup(
+            c2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(c1Text3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
-        c4dLayout.setVerticalGroup(
-            c4dLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c4dLayout.createSequentialGroup()
+        c2Layout.setVerticalGroup(
+            c2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c2Layout.createSequentialGroup()
                 .addGap(0, 121, Short.MAX_VALUE)
                 .addComponent(c1Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -2402,13 +2441,13 @@ public class VirtualPiano extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 9;
         gridBagConstraints.gridy = 0;
-        keyboardPanel.add(c4d, gridBagConstraints);
+        keyboardPanel.add(c2, gridBagConstraints);
 
         d2.setBackground(new java.awt.Color(255, 255, 255));
         d2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         d2.setForeground(new java.awt.Color(255, 255, 255));
         d2.setOpaque(true);
-        d2.setPreferredSize(new java.awt.Dimension(25, 150));
+        d2.setPreferredSize(null);
 
         d1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         d1Text3.setForeground(new java.awt.Color(150, 150, 150));
@@ -2442,7 +2481,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         e2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         e2.setForeground(new java.awt.Color(255, 255, 255));
         e2.setOpaque(true);
-        e2.setPreferredSize(new java.awt.Dimension(25, 150));
+        e2.setPreferredSize(null);
 
         e1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         e1Text3.setForeground(new java.awt.Color(150, 150, 150));
@@ -2476,7 +2515,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         a2.setForeground(new java.awt.Color(255, 255, 255));
         a2.setOpaque(true);
-        a2.setPreferredSize(new java.awt.Dimension(25, 150));
+        a2.setPreferredSize(null);
 
         a1text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         a1text3.setForeground(new java.awt.Color(150, 150, 150));
@@ -2510,7 +2549,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         b2.setForeground(new java.awt.Color(255, 255, 255));
         b2.setOpaque(true);
-        b2.setPreferredSize(new java.awt.Dimension(25, 150));
+        b2.setPreferredSize(null);
 
         b1Text5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         b1Text5.setForeground(new java.awt.Color(150, 150, 150));
@@ -2544,7 +2583,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         f2.setForeground(new java.awt.Color(255, 255, 255));
         f2.setOpaque(true);
-        f2.setPreferredSize(new java.awt.Dimension(25, 150));
+        f2.setPreferredSize(null);
 
         f1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         f1Text3.setForeground(new java.awt.Color(150, 150, 150));
@@ -2578,7 +2617,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         g2.setForeground(new java.awt.Color(255, 255, 255));
         g2.setOpaque(true);
-        g2.setPreferredSize(new java.awt.Dimension(25, 150));
+        g2.setPreferredSize(null);
 
         g1Text3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         g1Text3.setForeground(new java.awt.Color(150, 150, 150));
@@ -2792,7 +2831,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         c1.setForeground(new java.awt.Color(255, 255, 255));
         c1.setOpaque(true);
-        c1.setPreferredSize(new java.awt.Dimension(25, 150));
+        c1.setPreferredSize(null);
 
         c1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         c1Text6.setForeground(new java.awt.Color(150, 150, 150));
@@ -2826,7 +2865,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         d1.setForeground(new java.awt.Color(255, 255, 255));
         d1.setOpaque(true);
-        d1.setPreferredSize(new java.awt.Dimension(25, 150));
+        d1.setPreferredSize(null);
 
         d1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         d1Text6.setForeground(new java.awt.Color(150, 150, 150));
@@ -2860,7 +2899,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         e1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         e1.setForeground(new java.awt.Color(255, 255, 255));
         e1.setOpaque(true);
-        e1.setPreferredSize(new java.awt.Dimension(25, 150));
+        e1.setPreferredSize(null);
 
         e1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         e1Text6.setForeground(new java.awt.Color(150, 150, 150));
@@ -2894,7 +2933,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         a1.setForeground(new java.awt.Color(255, 255, 255));
         a1.setOpaque(true);
-        a1.setPreferredSize(new java.awt.Dimension(25, 150));
+        a1.setPreferredSize(null);
 
         a1text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         a1text6.setForeground(new java.awt.Color(150, 150, 150));
@@ -2928,7 +2967,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         b1.setForeground(new java.awt.Color(255, 255, 255));
         b1.setOpaque(true);
-        b1.setPreferredSize(new java.awt.Dimension(25, 150));
+        b1.setPreferredSize(null);
 
         b1Text8.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         b1Text8.setForeground(new java.awt.Color(150, 150, 150));
@@ -2962,7 +3001,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         f1.setForeground(new java.awt.Color(255, 255, 255));
         f1.setOpaque(true);
-        f1.setPreferredSize(new java.awt.Dimension(25, 150));
+        f1.setPreferredSize(null);
 
         f1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         f1Text6.setForeground(new java.awt.Color(150, 150, 150));
@@ -2996,7 +3035,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         g1.setForeground(new java.awt.Color(255, 255, 255));
         g1.setOpaque(true);
-        g1.setPreferredSize(new java.awt.Dimension(25, 150));
+        g1.setPreferredSize(null);
 
         g1Text6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         g1Text6.setForeground(new java.awt.Color(150, 150, 150));
@@ -3210,7 +3249,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         c3.setForeground(new java.awt.Color(255, 255, 255));
         c3.setOpaque(true);
-        c3.setPreferredSize(new java.awt.Dimension(25, 150));
+        c3.setPreferredSize(null);
 
         c1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         c1Text7.setForeground(new java.awt.Color(150, 150, 150));
@@ -3244,7 +3283,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         d3.setForeground(new java.awt.Color(255, 255, 255));
         d3.setOpaque(true);
-        d3.setPreferredSize(new java.awt.Dimension(25, 150));
+        d3.setPreferredSize(null);
 
         d1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         d1Text7.setForeground(new java.awt.Color(150, 150, 150));
@@ -3278,7 +3317,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         e3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         e3.setForeground(new java.awt.Color(255, 255, 255));
         e3.setOpaque(true);
-        e3.setPreferredSize(new java.awt.Dimension(25, 150));
+        e3.setPreferredSize(null);
 
         e1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         e1Text7.setForeground(new java.awt.Color(150, 150, 150));
@@ -3312,7 +3351,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         a3.setForeground(new java.awt.Color(255, 255, 255));
         a3.setOpaque(true);
-        a3.setPreferredSize(new java.awt.Dimension(25, 150));
+        a3.setPreferredSize(null);
 
         a1text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         a1text7.setForeground(new java.awt.Color(150, 150, 150));
@@ -3346,7 +3385,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         b3.setForeground(new java.awt.Color(255, 255, 255));
         b3.setOpaque(true);
-        b3.setPreferredSize(new java.awt.Dimension(25, 150));
+        b3.setPreferredSize(null);
 
         b1Text9.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         b1Text9.setForeground(new java.awt.Color(150, 150, 150));
@@ -3380,7 +3419,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         f3.setForeground(new java.awt.Color(255, 255, 255));
         f3.setOpaque(true);
-        f3.setPreferredSize(new java.awt.Dimension(25, 150));
+        f3.setPreferredSize(null);
 
         f1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         f1Text7.setForeground(new java.awt.Color(150, 150, 150));
@@ -3414,7 +3453,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         g3.setForeground(new java.awt.Color(255, 255, 255));
         g3.setOpaque(true);
-        g3.setPreferredSize(new java.awt.Dimension(25, 150));
+        g3.setPreferredSize(null);
 
         g1Text7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         g1Text7.setForeground(new java.awt.Color(150, 150, 150));
@@ -3447,7 +3486,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d1sharp9.setBackground(new java.awt.Color(22, 22, 22));
         d1sharp9.setForeground(new java.awt.Color(255, 255, 255));
         d1sharp9.setOpaque(true);
-        d1sharp9.setPreferredSize(new java.awt.Dimension(15, 90));
+        d1sharp9.setPreferredSize(null);
 
         d1sharpText9.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         d1sharpText9.setForeground(new java.awt.Color(150, 150, 150));
@@ -3481,7 +3520,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c1sharp9.setBackground(new java.awt.Color(22, 22, 22));
         c1sharp9.setForeground(new java.awt.Color(255, 255, 255));
         c1sharp9.setOpaque(true);
-        c1sharp9.setPreferredSize(new java.awt.Dimension(15, 90));
+        c1sharp9.setPreferredSize(null);
 
         c1sharpText9.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         c1sharpText9.setForeground(new java.awt.Color(150, 150, 150));
@@ -3653,11 +3692,11 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JLabel c1sharpText7;
     private javax.swing.JLabel c1sharpText8;
     private javax.swing.JLabel c1sharpText9;
+    private javax.swing.JLayeredPane c2;
     private javax.swing.JLayeredPane c2s;
     private javax.swing.JLayeredPane c3;
     private javax.swing.JLayeredPane c3s;
     private javax.swing.JLayeredPane c4;
-    private javax.swing.JLayeredPane c4d;
     private javax.swing.JLayeredPane c4s;
     private javax.swing.JLayeredPane c5;
     private javax.swing.JLayeredPane c5s;
