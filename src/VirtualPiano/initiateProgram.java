@@ -7,6 +7,7 @@ package VirtualPiano;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Sequence;
@@ -26,6 +27,11 @@ public class initiateProgram  {
         //VirtualPiano piano = new VirtualPiano();
         //piano.setVisible(true);
         
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter filepath:");
+        String filepath = scanner.nextLine();
+        File file = new File(filepath);
+        
         File slowMidi = new File("C:\\Users\\adria_000\\Desktop\\easynslo.midi");
         File arhhh = new File("C:\\Users\\adria_000\\Desktop\\Hes A Pirate (Easy Version).mid");
         File fileScuffed = new File("C:\\Users\\adria_000\\Desktop\\projects\\Pokémon Essentials original\\Audio\\BGM\\Battle Gym Leader.mid");
@@ -34,7 +40,7 @@ public class initiateProgram  {
         midiSequencer newSequenceAndSequencer = new midiSequencer();
         MidiController sendRec = new MidiController();
         
-        Sequence newSequence = newSequenceAndSequencer.createSequence(arhhh);
+        Sequence newSequence = newSequenceAndSequencer.createSequence(file);
         Sequencer newSequencer = newSequenceAndSequencer.createSequencer(newSequence);
         
         newSequencer.getSequence();
