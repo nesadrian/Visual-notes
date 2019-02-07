@@ -201,6 +201,7 @@ public class VirtualPiano extends javax.swing.JFrame {
                 
             if (key < 87) {
                 try {
+                    System.out.println("ON");
                     colorKey(key, k, true);
                 }
                 catch (Exception e) {
@@ -217,6 +218,7 @@ public class VirtualPiano extends javax.swing.JFrame {
                 if (key < 87) {
                     try {
                         colorKey(key, k, false);
+                        System.out.println("OFF");
                     }
                     catch (Exception e) {
                         System.out.println(e);
@@ -433,9 +435,9 @@ public class VirtualPiano extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
-        setPreferredSize(new java.awt.Dimension(1500, 300));
+        setPreferredSize(new java.awt.Dimension(1325, 815));
         setResizable(false);
-        setSize(new java.awt.Dimension(1500, 300));
+        setSize(new java.awt.Dimension(1500, 1500));
         getContentPane().setLayout(null);
 
         jLayeredPane1.setBackground(new java.awt.Color(255, 51, 51));
@@ -3480,7 +3482,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         jLayeredPane1.add(a0s, gridBagConstraints);
 
         getContentPane().add(jLayeredPane1);
-        jLayeredPane1.setBounds(0, 80, 1320, 150);
+        jLayeredPane1.setBounds(0, 640, 1320, 150);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -3619,7 +3621,6 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JPanel c1;
     private javax.swing.JPanel c10;
     private javax.swing.JPanel c1s;
-    private javax.swing.JLabel c1sharpText17;
     private javax.swing.JLabel c1sharpText18;
     private javax.swing.JLabel c1sharpText19;
     private javax.swing.JLabel c1sharpText20;
@@ -3633,7 +3634,6 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JLabel c1sharpText30;
     private javax.swing.JLabel c1sharpText31;
     private javax.swing.JLabel c1sharpText32;
-    private javax.swing.JLabel c1sharpText33;
     private javax.swing.JLabel c1sharpText34;
     private javax.swing.JLabel c1sharpText35;
     private javax.swing.JLabel c1sharpText37;
@@ -3649,7 +3649,6 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JLabel c1sharpText47;
     private javax.swing.JLabel c1sharpText48;
     private javax.swing.JLabel c1sharpText49;
-    private javax.swing.JLabel c1sharpText50;
     private javax.swing.JLabel c1sharpText51;
     private javax.swing.JLabel c1sharpText52;
     private javax.swing.JLabel c1sharpText53;
@@ -3720,9 +3719,6 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JPanel g6s;
     private javax.swing.JPanel g7;
     private javax.swing.JPanel g7s;
-    private javax.swing.JPanel gt7;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel17;
     // End of variables declaration//GEN-END:variables
 }

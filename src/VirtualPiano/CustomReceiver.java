@@ -15,8 +15,12 @@ import javax.sound.midi.MidiMessage;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Receiver;
 import javax.sound.midi.ShortMessage;
+import static javax.sound.midi.ShortMessage.MIDI_TIME_CODE;
 import static javax.sound.midi.ShortMessage.NOTE_OFF;
 import static javax.sound.midi.ShortMessage.NOTE_ON;
+import static javax.sound.midi.ShortMessage.START;
+import static javax.sound.midi.ShortMessage.STOP;
+import static javax.sound.midi.ShortMessage.TIMING_CLOCK;
 
 public class CustomReceiver implements Receiver {
     
@@ -30,8 +34,15 @@ public class CustomReceiver implements Receiver {
     @Override
     public void send(MidiMessage message, long timeStamp) {
         if(message instanceof ShortMessage) {
-            
+           
+           int y = message.getLength();
+           int t = START;
+           int e = STOP;
+            int time2 = TIMING_CLOCK;
+            int time = MIDI_TIME_CODE;
             piano.keyDisplayNote(message);
+            //System.out.println(time + " " + time2);
+            System.out.println(y);
         }
     }
 

@@ -27,20 +27,20 @@ public class initiateProgram  {
         //VirtualPiano piano = new VirtualPiano();
         //piano.setVisible(true);
         
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
         System.out.println("Enter filepath:");
-        String filepath = scanner.nextLine();
-        File file = new File(filepath);
+        //String filepath = scanner.nextLine();
+        //File file = new File(filepath);
         
         File slowMidi = new File("C:\\Users\\adria_000\\Desktop\\easynslo.midi");
-        File arhhh = new File("C:\\Users\\adria_000\\Desktop\\Hes A Pirate (Easy Version).mid");
+        File arhhh = new File("C:\\Users\\adria_000\\Desktop\\MIDI files\\Hes A Pirate (Easy Version).mid");
         File fileScuffed = new File("C:\\Users\\adria_000\\Desktop\\projects\\Pokémon Essentials original\\Audio\\BGM\\Battle Gym Leader.mid");
         
         CustomReceiver receiver = new CustomReceiver();
         midiSequencer newSequenceAndSequencer = new midiSequencer();
         MidiController sendRec = new MidiController();
         
-        Sequence newSequence = newSequenceAndSequencer.createSequence(file);
+        Sequence newSequence = newSequenceAndSequencer.createSequence(arhhh);
         Sequencer newSequencer = newSequenceAndSequencer.createSequencer(newSequence);
         
         newSequencer.getSequence();
