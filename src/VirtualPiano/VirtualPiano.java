@@ -26,7 +26,8 @@ import javax.swing.SwingConstants;
  * @author adria_000
  */
 public class VirtualPiano extends javax.swing.JFrame {
-    
+    int o = 0;
+    int i = 0;
     initiateProgram initProgram = new initiateProgram();
     List<JPanel> keyList = new ArrayList();
     String[] NOTE_NAMES = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
@@ -51,7 +52,7 @@ public class VirtualPiano extends javax.swing.JFrame {
     public boolean checkKeyType(int key) {
         String name;
         name = NOTE_NAMES[key % 12];
-        System.out.println(key + " " + name);
+        //System.out.println(key + " " + name);
         if (name.equals("C") || name.equals("D") || name.equals("E") || name.equals("F")
                 || name.equals("G") || name.equals("A") || name.equals("B")) {
             return true;
@@ -158,7 +159,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         keyList.add(g5s);
         keyList.add(a5);
         keyList.add(a5s);
-        keyList.add(b4);
+        keyList.add(b5);
 
         keyList.add(c6);
         keyList.add(c6s);
@@ -198,10 +199,11 @@ public class VirtualPiano extends javax.swing.JFrame {
         
         if (sm.getCommand() == NOTE_ON) {
             int velocity = sm.getData2();
-                
+            i++;
+                System.out.println("Note on " + i);
             if (key < 87) {
                 try {
-                    System.out.println("ON");
+                    //System.out.println("ON");
                     colorKey(key, k, true);
                 }
                 catch (Exception e) {
@@ -213,12 +215,13 @@ public class VirtualPiano extends javax.swing.JFrame {
             }
         }
             else if (sm.getCommand() == NOTE_OFF) {
+                o++;
                 int velocity = sm.getData2();
-                
+                System.out.println("Note off " + o);
                 if (key < 87) {
                     try {
                         colorKey(key, k, false);
-                        System.out.println("OFF");
+                        //System.out.println("OFF");
                     }
                     catch (Exception e) {
                         System.out.println(e);
@@ -229,7 +232,7 @@ public class VirtualPiano extends javax.swing.JFrame {
                 }
             } 
             else {
-                System.out.println("Command:" + sm.getCommand());
+                //System.out.println("Command:" + sm.getCommand());
             }
     }
     
@@ -1097,7 +1100,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b4Layout.setVerticalGroup(
             b4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 123, Short.MAX_VALUE)
                 .addComponent(a1text31, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 

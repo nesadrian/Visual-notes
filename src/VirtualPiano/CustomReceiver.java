@@ -35,14 +35,16 @@ public class CustomReceiver implements Receiver {
     public void send(MidiMessage message, long timeStamp) {
         if(message instanceof ShortMessage) {
            
-           int y = message.getLength();
+           long i = message.getStatus();
+           long y = message.getLength();
            int t = START;
            int e = STOP;
             int time2 = TIMING_CLOCK;
             int time = MIDI_TIME_CODE;
+            
             piano.keyDisplayNote(message);
             //System.out.println(time + " " + time2);
-            System.out.println(y);
+            //System.out.println(timeStamp);
         }
     }
 
