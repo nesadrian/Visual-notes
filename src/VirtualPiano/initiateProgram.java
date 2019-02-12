@@ -50,25 +50,23 @@ public class initiateProgram  {
         midiSequencer newSequenceAndSequencer = new midiSequencer();
         MidiController sendRec = new MidiController();
         
-        Sequence newSequence = newSequenceAndSequencer.createSequence(mac);
+        Sequence newSequence = newSequenceAndSequencer.createSequence(arhhh);
         Sequencer newSequencer = newSequenceAndSequencer.createSequencer(newSequence);
         
         newSequencer.getSequence();
         
-        sendRec.insertAndSendReceiver(newSequencer, receiver);
+        //sendRec.insertAndSendReceiver(newSequencer, receiver);
         
         // Obtains the default Sequencer connected to a default device.
         Sequencer sequencer = MidiSystem.getSequencer();
         System.out.println("Microseconds: " + newSequence.getMicrosecondLength()); //2.7 minutes
         System.out.println("Resolution: " + newSequence.getResolution());
         System.out.println("Tick length: " + newSequence.getTickLength());
-        for(Track t : newSequence.getTracks()) {
-            System.out.println(t);
-        };
+
         // Opens the device, indicating that it should now acquire any
         // system resources it requires and become operational.
-        newSequencer.open();
-        sendRec.d(newSequence);
+        //newSequencer.open();
+        sendRec.listenmate(newSequencer);
         // create a stream from a file
         /*InputStream is = new BufferedInputStream(new FileInputStream(mac));
  
