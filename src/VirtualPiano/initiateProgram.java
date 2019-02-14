@@ -28,6 +28,8 @@ import javax.sound.midi.Track;
  */
 public class initiateProgram  {
     
+    
+    
     File file = new File("C:\\Users\\adria_000\\Desktop\\Super Mario 64 - Medley.midi");
     
     File dir = new File("C:\\Users");
@@ -46,11 +48,10 @@ public class initiateProgram  {
         File fileScuffed = new File("C:\\Users\\adria_000\\Desktop\\projects\\Pokémon Essentials original\\Audio\\BGM\\Battle Gym Leader.mid");
         File mac = new File("/Users/adriannesvik/Downloads/Pokemon - Oracion.mid");
         
-        CustomReceiver receiver = new CustomReceiver();
         midiSequencer newSequenceAndSequencer = new midiSequencer();
         MidiController sendRec = new MidiController();
         
-        Sequence newSequence = newSequenceAndSequencer.createSequence(arhhh);
+        Sequence newSequence = newSequenceAndSequencer.createSequence(fileScuffed);
         Sequencer newSequencer = newSequenceAndSequencer.createSequencer(newSequence);
         
         newSequencer.getSequence();
@@ -65,11 +66,12 @@ public class initiateProgram  {
         System.out.println("Microseconds: " + newSequence.getMicrosecondLength()); //2.7 minutes
         System.out.println("Resolution: " + newSequence.getResolution());
         System.out.println("Tick length: " + newSequence.getTickLength());
-
+        
         // Opens the device, indicating that it should now acquire any
         // system resources it requires and become operational.
         //newSequencer.open();
-        sendRec.listenmate(asd);
+        
+        sendRec.addNotesToTrack(dsa);
         // create a stream from a file
         /*InputStream is = new BufferedInputStream(new FileInputStream(mac));
  

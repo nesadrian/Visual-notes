@@ -5,6 +5,7 @@
  */
 package VirtualPiano;
 
+import static VirtualPiano.MidiController.NOTE_NAMES;
 import java.awt.Color;
 import java.util.List;
 import java.io.IOException;
@@ -30,7 +31,6 @@ public class VirtualPiano extends javax.swing.JFrame {
     int i = 0;
     initiateProgram initProgram = new initiateProgram();
     List<JPanel> keyList = new ArrayList();
-    String[] NOTE_NAMES = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
     
     Color orangeWhiteKey = new Color(255, 191, 0);
     Color orangeBlackKey = new Color(239, 130, 13);
@@ -50,9 +50,8 @@ public class VirtualPiano extends javax.swing.JFrame {
     }
     
     public boolean checkKeyType(int key) {
-        String name;
-        name = NOTE_NAMES[key % 12];
-        //System.out.println(key + " " + name);
+        String name = NOTE_NAMES[key % 12];
+        //System.out.println(key + " yer a fagget " + name);
         if (name.equals("C") || name.equals("D") || name.equals("E") || name.equals("F")
                 || name.equals("G") || name.equals("A") || name.equals("B")) {
             return true;
@@ -62,28 +61,27 @@ public class VirtualPiano extends javax.swing.JFrame {
         }
     }
     
-    public void colorKey (int key, int k, boolean keyOn) {
-        JPanel panel = keyList.get(key);
+    public void colorKey (int key, boolean keyOn) {
+        JPanel panel = keyList.get(key - 21);
         JLabel panelLabel = (JLabel)panel.getComponent(0);
         
         if(keyOn) {
-            if(checkKeyType(k)) {
+            if(checkKeyType(key)) {
                 panel.setBackground(orangeWhiteKey);
                 panelLabel.setBackground(orangeWhiteKeyText);
-                
             }
-            else if(!checkKeyType(k)) {
+            else if(!checkKeyType(key)) {
                 panel.setBackground(orangeBlackKey);
                 panelLabel.setBackground(orangeBlackKeyText);
             }
         }
-        else if(keyOn == false) {
-            if(checkKeyType(k)) {
+        else if(!keyOn) {
+            if(checkKeyType(key)) {
                 //keyboardPanel.setComponentZOrder(panel, -1);
                 panel.setBackground(Color.white);
                 panelLabel.setBackground(Color.black);
             }
-            else if(!checkKeyType(k)) {
+            else if(!checkKeyType(key)) {
                 panel.setBackground(Color.black);
                 panelLabel.setBackground(Color.white);
             }
@@ -190,51 +188,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         keyList.add(c8);
     }
     
-    public void keyDisplayNote (MidiMessage message) {
-        
-        ShortMessage sm = (ShortMessage) message;
-        int k = sm.getData1();
-        int key = (k - 21);
-        
-        
-        if (sm.getCommand() == NOTE_ON) {
-            int velocity = sm.getData2();
-            i++;
-                System.out.println("Note on " + i);
-            if (key < 87) {
-                try {
-                    //System.out.println("ON");
-                    colorKey(key, k, true);
-                }
-                catch (Exception e) {
-                    System.out.println(e);
-                }
-            }
-            else if (key > 87) {
-                System.out.println("S");
-            }
-        }
-            else if (sm.getCommand() == NOTE_OFF) {
-                o++;
-                int velocity = sm.getData2();
-                System.out.println("Note off " + o);
-                if (key < 87) {
-                    try {
-                        colorKey(key, k, false);
-                        //System.out.println("OFF");
-                    }
-                    catch (Exception e) {
-                        System.out.println(e);
-                    }
-                }
-                else if (key > 87) {
-                    System.out.println("S");
-                }
-            } 
-            else {
-                //System.out.println("Command:" + sm.getCommand());
-            }
-    }
+    
     
     private void playNoteAnimation(JPanel panel) {
         
