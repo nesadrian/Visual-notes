@@ -55,10 +55,13 @@ public class initiateProgram  {
         
         newSequencer.getSequence();
         
+        Sequence dsa = MidiSystem.getSequence(arhhh);
+        Sequencer asd = MidiSystem.getSequencer();
+        asd.setSequence(dsa);
         //sendRec.insertAndSendReceiver(newSequencer, receiver);
         
         // Obtains the default Sequencer connected to a default device.
-        Sequencer sequencer = MidiSystem.getSequencer();
+        
         System.out.println("Microseconds: " + newSequence.getMicrosecondLength()); //2.7 minutes
         System.out.println("Resolution: " + newSequence.getResolution());
         System.out.println("Tick length: " + newSequence.getTickLength());
@@ -66,7 +69,7 @@ public class initiateProgram  {
         // Opens the device, indicating that it should now acquire any
         // system resources it requires and become operational.
         //newSequencer.open();
-        sendRec.listenmate(newSequencer);
+        sendRec.listenmate(asd);
         // create a stream from a file
         /*InputStream is = new BufferedInputStream(new FileInputStream(mac));
  
