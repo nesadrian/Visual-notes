@@ -4,15 +4,16 @@
  * and open the template in the editor.
  */
 package VirtualPiano;
-
 import static VirtualPiano.MidiController.NOTE_NAMES;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.List;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MetaMessage;
 import javax.sound.midi.MidiMessage;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.ShortMessage;
@@ -29,7 +30,7 @@ import javax.swing.SwingConstants;
 public class VirtualPiano extends javax.swing.JFrame {
     int o = 0;
     int i = 0;
-    initiateProgram initProgram = new initiateProgram();
+    //initiateProgram initProgram = new initiateProgram();
     List<JPanel> keyList = new ArrayList();
     
     Color orangeWhiteKey = new Color(255, 191, 0);
@@ -47,9 +48,10 @@ public class VirtualPiano extends javax.swing.JFrame {
     public VirtualPiano() throws InvalidMidiDataException, IOException, MidiUnavailableException {
         initComponents();
         initializeArrayList();
+        pianoGraphics1.init(true);
     }
     
-    public boolean checkKeyType(int key) {
+    public boolean checkKeyWhite(int key) {
         String name = NOTE_NAMES[key % 12];
         //System.out.println(key + " yer a fagget " + name);
         if (name.equals("C") || name.equals("D") || name.equals("E") || name.equals("F")
@@ -64,24 +66,24 @@ public class VirtualPiano extends javax.swing.JFrame {
     public void colorKey (int key, boolean keyOn) {
         JPanel panel = keyList.get(key - 21);
         JLabel panelLabel = (JLabel)panel.getComponent(0);
-        
+
         if(keyOn) {
-            if(checkKeyType(key)) {
+            if(checkKeyWhite(key)) {
                 panel.setBackground(orangeWhiteKey);
                 panelLabel.setBackground(orangeWhiteKeyText);
             }
-            else if(!checkKeyType(key)) {
+            else if(!checkKeyWhite(key)) {
                 panel.setBackground(orangeBlackKey);
                 panelLabel.setBackground(orangeBlackKeyText);
             }
         }
         else if(!keyOn) {
-            if(checkKeyType(key)) {
+            if(checkKeyWhite(key)) {
                 //keyboardPanel.setComponentZOrder(panel, -1);
                 panel.setBackground(Color.white);
                 panelLabel.setBackground(Color.black);
             }
-            else if(!checkKeyType(key)) {
+            else if(!checkKeyWhite(key)) {
                 panel.setBackground(Color.black);
                 panelLabel.setBackground(Color.white);
             }
@@ -188,11 +190,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         keyList.add(c8);
     }
     
-    
-    
-    private void playNoteAnimation(JPanel panel) {
-        
-    }
+
     
     
     /**
@@ -389,10 +387,11 @@ public class VirtualPiano extends javax.swing.JFrame {
         a1text51 = new javax.swing.JLabel();
         a0s = new javax.swing.JPanel();
         c1sharpText26 = new javax.swing.JLabel();
+        pepee = new javax.swing.JPanel();
+        pianoGraphics1 = new newpackage.PianoGraphics();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
-        setPreferredSize(new java.awt.Dimension(1325, 815));
         setResizable(false);
         setSize(new java.awt.Dimension(1500, 1500));
         getContentPane().setLayout(null);
@@ -681,7 +680,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c8Layout.setVerticalGroup(
             c8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, c8Layout.createSequentialGroup()
-                .addGap(0, 124, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(a1text24, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1054,7 +1053,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b4Layout.setVerticalGroup(
             b4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, b4Layout.createSequentialGroup()
-                .addGap(0, 123, Short.MAX_VALUE)
+                .addGap(0, 124, Short.MAX_VALUE)
                 .addComponent(a1text31, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1557,7 +1556,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f1s.setLayout(f1sLayout);
         f1sLayout.setHorizontalGroup(
             f1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText34, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         f1sLayout.setVerticalGroup(
             f1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2159,7 +2158,6 @@ public class VirtualPiano extends javax.swing.JFrame {
         jLayeredPane1.add(f2, gridBagConstraints);
 
         d1s.setBackground(new java.awt.Color(21, 21, 21));
-        d1s.setPreferredSize(new java.awt.Dimension(15, 90));
 
         d1sharpText1.setBackground(new java.awt.Color(0, 0, 0));
         d1sharpText1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
@@ -2173,7 +2171,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d1s.setLayout(d1sLayout);
         d1sLayout.setHorizontalGroup(
             d1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(d1sharpText1, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(d1sharpText1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         d1sLayout.setVerticalGroup(
             d1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2206,7 +2204,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f2s.setLayout(f2sLayout);
         f2sLayout.setHorizontalGroup(
             f2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText37, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         f2sLayout.setVerticalGroup(
             f2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2241,7 +2239,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f3s.setLayout(f3sLayout);
         f3sLayout.setHorizontalGroup(
             f3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText38, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         f3sLayout.setVerticalGroup(
             f3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2276,7 +2274,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f4s.setLayout(f4sLayout);
         f4sLayout.setHorizontalGroup(
             f4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText39, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         f4sLayout.setVerticalGroup(
             f4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2311,7 +2309,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g1s.setLayout(g1sLayout);
         g1sLayout.setHorizontalGroup(
             g1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText40, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         g1sLayout.setVerticalGroup(
             g1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2346,7 +2344,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f6s.setLayout(f6sLayout);
         f6sLayout.setHorizontalGroup(
             f6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText41, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         f6sLayout.setVerticalGroup(
             f6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2381,7 +2379,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f7s.setLayout(f7sLayout);
         f7sLayout.setHorizontalGroup(
             f7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText42, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         f7sLayout.setVerticalGroup(
             f7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2640,7 +2638,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f5s.setLayout(f5sLayout);
         f5sLayout.setHorizontalGroup(
             f5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText43, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         f5sLayout.setVerticalGroup(
             f5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2675,7 +2673,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g2s.setLayout(g2sLayout);
         g2sLayout.setHorizontalGroup(
             g2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText44, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         g2sLayout.setVerticalGroup(
             g2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2710,7 +2708,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g3s.setLayout(g3sLayout);
         g3sLayout.setHorizontalGroup(
             g3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText45, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText45, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         g3sLayout.setVerticalGroup(
             g3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2745,7 +2743,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g4s.setLayout(g4sLayout);
         g4sLayout.setHorizontalGroup(
             g4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText46, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText46, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         g4sLayout.setVerticalGroup(
             g4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2780,7 +2778,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g5s.setLayout(g5sLayout);
         g5sLayout.setHorizontalGroup(
             g5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText47, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText47, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         g5sLayout.setVerticalGroup(
             g5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2815,7 +2813,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g6s.setLayout(g6sLayout);
         g6sLayout.setHorizontalGroup(
             g6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText48, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText48, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         g6sLayout.setVerticalGroup(
             g6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2850,7 +2848,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a7s.setLayout(a7sLayout);
         a7sLayout.setHorizontalGroup(
             a7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText49, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText49, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         a7sLayout.setVerticalGroup(
             a7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3109,7 +3107,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g7s.setLayout(g7sLayout);
         g7sLayout.setHorizontalGroup(
             g7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText51, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText51, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         g7sLayout.setVerticalGroup(
             g7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3144,7 +3142,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a1s.setLayout(a1sLayout);
         a1sLayout.setHorizontalGroup(
             a1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText52, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText52, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         a1sLayout.setVerticalGroup(
             a1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3179,7 +3177,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a2s.setLayout(a2sLayout);
         a2sLayout.setHorizontalGroup(
             a2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText53, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText53, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         a2sLayout.setVerticalGroup(
             a2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3214,7 +3212,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a3s.setLayout(a3sLayout);
         a3sLayout.setHorizontalGroup(
             a3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText54, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText54, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         a3sLayout.setVerticalGroup(
             a3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3249,7 +3247,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a4s.setLayout(a4sLayout);
         a4sLayout.setHorizontalGroup(
             a4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText55, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText55, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         a4sLayout.setVerticalGroup(
             a4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3284,7 +3282,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a5s.setLayout(a5sLayout);
         a5sLayout.setHorizontalGroup(
             a5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText56, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         a5sLayout.setVerticalGroup(
             a5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3319,7 +3317,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a6s.setLayout(a6sLayout);
         a6sLayout.setHorizontalGroup(
             a6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText57, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+            .addComponent(c1sharpText57, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         a6sLayout.setVerticalGroup(
             a6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3441,6 +3439,39 @@ public class VirtualPiano extends javax.swing.JFrame {
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(0, 640, 1320, 150);
 
+        pepee.setBackground(new java.awt.Color(204, 0, 204));
+
+        javax.swing.GroupLayout pianoGraphics1Layout = new javax.swing.GroupLayout(pianoGraphics1);
+        pianoGraphics1.setLayout(pianoGraphics1Layout);
+        pianoGraphics1Layout.setHorizontalGroup(
+            pianoGraphics1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 103, Short.MAX_VALUE)
+        );
+        pianoGraphics1Layout.setVerticalGroup(
+            pianoGraphics1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 119, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout pepeeLayout = new javax.swing.GroupLayout(pepee);
+        pepee.setLayout(pepeeLayout);
+        pepeeLayout.setHorizontalGroup(
+            pepeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pepeeLayout.createSequentialGroup()
+                .addGap(242, 242, 242)
+                .addComponent(pianoGraphics1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(285, Short.MAX_VALUE))
+        );
+        pepeeLayout.setVerticalGroup(
+            pepeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pepeeLayout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(pianoGraphics1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(436, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(pepee);
+        pepee.setBounds(50, 0, 630, 640);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -3469,6 +3500,9 @@ public class VirtualPiano extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VirtualPiano.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -3677,5 +3711,7 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JPanel g7;
     private javax.swing.JPanel g7s;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPanel pepee;
+    private newpackage.PianoGraphics pianoGraphics1;
     // End of variables declaration//GEN-END:variables
 }

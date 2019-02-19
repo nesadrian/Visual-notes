@@ -39,16 +39,21 @@ public class MidiController {
     
     VirtualPiano piano;
     public static final int SET_TEMPO = 0x51;
-    public static final int NOTE_ON = 1;
-    public static final int NOTE_OFF = 2;
+    public static final int NOTE_ON = 0x90;
+    public static final int NOTE_OFF = 0x80;
     public static final int OTHER = -1;
     public static final String[] NOTE_NAMES = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
     private static int MIDI_SET_TEMPO;
+    public long tempo;
+    public long ppq;
+    public long bpm;
+    List<Long> ticksList = new ArrayList();
     
 
     public MidiController() throws InvalidMidiDataException, IOException, MidiUnavailableException {
         this.piano = new VirtualPiano();
         piano.setVisible(true);
+        piano.setSize(1500, 1500);
     }
 
     public void insertAndSendReceiver (Sequencer sequencer, Receiver receiver) 
@@ -61,6 +66,7 @@ public class MidiController {
     }  
     
      public final void addNotesToTrack(Sequence seq) throws InvalidMidiDataException, Exception {
+        ppq = seq.getResolution();
         Track[] trackList = seq.getTracks();
         Track trk = seq.createTrack();
         for (Track track : trackList) {
@@ -87,23 +93,41 @@ public class MidiController {
         }
         
         }
+
         Sequencer sequencer = MidiSystem.getSequencer();
         sequencer.setSequence(seq);
         listenmate(sequencer);
     }
 
-    public static long getTempo (MetaMessage mm) {
+    public void setTempo (MetaMessage mm) {
         byte[] data = mm.getData();
-        long tempo = (data[0] & 0xff) << 16 | (data[1] & 0xff) << 8 | (data[2] & 0xff);
-        long bpm = 60000000L / tempo;
+        tempo = (data[0] & 0xff) << 16 | (data[1] & 0xff) << 8 | (data[2] & 0xff);
+        bpm = 60000000L / tempo;
         System.out.println("BPM: " + bpm);
-	return bpm;	
+        System.out.println("Tempo: " + tempo);
+    }
+    
+    public void addMicrosecondsToList (long eventTick) {
+        if (tempo == 0) {
+            System.out.println("Tempo not initiated");
+        }
+        if (ppq == 0) {
+            System.out.println("PPQ not initiated");
+        }
+        long microseconds = tempo * eventTick / ppq;
+        System.out.println("Seconds: " + microseconds);
+    }
+    
+    public static int getMQP (MetaMessage mm) {
+        byte[] data = mm.getData();
+        int mpq = ((data[0] & 0x7f) << 14) | ((data[1] & 0x7f) << 7) | (data[2] & 0x7f);
+        return mpq;
     }
 
     public void listenmate(Sequencer sq) throws MidiUnavailableException {
         
         MetaEventListener mel = new MetaEventListener() {
-
+            
             @Override
             public void meta(MetaMessage meta) {
             final int command = meta.getType();
@@ -112,15 +136,18 @@ public class MidiController {
             int octave = ((key / 12)-1);
             int note = (key % 12);
             String noteName = NOTE_NAMES[note];
-                if (command == NOTE_ON) {
+                if (command == 1) {
                         //int velocity = sm.getData2();
                         System.out.println("ON , " + noteName + octave + " key=" + key);
-                        keyDisplayNote(key, noteName, NOTE_ON);
+                        keyDisplayNote(key, noteName, 1);
                     } 
-                    else if (command == NOTE_OFF) {
+                    else if (command == 2) {
                         //int velocity = meta.getData2();
                         System.out.println("OFF, " + noteName + octave + " key=" + key);
-                        keyDisplayNote(key, noteName, NOTE_OFF);
+                        keyDisplayNote(key, noteName, 2);
+                    }
+                    else if (command == SET_TEMPO) {
+                        setTempo(meta);
                     }
             }   
         };
@@ -130,13 +157,10 @@ public class MidiController {
     }
             
     
-    public static void d(Sequence sequence) throws Exception {
-        int q = 0;
-        int p = 0;
-        long speed = 0;
-        double playbackSeconds;
+    public void d(Sequence sequence) throws Exception {
         int trackNumber = 0;
-        int ppq = sequence.getResolution();
+        long lastEventTick = 0;
+        ppq = sequence.getResolution();
         
         for (Track track :  sequence.getTracks()) {
             trackNumber++;
@@ -145,78 +169,43 @@ public class MidiController {
             for (int i=0; i < track.size(); i++) { 
                 MidiEvent event = track.get(i);
                 long eventTick = event.getTick();
-                System.out.print("@" + eventTick + " ");
+                long realEventTick = eventTick - lastEventTick;
+                lastEventTick = eventTick;
+                //System.out.print("@" + eventTick + "   ");
                 
                 MidiMessage message = event.getMessage();
                 if (message instanceof ShortMessage) {
                     ShortMessage sm = (ShortMessage) message;
-                    System.out.print("Channel: " + sm.getChannel() + " ");
                     if (sm.getCommand() == NOTE_ON) {
-                        q++;
-                        int key = sm.getData1();
-                        int octave = (key / 12)-1;
-                        int note = key % 12;
-                        String noteName = NOTE_NAMES[note];
-                        int velocity = sm.getData2();
-                        System.out.println("Note on, " + noteName + octave + " key=" + key + " velocity: " + velocity + "num on: " + q);
+                        ticksList.add(eventTick);
+                        addMicrosecondsToList (realEventTick);
                     } 
-                    else if (sm.getCommand() == NOTE_OFF) {
-                        p++;
-                        int key = sm.getData1();
-                        int octave = (key / 12)-1;
-                        int note = key % 12;
-                        String noteName = NOTE_NAMES[note];
-                        int velocity = sm.getData2();
-                        System.out.println("Note off, " + noteName + octave + " key=" + key + " velocity: " + velocity+ "num off: " + p);
-                    }
-                    
-                    else {
-                        //System.out.println("Command:" + sm.getCommand());
-                    }
-                 if (message instanceof MetaMessage) {
-                     
-                    MetaMessage metaMessage = (MetaMessage) message;
-                    final int command = metaMessage.getType();
-                    int key = (int) (command & 0xFF);
-                    //System.out.println(metaMessage.getType());
-                    //if(metaMessage.getType() == SET_TEMPO) {
-                        //System.out.println(getTempo(metaMessage) + " " + eventTick);
-                        //playbackSeconds = (60000L / (getTempo(metaMessage) * eventTick));
-                        speed = getTempo(metaMessage);
-                        if (metaMessage.getType() == NOTE_ON) {
-                        
-                        int octave = (key / 12)-1;
-                        int note = key % 12;
-                        String noteName = NOTE_NAMES[note];
-                        //int velocity = sm.getData2();
-                        System.out.println("NIBBANote on, " + noteName + octave + " key=" + key);
+                }
+                if (message instanceof MetaMessage) {
+                    MetaMessage mm = (MetaMessage) message;
+                    if (mm.getType() == 1) {
+                        ticksList.add(eventTick);
                     } 
-                    else if (metaMessage.getType() == NOTE_OFF) {
+                    else if (mm.getType() == SET_TEMPO) {
+                        setTempo(mm);
                         
-                        int octave = (key / 12)-1;
-                        int note = key % 12;
-                        String noteName = NOTE_NAMES[note];
-                        //int velocity = meta.getData2();
-                        System.out.println("BBBBBBNote off, " + noteName + octave + " key=" + key);
-                    //}
                     }
-                    else {
-                    //System.out.println("Other message: " + message.getClass());
-                }
-                }
-                
                 }
                 
                 try {
-                    playbackSeconds = (60000L / (speed * ppq));
-                    System.out.println("Playback seconds: " + playbackSeconds);
+                    //playbackSeconds = (60000L / (bpm * ppq));
+                    //System.out.println("Playback seconds: " + playbackSeconds);
                 }
                 catch (Exception e) {
                     System.out.println(e);
                 }
-                //System.out.println("---------" + speed + " ----- " + eventTick);
             }
         }
+        int b=0;
+        /*for(long i : ticksList) {
+            b++;
+            System.out.println("ape" + i + "   " +b);
+        }*/
     }
     
     
