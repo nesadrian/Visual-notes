@@ -26,7 +26,7 @@ public class PianoGraphics extends JPanel implements ActionListener{
     public void setTimer(int time) {
         tm = new Timer(time, this);
     }
-    
+
     public void init(boolean isWhiteKey) {
         if (isWhiteKey) {
             width = 25;
@@ -49,10 +49,13 @@ public class PianoGraphics extends JPanel implements ActionListener{
     
     public void actionPerformed(ActionEvent e){
         if(x < 0) velX = -velX; 
-        if(y == 640 + height) {
-            System.out.println("Reached end");
-        }
+        
     y = y + velY;
-    repaint(); 
+    if(y < 635 + height) {
+       repaint();
+    }
+    if (y == 100 + height) {
+        
+    }
     } 
 }

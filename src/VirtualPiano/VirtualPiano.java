@@ -48,7 +48,7 @@ public class VirtualPiano extends javax.swing.JFrame {
     public VirtualPiano() throws InvalidMidiDataException, IOException, MidiUnavailableException {
         initComponents();
         initializeArrayList();
-        pianoGraphics1.init(true);
+        noteAnimBlack6.init(false);
     }
     
     public boolean checkKeyWhite(int key) {
@@ -387,8 +387,96 @@ public class VirtualPiano extends javax.swing.JFrame {
         a1text51 = new javax.swing.JLabel();
         a0s = new javax.swing.JPanel();
         c1sharpText26 = new javax.swing.JLabel();
-        pepee = new javax.swing.JPanel();
-        pianoGraphics1 = new newpackage.PianoGraphics();
+        jLayeredPane2 = new javax.swing.JLayeredPane();
+        noteAnimWhite1 = new newpackage.PianoGraphics();
+        noteAnimWhite2 = new newpackage.PianoGraphics();
+        noteAnimWhite3 = new newpackage.PianoGraphics();
+        noteAnimWhite4 = new newpackage.PianoGraphics();
+        noteAnimWhite5 = new newpackage.PianoGraphics();
+        noteAnimWhite6 = new newpackage.PianoGraphics();
+        noteAnimWhite7 = new newpackage.PianoGraphics();
+        noteAnimWhite8 = new newpackage.PianoGraphics();
+        noteAnimWhite9 = new newpackage.PianoGraphics();
+        noteAnimWhite10 = new newpackage.PianoGraphics();
+        noteAnimWhite11 = new newpackage.PianoGraphics();
+        noteAnimWhite12 = new newpackage.PianoGraphics();
+        noteAnimWhite13 = new newpackage.PianoGraphics();
+        noteAnimWhite14 = new newpackage.PianoGraphics();
+        noteAnimWhite15 = new newpackage.PianoGraphics();
+        noteAnimWhite16 = new newpackage.PianoGraphics();
+        noteAnimWhite17 = new newpackage.PianoGraphics();
+        noteAnimWhite18 = new newpackage.PianoGraphics();
+        noteAnimWhite19 = new newpackage.PianoGraphics();
+        noteAnimWhite20 = new newpackage.PianoGraphics();
+        noteAnimWhite21 = new newpackage.PianoGraphics();
+        noteAnimWhite22 = new newpackage.PianoGraphics();
+        noteAnimWhite23 = new newpackage.PianoGraphics();
+        noteAnimWhite24 = new newpackage.PianoGraphics();
+        noteAnimWhite25 = new newpackage.PianoGraphics();
+        noteAnimWhite26 = new newpackage.PianoGraphics();
+        noteAnimWhite27 = new newpackage.PianoGraphics();
+        noteAnimWhite28 = new newpackage.PianoGraphics();
+        noteAnimWhite29 = new newpackage.PianoGraphics();
+        noteAnimWhite30 = new newpackage.PianoGraphics();
+        noteAnimWhite31 = new newpackage.PianoGraphics();
+        noteAnimWhite32 = new newpackage.PianoGraphics();
+        noteAnimWhite33 = new newpackage.PianoGraphics();
+        noteAnimWhite34 = new newpackage.PianoGraphics();
+        noteAnimWhite35 = new newpackage.PianoGraphics();
+        noteAnimWhite36 = new newpackage.PianoGraphics();
+        noteAnimWhite37 = new newpackage.PianoGraphics();
+        noteAnimWhite38 = new newpackage.PianoGraphics();
+        noteAnimWhite39 = new newpackage.PianoGraphics();
+        noteAnimWhite40 = new newpackage.PianoGraphics();
+        noteAnimWhite41 = new newpackage.PianoGraphics();
+        noteAnimWhite42 = new newpackage.PianoGraphics();
+        noteAnimWhite43 = new newpackage.PianoGraphics();
+        noteAnimWhite44 = new newpackage.PianoGraphics();
+        noteAnimWhite45 = new newpackage.PianoGraphics();
+        noteAnimWhite46 = new newpackage.PianoGraphics();
+        noteAnimWhite47 = new newpackage.PianoGraphics();
+        noteAnimWhite48 = new newpackage.PianoGraphics();
+        noteAnimWhite49 = new newpackage.PianoGraphics();
+        noteAnimWhite50 = new newpackage.PianoGraphics();
+        noteAnimWhite51 = new newpackage.PianoGraphics();
+        noteAnimWhite52 = new newpackage.PianoGraphics();
+        noteAnimBlack1 = new newpackage.PianoGraphics();
+        noteAnimBlack2 = new newpackage.PianoGraphics();
+        noteAnimBlack3 = new newpackage.PianoGraphics();
+        noteAnimBlack4 = new newpackage.PianoGraphics();
+        noteAnimBlack5 = new newpackage.PianoGraphics();
+        noteAnimBlack6 = new newpackage.PianoGraphics();
+        noteAnimBlack7 = new newpackage.PianoGraphics();
+        noteAnimBlack8 = new newpackage.PianoGraphics();
+        noteAnimBlack9 = new newpackage.PianoGraphics();
+        noteAnimBlack10 = new newpackage.PianoGraphics();
+        noteAnimBlack11 = new newpackage.PianoGraphics();
+        noteAnimBlack12 = new newpackage.PianoGraphics();
+        noteAnimBlack13 = new newpackage.PianoGraphics();
+        noteAnimBlack14 = new newpackage.PianoGraphics();
+        noteAnimBlack15 = new newpackage.PianoGraphics();
+        noteAnimBlack16 = new newpackage.PianoGraphics();
+        noteAnimBlack17 = new newpackage.PianoGraphics();
+        noteAnimBlack18 = new newpackage.PianoGraphics();
+        noteAnimBlack19 = new newpackage.PianoGraphics();
+        noteAnimBlack20 = new newpackage.PianoGraphics();
+        noteAnimBlack21 = new newpackage.PianoGraphics();
+        noteAnimBlack22 = new newpackage.PianoGraphics();
+        noteAnimBlack23 = new newpackage.PianoGraphics();
+        noteAnimBlack24 = new newpackage.PianoGraphics();
+        noteAnimBlack25 = new newpackage.PianoGraphics();
+        noteAnimBlack26 = new newpackage.PianoGraphics();
+        noteAnimBlack27 = new newpackage.PianoGraphics();
+        noteAnimBlack28 = new newpackage.PianoGraphics();
+        noteAnimBlack29 = new newpackage.PianoGraphics();
+        noteAnimBlack30 = new newpackage.PianoGraphics();
+        noteAnimBlack31 = new newpackage.PianoGraphics();
+        noteAnimBlack32 = new newpackage.PianoGraphics();
+        noteAnimBlack33 = new newpackage.PianoGraphics();
+        noteAnimBlack34 = new newpackage.PianoGraphics();
+        noteAnimBlack35 = new newpackage.PianoGraphics();
+        noteAnimBlack36 = new newpackage.PianoGraphics();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -417,7 +505,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d3.setLayout(d3Layout);
         d3Layout.setHorizontalGroup(
             d3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text16, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         d3Layout.setVerticalGroup(
             d3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -449,7 +537,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b0.setLayout(b0Layout);
         b0Layout.setHorizontalGroup(
             b0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text17, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         b0Layout.setVerticalGroup(
             b0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -481,7 +569,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c2.setLayout(c2Layout);
         c2Layout.setHorizontalGroup(
             c2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text18, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         c2Layout.setVerticalGroup(
             c2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -513,7 +601,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c3.setLayout(c3Layout);
         c3Layout.setHorizontalGroup(
             c3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text19, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         c3Layout.setVerticalGroup(
             c3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -545,7 +633,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c4.setLayout(c4Layout);
         c4Layout.setHorizontalGroup(
             c4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text20, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         c4Layout.setVerticalGroup(
             c4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -577,7 +665,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c5.setLayout(c5Layout);
         c5Layout.setHorizontalGroup(
             c5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text21, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         c5Layout.setVerticalGroup(
             c5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -609,7 +697,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c6.setLayout(c6Layout);
         c6Layout.setHorizontalGroup(
             c6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text22, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         c6Layout.setVerticalGroup(
             c6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -641,7 +729,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c7.setLayout(c7Layout);
         c7Layout.setHorizontalGroup(
             c7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text23, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         c7Layout.setVerticalGroup(
             c7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -706,7 +794,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c1s.setLayout(c1sLayout);
         c1sLayout.setHorizontalGroup(
             c1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText18, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         c1sLayout.setVerticalGroup(
             c1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -741,7 +829,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c2s.setLayout(c2sLayout);
         c2sLayout.setHorizontalGroup(
             c2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText19, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         c2sLayout.setVerticalGroup(
             c2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -776,7 +864,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c3s.setLayout(c3sLayout);
         c3sLayout.setHorizontalGroup(
             c3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText20, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         c3sLayout.setVerticalGroup(
             c3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -811,7 +899,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c4s.setLayout(c4sLayout);
         c4sLayout.setHorizontalGroup(
             c4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText21, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         c4sLayout.setVerticalGroup(
             c4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -846,7 +934,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c5s.setLayout(c5sLayout);
         c5sLayout.setHorizontalGroup(
             c5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText22, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         c5sLayout.setVerticalGroup(
             c5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -881,7 +969,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c6s.setLayout(c6sLayout);
         c6sLayout.setHorizontalGroup(
             c6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText23, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         c6sLayout.setVerticalGroup(
             c6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -916,7 +1004,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c7s.setLayout(c7sLayout);
         c7sLayout.setHorizontalGroup(
             c7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText24, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         c7sLayout.setVerticalGroup(
             c7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -952,7 +1040,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b1.setLayout(b1Layout);
         b1Layout.setHorizontalGroup(
             b1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text27, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         b1Layout.setVerticalGroup(
             b1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -984,7 +1072,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b2.setLayout(b2Layout);
         b2Layout.setHorizontalGroup(
             b2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text29, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         b2Layout.setVerticalGroup(
             b2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1016,7 +1104,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b3.setLayout(b3Layout);
         b3Layout.setHorizontalGroup(
             b3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text30, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         b3Layout.setVerticalGroup(
             b3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1048,7 +1136,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b4.setLayout(b4Layout);
         b4Layout.setHorizontalGroup(
             b4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text31, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         b4Layout.setVerticalGroup(
             b4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1080,7 +1168,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b5.setLayout(b5Layout);
         b5Layout.setHorizontalGroup(
             b5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text32, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         b5Layout.setVerticalGroup(
             b5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1112,7 +1200,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         e6.setLayout(e6Layout);
         e6Layout.setHorizontalGroup(
             e6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text33, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         e6Layout.setVerticalGroup(
             e6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1144,7 +1232,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b7.setLayout(b7Layout);
         b7Layout.setHorizontalGroup(
             b7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text25, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         b7Layout.setVerticalGroup(
             b7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1176,7 +1264,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d4.setLayout(d4Layout);
         d4Layout.setHorizontalGroup(
             d4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text34, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         d4Layout.setVerticalGroup(
             d4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1254,7 +1342,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d5.setLayout(d5Layout);
         d5Layout.setHorizontalGroup(
             d5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text41, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         d5Layout.setVerticalGroup(
             d5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1286,7 +1374,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d6.setLayout(d6Layout);
         d6Layout.setHorizontalGroup(
             d6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text42, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         d6Layout.setVerticalGroup(
             d6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1318,7 +1406,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d7.setLayout(d7Layout);
         d7Layout.setHorizontalGroup(
             d7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text43, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         d7Layout.setVerticalGroup(
             d7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1350,7 +1438,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d2.setLayout(d2Layout);
         d2Layout.setHorizontalGroup(
             d2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text48, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text48, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         d2Layout.setVerticalGroup(
             d2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1381,7 +1469,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d7s.setLayout(d7sLayout);
         d7sLayout.setHorizontalGroup(
             d7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText28, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         d7sLayout.setVerticalGroup(
             d7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1416,7 +1504,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d2s.setLayout(d2sLayout);
         d2sLayout.setHorizontalGroup(
             d2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText29, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         d2sLayout.setVerticalGroup(
             d2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1451,7 +1539,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d3s.setLayout(d3sLayout);
         d3sLayout.setHorizontalGroup(
             d3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText30, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         d3sLayout.setVerticalGroup(
             d3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1486,7 +1574,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d4s.setLayout(d4sLayout);
         d4sLayout.setHorizontalGroup(
             d4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText31, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         d4sLayout.setVerticalGroup(
             d4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1521,7 +1609,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d5s.setLayout(d5sLayout);
         d5sLayout.setHorizontalGroup(
             d5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText32, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         d5sLayout.setVerticalGroup(
             d5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1556,7 +1644,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f1s.setLayout(f1sLayout);
         f1sLayout.setHorizontalGroup(
             f1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText34, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         f1sLayout.setVerticalGroup(
             f1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1591,7 +1679,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         d6s.setLayout(d6sLayout);
         d6sLayout.setHorizontalGroup(
             d6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText35, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         d6sLayout.setVerticalGroup(
             d6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1627,7 +1715,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c10.setLayout(c10Layout);
         c10Layout.setHorizontalGroup(
             c10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text35, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         c10Layout.setVerticalGroup(
             c10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1659,7 +1747,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b18.setLayout(b18Layout);
         b18Layout.setHorizontalGroup(
             b18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text44, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         b18Layout.setVerticalGroup(
             b18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1725,7 +1813,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         b6.setLayout(b6Layout);
         b6Layout.setHorizontalGroup(
             b6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text36, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         b6Layout.setVerticalGroup(
             b6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1757,7 +1845,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         e5.setLayout(e5Layout);
         e5Layout.setHorizontalGroup(
             e5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text37, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         e5Layout.setVerticalGroup(
             e5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1789,7 +1877,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         e2.setLayout(e2Layout);
         e2Layout.setHorizontalGroup(
             e2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text38, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         e2Layout.setVerticalGroup(
             e2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1821,7 +1909,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         e3.setLayout(e3Layout);
         e3Layout.setHorizontalGroup(
             e3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text39, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         e3Layout.setVerticalGroup(
             e3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1853,7 +1941,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         e4.setLayout(e4Layout);
         e4Layout.setHorizontalGroup(
             e4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text46, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text46, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         e4Layout.setVerticalGroup(
             e4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1885,7 +1973,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         e1.setLayout(e1Layout);
         e1Layout.setHorizontalGroup(
             e1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text47, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text47, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         e1Layout.setVerticalGroup(
             e1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1917,7 +2005,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         e7.setLayout(e7Layout);
         e7Layout.setHorizontalGroup(
             e7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text49, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text49, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         e7Layout.setVerticalGroup(
             e7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1949,7 +2037,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f3.setLayout(f3Layout);
         f3Layout.setHorizontalGroup(
             f3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text50, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text50, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         f3Layout.setVerticalGroup(
             f3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1981,7 +2069,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f1.setLayout(f1Layout);
         f1Layout.setHorizontalGroup(
             f1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text52, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text52, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         f1Layout.setVerticalGroup(
             f1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2013,7 +2101,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f4.setLayout(f4Layout);
         f4Layout.setHorizontalGroup(
             f4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text53, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text53, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         f4Layout.setVerticalGroup(
             f4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2045,7 +2133,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f5.setLayout(f5Layout);
         f5Layout.setHorizontalGroup(
             f5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text54, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text54, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         f5Layout.setVerticalGroup(
             f5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2077,7 +2165,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f6.setLayout(f6Layout);
         f6Layout.setHorizontalGroup(
             f6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text55, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text55, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         f6Layout.setVerticalGroup(
             f6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2109,7 +2197,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g6.setLayout(g6Layout);
         g6Layout.setHorizontalGroup(
             g6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text56, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         g6Layout.setVerticalGroup(
             g6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2141,7 +2229,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f2.setLayout(f2Layout);
         f2Layout.setHorizontalGroup(
             f2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text57, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text57, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         f2Layout.setVerticalGroup(
             f2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2204,7 +2292,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f2s.setLayout(f2sLayout);
         f2sLayout.setHorizontalGroup(
             f2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText37, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         f2sLayout.setVerticalGroup(
             f2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2239,7 +2327,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f3s.setLayout(f3sLayout);
         f3sLayout.setHorizontalGroup(
             f3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText38, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         f3sLayout.setVerticalGroup(
             f3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2274,7 +2362,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f4s.setLayout(f4sLayout);
         f4sLayout.setHorizontalGroup(
             f4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText39, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         f4sLayout.setVerticalGroup(
             f4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2309,7 +2397,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g1s.setLayout(g1sLayout);
         g1sLayout.setHorizontalGroup(
             g1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText40, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         g1sLayout.setVerticalGroup(
             g1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2344,7 +2432,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f6s.setLayout(f6sLayout);
         f6sLayout.setHorizontalGroup(
             f6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText41, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         f6sLayout.setVerticalGroup(
             f6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2379,7 +2467,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f7s.setLayout(f7sLayout);
         f7sLayout.setHorizontalGroup(
             f7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText42, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         f7sLayout.setVerticalGroup(
             f7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2415,7 +2503,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f7.setLayout(f7Layout);
         f7Layout.setHorizontalGroup(
             f7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text58, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text58, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         f7Layout.setVerticalGroup(
             f7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2447,7 +2535,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g1.setLayout(g1Layout);
         g1Layout.setHorizontalGroup(
             g1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text59, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text59, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         g1Layout.setVerticalGroup(
             g1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2479,7 +2567,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g2.setLayout(g2Layout);
         g2Layout.setHorizontalGroup(
             g2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text60, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text60, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         g2Layout.setVerticalGroup(
             g2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2511,7 +2599,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g3.setLayout(g3Layout);
         g3Layout.setHorizontalGroup(
             g3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text61, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text61, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         g3Layout.setVerticalGroup(
             g3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2543,7 +2631,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g4.setLayout(g4Layout);
         g4Layout.setHorizontalGroup(
             g4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text62, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text62, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         g4Layout.setVerticalGroup(
             g4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2575,7 +2663,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g5.setLayout(g5Layout);
         g5Layout.setHorizontalGroup(
             g5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text63, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text63, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         g5Layout.setVerticalGroup(
             g5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2607,7 +2695,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a7.setLayout(a7Layout);
         a7Layout.setHorizontalGroup(
             a7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text64, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text64, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         a7Layout.setVerticalGroup(
             a7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2638,7 +2726,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         f5s.setLayout(f5sLayout);
         f5sLayout.setHorizontalGroup(
             f5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText43, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         f5sLayout.setVerticalGroup(
             f5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2673,7 +2761,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g2s.setLayout(g2sLayout);
         g2sLayout.setHorizontalGroup(
             g2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText44, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         g2sLayout.setVerticalGroup(
             g2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2708,7 +2796,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g3s.setLayout(g3sLayout);
         g3sLayout.setHorizontalGroup(
             g3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText45, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText45, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         g3sLayout.setVerticalGroup(
             g3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2743,7 +2831,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g4s.setLayout(g4sLayout);
         g4sLayout.setHorizontalGroup(
             g4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText46, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText46, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         g4sLayout.setVerticalGroup(
             g4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2778,7 +2866,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g5s.setLayout(g5sLayout);
         g5sLayout.setHorizontalGroup(
             g5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText47, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText47, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         g5sLayout.setVerticalGroup(
             g5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2813,7 +2901,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g6s.setLayout(g6sLayout);
         g6sLayout.setHorizontalGroup(
             g6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText48, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText48, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         g6sLayout.setVerticalGroup(
             g6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2848,7 +2936,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a7s.setLayout(a7sLayout);
         a7sLayout.setHorizontalGroup(
             a7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText49, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText49, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         a7sLayout.setVerticalGroup(
             a7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2884,7 +2972,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g7.setLayout(g7Layout);
         g7Layout.setHorizontalGroup(
             g7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text65, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text65, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         g7Layout.setVerticalGroup(
             g7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2916,7 +3004,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a1.setLayout(a1Layout);
         a1Layout.setHorizontalGroup(
             a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text66, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text66, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         a1Layout.setVerticalGroup(
             a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2948,7 +3036,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a2.setLayout(a2Layout);
         a2Layout.setHorizontalGroup(
             a2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text67, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text67, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         a2Layout.setVerticalGroup(
             a2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2980,7 +3068,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a3.setLayout(a3Layout);
         a3Layout.setHorizontalGroup(
             a3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text68, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text68, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         a3Layout.setVerticalGroup(
             a3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3012,7 +3100,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a4.setLayout(a4Layout);
         a4Layout.setHorizontalGroup(
             a4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text69, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text69, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         a4Layout.setVerticalGroup(
             a4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3044,7 +3132,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a5.setLayout(a5Layout);
         a5Layout.setHorizontalGroup(
             a5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text70, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text70, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         a5Layout.setVerticalGroup(
             a5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3076,7 +3164,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a6.setLayout(a6Layout);
         a6Layout.setHorizontalGroup(
             a6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text71, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text71, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         a6Layout.setVerticalGroup(
             a6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3107,7 +3195,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         g7s.setLayout(g7sLayout);
         g7sLayout.setHorizontalGroup(
             g7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText51, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText51, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         g7sLayout.setVerticalGroup(
             g7sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3142,7 +3230,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a1s.setLayout(a1sLayout);
         a1sLayout.setHorizontalGroup(
             a1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText52, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText52, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         a1sLayout.setVerticalGroup(
             a1sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3177,7 +3265,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a2s.setLayout(a2sLayout);
         a2sLayout.setHorizontalGroup(
             a2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText53, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText53, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         a2sLayout.setVerticalGroup(
             a2sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3212,7 +3300,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a3s.setLayout(a3sLayout);
         a3sLayout.setHorizontalGroup(
             a3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText54, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText54, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         a3sLayout.setVerticalGroup(
             a3sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3247,7 +3335,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a4s.setLayout(a4sLayout);
         a4sLayout.setHorizontalGroup(
             a4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText55, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText55, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         a4sLayout.setVerticalGroup(
             a4sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3282,7 +3370,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a5s.setLayout(a5sLayout);
         a5sLayout.setHorizontalGroup(
             a5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText56, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         a5sLayout.setVerticalGroup(
             a5sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3317,7 +3405,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a6s.setLayout(a6sLayout);
         a6sLayout.setHorizontalGroup(
             a6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText57, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText57, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         a6sLayout.setVerticalGroup(
             a6sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3353,7 +3441,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a0.setLayout(a0Layout);
         a0Layout.setHorizontalGroup(
             a0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a0Text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a0Text, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         a0Layout.setVerticalGroup(
             a0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3385,7 +3473,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         c1.setLayout(c1Layout);
         c1Layout.setHorizontalGroup(
             c1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(a1text51, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(a1text51, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         c1Layout.setVerticalGroup(
             c1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3416,7 +3504,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         a0s.setLayout(a0sLayout);
         a0sLayout.setHorizontalGroup(
             a0sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(c1sharpText26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(c1sharpText26, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
         );
         a0sLayout.setVerticalGroup(
             a0sLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3439,38 +3527,1641 @@ public class VirtualPiano extends javax.swing.JFrame {
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(0, 640, 1320, 150);
 
-        pepee.setBackground(new java.awt.Color(204, 0, 204));
+        jLayeredPane2.setBackground(new java.awt.Color(25, 25, 25));
+        jLayeredPane2.setOpaque(true);
+        jLayeredPane2.setPreferredSize(new java.awt.Dimension(1320, 635));
+        jLayeredPane2.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout pianoGraphics1Layout = new javax.swing.GroupLayout(pianoGraphics1);
-        pianoGraphics1.setLayout(pianoGraphics1Layout);
-        pianoGraphics1Layout.setHorizontalGroup(
-            pianoGraphics1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 103, Short.MAX_VALUE)
-        );
-        pianoGraphics1Layout.setVerticalGroup(
-            pianoGraphics1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 119, Short.MAX_VALUE)
-        );
+        noteAnimWhite1.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite1.setPreferredSize(new java.awt.Dimension(25, 635));
 
-        javax.swing.GroupLayout pepeeLayout = new javax.swing.GroupLayout(pepee);
-        pepee.setLayout(pepeeLayout);
-        pepeeLayout.setHorizontalGroup(
-            pepeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pepeeLayout.createSequentialGroup()
-                .addGap(242, 242, 242)
-                .addComponent(pianoGraphics1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(285, Short.MAX_VALUE))
+        javax.swing.GroupLayout noteAnimWhite1Layout = new javax.swing.GroupLayout(noteAnimWhite1);
+        noteAnimWhite1.setLayout(noteAnimWhite1Layout);
+        noteAnimWhite1Layout.setHorizontalGroup(
+            noteAnimWhite1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        pepeeLayout.setVerticalGroup(
-            pepeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pepeeLayout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(pianoGraphics1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(436, Short.MAX_VALUE))
+        noteAnimWhite1Layout.setVerticalGroup(
+            noteAnimWhite1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        getContentPane().add(pepee);
-        pepee.setBounds(50, 0, 630, 640);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        jLayeredPane2.add(noteAnimWhite1, gridBagConstraints);
+
+        noteAnimWhite2.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite2.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite2Layout = new javax.swing.GroupLayout(noteAnimWhite2);
+        noteAnimWhite2.setLayout(noteAnimWhite2Layout);
+        noteAnimWhite2Layout.setHorizontalGroup(
+            noteAnimWhite2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite2Layout.setVerticalGroup(
+            noteAnimWhite2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        jLayeredPane2.add(noteAnimWhite2, gridBagConstraints);
+
+        noteAnimWhite3.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite3.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite3Layout = new javax.swing.GroupLayout(noteAnimWhite3);
+        noteAnimWhite3.setLayout(noteAnimWhite3Layout);
+        noteAnimWhite3Layout.setHorizontalGroup(
+            noteAnimWhite3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite3Layout.setVerticalGroup(
+            noteAnimWhite3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        jLayeredPane2.add(noteAnimWhite3, gridBagConstraints);
+
+        noteAnimWhite4.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite4.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite4Layout = new javax.swing.GroupLayout(noteAnimWhite4);
+        noteAnimWhite4.setLayout(noteAnimWhite4Layout);
+        noteAnimWhite4Layout.setHorizontalGroup(
+            noteAnimWhite4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite4Layout.setVerticalGroup(
+            noteAnimWhite4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        jLayeredPane2.add(noteAnimWhite4, gridBagConstraints);
+
+        noteAnimWhite5.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite5.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite5Layout = new javax.swing.GroupLayout(noteAnimWhite5);
+        noteAnimWhite5.setLayout(noteAnimWhite5Layout);
+        noteAnimWhite5Layout.setHorizontalGroup(
+            noteAnimWhite5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite5Layout.setVerticalGroup(
+            noteAnimWhite5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        jLayeredPane2.add(noteAnimWhite5, gridBagConstraints);
+
+        noteAnimWhite6.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite6.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite6Layout = new javax.swing.GroupLayout(noteAnimWhite6);
+        noteAnimWhite6.setLayout(noteAnimWhite6Layout);
+        noteAnimWhite6Layout.setHorizontalGroup(
+            noteAnimWhite6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite6Layout.setVerticalGroup(
+            noteAnimWhite6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        jLayeredPane2.add(noteAnimWhite6, gridBagConstraints);
+
+        noteAnimWhite7.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite7.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite7Layout = new javax.swing.GroupLayout(noteAnimWhite7);
+        noteAnimWhite7.setLayout(noteAnimWhite7Layout);
+        noteAnimWhite7Layout.setHorizontalGroup(
+            noteAnimWhite7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite7Layout.setVerticalGroup(
+            noteAnimWhite7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
+        jLayeredPane2.add(noteAnimWhite7, gridBagConstraints);
+
+        noteAnimWhite8.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite8.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite8Layout = new javax.swing.GroupLayout(noteAnimWhite8);
+        noteAnimWhite8.setLayout(noteAnimWhite8Layout);
+        noteAnimWhite8Layout.setHorizontalGroup(
+            noteAnimWhite8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite8Layout.setVerticalGroup(
+            noteAnimWhite8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite8, new java.awt.GridBagConstraints());
+
+        noteAnimWhite9.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite9.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite9Layout = new javax.swing.GroupLayout(noteAnimWhite9);
+        noteAnimWhite9.setLayout(noteAnimWhite9Layout);
+        noteAnimWhite9Layout.setHorizontalGroup(
+            noteAnimWhite9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite9Layout.setVerticalGroup(
+            noteAnimWhite9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite9, new java.awt.GridBagConstraints());
+
+        noteAnimWhite10.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite10.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite10Layout = new javax.swing.GroupLayout(noteAnimWhite10);
+        noteAnimWhite10.setLayout(noteAnimWhite10Layout);
+        noteAnimWhite10Layout.setHorizontalGroup(
+            noteAnimWhite10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite10Layout.setVerticalGroup(
+            noteAnimWhite10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite10, new java.awt.GridBagConstraints());
+
+        noteAnimWhite11.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite11.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite11Layout = new javax.swing.GroupLayout(noteAnimWhite11);
+        noteAnimWhite11.setLayout(noteAnimWhite11Layout);
+        noteAnimWhite11Layout.setHorizontalGroup(
+            noteAnimWhite11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite11Layout.setVerticalGroup(
+            noteAnimWhite11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite11, new java.awt.GridBagConstraints());
+
+        noteAnimWhite12.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite12.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite12Layout = new javax.swing.GroupLayout(noteAnimWhite12);
+        noteAnimWhite12.setLayout(noteAnimWhite12Layout);
+        noteAnimWhite12Layout.setHorizontalGroup(
+            noteAnimWhite12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite12Layout.setVerticalGroup(
+            noteAnimWhite12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite12, new java.awt.GridBagConstraints());
+
+        noteAnimWhite13.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite13.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite13Layout = new javax.swing.GroupLayout(noteAnimWhite13);
+        noteAnimWhite13.setLayout(noteAnimWhite13Layout);
+        noteAnimWhite13Layout.setHorizontalGroup(
+            noteAnimWhite13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite13Layout.setVerticalGroup(
+            noteAnimWhite13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite13, new java.awt.GridBagConstraints());
+
+        noteAnimWhite14.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite14.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite14Layout = new javax.swing.GroupLayout(noteAnimWhite14);
+        noteAnimWhite14.setLayout(noteAnimWhite14Layout);
+        noteAnimWhite14Layout.setHorizontalGroup(
+            noteAnimWhite14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite14Layout.setVerticalGroup(
+            noteAnimWhite14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite14, new java.awt.GridBagConstraints());
+
+        noteAnimWhite15.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite15.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite15Layout = new javax.swing.GroupLayout(noteAnimWhite15);
+        noteAnimWhite15.setLayout(noteAnimWhite15Layout);
+        noteAnimWhite15Layout.setHorizontalGroup(
+            noteAnimWhite15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite15Layout.setVerticalGroup(
+            noteAnimWhite15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite15, new java.awt.GridBagConstraints());
+
+        noteAnimWhite16.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite16.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite16Layout = new javax.swing.GroupLayout(noteAnimWhite16);
+        noteAnimWhite16.setLayout(noteAnimWhite16Layout);
+        noteAnimWhite16Layout.setHorizontalGroup(
+            noteAnimWhite16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite16Layout.setVerticalGroup(
+            noteAnimWhite16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite16, new java.awt.GridBagConstraints());
+
+        noteAnimWhite17.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite17.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite17Layout = new javax.swing.GroupLayout(noteAnimWhite17);
+        noteAnimWhite17.setLayout(noteAnimWhite17Layout);
+        noteAnimWhite17Layout.setHorizontalGroup(
+            noteAnimWhite17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite17Layout.setVerticalGroup(
+            noteAnimWhite17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite17, new java.awt.GridBagConstraints());
+
+        noteAnimWhite18.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite18.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite18Layout = new javax.swing.GroupLayout(noteAnimWhite18);
+        noteAnimWhite18.setLayout(noteAnimWhite18Layout);
+        noteAnimWhite18Layout.setHorizontalGroup(
+            noteAnimWhite18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite18Layout.setVerticalGroup(
+            noteAnimWhite18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite18, new java.awt.GridBagConstraints());
+
+        noteAnimWhite19.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite19.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite19Layout = new javax.swing.GroupLayout(noteAnimWhite19);
+        noteAnimWhite19.setLayout(noteAnimWhite19Layout);
+        noteAnimWhite19Layout.setHorizontalGroup(
+            noteAnimWhite19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite19Layout.setVerticalGroup(
+            noteAnimWhite19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite19, new java.awt.GridBagConstraints());
+
+        noteAnimWhite20.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite20.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite20Layout = new javax.swing.GroupLayout(noteAnimWhite20);
+        noteAnimWhite20.setLayout(noteAnimWhite20Layout);
+        noteAnimWhite20Layout.setHorizontalGroup(
+            noteAnimWhite20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite20Layout.setVerticalGroup(
+            noteAnimWhite20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite20, new java.awt.GridBagConstraints());
+
+        noteAnimWhite21.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite21.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite21Layout = new javax.swing.GroupLayout(noteAnimWhite21);
+        noteAnimWhite21.setLayout(noteAnimWhite21Layout);
+        noteAnimWhite21Layout.setHorizontalGroup(
+            noteAnimWhite21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite21Layout.setVerticalGroup(
+            noteAnimWhite21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite21, new java.awt.GridBagConstraints());
+
+        noteAnimWhite22.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite22.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite22Layout = new javax.swing.GroupLayout(noteAnimWhite22);
+        noteAnimWhite22.setLayout(noteAnimWhite22Layout);
+        noteAnimWhite22Layout.setHorizontalGroup(
+            noteAnimWhite22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite22Layout.setVerticalGroup(
+            noteAnimWhite22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite22, new java.awt.GridBagConstraints());
+
+        noteAnimWhite23.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite23.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite23Layout = new javax.swing.GroupLayout(noteAnimWhite23);
+        noteAnimWhite23.setLayout(noteAnimWhite23Layout);
+        noteAnimWhite23Layout.setHorizontalGroup(
+            noteAnimWhite23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite23Layout.setVerticalGroup(
+            noteAnimWhite23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite23, new java.awt.GridBagConstraints());
+
+        noteAnimWhite24.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite24.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite24Layout = new javax.swing.GroupLayout(noteAnimWhite24);
+        noteAnimWhite24.setLayout(noteAnimWhite24Layout);
+        noteAnimWhite24Layout.setHorizontalGroup(
+            noteAnimWhite24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite24Layout.setVerticalGroup(
+            noteAnimWhite24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite24, new java.awt.GridBagConstraints());
+
+        noteAnimWhite25.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite25.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite25Layout = new javax.swing.GroupLayout(noteAnimWhite25);
+        noteAnimWhite25.setLayout(noteAnimWhite25Layout);
+        noteAnimWhite25Layout.setHorizontalGroup(
+            noteAnimWhite25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite25Layout.setVerticalGroup(
+            noteAnimWhite25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite25, new java.awt.GridBagConstraints());
+
+        noteAnimWhite26.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite26.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite26Layout = new javax.swing.GroupLayout(noteAnimWhite26);
+        noteAnimWhite26.setLayout(noteAnimWhite26Layout);
+        noteAnimWhite26Layout.setHorizontalGroup(
+            noteAnimWhite26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite26Layout.setVerticalGroup(
+            noteAnimWhite26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite26, new java.awt.GridBagConstraints());
+
+        noteAnimWhite27.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite27.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite27Layout = new javax.swing.GroupLayout(noteAnimWhite27);
+        noteAnimWhite27.setLayout(noteAnimWhite27Layout);
+        noteAnimWhite27Layout.setHorizontalGroup(
+            noteAnimWhite27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite27Layout.setVerticalGroup(
+            noteAnimWhite27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite27, new java.awt.GridBagConstraints());
+
+        noteAnimWhite28.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite28.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite28Layout = new javax.swing.GroupLayout(noteAnimWhite28);
+        noteAnimWhite28.setLayout(noteAnimWhite28Layout);
+        noteAnimWhite28Layout.setHorizontalGroup(
+            noteAnimWhite28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite28Layout.setVerticalGroup(
+            noteAnimWhite28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite28, new java.awt.GridBagConstraints());
+
+        noteAnimWhite29.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite29.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite29Layout = new javax.swing.GroupLayout(noteAnimWhite29);
+        noteAnimWhite29.setLayout(noteAnimWhite29Layout);
+        noteAnimWhite29Layout.setHorizontalGroup(
+            noteAnimWhite29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite29Layout.setVerticalGroup(
+            noteAnimWhite29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite29, new java.awt.GridBagConstraints());
+
+        noteAnimWhite30.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite30.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite30Layout = new javax.swing.GroupLayout(noteAnimWhite30);
+        noteAnimWhite30.setLayout(noteAnimWhite30Layout);
+        noteAnimWhite30Layout.setHorizontalGroup(
+            noteAnimWhite30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite30Layout.setVerticalGroup(
+            noteAnimWhite30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite30, new java.awt.GridBagConstraints());
+
+        noteAnimWhite31.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite31.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite31Layout = new javax.swing.GroupLayout(noteAnimWhite31);
+        noteAnimWhite31.setLayout(noteAnimWhite31Layout);
+        noteAnimWhite31Layout.setHorizontalGroup(
+            noteAnimWhite31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite31Layout.setVerticalGroup(
+            noteAnimWhite31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite31, new java.awt.GridBagConstraints());
+
+        noteAnimWhite32.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite32.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite32Layout = new javax.swing.GroupLayout(noteAnimWhite32);
+        noteAnimWhite32.setLayout(noteAnimWhite32Layout);
+        noteAnimWhite32Layout.setHorizontalGroup(
+            noteAnimWhite32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite32Layout.setVerticalGroup(
+            noteAnimWhite32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite32, new java.awt.GridBagConstraints());
+
+        noteAnimWhite33.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite33.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite33Layout = new javax.swing.GroupLayout(noteAnimWhite33);
+        noteAnimWhite33.setLayout(noteAnimWhite33Layout);
+        noteAnimWhite33Layout.setHorizontalGroup(
+            noteAnimWhite33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite33Layout.setVerticalGroup(
+            noteAnimWhite33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite33, new java.awt.GridBagConstraints());
+
+        noteAnimWhite34.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite34.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite34Layout = new javax.swing.GroupLayout(noteAnimWhite34);
+        noteAnimWhite34.setLayout(noteAnimWhite34Layout);
+        noteAnimWhite34Layout.setHorizontalGroup(
+            noteAnimWhite34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite34Layout.setVerticalGroup(
+            noteAnimWhite34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite34, new java.awt.GridBagConstraints());
+
+        noteAnimWhite35.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite35.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite35Layout = new javax.swing.GroupLayout(noteAnimWhite35);
+        noteAnimWhite35.setLayout(noteAnimWhite35Layout);
+        noteAnimWhite35Layout.setHorizontalGroup(
+            noteAnimWhite35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite35Layout.setVerticalGroup(
+            noteAnimWhite35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite35, new java.awt.GridBagConstraints());
+
+        noteAnimWhite36.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite36.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite36Layout = new javax.swing.GroupLayout(noteAnimWhite36);
+        noteAnimWhite36.setLayout(noteAnimWhite36Layout);
+        noteAnimWhite36Layout.setHorizontalGroup(
+            noteAnimWhite36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite36Layout.setVerticalGroup(
+            noteAnimWhite36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite36, new java.awt.GridBagConstraints());
+
+        noteAnimWhite37.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite37.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite37Layout = new javax.swing.GroupLayout(noteAnimWhite37);
+        noteAnimWhite37.setLayout(noteAnimWhite37Layout);
+        noteAnimWhite37Layout.setHorizontalGroup(
+            noteAnimWhite37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite37Layout.setVerticalGroup(
+            noteAnimWhite37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite37, new java.awt.GridBagConstraints());
+
+        noteAnimWhite38.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite38.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite38Layout = new javax.swing.GroupLayout(noteAnimWhite38);
+        noteAnimWhite38.setLayout(noteAnimWhite38Layout);
+        noteAnimWhite38Layout.setHorizontalGroup(
+            noteAnimWhite38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite38Layout.setVerticalGroup(
+            noteAnimWhite38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite38, new java.awt.GridBagConstraints());
+
+        noteAnimWhite39.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite39.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite39Layout = new javax.swing.GroupLayout(noteAnimWhite39);
+        noteAnimWhite39.setLayout(noteAnimWhite39Layout);
+        noteAnimWhite39Layout.setHorizontalGroup(
+            noteAnimWhite39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite39Layout.setVerticalGroup(
+            noteAnimWhite39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite39, new java.awt.GridBagConstraints());
+
+        noteAnimWhite40.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite40.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite40Layout = new javax.swing.GroupLayout(noteAnimWhite40);
+        noteAnimWhite40.setLayout(noteAnimWhite40Layout);
+        noteAnimWhite40Layout.setHorizontalGroup(
+            noteAnimWhite40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite40Layout.setVerticalGroup(
+            noteAnimWhite40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite40, new java.awt.GridBagConstraints());
+
+        noteAnimWhite41.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite41.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite41Layout = new javax.swing.GroupLayout(noteAnimWhite41);
+        noteAnimWhite41.setLayout(noteAnimWhite41Layout);
+        noteAnimWhite41Layout.setHorizontalGroup(
+            noteAnimWhite41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite41Layout.setVerticalGroup(
+            noteAnimWhite41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite41, new java.awt.GridBagConstraints());
+
+        noteAnimWhite42.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite42.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite42Layout = new javax.swing.GroupLayout(noteAnimWhite42);
+        noteAnimWhite42.setLayout(noteAnimWhite42Layout);
+        noteAnimWhite42Layout.setHorizontalGroup(
+            noteAnimWhite42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite42Layout.setVerticalGroup(
+            noteAnimWhite42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite42, new java.awt.GridBagConstraints());
+
+        noteAnimWhite43.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite43.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite43Layout = new javax.swing.GroupLayout(noteAnimWhite43);
+        noteAnimWhite43.setLayout(noteAnimWhite43Layout);
+        noteAnimWhite43Layout.setHorizontalGroup(
+            noteAnimWhite43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite43Layout.setVerticalGroup(
+            noteAnimWhite43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite43, new java.awt.GridBagConstraints());
+
+        noteAnimWhite44.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite44.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite44Layout = new javax.swing.GroupLayout(noteAnimWhite44);
+        noteAnimWhite44.setLayout(noteAnimWhite44Layout);
+        noteAnimWhite44Layout.setHorizontalGroup(
+            noteAnimWhite44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite44Layout.setVerticalGroup(
+            noteAnimWhite44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite44, new java.awt.GridBagConstraints());
+
+        noteAnimWhite45.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite45.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite45Layout = new javax.swing.GroupLayout(noteAnimWhite45);
+        noteAnimWhite45.setLayout(noteAnimWhite45Layout);
+        noteAnimWhite45Layout.setHorizontalGroup(
+            noteAnimWhite45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite45Layout.setVerticalGroup(
+            noteAnimWhite45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite45, new java.awt.GridBagConstraints());
+
+        noteAnimWhite46.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite46.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite46Layout = new javax.swing.GroupLayout(noteAnimWhite46);
+        noteAnimWhite46.setLayout(noteAnimWhite46Layout);
+        noteAnimWhite46Layout.setHorizontalGroup(
+            noteAnimWhite46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite46Layout.setVerticalGroup(
+            noteAnimWhite46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite46, new java.awt.GridBagConstraints());
+
+        noteAnimWhite47.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite47.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite47Layout = new javax.swing.GroupLayout(noteAnimWhite47);
+        noteAnimWhite47.setLayout(noteAnimWhite47Layout);
+        noteAnimWhite47Layout.setHorizontalGroup(
+            noteAnimWhite47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite47Layout.setVerticalGroup(
+            noteAnimWhite47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite47, new java.awt.GridBagConstraints());
+
+        noteAnimWhite48.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite48.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite48Layout = new javax.swing.GroupLayout(noteAnimWhite48);
+        noteAnimWhite48.setLayout(noteAnimWhite48Layout);
+        noteAnimWhite48Layout.setHorizontalGroup(
+            noteAnimWhite48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite48Layout.setVerticalGroup(
+            noteAnimWhite48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite48, new java.awt.GridBagConstraints());
+
+        noteAnimWhite49.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite49.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite49Layout = new javax.swing.GroupLayout(noteAnimWhite49);
+        noteAnimWhite49.setLayout(noteAnimWhite49Layout);
+        noteAnimWhite49Layout.setHorizontalGroup(
+            noteAnimWhite49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite49Layout.setVerticalGroup(
+            noteAnimWhite49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite49, new java.awt.GridBagConstraints());
+
+        noteAnimWhite50.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite50.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite50Layout = new javax.swing.GroupLayout(noteAnimWhite50);
+        noteAnimWhite50.setLayout(noteAnimWhite50Layout);
+        noteAnimWhite50Layout.setHorizontalGroup(
+            noteAnimWhite50Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite50Layout.setVerticalGroup(
+            noteAnimWhite50Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite50, new java.awt.GridBagConstraints());
+
+        noteAnimWhite51.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite51.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite51Layout = new javax.swing.GroupLayout(noteAnimWhite51);
+        noteAnimWhite51.setLayout(noteAnimWhite51Layout);
+        noteAnimWhite51Layout.setHorizontalGroup(
+            noteAnimWhite51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite51Layout.setVerticalGroup(
+            noteAnimWhite51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite51, new java.awt.GridBagConstraints());
+
+        noteAnimWhite52.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite52.setPreferredSize(new java.awt.Dimension(25, 635));
+
+        javax.swing.GroupLayout noteAnimWhite52Layout = new javax.swing.GroupLayout(noteAnimWhite52);
+        noteAnimWhite52.setLayout(noteAnimWhite52Layout);
+        noteAnimWhite52Layout.setHorizontalGroup(
+            noteAnimWhite52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimWhite52Layout.setVerticalGroup(
+            noteAnimWhite52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.add(noteAnimWhite52, new java.awt.GridBagConstraints());
+
+        noteAnimBlack1.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack1.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack1Layout = new javax.swing.GroupLayout(noteAnimBlack1);
+        noteAnimBlack1.setLayout(noteAnimBlack1Layout);
+        noteAnimBlack1Layout.setHorizontalGroup(
+            noteAnimBlack1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack1Layout.setVerticalGroup(
+            noteAnimBlack1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack1, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack1, gridBagConstraints);
+
+        noteAnimBlack2.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack2.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack2Layout = new javax.swing.GroupLayout(noteAnimBlack2);
+        noteAnimBlack2.setLayout(noteAnimBlack2Layout);
+        noteAnimBlack2Layout.setHorizontalGroup(
+            noteAnimBlack2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack2Layout.setVerticalGroup(
+            noteAnimBlack2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack2, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack2, gridBagConstraints);
+
+        noteAnimBlack3.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack3.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack3Layout = new javax.swing.GroupLayout(noteAnimBlack3);
+        noteAnimBlack3.setLayout(noteAnimBlack3Layout);
+        noteAnimBlack3Layout.setHorizontalGroup(
+            noteAnimBlack3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack3Layout.setVerticalGroup(
+            noteAnimBlack3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack3, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack3, gridBagConstraints);
+
+        noteAnimBlack4.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack4.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack4Layout = new javax.swing.GroupLayout(noteAnimBlack4);
+        noteAnimBlack4.setLayout(noteAnimBlack4Layout);
+        noteAnimBlack4Layout.setHorizontalGroup(
+            noteAnimBlack4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack4Layout.setVerticalGroup(
+            noteAnimBlack4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack4, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack4, gridBagConstraints);
+
+        noteAnimBlack5.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack5.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack5Layout = new javax.swing.GroupLayout(noteAnimBlack5);
+        noteAnimBlack5.setLayout(noteAnimBlack5Layout);
+        noteAnimBlack5Layout.setHorizontalGroup(
+            noteAnimBlack5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack5Layout.setVerticalGroup(
+            noteAnimBlack5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack5, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack5, gridBagConstraints);
+
+        noteAnimBlack6.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack6.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack6Layout = new javax.swing.GroupLayout(noteAnimBlack6);
+        noteAnimBlack6.setLayout(noteAnimBlack6Layout);
+        noteAnimBlack6Layout.setHorizontalGroup(
+            noteAnimBlack6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack6Layout.setVerticalGroup(
+            noteAnimBlack6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack6, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack6, gridBagConstraints);
+
+        noteAnimBlack7.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack7.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack7Layout = new javax.swing.GroupLayout(noteAnimBlack7);
+        noteAnimBlack7.setLayout(noteAnimBlack7Layout);
+        noteAnimBlack7Layout.setHorizontalGroup(
+            noteAnimBlack7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack7Layout.setVerticalGroup(
+            noteAnimBlack7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack7, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack7, gridBagConstraints);
+
+        noteAnimBlack8.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack8.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack8Layout = new javax.swing.GroupLayout(noteAnimBlack8);
+        noteAnimBlack8.setLayout(noteAnimBlack8Layout);
+        noteAnimBlack8Layout.setHorizontalGroup(
+            noteAnimBlack8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack8Layout.setVerticalGroup(
+            noteAnimBlack8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack8, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack8, gridBagConstraints);
+
+        noteAnimBlack9.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack9.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack9Layout = new javax.swing.GroupLayout(noteAnimBlack9);
+        noteAnimBlack9.setLayout(noteAnimBlack9Layout);
+        noteAnimBlack9Layout.setHorizontalGroup(
+            noteAnimBlack9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack9Layout.setVerticalGroup(
+            noteAnimBlack9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack9, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack9, gridBagConstraints);
+
+        noteAnimBlack10.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack10.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack10Layout = new javax.swing.GroupLayout(noteAnimBlack10);
+        noteAnimBlack10.setLayout(noteAnimBlack10Layout);
+        noteAnimBlack10Layout.setHorizontalGroup(
+            noteAnimBlack10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack10Layout.setVerticalGroup(
+            noteAnimBlack10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack10, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack10, gridBagConstraints);
+
+        noteAnimBlack11.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack11.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack11Layout = new javax.swing.GroupLayout(noteAnimBlack11);
+        noteAnimBlack11.setLayout(noteAnimBlack11Layout);
+        noteAnimBlack11Layout.setHorizontalGroup(
+            noteAnimBlack11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack11Layout.setVerticalGroup(
+            noteAnimBlack11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack11, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 14;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack11, gridBagConstraints);
+
+        noteAnimBlack12.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack12.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack12Layout = new javax.swing.GroupLayout(noteAnimBlack12);
+        noteAnimBlack12.setLayout(noteAnimBlack12Layout);
+        noteAnimBlack12Layout.setHorizontalGroup(
+            noteAnimBlack12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack12Layout.setVerticalGroup(
+            noteAnimBlack12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack12, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 16;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack12, gridBagConstraints);
+
+        noteAnimBlack13.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack13.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack13Layout = new javax.swing.GroupLayout(noteAnimBlack13);
+        noteAnimBlack13.setLayout(noteAnimBlack13Layout);
+        noteAnimBlack13Layout.setHorizontalGroup(
+            noteAnimBlack13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack13Layout.setVerticalGroup(
+            noteAnimBlack13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack13, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 17;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack13, gridBagConstraints);
+
+        noteAnimBlack14.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack14.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack14Layout = new javax.swing.GroupLayout(noteAnimBlack14);
+        noteAnimBlack14.setLayout(noteAnimBlack14Layout);
+        noteAnimBlack14Layout.setHorizontalGroup(
+            noteAnimBlack14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack14Layout.setVerticalGroup(
+            noteAnimBlack14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack14, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 19;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack14, gridBagConstraints);
+
+        noteAnimBlack15.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack15.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack15Layout = new javax.swing.GroupLayout(noteAnimBlack15);
+        noteAnimBlack15.setLayout(noteAnimBlack15Layout);
+        noteAnimBlack15Layout.setHorizontalGroup(
+            noteAnimBlack15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack15Layout.setVerticalGroup(
+            noteAnimBlack15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack15, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 20;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack15, gridBagConstraints);
+
+        noteAnimBlack16.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack16.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack16Layout = new javax.swing.GroupLayout(noteAnimBlack16);
+        noteAnimBlack16.setLayout(noteAnimBlack16Layout);
+        noteAnimBlack16Layout.setHorizontalGroup(
+            noteAnimBlack16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack16Layout.setVerticalGroup(
+            noteAnimBlack16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack16, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 21;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack16, gridBagConstraints);
+
+        noteAnimBlack17.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack17.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack17Layout = new javax.swing.GroupLayout(noteAnimBlack17);
+        noteAnimBlack17.setLayout(noteAnimBlack17Layout);
+        noteAnimBlack17Layout.setHorizontalGroup(
+            noteAnimBlack17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack17Layout.setVerticalGroup(
+            noteAnimBlack17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack17, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 23;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack17, gridBagConstraints);
+
+        noteAnimBlack18.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack18.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack18Layout = new javax.swing.GroupLayout(noteAnimBlack18);
+        noteAnimBlack18.setLayout(noteAnimBlack18Layout);
+        noteAnimBlack18Layout.setHorizontalGroup(
+            noteAnimBlack18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack18Layout.setVerticalGroup(
+            noteAnimBlack18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack18, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 24;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack18, gridBagConstraints);
+
+        noteAnimBlack19.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack19.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack19Layout = new javax.swing.GroupLayout(noteAnimBlack19);
+        noteAnimBlack19.setLayout(noteAnimBlack19Layout);
+        noteAnimBlack19Layout.setHorizontalGroup(
+            noteAnimBlack19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack19Layout.setVerticalGroup(
+            noteAnimBlack19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack19, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 26;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack19, gridBagConstraints);
+
+        noteAnimBlack20.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack20.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack20Layout = new javax.swing.GroupLayout(noteAnimBlack20);
+        noteAnimBlack20.setLayout(noteAnimBlack20Layout);
+        noteAnimBlack20Layout.setHorizontalGroup(
+            noteAnimBlack20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack20Layout.setVerticalGroup(
+            noteAnimBlack20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack20, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 27;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack20, gridBagConstraints);
+
+        noteAnimBlack21.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack21.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack21Layout = new javax.swing.GroupLayout(noteAnimBlack21);
+        noteAnimBlack21.setLayout(noteAnimBlack21Layout);
+        noteAnimBlack21Layout.setHorizontalGroup(
+            noteAnimBlack21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack21Layout.setVerticalGroup(
+            noteAnimBlack21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack21, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 28;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack21, gridBagConstraints);
+
+        noteAnimBlack22.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack22.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack22Layout = new javax.swing.GroupLayout(noteAnimBlack22);
+        noteAnimBlack22.setLayout(noteAnimBlack22Layout);
+        noteAnimBlack22Layout.setHorizontalGroup(
+            noteAnimBlack22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack22Layout.setVerticalGroup(
+            noteAnimBlack22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack22, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 30;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack22, gridBagConstraints);
+
+        noteAnimBlack23.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack23.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack23Layout = new javax.swing.GroupLayout(noteAnimBlack23);
+        noteAnimBlack23.setLayout(noteAnimBlack23Layout);
+        noteAnimBlack23Layout.setHorizontalGroup(
+            noteAnimBlack23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack23Layout.setVerticalGroup(
+            noteAnimBlack23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack23, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 31;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack23, gridBagConstraints);
+
+        noteAnimBlack24.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack24.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack24Layout = new javax.swing.GroupLayout(noteAnimBlack24);
+        noteAnimBlack24.setLayout(noteAnimBlack24Layout);
+        noteAnimBlack24Layout.setHorizontalGroup(
+            noteAnimBlack24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack24Layout.setVerticalGroup(
+            noteAnimBlack24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack24, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 33;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack24, gridBagConstraints);
+
+        noteAnimBlack25.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack25.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack25Layout = new javax.swing.GroupLayout(noteAnimBlack25);
+        noteAnimBlack25.setLayout(noteAnimBlack25Layout);
+        noteAnimBlack25Layout.setHorizontalGroup(
+            noteAnimBlack25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack25Layout.setVerticalGroup(
+            noteAnimBlack25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack25, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 34;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack25, gridBagConstraints);
+
+        noteAnimBlack26.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack26.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack26Layout = new javax.swing.GroupLayout(noteAnimBlack26);
+        noteAnimBlack26.setLayout(noteAnimBlack26Layout);
+        noteAnimBlack26Layout.setHorizontalGroup(
+            noteAnimBlack26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack26Layout.setVerticalGroup(
+            noteAnimBlack26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack26, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 35;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack26, gridBagConstraints);
+
+        noteAnimBlack27.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack27.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack27Layout = new javax.swing.GroupLayout(noteAnimBlack27);
+        noteAnimBlack27.setLayout(noteAnimBlack27Layout);
+        noteAnimBlack27Layout.setHorizontalGroup(
+            noteAnimBlack27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack27Layout.setVerticalGroup(
+            noteAnimBlack27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack27, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 37;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack27, gridBagConstraints);
+
+        noteAnimBlack28.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack28.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack28Layout = new javax.swing.GroupLayout(noteAnimBlack28);
+        noteAnimBlack28.setLayout(noteAnimBlack28Layout);
+        noteAnimBlack28Layout.setHorizontalGroup(
+            noteAnimBlack28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack28Layout.setVerticalGroup(
+            noteAnimBlack28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack28, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 38;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack28, gridBagConstraints);
+
+        noteAnimBlack29.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack29.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack29Layout = new javax.swing.GroupLayout(noteAnimBlack29);
+        noteAnimBlack29.setLayout(noteAnimBlack29Layout);
+        noteAnimBlack29Layout.setHorizontalGroup(
+            noteAnimBlack29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack29Layout.setVerticalGroup(
+            noteAnimBlack29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack29, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 40;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack29, gridBagConstraints);
+
+        noteAnimBlack30.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack30.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack30Layout = new javax.swing.GroupLayout(noteAnimBlack30);
+        noteAnimBlack30.setLayout(noteAnimBlack30Layout);
+        noteAnimBlack30Layout.setHorizontalGroup(
+            noteAnimBlack30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack30Layout.setVerticalGroup(
+            noteAnimBlack30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack30, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 41;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack30, gridBagConstraints);
+
+        noteAnimBlack31.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack31.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack31Layout = new javax.swing.GroupLayout(noteAnimBlack31);
+        noteAnimBlack31.setLayout(noteAnimBlack31Layout);
+        noteAnimBlack31Layout.setHorizontalGroup(
+            noteAnimBlack31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack31Layout.setVerticalGroup(
+            noteAnimBlack31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack31, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 42;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack31, gridBagConstraints);
+
+        noteAnimBlack32.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack32.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack32Layout = new javax.swing.GroupLayout(noteAnimBlack32);
+        noteAnimBlack32.setLayout(noteAnimBlack32Layout);
+        noteAnimBlack32Layout.setHorizontalGroup(
+            noteAnimBlack32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack32Layout.setVerticalGroup(
+            noteAnimBlack32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack32, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 44;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack32, gridBagConstraints);
+
+        noteAnimBlack33.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack33.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack33Layout = new javax.swing.GroupLayout(noteAnimBlack33);
+        noteAnimBlack33.setLayout(noteAnimBlack33Layout);
+        noteAnimBlack33Layout.setHorizontalGroup(
+            noteAnimBlack33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack33Layout.setVerticalGroup(
+            noteAnimBlack33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack33, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 45;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack33, gridBagConstraints);
+
+        noteAnimBlack34.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack34.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack34Layout = new javax.swing.GroupLayout(noteAnimBlack34);
+        noteAnimBlack34.setLayout(noteAnimBlack34Layout);
+        noteAnimBlack34Layout.setHorizontalGroup(
+            noteAnimBlack34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack34Layout.setVerticalGroup(
+            noteAnimBlack34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack34, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 47;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack34, gridBagConstraints);
+
+        noteAnimBlack35.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack35.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack35Layout = new javax.swing.GroupLayout(noteAnimBlack35);
+        noteAnimBlack35.setLayout(noteAnimBlack35Layout);
+        noteAnimBlack35Layout.setHorizontalGroup(
+            noteAnimBlack35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack35Layout.setVerticalGroup(
+            noteAnimBlack35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack35, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 48;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack35, gridBagConstraints);
+
+        noteAnimBlack36.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack36.setPreferredSize(new java.awt.Dimension(15, 635));
+
+        javax.swing.GroupLayout noteAnimBlack36Layout = new javax.swing.GroupLayout(noteAnimBlack36);
+        noteAnimBlack36.setLayout(noteAnimBlack36Layout);
+        noteAnimBlack36Layout.setHorizontalGroup(
+            noteAnimBlack36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        noteAnimBlack36Layout.setVerticalGroup(
+            noteAnimBlack36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(noteAnimBlack36, javax.swing.JLayeredPane.MODAL_LAYER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 49;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jLayeredPane2.add(noteAnimBlack36, gridBagConstraints);
+
+        getContentPane().add(jLayeredPane2);
+        jLayeredPane2.setBounds(0, 0, 1320, 635);
+
+        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1320, 5));
+        jPanel1.setName(""); // NOI18N
+        jPanel1.setPreferredSize(new java.awt.Dimension(1320, 5));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1320, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 635, 1320, 5);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -3711,7 +5402,98 @@ public class VirtualPiano extends javax.swing.JFrame {
     private javax.swing.JPanel g7;
     private javax.swing.JPanel g7s;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JPanel pepee;
-    private newpackage.PianoGraphics pianoGraphics1;
+    private javax.swing.JLayeredPane jLayeredPane2;
+    private javax.swing.JPanel jPanel1;
+    private newpackage.PianoGraphics noteAnimBlack1;
+    private newpackage.PianoGraphics noteAnimBlack10;
+    private newpackage.PianoGraphics noteAnimBlack11;
+    private newpackage.PianoGraphics noteAnimBlack12;
+    private newpackage.PianoGraphics noteAnimBlack13;
+    private newpackage.PianoGraphics noteAnimBlack14;
+    private newpackage.PianoGraphics noteAnimBlack15;
+    private newpackage.PianoGraphics noteAnimBlack16;
+    private newpackage.PianoGraphics noteAnimBlack17;
+    private newpackage.PianoGraphics noteAnimBlack18;
+    private newpackage.PianoGraphics noteAnimBlack19;
+    private newpackage.PianoGraphics noteAnimBlack2;
+    private newpackage.PianoGraphics noteAnimBlack20;
+    private newpackage.PianoGraphics noteAnimBlack21;
+    private newpackage.PianoGraphics noteAnimBlack22;
+    private newpackage.PianoGraphics noteAnimBlack23;
+    private newpackage.PianoGraphics noteAnimBlack24;
+    private newpackage.PianoGraphics noteAnimBlack25;
+    private newpackage.PianoGraphics noteAnimBlack26;
+    private newpackage.PianoGraphics noteAnimBlack27;
+    private newpackage.PianoGraphics noteAnimBlack28;
+    private newpackage.PianoGraphics noteAnimBlack29;
+    private newpackage.PianoGraphics noteAnimBlack3;
+    private newpackage.PianoGraphics noteAnimBlack30;
+    private newpackage.PianoGraphics noteAnimBlack31;
+    private newpackage.PianoGraphics noteAnimBlack32;
+    private newpackage.PianoGraphics noteAnimBlack33;
+    private newpackage.PianoGraphics noteAnimBlack34;
+    private newpackage.PianoGraphics noteAnimBlack35;
+    private newpackage.PianoGraphics noteAnimBlack36;
+    private newpackage.PianoGraphics noteAnimBlack4;
+    private newpackage.PianoGraphics noteAnimBlack5;
+    private newpackage.PianoGraphics noteAnimBlack6;
+    private newpackage.PianoGraphics noteAnimBlack7;
+    private newpackage.PianoGraphics noteAnimBlack8;
+    private newpackage.PianoGraphics noteAnimBlack9;
+    private newpackage.PianoGraphics noteAnimWhite1;
+    private newpackage.PianoGraphics noteAnimWhite10;
+    private newpackage.PianoGraphics noteAnimWhite11;
+    private newpackage.PianoGraphics noteAnimWhite12;
+    private newpackage.PianoGraphics noteAnimWhite13;
+    private newpackage.PianoGraphics noteAnimWhite14;
+    private newpackage.PianoGraphics noteAnimWhite15;
+    private newpackage.PianoGraphics noteAnimWhite16;
+    private newpackage.PianoGraphics noteAnimWhite17;
+    private newpackage.PianoGraphics noteAnimWhite18;
+    private newpackage.PianoGraphics noteAnimWhite19;
+    private newpackage.PianoGraphics noteAnimWhite2;
+    private newpackage.PianoGraphics noteAnimWhite20;
+    private newpackage.PianoGraphics noteAnimWhite21;
+    private newpackage.PianoGraphics noteAnimWhite22;
+    private newpackage.PianoGraphics noteAnimWhite23;
+    private newpackage.PianoGraphics noteAnimWhite24;
+    private newpackage.PianoGraphics noteAnimWhite25;
+    private newpackage.PianoGraphics noteAnimWhite26;
+    private newpackage.PianoGraphics noteAnimWhite27;
+    private newpackage.PianoGraphics noteAnimWhite28;
+    private newpackage.PianoGraphics noteAnimWhite29;
+    private newpackage.PianoGraphics noteAnimWhite3;
+    private newpackage.PianoGraphics noteAnimWhite30;
+    private newpackage.PianoGraphics noteAnimWhite31;
+    private newpackage.PianoGraphics noteAnimWhite32;
+    private newpackage.PianoGraphics noteAnimWhite33;
+    private newpackage.PianoGraphics noteAnimWhite34;
+    private newpackage.PianoGraphics noteAnimWhite35;
+    private newpackage.PianoGraphics noteAnimWhite36;
+    private newpackage.PianoGraphics noteAnimWhite37;
+    private newpackage.PianoGraphics noteAnimWhite38;
+    private newpackage.PianoGraphics noteAnimWhite39;
+    private newpackage.PianoGraphics noteAnimWhite4;
+    private newpackage.PianoGraphics noteAnimWhite40;
+    private newpackage.PianoGraphics noteAnimWhite41;
+    private newpackage.PianoGraphics noteAnimWhite42;
+    private newpackage.PianoGraphics noteAnimWhite43;
+    private newpackage.PianoGraphics noteAnimWhite44;
+    private newpackage.PianoGraphics noteAnimWhite45;
+    private newpackage.PianoGraphics noteAnimWhite46;
+    private newpackage.PianoGraphics noteAnimWhite47;
+    private newpackage.PianoGraphics noteAnimWhite48;
+    private newpackage.PianoGraphics noteAnimWhite49;
+    private newpackage.PianoGraphics noteAnimWhite5;
+    private newpackage.PianoGraphics noteAnimWhite50;
+    private newpackage.PianoGraphics noteAnimWhite51;
+    private newpackage.PianoGraphics noteAnimWhite52;
+    private newpackage.PianoGraphics noteAnimWhite6;
+    private newpackage.PianoGraphics noteAnimWhite7;
+    private newpackage.PianoGraphics noteAnimWhite8;
+    private newpackage.PianoGraphics noteAnimWhite9;
+    private newpackage.PianoGraphics pianoGraphics;
+    private newpackage.PianoGraphics pianoGraphics3;
+    private newpackage.PianoGraphics pianoGraphics4;
     // End of variables declaration//GEN-END:variables
 }
