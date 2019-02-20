@@ -22,6 +22,7 @@ import static javax.sound.midi.ShortMessage.NOTE_ON;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import newpackage.PianoGraphics;
 
 /**
  *
@@ -32,6 +33,7 @@ public class VirtualPiano extends javax.swing.JFrame {
     int i = 0;
     //initiateProgram initProgram = new initiateProgram();
     List<JPanel> keyList = new ArrayList();
+    List<PianoGraphics> noteList = new ArrayList();
     
     Color orangeWhiteKey = new Color(255, 191, 0);
     Color orangeBlackKey = new Color(239, 130, 13);
@@ -47,8 +49,8 @@ public class VirtualPiano extends javax.swing.JFrame {
      */
     public VirtualPiano() throws InvalidMidiDataException, IOException, MidiUnavailableException {
         initComponents();
-        initializeArrayList();
-        noteAnimBlack6.init(false);
+        initializeKeyList();
+        initializeNoteList();
     }
     
     public boolean checkKeyWhite(int key) {
@@ -63,18 +65,26 @@ public class VirtualPiano extends javax.swing.JFrame {
         }
     }
     
+    /*public void playNoteAnimation (int key) {
+        Object fallingNote = noteList.get(key -21);
+        
+    }*/
+    
     public void colorKey (int key, boolean keyOn) {
         JPanel panel = keyList.get(key - 21);
         JLabel panelLabel = (JLabel)panel.getComponent(0);
+        PianoGraphics fallingNote = noteList.get(key -21);
 
         if(keyOn) {
             if(checkKeyWhite(key)) {
                 panel.setBackground(orangeWhiteKey);
                 panelLabel.setBackground(orangeWhiteKeyText);
+                fallingNote.init(true);
             }
             else if(!checkKeyWhite(key)) {
                 panel.setBackground(orangeBlackKey);
                 panelLabel.setBackground(orangeBlackKeyText);
+                fallingNote.init(false);
             }
         }
         else if(!keyOn) {
@@ -90,8 +100,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         }
     }
     
-    public void initializeArrayList() {
-        
+    public void initializeKeyList() {
         keyList.add(a0);
         keyList.add(a0s);
         keyList.add(b0);
@@ -190,7 +199,104 @@ public class VirtualPiano extends javax.swing.JFrame {
         keyList.add(c8);
     }
     
-
+    public void initializeNoteList() {
+        noteList.add(noteAnimWhite1);
+        noteList.add(noteAnimBlack1);
+        noteList.add(noteAnimWhite2);
+        
+        noteList.add(noteAnimWhite3);
+        noteList.add(noteAnimBlack1);
+        noteList.add(noteAnimWhite4);
+        noteList.add(noteAnimBlack2);
+        noteList.add(noteAnimWhite5);
+        noteList.add(noteAnimWhite6);
+        noteList.add(noteAnimBlack3);
+        noteList.add(noteAnimWhite7);
+        noteList.add(noteAnimBlack4);
+        noteList.add(noteAnimWhite8);
+        noteList.add(noteAnimBlack5);
+        noteList.add(noteAnimWhite9);
+        
+        noteList.add(noteAnimWhite10);
+        noteList.add(noteAnimBlack6);
+        noteList.add(noteAnimWhite11);
+        noteList.add(noteAnimBlack7);
+        noteList.add(noteAnimWhite12);
+        noteList.add(noteAnimWhite13);
+        noteList.add(noteAnimBlack8);
+        noteList.add(noteAnimWhite14);
+        noteList.add(noteAnimBlack9);
+        noteList.add(noteAnimWhite15);
+        noteList.add(noteAnimBlack10);
+        noteList.add(noteAnimWhite16);
+        
+        noteList.add(noteAnimWhite17);
+        noteList.add(noteAnimBlack11);
+        noteList.add(noteAnimWhite18);
+        noteList.add(noteAnimBlack12);
+        noteList.add(noteAnimWhite19);
+        noteList.add(noteAnimWhite20);
+        noteList.add(noteAnimBlack13);
+        noteList.add(noteAnimWhite21);
+        noteList.add(noteAnimBlack14);
+        noteList.add(noteAnimWhite22);
+        noteList.add(noteAnimBlack15);
+        noteList.add(noteAnimWhite23);
+        
+        noteList.add(noteAnimWhite24);
+        noteList.add(noteAnimBlack16);
+        noteList.add(noteAnimWhite25);
+        noteList.add(noteAnimBlack17);
+        noteList.add(noteAnimWhite26);
+        noteList.add(noteAnimWhite27);
+        noteList.add(noteAnimBlack18);
+        noteList.add(noteAnimWhite28);
+        noteList.add(noteAnimBlack19);
+        noteList.add(noteAnimWhite29);
+        noteList.add(noteAnimBlack20);
+        noteList.add(noteAnimWhite30);
+        
+        noteList.add(noteAnimWhite31);
+        noteList.add(noteAnimBlack21);
+        noteList.add(noteAnimWhite32);
+        noteList.add(noteAnimBlack22);
+        noteList.add(noteAnimWhite33);
+        noteList.add(noteAnimWhite34);
+        noteList.add(noteAnimBlack23);
+        noteList.add(noteAnimWhite35);
+        noteList.add(noteAnimBlack24);
+        noteList.add(noteAnimWhite36);
+        noteList.add(noteAnimBlack25);
+        noteList.add(noteAnimWhite37);
+        
+        noteList.add(noteAnimWhite38);
+        noteList.add(noteAnimBlack26);
+        noteList.add(noteAnimWhite39);
+        noteList.add(noteAnimBlack27);
+        noteList.add(noteAnimWhite40);
+        noteList.add(noteAnimWhite41);
+        noteList.add(noteAnimBlack28);
+        noteList.add(noteAnimWhite42);
+        noteList.add(noteAnimBlack29);
+        noteList.add(noteAnimWhite43);
+        noteList.add(noteAnimBlack30);
+        noteList.add(noteAnimWhite44);
+        
+        noteList.add(noteAnimWhite45);
+        noteList.add(noteAnimBlack31);
+        noteList.add(noteAnimWhite46);
+        noteList.add(noteAnimBlack32);
+        noteList.add(noteAnimWhite47);
+        noteList.add(noteAnimWhite48);
+        noteList.add(noteAnimBlack33);
+        noteList.add(noteAnimWhite49);
+        noteList.add(noteAnimBlack34);
+        noteList.add(noteAnimWhite50);
+        noteList.add(noteAnimBlack35);
+        noteList.add(noteAnimWhite51);
+        
+        noteList.add(noteAnimWhite52);
+    }
     
     
     /**
@@ -3539,7 +3645,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite1.setLayout(noteAnimWhite1Layout);
         noteAnimWhite1Layout.setHorizontalGroup(
             noteAnimWhite1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite1Layout.setVerticalGroup(
             noteAnimWhite1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3558,7 +3664,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite2.setLayout(noteAnimWhite2Layout);
         noteAnimWhite2Layout.setHorizontalGroup(
             noteAnimWhite2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite2Layout.setVerticalGroup(
             noteAnimWhite2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3577,7 +3683,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite3.setLayout(noteAnimWhite3Layout);
         noteAnimWhite3Layout.setHorizontalGroup(
             noteAnimWhite3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite3Layout.setVerticalGroup(
             noteAnimWhite3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3596,7 +3702,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite4.setLayout(noteAnimWhite4Layout);
         noteAnimWhite4Layout.setHorizontalGroup(
             noteAnimWhite4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite4Layout.setVerticalGroup(
             noteAnimWhite4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3615,7 +3721,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite5.setLayout(noteAnimWhite5Layout);
         noteAnimWhite5Layout.setHorizontalGroup(
             noteAnimWhite5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite5Layout.setVerticalGroup(
             noteAnimWhite5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3634,7 +3740,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite6.setLayout(noteAnimWhite6Layout);
         noteAnimWhite6Layout.setHorizontalGroup(
             noteAnimWhite6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite6Layout.setVerticalGroup(
             noteAnimWhite6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3653,7 +3759,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite7.setLayout(noteAnimWhite7Layout);
         noteAnimWhite7Layout.setHorizontalGroup(
             noteAnimWhite7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite7Layout.setVerticalGroup(
             noteAnimWhite7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3672,7 +3778,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite8.setLayout(noteAnimWhite8Layout);
         noteAnimWhite8Layout.setHorizontalGroup(
             noteAnimWhite8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite8Layout.setVerticalGroup(
             noteAnimWhite8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3688,7 +3794,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite9.setLayout(noteAnimWhite9Layout);
         noteAnimWhite9Layout.setHorizontalGroup(
             noteAnimWhite9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite9Layout.setVerticalGroup(
             noteAnimWhite9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3704,7 +3810,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite10.setLayout(noteAnimWhite10Layout);
         noteAnimWhite10Layout.setHorizontalGroup(
             noteAnimWhite10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite10Layout.setVerticalGroup(
             noteAnimWhite10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3720,7 +3826,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite11.setLayout(noteAnimWhite11Layout);
         noteAnimWhite11Layout.setHorizontalGroup(
             noteAnimWhite11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite11Layout.setVerticalGroup(
             noteAnimWhite11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3736,7 +3842,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite12.setLayout(noteAnimWhite12Layout);
         noteAnimWhite12Layout.setHorizontalGroup(
             noteAnimWhite12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite12Layout.setVerticalGroup(
             noteAnimWhite12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3752,7 +3858,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite13.setLayout(noteAnimWhite13Layout);
         noteAnimWhite13Layout.setHorizontalGroup(
             noteAnimWhite13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite13Layout.setVerticalGroup(
             noteAnimWhite13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3768,7 +3874,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite14.setLayout(noteAnimWhite14Layout);
         noteAnimWhite14Layout.setHorizontalGroup(
             noteAnimWhite14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite14Layout.setVerticalGroup(
             noteAnimWhite14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3784,7 +3890,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite15.setLayout(noteAnimWhite15Layout);
         noteAnimWhite15Layout.setHorizontalGroup(
             noteAnimWhite15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite15Layout.setVerticalGroup(
             noteAnimWhite15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3800,7 +3906,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite16.setLayout(noteAnimWhite16Layout);
         noteAnimWhite16Layout.setHorizontalGroup(
             noteAnimWhite16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite16Layout.setVerticalGroup(
             noteAnimWhite16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3816,7 +3922,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite17.setLayout(noteAnimWhite17Layout);
         noteAnimWhite17Layout.setHorizontalGroup(
             noteAnimWhite17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite17Layout.setVerticalGroup(
             noteAnimWhite17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3832,7 +3938,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite18.setLayout(noteAnimWhite18Layout);
         noteAnimWhite18Layout.setHorizontalGroup(
             noteAnimWhite18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite18Layout.setVerticalGroup(
             noteAnimWhite18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3848,7 +3954,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite19.setLayout(noteAnimWhite19Layout);
         noteAnimWhite19Layout.setHorizontalGroup(
             noteAnimWhite19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite19Layout.setVerticalGroup(
             noteAnimWhite19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3864,7 +3970,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite20.setLayout(noteAnimWhite20Layout);
         noteAnimWhite20Layout.setHorizontalGroup(
             noteAnimWhite20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite20Layout.setVerticalGroup(
             noteAnimWhite20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3880,7 +3986,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite21.setLayout(noteAnimWhite21Layout);
         noteAnimWhite21Layout.setHorizontalGroup(
             noteAnimWhite21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite21Layout.setVerticalGroup(
             noteAnimWhite21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3896,7 +4002,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite22.setLayout(noteAnimWhite22Layout);
         noteAnimWhite22Layout.setHorizontalGroup(
             noteAnimWhite22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite22Layout.setVerticalGroup(
             noteAnimWhite22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3912,7 +4018,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite23.setLayout(noteAnimWhite23Layout);
         noteAnimWhite23Layout.setHorizontalGroup(
             noteAnimWhite23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite23Layout.setVerticalGroup(
             noteAnimWhite23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3928,7 +4034,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite24.setLayout(noteAnimWhite24Layout);
         noteAnimWhite24Layout.setHorizontalGroup(
             noteAnimWhite24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite24Layout.setVerticalGroup(
             noteAnimWhite24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3944,7 +4050,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite25.setLayout(noteAnimWhite25Layout);
         noteAnimWhite25Layout.setHorizontalGroup(
             noteAnimWhite25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite25Layout.setVerticalGroup(
             noteAnimWhite25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3960,7 +4066,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite26.setLayout(noteAnimWhite26Layout);
         noteAnimWhite26Layout.setHorizontalGroup(
             noteAnimWhite26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite26Layout.setVerticalGroup(
             noteAnimWhite26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3976,7 +4082,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite27.setLayout(noteAnimWhite27Layout);
         noteAnimWhite27Layout.setHorizontalGroup(
             noteAnimWhite27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite27Layout.setVerticalGroup(
             noteAnimWhite27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3992,7 +4098,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite28.setLayout(noteAnimWhite28Layout);
         noteAnimWhite28Layout.setHorizontalGroup(
             noteAnimWhite28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite28Layout.setVerticalGroup(
             noteAnimWhite28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4008,7 +4114,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite29.setLayout(noteAnimWhite29Layout);
         noteAnimWhite29Layout.setHorizontalGroup(
             noteAnimWhite29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite29Layout.setVerticalGroup(
             noteAnimWhite29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4024,7 +4130,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite30.setLayout(noteAnimWhite30Layout);
         noteAnimWhite30Layout.setHorizontalGroup(
             noteAnimWhite30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite30Layout.setVerticalGroup(
             noteAnimWhite30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4040,7 +4146,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite31.setLayout(noteAnimWhite31Layout);
         noteAnimWhite31Layout.setHorizontalGroup(
             noteAnimWhite31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite31Layout.setVerticalGroup(
             noteAnimWhite31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4056,7 +4162,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite32.setLayout(noteAnimWhite32Layout);
         noteAnimWhite32Layout.setHorizontalGroup(
             noteAnimWhite32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite32Layout.setVerticalGroup(
             noteAnimWhite32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4072,7 +4178,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite33.setLayout(noteAnimWhite33Layout);
         noteAnimWhite33Layout.setHorizontalGroup(
             noteAnimWhite33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite33Layout.setVerticalGroup(
             noteAnimWhite33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4088,7 +4194,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite34.setLayout(noteAnimWhite34Layout);
         noteAnimWhite34Layout.setHorizontalGroup(
             noteAnimWhite34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite34Layout.setVerticalGroup(
             noteAnimWhite34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4104,7 +4210,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite35.setLayout(noteAnimWhite35Layout);
         noteAnimWhite35Layout.setHorizontalGroup(
             noteAnimWhite35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite35Layout.setVerticalGroup(
             noteAnimWhite35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4120,7 +4226,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite36.setLayout(noteAnimWhite36Layout);
         noteAnimWhite36Layout.setHorizontalGroup(
             noteAnimWhite36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite36Layout.setVerticalGroup(
             noteAnimWhite36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4136,7 +4242,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite37.setLayout(noteAnimWhite37Layout);
         noteAnimWhite37Layout.setHorizontalGroup(
             noteAnimWhite37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite37Layout.setVerticalGroup(
             noteAnimWhite37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4152,7 +4258,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite38.setLayout(noteAnimWhite38Layout);
         noteAnimWhite38Layout.setHorizontalGroup(
             noteAnimWhite38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite38Layout.setVerticalGroup(
             noteAnimWhite38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4168,7 +4274,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite39.setLayout(noteAnimWhite39Layout);
         noteAnimWhite39Layout.setHorizontalGroup(
             noteAnimWhite39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite39Layout.setVerticalGroup(
             noteAnimWhite39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4184,7 +4290,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite40.setLayout(noteAnimWhite40Layout);
         noteAnimWhite40Layout.setHorizontalGroup(
             noteAnimWhite40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite40Layout.setVerticalGroup(
             noteAnimWhite40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4200,7 +4306,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite41.setLayout(noteAnimWhite41Layout);
         noteAnimWhite41Layout.setHorizontalGroup(
             noteAnimWhite41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite41Layout.setVerticalGroup(
             noteAnimWhite41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4216,7 +4322,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite42.setLayout(noteAnimWhite42Layout);
         noteAnimWhite42Layout.setHorizontalGroup(
             noteAnimWhite42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite42Layout.setVerticalGroup(
             noteAnimWhite42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4232,7 +4338,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite43.setLayout(noteAnimWhite43Layout);
         noteAnimWhite43Layout.setHorizontalGroup(
             noteAnimWhite43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite43Layout.setVerticalGroup(
             noteAnimWhite43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4248,7 +4354,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite44.setLayout(noteAnimWhite44Layout);
         noteAnimWhite44Layout.setHorizontalGroup(
             noteAnimWhite44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite44Layout.setVerticalGroup(
             noteAnimWhite44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4264,7 +4370,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite45.setLayout(noteAnimWhite45Layout);
         noteAnimWhite45Layout.setHorizontalGroup(
             noteAnimWhite45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite45Layout.setVerticalGroup(
             noteAnimWhite45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4280,7 +4386,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite46.setLayout(noteAnimWhite46Layout);
         noteAnimWhite46Layout.setHorizontalGroup(
             noteAnimWhite46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite46Layout.setVerticalGroup(
             noteAnimWhite46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4296,7 +4402,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite47.setLayout(noteAnimWhite47Layout);
         noteAnimWhite47Layout.setHorizontalGroup(
             noteAnimWhite47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite47Layout.setVerticalGroup(
             noteAnimWhite47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4312,7 +4418,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite48.setLayout(noteAnimWhite48Layout);
         noteAnimWhite48Layout.setHorizontalGroup(
             noteAnimWhite48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite48Layout.setVerticalGroup(
             noteAnimWhite48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4328,7 +4434,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite49.setLayout(noteAnimWhite49Layout);
         noteAnimWhite49Layout.setHorizontalGroup(
             noteAnimWhite49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite49Layout.setVerticalGroup(
             noteAnimWhite49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4344,7 +4450,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite50.setLayout(noteAnimWhite50Layout);
         noteAnimWhite50Layout.setHorizontalGroup(
             noteAnimWhite50Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite50Layout.setVerticalGroup(
             noteAnimWhite50Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4360,7 +4466,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite51.setLayout(noteAnimWhite51Layout);
         noteAnimWhite51Layout.setHorizontalGroup(
             noteAnimWhite51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite51Layout.setVerticalGroup(
             noteAnimWhite51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4376,7 +4482,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimWhite52.setLayout(noteAnimWhite52Layout);
         noteAnimWhite52Layout.setHorizontalGroup(
             noteAnimWhite52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
         noteAnimWhite52Layout.setVerticalGroup(
             noteAnimWhite52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4392,7 +4498,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack1.setLayout(noteAnimBlack1Layout);
         noteAnimBlack1Layout.setHorizontalGroup(
             noteAnimBlack1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack1Layout.setVerticalGroup(
             noteAnimBlack1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4413,7 +4519,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack2.setLayout(noteAnimBlack2Layout);
         noteAnimBlack2Layout.setHorizontalGroup(
             noteAnimBlack2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack2Layout.setVerticalGroup(
             noteAnimBlack2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4434,7 +4540,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack3.setLayout(noteAnimBlack3Layout);
         noteAnimBlack3Layout.setHorizontalGroup(
             noteAnimBlack3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack3Layout.setVerticalGroup(
             noteAnimBlack3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4455,7 +4561,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack4.setLayout(noteAnimBlack4Layout);
         noteAnimBlack4Layout.setHorizontalGroup(
             noteAnimBlack4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack4Layout.setVerticalGroup(
             noteAnimBlack4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4476,7 +4582,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack5.setLayout(noteAnimBlack5Layout);
         noteAnimBlack5Layout.setHorizontalGroup(
             noteAnimBlack5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack5Layout.setVerticalGroup(
             noteAnimBlack5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4497,7 +4603,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack6.setLayout(noteAnimBlack6Layout);
         noteAnimBlack6Layout.setHorizontalGroup(
             noteAnimBlack6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack6Layout.setVerticalGroup(
             noteAnimBlack6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4518,7 +4624,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack7.setLayout(noteAnimBlack7Layout);
         noteAnimBlack7Layout.setHorizontalGroup(
             noteAnimBlack7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack7Layout.setVerticalGroup(
             noteAnimBlack7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4539,7 +4645,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack8.setLayout(noteAnimBlack8Layout);
         noteAnimBlack8Layout.setHorizontalGroup(
             noteAnimBlack8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack8Layout.setVerticalGroup(
             noteAnimBlack8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4560,7 +4666,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack9.setLayout(noteAnimBlack9Layout);
         noteAnimBlack9Layout.setHorizontalGroup(
             noteAnimBlack9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack9Layout.setVerticalGroup(
             noteAnimBlack9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4581,7 +4687,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack10.setLayout(noteAnimBlack10Layout);
         noteAnimBlack10Layout.setHorizontalGroup(
             noteAnimBlack10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack10Layout.setVerticalGroup(
             noteAnimBlack10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4602,7 +4708,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack11.setLayout(noteAnimBlack11Layout);
         noteAnimBlack11Layout.setHorizontalGroup(
             noteAnimBlack11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack11Layout.setVerticalGroup(
             noteAnimBlack11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4623,7 +4729,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack12.setLayout(noteAnimBlack12Layout);
         noteAnimBlack12Layout.setHorizontalGroup(
             noteAnimBlack12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack12Layout.setVerticalGroup(
             noteAnimBlack12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4644,7 +4750,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack13.setLayout(noteAnimBlack13Layout);
         noteAnimBlack13Layout.setHorizontalGroup(
             noteAnimBlack13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack13Layout.setVerticalGroup(
             noteAnimBlack13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4665,7 +4771,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack14.setLayout(noteAnimBlack14Layout);
         noteAnimBlack14Layout.setHorizontalGroup(
             noteAnimBlack14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack14Layout.setVerticalGroup(
             noteAnimBlack14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4686,7 +4792,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack15.setLayout(noteAnimBlack15Layout);
         noteAnimBlack15Layout.setHorizontalGroup(
             noteAnimBlack15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack15Layout.setVerticalGroup(
             noteAnimBlack15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4707,7 +4813,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack16.setLayout(noteAnimBlack16Layout);
         noteAnimBlack16Layout.setHorizontalGroup(
             noteAnimBlack16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack16Layout.setVerticalGroup(
             noteAnimBlack16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4728,7 +4834,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack17.setLayout(noteAnimBlack17Layout);
         noteAnimBlack17Layout.setHorizontalGroup(
             noteAnimBlack17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack17Layout.setVerticalGroup(
             noteAnimBlack17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4749,7 +4855,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack18.setLayout(noteAnimBlack18Layout);
         noteAnimBlack18Layout.setHorizontalGroup(
             noteAnimBlack18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack18Layout.setVerticalGroup(
             noteAnimBlack18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4770,7 +4876,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack19.setLayout(noteAnimBlack19Layout);
         noteAnimBlack19Layout.setHorizontalGroup(
             noteAnimBlack19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack19Layout.setVerticalGroup(
             noteAnimBlack19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4791,7 +4897,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack20.setLayout(noteAnimBlack20Layout);
         noteAnimBlack20Layout.setHorizontalGroup(
             noteAnimBlack20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack20Layout.setVerticalGroup(
             noteAnimBlack20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4812,7 +4918,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack21.setLayout(noteAnimBlack21Layout);
         noteAnimBlack21Layout.setHorizontalGroup(
             noteAnimBlack21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack21Layout.setVerticalGroup(
             noteAnimBlack21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4833,7 +4939,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack22.setLayout(noteAnimBlack22Layout);
         noteAnimBlack22Layout.setHorizontalGroup(
             noteAnimBlack22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack22Layout.setVerticalGroup(
             noteAnimBlack22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4854,7 +4960,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack23.setLayout(noteAnimBlack23Layout);
         noteAnimBlack23Layout.setHorizontalGroup(
             noteAnimBlack23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack23Layout.setVerticalGroup(
             noteAnimBlack23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4875,7 +4981,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack24.setLayout(noteAnimBlack24Layout);
         noteAnimBlack24Layout.setHorizontalGroup(
             noteAnimBlack24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack24Layout.setVerticalGroup(
             noteAnimBlack24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4896,7 +5002,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack25.setLayout(noteAnimBlack25Layout);
         noteAnimBlack25Layout.setHorizontalGroup(
             noteAnimBlack25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack25Layout.setVerticalGroup(
             noteAnimBlack25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4917,7 +5023,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack26.setLayout(noteAnimBlack26Layout);
         noteAnimBlack26Layout.setHorizontalGroup(
             noteAnimBlack26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack26Layout.setVerticalGroup(
             noteAnimBlack26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4938,7 +5044,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack27.setLayout(noteAnimBlack27Layout);
         noteAnimBlack27Layout.setHorizontalGroup(
             noteAnimBlack27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack27Layout.setVerticalGroup(
             noteAnimBlack27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4959,7 +5065,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack28.setLayout(noteAnimBlack28Layout);
         noteAnimBlack28Layout.setHorizontalGroup(
             noteAnimBlack28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack28Layout.setVerticalGroup(
             noteAnimBlack28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4980,7 +5086,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack29.setLayout(noteAnimBlack29Layout);
         noteAnimBlack29Layout.setHorizontalGroup(
             noteAnimBlack29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack29Layout.setVerticalGroup(
             noteAnimBlack29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5001,7 +5107,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack30.setLayout(noteAnimBlack30Layout);
         noteAnimBlack30Layout.setHorizontalGroup(
             noteAnimBlack30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack30Layout.setVerticalGroup(
             noteAnimBlack30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5022,7 +5128,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack31.setLayout(noteAnimBlack31Layout);
         noteAnimBlack31Layout.setHorizontalGroup(
             noteAnimBlack31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack31Layout.setVerticalGroup(
             noteAnimBlack31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5043,7 +5149,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack32.setLayout(noteAnimBlack32Layout);
         noteAnimBlack32Layout.setHorizontalGroup(
             noteAnimBlack32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack32Layout.setVerticalGroup(
             noteAnimBlack32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5064,7 +5170,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack33.setLayout(noteAnimBlack33Layout);
         noteAnimBlack33Layout.setHorizontalGroup(
             noteAnimBlack33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack33Layout.setVerticalGroup(
             noteAnimBlack33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5085,7 +5191,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack34.setLayout(noteAnimBlack34Layout);
         noteAnimBlack34Layout.setHorizontalGroup(
             noteAnimBlack34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack34Layout.setVerticalGroup(
             noteAnimBlack34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5106,7 +5212,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack35.setLayout(noteAnimBlack35Layout);
         noteAnimBlack35Layout.setHorizontalGroup(
             noteAnimBlack35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack35Layout.setVerticalGroup(
             noteAnimBlack35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5127,7 +5233,7 @@ public class VirtualPiano extends javax.swing.JFrame {
         noteAnimBlack36.setLayout(noteAnimBlack36Layout);
         noteAnimBlack36Layout.setHorizontalGroup(
             noteAnimBlack36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         noteAnimBlack36Layout.setVerticalGroup(
             noteAnimBlack36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5492,8 +5598,5 @@ public class VirtualPiano extends javax.swing.JFrame {
     private newpackage.PianoGraphics noteAnimWhite7;
     private newpackage.PianoGraphics noteAnimWhite8;
     private newpackage.PianoGraphics noteAnimWhite9;
-    private newpackage.PianoGraphics pianoGraphics;
-    private newpackage.PianoGraphics pianoGraphics3;
-    private newpackage.PianoGraphics pianoGraphics4;
     // End of variables declaration//GEN-END:variables
 }

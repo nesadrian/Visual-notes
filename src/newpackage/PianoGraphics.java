@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author adria_000
@@ -16,46 +18,41 @@ import java.awt.Color;
     /**
      * @param args the command line arguments
      */
-public class PianoGraphics extends JPanel implements ActionListener{ 
+public class PianoGraphics extends JPanel implements ActionListener { 
     
+    public List<VisualPianoNote> noteList = new ArrayList();
     Timer tm = new Timer(10, this);
-    Color color;
-    int width;
     int height = 10;
     
     public void setTimer(int time) {
         tm = new Timer(time, this);
     }
-
-    public void init(boolean isWhiteKey) {
-        if (isWhiteKey) {
-            width = 25;
-            color = new Color(255, 191, 0);
-        }
-        else if (!isWhiteKey) {
-            width = 15;
-            color = new Color(239, 130, 13);
-        }
+    
+    public PianoGraphics() {
         tm.start();
     }
-    
-    int x = 0, velX = 0; int y = -height, velY = 1; 
-    
+
+    public void init(boolean isWhiteKey) {
+        VisualPianoNote note = new VisualPianoNote(height, isWhiteKey);
+        noteList.add(note);
+    }
+   
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.setColor(color);
-        g.fillRect(x, y, width, height);
+        for (VisualPianoNote note : noteList) {
+            if (note.getYpos() < (635 + note.getHeight())) {
+                note.drawNote(g);
+            }
+            else {
+                
+            }
+        }
     } 
     
     public void actionPerformed(ActionEvent e){
-        if(x < 0) velX = -velX; 
-        
-    y = y + velY;
-    if(y < 635 + height) {
-       repaint();
-    }
-    if (y == 100 + height) {
-        
-    }
+        for (VisualPianoNote note : noteList) {
+            note.animate();
+        }
+        repaint();
     } 
 }
