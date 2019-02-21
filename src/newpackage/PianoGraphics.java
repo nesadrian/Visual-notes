@@ -21,7 +21,7 @@ import java.util.List;
 public class PianoGraphics extends JPanel implements ActionListener { 
     
     public List<VisualPianoNote> noteList = new ArrayList();
-    Timer tm = new Timer(10, this);
+    Timer tm = new Timer(0, this);
     int height = 10;
     
     public void setTimer(int time) {
@@ -32,8 +32,8 @@ public class PianoGraphics extends JPanel implements ActionListener {
         tm.start();
     }
 
-    public void init(boolean isWhiteKey) {
-        VisualPianoNote note = new VisualPianoNote(height, isWhiteKey);
+    public void init(long tempo, boolean isWhiteKey) {
+        VisualPianoNote note = new VisualPianoNote(tempo, height, isWhiteKey);
         noteList.add(note);
     }
    
@@ -43,9 +43,7 @@ public class PianoGraphics extends JPanel implements ActionListener {
             if (note.getYpos() < (635 + note.getHeight())) {
                 note.drawNote(g);
             }
-            else {
-                
-            }
+            //Add else statement that safely removes object from list
         }
     } 
     

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package VirtualPiano;
-import static VirtualPiano.MidiController.NOTE_NAMES;
+import static VirtualPiano.PianoPlayer.NOTE_NAMES;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
@@ -28,7 +28,7 @@ import newpackage.PianoGraphics;
  *
  * @author adria_000
  */
-public class VirtualPiano extends javax.swing.JFrame {
+public class PianoGUI extends javax.swing.JFrame {
     int o = 0;
     int i = 0;
     //initiateProgram initProgram = new initiateProgram();
@@ -44,10 +44,12 @@ public class VirtualPiano extends javax.swing.JFrame {
     Color blueWhiteKeyText = new Color(26, 62, 204);
     Color blueBlackKeyText = new Color(17, 46, 160);
 
+    long tempo;
+    
     /**
      * Creates new form VirtualPiano
      */
-    public VirtualPiano() throws InvalidMidiDataException, IOException, MidiUnavailableException {
+    public PianoGUI() throws InvalidMidiDataException, IOException, MidiUnavailableException {
         initComponents();
         initializeKeyList();
         initializeNoteList();
@@ -70,6 +72,10 @@ public class VirtualPiano extends javax.swing.JFrame {
         
     }*/
     
+    public void setTempo(long t) {
+        tempo = t;
+    }
+    
     public void colorKey (int key, boolean keyOn) {
         JPanel panel = keyList.get(key - 21);
         JLabel panelLabel = (JLabel)panel.getComponent(0);
@@ -79,12 +85,12 @@ public class VirtualPiano extends javax.swing.JFrame {
             if(checkKeyWhite(key)) {
                 panel.setBackground(orangeWhiteKey);
                 panelLabel.setBackground(orangeWhiteKeyText);
-                fallingNote.init(true);
+                fallingNote.init(tempo, true);
             }
             else if(!checkKeyWhite(key)) {
                 panel.setBackground(orangeBlackKey);
                 panelLabel.setBackground(orangeBlackKeyText);
-                fallingNote.init(false);
+                fallingNote.init(tempo, false);
             }
         }
         else if(!keyOn) {
@@ -5289,14 +5295,18 @@ public class VirtualPiano extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VirtualPiano.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PianoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VirtualPiano.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PianoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VirtualPiano.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PianoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VirtualPiano.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PianoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -5305,17 +5315,17 @@ public class VirtualPiano extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                VirtualPiano piano;
+                PianoGUI piano;
                 try {
-                    piano = new VirtualPiano();
+                    piano = new PianoGUI();
                     
                     piano.setVisible(true);
                 } catch (InvalidMidiDataException ex) {
-                    Logger.getLogger(VirtualPiano.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PianoGUI.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
-                    Logger.getLogger(VirtualPiano.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PianoGUI.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (MidiUnavailableException ex) {
-                    Logger.getLogger(VirtualPiano.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PianoGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
                 

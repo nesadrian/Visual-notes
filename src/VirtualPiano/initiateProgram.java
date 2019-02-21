@@ -49,7 +49,7 @@ public class initiateProgram  {
         File mac = new File("/Users/adriannesvik/Downloads/Pokemon - Oracion.mid");
         
         midiSequencer newSequenceAndSequencer = new midiSequencer();
-        MidiController sendRec = new MidiController();
+        PianoPlayer sendRec = new PianoPlayer();
         
         Sequence newSequence = newSequenceAndSequencer.createSequence(arhhh);
         Sequencer newSequencer = newSequenceAndSequencer.createSequencer(newSequence);
@@ -73,7 +73,7 @@ public class initiateProgram  {
         // system resources it requires and become operational.
         //newSequencer.open();
         
-        sendRec.addNotesToTrack(newSequence);
+        sendRec.startSequencer(newSequence);
         //sendRec.d(dsa);
         // create a stream from a file
         /*InputStream is = new BufferedInputStream(new FileInputStream(mac));
