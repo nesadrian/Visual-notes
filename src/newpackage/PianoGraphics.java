@@ -21,8 +21,13 @@ import java.util.List;
 public class PianoGraphics extends JPanel implements ActionListener { 
     
     public List<VisualPianoNote> noteList = new ArrayList();
-    Timer tm = new Timer(0, this);
+    public List<VisualPianoNote> playingNoteList = new ArrayList();
+    Timer tm = new Timer(1, this);
     int height = 10;
+    int i = 0;
+    int tick = 0;
+    
+    
     
     public void setTimer(int time) {
         tm = new Timer(time, this);
@@ -31,15 +36,29 @@ public class PianoGraphics extends JPanel implements ActionListener {
     public PianoGraphics() {
         tm.start();
     }
+    
+    public void addNote (VisualPianoNote vpn) {
+        noteList.add(vpn);
+    }
 
-    public void init(long tempo, boolean isWhiteKey) {
+   /* public void init(long tempo, boolean isWhiteKey) {
         VisualPianoNote note = new VisualPianoNote(tempo, height, isWhiteKey);
-        noteList.add(note);
+        
+    }*/
+    
+    public void addToPlayingNoteList() {
+        playingNoteList.add(noteList.get(i));
+        i++;
+    }
+    
+    public void updateTick() {
+        tick = tick+192;
+        System.out.println(tick);
     }
    
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        for (VisualPianoNote note : noteList) {
+        for (VisualPianoNote note : playingNoteList) {
             if (note.getYpos() < (635 + note.getHeight())) {
                 note.drawNote(g);
             }
@@ -48,9 +67,10 @@ public class PianoGraphics extends JPanel implements ActionListener {
     } 
     
     public void actionPerformed(ActionEvent e){
-        for (VisualPianoNote note : noteList) {
+        for (VisualPianoNote note : playingNoteList) {
             note.animate();
         }
+        updateTick();
         repaint();
     } 
 }

@@ -19,10 +19,10 @@ import javax.sound.midi.Sequencer;
  */
 public class midiSequencer {
         
-    checkFileValid checkFile = new checkFileValid();
+    checkSequenceValidity checkFile = new checkSequenceValidity();
     
     public Sequence createSequence(File file) throws InvalidMidiDataException, IOException {
-        checkFileValid.checkFile(file);
+        checkSequenceValidity.checkFile(file);
         Sequence sequence = MidiSystem.getSequence(file);
         return sequence;
     }

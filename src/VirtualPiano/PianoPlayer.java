@@ -52,9 +52,7 @@ public class PianoPlayer {
         piano.setSize(1325, 815);
     }
     public void startSequencer(Sequence seq) throws Exception {
-        PianoFallingNotesConstruct pfnc = new PianoFallingNotesConstruct(seq);
-        pfnc.addNotesToTrack();
-        pfnc.createTicksList();
+        PianoFallingNotesConstruct pfnc = new PianoFallingNotesConstruct(seq, piano);
         Sequencer sequencer = MidiSystem.getSequencer();
         sequencer.setSequence(pfnc.getSequence());
         sequencer.open();
@@ -75,14 +73,14 @@ public class PianoPlayer {
             if (command == 1) {
                 //int velocity = sm.getData2();
 
-                System.out.println("ON , " + noteName + octave + " key=" + key);
+                //System.out.println("ON , " + noteName + octave + " key=" + key);
                 keyDisplayNote(key, noteName, 1);
                 //piano.setTempo(ticksList.get(counter));
                 counter++;
             } 
             else if (command == 2) {
                 //int velocity = meta.getData2();
-                System.out.println("OFF, " + noteName + octave + " key=" + key);
+                //System.out.println("OFF, " + noteName + octave + " key=" + key);
                 keyDisplayNote(key, noteName, 2);
             }
             else if (command == SET_TEMPO) {
@@ -93,7 +91,7 @@ public class PianoPlayer {
 
     public void keyDisplayNote (int key, String note, int noteState) {
         
-        System.out.println("Note state " + noteState);
+        //System.out.println("Note state " + noteState);
         if (noteState == 1) {
                 //System.out.println("Note on " + i);
             if (key < 87) {

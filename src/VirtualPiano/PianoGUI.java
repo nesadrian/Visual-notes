@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import newpackage.PianoGraphics;
+import newpackage.VisualPianoNote;
 
 /**
  *
@@ -85,12 +86,12 @@ public class PianoGUI extends javax.swing.JFrame {
             if(checkKeyWhite(key)) {
                 panel.setBackground(orangeWhiteKey);
                 panelLabel.setBackground(orangeWhiteKeyText);
-                fallingNote.init(tempo, true);
+                fallingNote.addToPlayingNoteList();
             }
             else if(!checkKeyWhite(key)) {
                 panel.setBackground(orangeBlackKey);
                 panelLabel.setBackground(orangeBlackKeyText);
-                fallingNote.init(tempo, false);
+                fallingNote.addToPlayingNoteList();
             }
         }
         else if(!keyOn) {
@@ -104,6 +105,11 @@ public class PianoGUI extends javax.swing.JFrame {
                 panelLabel.setBackground(Color.white);
             }
         }
+    }
+    
+    public void addVisualNoteToNoteList (VisualPianoNote vpn, int key) {
+        PianoGraphics pg = noteList.get(key);
+        pg.addNote(vpn);
     }
     
     public void initializeKeyList() {
@@ -303,7 +309,6 @@ public class PianoGUI extends javax.swing.JFrame {
         
         noteList.add(noteAnimWhite52);
     }
-    
     
     /**
      * This method is called from within the constructor to initialize the form.

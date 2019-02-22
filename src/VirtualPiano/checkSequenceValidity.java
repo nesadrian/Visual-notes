@@ -6,12 +6,23 @@
 package VirtualPiano;
 
 import java.io.File;
+import java.io.IOException;
+import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MidiSystem;
+import javax.sound.midi.Sequence;
 
 /**
  *
  * @author adria_000
  */
-public class checkFileValid {
+public class checkSequenceValidity {
+    
+    public static Sequence createNewSequence (File file) throws InvalidMidiDataException, IOException {
+        checkFile(file);
+        Sequence seq = MidiSystem.getSequence(file);
+        checkSequenceType(seq);
+        return seq;
+    }
     
     public static File checkFile(File file) {
         if (file.isDirectory()) {
@@ -23,5 +34,11 @@ public class checkFileValid {
             return null;
         }
         return file;
+    }
+    
+    public static void checkSequenceType(Sequence seq) {
+        if (seq.getDivisionType() != Sequence.PPQ) {
+            throw new UnsupportedOperationException("SMPTE not supported. Try new file");
+        }
     }
 } 

@@ -4,11 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/newpackage/VisualPianoNote.java</file>
+            <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/VirtualPiano/PianoFallingNotesConstruct.java</file>
             <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/VirtualPiano/midiSequencer.java</file>
-            <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/VirtualPiano/MidiController.java</file>
             <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/VirtualPiano/PDFtoSynthesia.java</file>
-            <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/VirtualPiano/VirtualPiano.java</file>
-            <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/newpackage/PianoGraphics.java</file>
+            <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/VirtualPiano/PianoGUI.java</file>
+            <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/VirtualPiano/PianoPlayer.java</file>
             <file>file:/C:/Users/adria_000/Documents/NetBeansProjects/PDFtoSynthesia/src/VirtualPiano/initiateProgram.java</file>
         </group>
     </open-files>
