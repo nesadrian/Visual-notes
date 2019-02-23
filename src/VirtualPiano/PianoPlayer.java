@@ -58,6 +58,7 @@ public class PianoPlayer {
         sequencer.open();
         sequencer.addMetaEventListener(mel);
         sequencer.start();
+        
     }
      
     MetaEventListener mel = new MetaEventListener() {

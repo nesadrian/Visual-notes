@@ -25,9 +25,7 @@ public class PianoGraphics extends JPanel implements ActionListener {
     Timer tm = new Timer(1, this);
     int height = 10;
     int i = 0;
-    int tick = 0;
-    
-    
+    double tick = 0;
     
     public void setTimer(int time) {
         tm = new Timer(time, this);
@@ -49,10 +47,11 @@ public class PianoGraphics extends JPanel implements ActionListener {
     public void addToPlayingNoteList() {
         playingNoteList.add(noteList.get(i));
         i++;
+        
     }
     
     public void updateTick() {
-        tick = tick+192;
+        tick = tick+ 15.625;
         System.out.println(tick);
     }
    
