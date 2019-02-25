@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package VirtualPiano;
+import static VirtualPiano.PianoFallingNotesConstruct.safeLongToInt;
 import static VirtualPiano.PianoPlayer.NOTE_NAMES;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -20,6 +21,7 @@ import javax.sound.midi.ShortMessage;
 import static javax.sound.midi.ShortMessage.NOTE_OFF;
 import static javax.sound.midi.ShortMessage.NOTE_ON;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import newpackage.PianoGraphics;
@@ -77,6 +79,25 @@ public class PianoGUI extends javax.swing.JFrame {
         tempo = t;
     }
     
+    public PianoGraphics getPG (int key) {
+        PianoGraphics pg = noteList.get(key);
+        return pg;
+    }
+    
+    public JLayeredPane getJLP() {
+        return jLayeredPane2;
+    }
+    
+    public void setPanelHeights (int height) {
+        jLayeredPane2.setSize(this.getWidth(), height);
+        jLayeredPane2.setLocation(this.getX(), -height + 635);
+        for (PianoGraphics pg : noteList) {
+            pg.setSize(this.getWidth(), height);
+            pg.setLocation(this.getX(), 0);
+            System.out.println(this.getY());
+        }
+    }
+    
     public void colorKey (int key, boolean keyOn) {
         JPanel panel = keyList.get(key - 21);
         JLabel panelLabel = (JLabel)panel.getComponent(0);
@@ -86,12 +107,10 @@ public class PianoGUI extends javax.swing.JFrame {
             if(checkKeyWhite(key)) {
                 panel.setBackground(orangeWhiteKey);
                 panelLabel.setBackground(orangeWhiteKeyText);
-                fallingNote.addToPlayingNoteList();
             }
             else if(!checkKeyWhite(key)) {
                 panel.setBackground(orangeBlackKey);
                 panelLabel.setBackground(orangeBlackKeyText);
-                fallingNote.addToPlayingNoteList();
             }
         }
         else if(!keyOn) {
@@ -109,7 +128,7 @@ public class PianoGUI extends javax.swing.JFrame {
     
     public void addVisualNoteToNoteList (VisualPianoNote vpn, int key) {
         PianoGraphics pg = noteList.get(key);
-        pg.addNote(vpn);
+        pg.addNoteToList(vpn);
     }
     
     public void initializeKeyList() {
@@ -3644,12 +3663,13 @@ public class PianoGUI extends javax.swing.JFrame {
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(0, 640, 1320, 150);
 
-        jLayeredPane2.setBackground(new java.awt.Color(25, 25, 25));
+        jLayeredPane2.setBackground(new java.awt.Color(51, 255, 102));
         jLayeredPane2.setOpaque(true);
         jLayeredPane2.setPreferredSize(new java.awt.Dimension(1320, 635));
         jLayeredPane2.setLayout(new java.awt.GridBagLayout());
 
         noteAnimWhite1.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite1.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite1.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite1Layout = new javax.swing.GroupLayout(noteAnimWhite1);
@@ -3666,9 +3686,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimWhite1, gridBagConstraints);
 
         noteAnimWhite2.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite2.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite2.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite2Layout = new javax.swing.GroupLayout(noteAnimWhite2);
@@ -3685,9 +3709,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimWhite2, gridBagConstraints);
 
         noteAnimWhite3.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite3.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite3.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite3Layout = new javax.swing.GroupLayout(noteAnimWhite3);
@@ -3704,9 +3732,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimWhite3, gridBagConstraints);
 
         noteAnimWhite4.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite4.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite4.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite4Layout = new javax.swing.GroupLayout(noteAnimWhite4);
@@ -3723,9 +3755,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimWhite4, gridBagConstraints);
 
         noteAnimWhite5.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite5.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite5.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite5Layout = new javax.swing.GroupLayout(noteAnimWhite5);
@@ -3742,9 +3778,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimWhite5, gridBagConstraints);
 
         noteAnimWhite6.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite6.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite6.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite6Layout = new javax.swing.GroupLayout(noteAnimWhite6);
@@ -3761,9 +3801,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimWhite6, gridBagConstraints);
 
         noteAnimWhite7.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite7.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite7.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite7Layout = new javax.swing.GroupLayout(noteAnimWhite7);
@@ -3780,9 +3824,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimWhite7, gridBagConstraints);
 
         noteAnimWhite8.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite8.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite8.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite8Layout = new javax.swing.GroupLayout(noteAnimWhite8);
@@ -3796,9 +3844,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite8, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite8, gridBagConstraints);
 
         noteAnimWhite9.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite9.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite9.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite9Layout = new javax.swing.GroupLayout(noteAnimWhite9);
@@ -3812,9 +3865,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite9, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite9, gridBagConstraints);
 
         noteAnimWhite10.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite10.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite10.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite10Layout = new javax.swing.GroupLayout(noteAnimWhite10);
@@ -3828,9 +3886,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite10, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite10, gridBagConstraints);
 
         noteAnimWhite11.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite11.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite11.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite11Layout = new javax.swing.GroupLayout(noteAnimWhite11);
@@ -3844,9 +3907,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite11, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite11, gridBagConstraints);
 
         noteAnimWhite12.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite12.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite12.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite12Layout = new javax.swing.GroupLayout(noteAnimWhite12);
@@ -3860,9 +3928,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite12, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite12, gridBagConstraints);
 
         noteAnimWhite13.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite13.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite13.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite13Layout = new javax.swing.GroupLayout(noteAnimWhite13);
@@ -3876,9 +3949,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite13, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite13, gridBagConstraints);
 
         noteAnimWhite14.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite14.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite14.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite14Layout = new javax.swing.GroupLayout(noteAnimWhite14);
@@ -3892,9 +3970,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite14, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite14, gridBagConstraints);
 
         noteAnimWhite15.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite15.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite15.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite15Layout = new javax.swing.GroupLayout(noteAnimWhite15);
@@ -3908,9 +3991,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite15, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite15, gridBagConstraints);
 
         noteAnimWhite16.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite16.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite16.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite16Layout = new javax.swing.GroupLayout(noteAnimWhite16);
@@ -3924,9 +4012,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite16, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite16, gridBagConstraints);
 
         noteAnimWhite17.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite17.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite17.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite17Layout = new javax.swing.GroupLayout(noteAnimWhite17);
@@ -3940,9 +4033,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite17, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite17, gridBagConstraints);
 
         noteAnimWhite18.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite18.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite18.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite18Layout = new javax.swing.GroupLayout(noteAnimWhite18);
@@ -3956,9 +4054,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite18, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite18, gridBagConstraints);
 
         noteAnimWhite19.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite19.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite19.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite19Layout = new javax.swing.GroupLayout(noteAnimWhite19);
@@ -3972,9 +4075,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite19, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite19, gridBagConstraints);
 
         noteAnimWhite20.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite20.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite20.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite20Layout = new javax.swing.GroupLayout(noteAnimWhite20);
@@ -3988,9 +4096,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite20, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite20, gridBagConstraints);
 
         noteAnimWhite21.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite21.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite21.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite21Layout = new javax.swing.GroupLayout(noteAnimWhite21);
@@ -4004,9 +4117,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite21, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite21, gridBagConstraints);
 
         noteAnimWhite22.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite22.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite22.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite22Layout = new javax.swing.GroupLayout(noteAnimWhite22);
@@ -4020,9 +4138,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite22, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite22, gridBagConstraints);
 
         noteAnimWhite23.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite23.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite23.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite23Layout = new javax.swing.GroupLayout(noteAnimWhite23);
@@ -4036,9 +4159,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite23, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite23, gridBagConstraints);
 
         noteAnimWhite24.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite24.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite24.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite24Layout = new javax.swing.GroupLayout(noteAnimWhite24);
@@ -4052,9 +4180,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite24, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite24, gridBagConstraints);
 
         noteAnimWhite25.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite25.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite25.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite25Layout = new javax.swing.GroupLayout(noteAnimWhite25);
@@ -4068,9 +4201,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite25, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite25, gridBagConstraints);
 
         noteAnimWhite26.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite26.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite26.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite26Layout = new javax.swing.GroupLayout(noteAnimWhite26);
@@ -4084,9 +4222,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite26, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite26, gridBagConstraints);
 
         noteAnimWhite27.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite27.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite27.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite27Layout = new javax.swing.GroupLayout(noteAnimWhite27);
@@ -4100,9 +4243,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite27, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite27, gridBagConstraints);
 
         noteAnimWhite28.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite28.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite28.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite28Layout = new javax.swing.GroupLayout(noteAnimWhite28);
@@ -4116,9 +4264,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite28, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite28, gridBagConstraints);
 
         noteAnimWhite29.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite29.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite29.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite29Layout = new javax.swing.GroupLayout(noteAnimWhite29);
@@ -4132,9 +4285,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite29, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite29, gridBagConstraints);
 
         noteAnimWhite30.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite30.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite30.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite30Layout = new javax.swing.GroupLayout(noteAnimWhite30);
@@ -4148,9 +4306,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite30, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite30, gridBagConstraints);
 
         noteAnimWhite31.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite31.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite31.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite31Layout = new javax.swing.GroupLayout(noteAnimWhite31);
@@ -4164,9 +4327,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite31, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite31, gridBagConstraints);
 
         noteAnimWhite32.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite32.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite32.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite32Layout = new javax.swing.GroupLayout(noteAnimWhite32);
@@ -4180,9 +4348,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite32, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite32, gridBagConstraints);
 
         noteAnimWhite33.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite33.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite33.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite33Layout = new javax.swing.GroupLayout(noteAnimWhite33);
@@ -4196,9 +4369,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite33, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite33, gridBagConstraints);
 
         noteAnimWhite34.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite34.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite34.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite34Layout = new javax.swing.GroupLayout(noteAnimWhite34);
@@ -4212,9 +4390,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite34, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite34, gridBagConstraints);
 
         noteAnimWhite35.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite35.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite35.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite35Layout = new javax.swing.GroupLayout(noteAnimWhite35);
@@ -4228,9 +4411,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite35, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite35, gridBagConstraints);
 
         noteAnimWhite36.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite36.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite36.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite36Layout = new javax.swing.GroupLayout(noteAnimWhite36);
@@ -4244,9 +4432,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite36, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite36, gridBagConstraints);
 
         noteAnimWhite37.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite37.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite37.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite37Layout = new javax.swing.GroupLayout(noteAnimWhite37);
@@ -4260,9 +4453,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite37, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite37, gridBagConstraints);
 
         noteAnimWhite38.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite38.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite38.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite38Layout = new javax.swing.GroupLayout(noteAnimWhite38);
@@ -4276,9 +4474,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite38, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite38, gridBagConstraints);
 
         noteAnimWhite39.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite39.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite39.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite39Layout = new javax.swing.GroupLayout(noteAnimWhite39);
@@ -4292,9 +4495,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite39, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite39, gridBagConstraints);
 
         noteAnimWhite40.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite40.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite40.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite40Layout = new javax.swing.GroupLayout(noteAnimWhite40);
@@ -4308,9 +4516,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite40, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite40, gridBagConstraints);
 
         noteAnimWhite41.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite41.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite41.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite41Layout = new javax.swing.GroupLayout(noteAnimWhite41);
@@ -4324,9 +4537,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite41, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite41, gridBagConstraints);
 
         noteAnimWhite42.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite42.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite42.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite42Layout = new javax.swing.GroupLayout(noteAnimWhite42);
@@ -4340,9 +4558,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite42, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite42, gridBagConstraints);
 
         noteAnimWhite43.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite43.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite43.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite43Layout = new javax.swing.GroupLayout(noteAnimWhite43);
@@ -4356,9 +4579,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite43, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite43, gridBagConstraints);
 
         noteAnimWhite44.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite44.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite44.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite44Layout = new javax.swing.GroupLayout(noteAnimWhite44);
@@ -4372,9 +4600,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite44, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite44, gridBagConstraints);
 
         noteAnimWhite45.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite45.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite45.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite45Layout = new javax.swing.GroupLayout(noteAnimWhite45);
@@ -4388,9 +4621,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite45, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite45, gridBagConstraints);
 
         noteAnimWhite46.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite46.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite46.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite46Layout = new javax.swing.GroupLayout(noteAnimWhite46);
@@ -4404,9 +4642,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite46, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite46, gridBagConstraints);
 
         noteAnimWhite47.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite47.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite47.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite47Layout = new javax.swing.GroupLayout(noteAnimWhite47);
@@ -4420,9 +4663,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite47, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite47, gridBagConstraints);
 
         noteAnimWhite48.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite48.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite48.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite48Layout = new javax.swing.GroupLayout(noteAnimWhite48);
@@ -4436,9 +4684,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite48, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite48, gridBagConstraints);
 
         noteAnimWhite49.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite49.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite49.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite49Layout = new javax.swing.GroupLayout(noteAnimWhite49);
@@ -4452,9 +4705,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite49, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite49, gridBagConstraints);
 
         noteAnimWhite50.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite50.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite50.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite50Layout = new javax.swing.GroupLayout(noteAnimWhite50);
@@ -4468,9 +4726,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite50, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite50, gridBagConstraints);
 
         noteAnimWhite51.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite51.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite51.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite51Layout = new javax.swing.GroupLayout(noteAnimWhite51);
@@ -4484,9 +4747,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite51, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite51, gridBagConstraints);
 
         noteAnimWhite52.setBackground(new java.awt.Color(50, 50, 50));
+        noteAnimWhite52.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimWhite52.setPreferredSize(new java.awt.Dimension(25, 635));
 
         javax.swing.GroupLayout noteAnimWhite52Layout = new javax.swing.GroupLayout(noteAnimWhite52);
@@ -4500,9 +4768,14 @@ public class PianoGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(noteAnimWhite52, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        jLayeredPane2.add(noteAnimWhite52, gridBagConstraints);
 
         noteAnimBlack1.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack1.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack1.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack1Layout = new javax.swing.GroupLayout(noteAnimBlack1);
@@ -4521,9 +4794,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack1, gridBagConstraints);
 
         noteAnimBlack2.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack2.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack2.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack2Layout = new javax.swing.GroupLayout(noteAnimBlack2);
@@ -4542,9 +4819,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack2, gridBagConstraints);
 
         noteAnimBlack3.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack3.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack3.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack3Layout = new javax.swing.GroupLayout(noteAnimBlack3);
@@ -4563,9 +4844,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack3, gridBagConstraints);
 
         noteAnimBlack4.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack4.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack4.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack4Layout = new javax.swing.GroupLayout(noteAnimBlack4);
@@ -4584,9 +4869,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack4, gridBagConstraints);
 
         noteAnimBlack5.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack5.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack5.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack5Layout = new javax.swing.GroupLayout(noteAnimBlack5);
@@ -4605,9 +4894,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack5, gridBagConstraints);
 
         noteAnimBlack6.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack6.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack6.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack6Layout = new javax.swing.GroupLayout(noteAnimBlack6);
@@ -4626,9 +4919,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack6, gridBagConstraints);
 
         noteAnimBlack7.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack7.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack7.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack7Layout = new javax.swing.GroupLayout(noteAnimBlack7);
@@ -4647,9 +4944,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 9;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack7, gridBagConstraints);
 
         noteAnimBlack8.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack8.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack8.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack8Layout = new javax.swing.GroupLayout(noteAnimBlack8);
@@ -4668,9 +4969,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 10;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack8, gridBagConstraints);
 
         noteAnimBlack9.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack9.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack9.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack9Layout = new javax.swing.GroupLayout(noteAnimBlack9);
@@ -4689,9 +4994,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 12;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack9, gridBagConstraints);
 
         noteAnimBlack10.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack10.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack10.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack10Layout = new javax.swing.GroupLayout(noteAnimBlack10);
@@ -4710,9 +5019,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 13;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack10, gridBagConstraints);
 
         noteAnimBlack11.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack11.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack11.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack11Layout = new javax.swing.GroupLayout(noteAnimBlack11);
@@ -4731,9 +5044,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 14;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack11, gridBagConstraints);
 
         noteAnimBlack12.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack12.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack12.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack12Layout = new javax.swing.GroupLayout(noteAnimBlack12);
@@ -4752,9 +5069,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 16;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack12, gridBagConstraints);
 
         noteAnimBlack13.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack13.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack13.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack13Layout = new javax.swing.GroupLayout(noteAnimBlack13);
@@ -4773,9 +5094,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 17;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack13, gridBagConstraints);
 
         noteAnimBlack14.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack14.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack14.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack14Layout = new javax.swing.GroupLayout(noteAnimBlack14);
@@ -4794,9 +5119,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 19;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack14, gridBagConstraints);
 
         noteAnimBlack15.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack15.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack15.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack15Layout = new javax.swing.GroupLayout(noteAnimBlack15);
@@ -4815,9 +5144,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 20;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack15, gridBagConstraints);
 
         noteAnimBlack16.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack16.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack16.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack16Layout = new javax.swing.GroupLayout(noteAnimBlack16);
@@ -4836,9 +5169,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 21;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack16, gridBagConstraints);
 
         noteAnimBlack17.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack17.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack17.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack17Layout = new javax.swing.GroupLayout(noteAnimBlack17);
@@ -4857,9 +5194,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 23;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack17, gridBagConstraints);
 
         noteAnimBlack18.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack18.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack18.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack18Layout = new javax.swing.GroupLayout(noteAnimBlack18);
@@ -4878,9 +5219,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 24;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack18, gridBagConstraints);
 
         noteAnimBlack19.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack19.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack19.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack19Layout = new javax.swing.GroupLayout(noteAnimBlack19);
@@ -4899,9 +5244,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 26;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack19, gridBagConstraints);
 
         noteAnimBlack20.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack20.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack20.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack20Layout = new javax.swing.GroupLayout(noteAnimBlack20);
@@ -4920,9 +5269,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 27;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack20, gridBagConstraints);
 
         noteAnimBlack21.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack21.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack21.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack21Layout = new javax.swing.GroupLayout(noteAnimBlack21);
@@ -4941,9 +5294,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 28;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack21, gridBagConstraints);
 
         noteAnimBlack22.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack22.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack22.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack22Layout = new javax.swing.GroupLayout(noteAnimBlack22);
@@ -4962,9 +5319,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 30;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack22, gridBagConstraints);
 
         noteAnimBlack23.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack23.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack23.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack23Layout = new javax.swing.GroupLayout(noteAnimBlack23);
@@ -4983,9 +5344,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 31;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack23, gridBagConstraints);
 
         noteAnimBlack24.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack24.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack24.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack24Layout = new javax.swing.GroupLayout(noteAnimBlack24);
@@ -5004,9 +5369,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 33;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack24, gridBagConstraints);
 
         noteAnimBlack25.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack25.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack25.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack25Layout = new javax.swing.GroupLayout(noteAnimBlack25);
@@ -5025,9 +5394,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 34;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack25, gridBagConstraints);
 
         noteAnimBlack26.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack26.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack26.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack26Layout = new javax.swing.GroupLayout(noteAnimBlack26);
@@ -5046,9 +5419,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 35;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack26, gridBagConstraints);
 
         noteAnimBlack27.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack27.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack27.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack27Layout = new javax.swing.GroupLayout(noteAnimBlack27);
@@ -5067,9 +5444,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 37;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack27, gridBagConstraints);
 
         noteAnimBlack28.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack28.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack28.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack28Layout = new javax.swing.GroupLayout(noteAnimBlack28);
@@ -5088,9 +5469,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 38;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack28, gridBagConstraints);
 
         noteAnimBlack29.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack29.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack29.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack29Layout = new javax.swing.GroupLayout(noteAnimBlack29);
@@ -5109,9 +5494,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 40;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack29, gridBagConstraints);
 
         noteAnimBlack30.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack30.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack30.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack30Layout = new javax.swing.GroupLayout(noteAnimBlack30);
@@ -5130,9 +5519,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 41;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack30, gridBagConstraints);
 
         noteAnimBlack31.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack31.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack31.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack31Layout = new javax.swing.GroupLayout(noteAnimBlack31);
@@ -5151,9 +5544,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 42;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack31, gridBagConstraints);
 
         noteAnimBlack32.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack32.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack32.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack32Layout = new javax.swing.GroupLayout(noteAnimBlack32);
@@ -5172,9 +5569,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 44;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack32, gridBagConstraints);
 
         noteAnimBlack33.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack33.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack33.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack33Layout = new javax.swing.GroupLayout(noteAnimBlack33);
@@ -5193,9 +5594,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 45;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack33, gridBagConstraints);
 
         noteAnimBlack34.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack34.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack34.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack34Layout = new javax.swing.GroupLayout(noteAnimBlack34);
@@ -5214,9 +5619,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 47;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack34, gridBagConstraints);
 
         noteAnimBlack35.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack35.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack35.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack35Layout = new javax.swing.GroupLayout(noteAnimBlack35);
@@ -5235,9 +5644,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 48;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack35, gridBagConstraints);
 
         noteAnimBlack36.setBackground(new java.awt.Color(38, 38, 38));
+        noteAnimBlack36.setMaximumSize(new java.awt.Dimension(32767, 100000));
         noteAnimBlack36.setPreferredSize(new java.awt.Dimension(15, 635));
 
         javax.swing.GroupLayout noteAnimBlack36Layout = new javax.swing.GroupLayout(noteAnimBlack36);
@@ -5256,10 +5669,13 @@ public class PianoGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 49;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
         jLayeredPane2.add(noteAnimBlack36, gridBagConstraints);
 
         getContentPane().add(jLayeredPane2);
-        jLayeredPane2.setBounds(0, 0, 1320, 635);
+        jLayeredPane2.setBounds(0, -15, 1320, 650);
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
         jPanel1.setMinimumSize(new java.awt.Dimension(1320, 5));

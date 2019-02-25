@@ -28,6 +28,7 @@ import static javax.sound.midi.ShortMessage.NOTE_ON;
 import javax.sound.midi.Track;
 import javax.sound.midi.Transmitter;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 
@@ -50,6 +51,7 @@ public class PianoPlayer {
         this.piano = new PianoGUI();
         piano.setVisible(true);
         piano.setSize(1325, 815);
+        
     }
     public void startSequencer(Sequence seq) throws Exception {
         PianoFallingNotesConstruct pfnc = new PianoFallingNotesConstruct(seq, piano);
@@ -57,8 +59,8 @@ public class PianoPlayer {
         sequencer.setSequence(pfnc.getSequence());
         sequencer.open();
         sequencer.addMetaEventListener(mel);
+        pfnc.startAnimation();
         sequencer.start();
-        
     }
      
     MetaEventListener mel = new MetaEventListener() {
