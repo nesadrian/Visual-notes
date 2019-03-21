@@ -43,13 +43,13 @@ public class initiateProgram  {
         //String filepath = scanner.nextLine();
         //File file = new File(filepath);
         
-        File slowMidi = new File("C:\\Users\\adria_000\\Desktop\\easynslo.midi");
+        File slowMidi = new File("C:\\Users\\adria_000\\Desktop\\Midi files\\easynslo.midi");
         File arhhh = new File("C:\\Users\\adria_000\\Desktop\\MIDI files\\Hes A Pirate (Easy Version).mid");
         File fileScuffed = new File("C:\\Users\\adria_000\\Desktop\\projects\\Pokémon Essentials original\\Audio\\BGM\\Battle Gym Leader.mid");
         File mac = new File("/Users/adriannesvik/Downloads/Pokemon - Oracion.mid");
         
         PianoPlayer player = new PianoPlayer();
-        Sequence seq = checkSequenceValidity.createNewSequence(arhhh);
+        Sequence seq = checkSequenceValidity.createNewSequence(slowMidi);
         
         System.out.println("Microseconds: " + seq.getMicrosecondLength()); //2.7 minutes
         System.out.println("PPQ: " + seq.getResolution());
